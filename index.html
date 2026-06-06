@@ -1,13 +1,264 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MuseFilm</title>
-    <script type="module" crossorigin src="./assets/index-J60hWR-l.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DWSKEOTG.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuseFilm | Windows 胶片档案工具</title>
+    <meta name="description" content="MuseFilm 是面向胶片摄影用户的本地优先桌面档案管理工具，支持 Windows，并提供 macOS 原生版本预览。">
+    <link rel="stylesheet" href="./site.css">
   </head>
   <body>
-    <div id="root"></div>
+    <header class="nav">
+      <a class="brand" href="./index.html">MuseFilm</a>
+      <nav aria-label="站点导航">
+        <a href="#overview">概览</a>
+        <a href="#windows">Windows</a>
+        <a href="#download">下载</a>
+        <a href="#gallery">截图</a>
+        <a href="./mac.html">Mac 版</a>
+        <a href="https://github.com/Quartzsyr/MuseFilm">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-light" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">MuseFilm for Windows</p>
+          <h1>归档胶卷，赛博观片。</h1>
+          <p class="lead">
+            MuseFilm 把胶片卷、扫描照片、胶卷库、观片台、标签和备注放进一个本地优先的桌面应用。
+            图片不移动、不复制，只保存路径和元数据，适合长期维护自己的胶片档案。
+          </p>
+          <div class="actions">
+            <button class="button primary download-trigger" type="button">下载 Windows 版</button>
+            <a class="button secondary" href="./mac.html">了解 Mac 版</a>
+          </div>
+        </div>
+        <figure class="device-frame hero-device">
+          <img src="./images/image.png" alt="MuseFilm Windows 首页截图">
+        </figure>
+      </section>
+
+      <section class="product-switch">
+        <a class="switch-card active" href="./index.html">
+          <span>Windows</span>
+          <strong>成熟的 PyQt6 + WebView 桌面版本</strong>
+        </a>
+        <a class="switch-card" href="./mac.html">
+          <span>macOS</span>
+          <strong>原生 SwiftUI 与 Liquid Glass 视觉重构</strong>
+        </a>
+      </section>
+
+      <section class="section" id="windows">
+        <div class="section-heading">
+          <p class="eyebrow">Built for film archive</p>
+          <h2>从导入、整理到回看，一条完整的胶片工作流。</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-number">01</span>
+            <h3>按卷导入</h3>
+            <p>选择本地照片文件夹，绑定胶卷类型、拍摄信息、标签和备注。MuseFilm 只记录路径，不改变原图位置。</p>
+          </article>
+          <article>
+            <span class="feature-number">02</span>
+            <h3>胶卷库</h3>
+            <p>内置常见胶卷，也支持自定义库存、封面、暗盒和包装图，让扫描档案与真实耗材保持关联。</p>
+          </article>
+          <article>
+            <span class="feature-number">03</span>
+            <h3>观片台</h3>
+            <p>横向浏览底片条，在预览、随机一张和图库之间快速切换，用更接近摄影的方式回看照片。</p>
+          </article>
+          <article>
+            <span class="feature-number">04</span>
+            <h3>本地数据</h3>
+            <p>卷宗、胶卷、标签和设置都存放在本地 JSON 中，便于备份、迁移和二次开发。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contrast">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Desktop architecture</p>
+            <h2>Windows 版保留了开放、可维护的混合架构。</h2>
+            <p>
+              Python 负责数据读写、缩略图缓存、EXIF、备份和系统能力，Web 前端负责界面表达。
+              两者通过 QWebChannel 桥接，适合快速迭代胶片工作流。
+            </p>
+          </div>
+          <div class="spec-list">
+            <div><span>运行环境</span><strong>Python 3.10+ / PyQt6</strong></div>
+            <div><span>界面</span><strong>HTML / CSS / JavaScript SPA</strong></div>
+            <div><span>图片</span><strong>Pillow 缩略图与全图缓存</strong></div>
+            <div><span>数据</span><strong>本地 JSON / 可导出备份</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="download-section" id="download">
+        <div class="download-panel">
+          <div class="section-heading centered">
+            <p class="eyebrow">Download</p>
+            <h2>开始你的胶片之旅。</h2>
+            <p>选择适合你的桌面版本。下载次数会按平台记录，顶部显示 Windows 与 Mac 的总下载次数。</p>
+          </div>
+          <div class="total-download-count" aria-live="polite">
+            <span class="pulse-dot"></span>
+            总下载 <strong id="total-download-count">...</strong> 次
+          </div>
+          <div class="download-grid">
+            <div class="download-card">
+              <div class="download-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <path d="M21 15l-5-5L5 21"></path>
+                </svg>
+              </div>
+              <h3>MuseFilm 0.6.2</h3>
+              <p>Windows 内测版本</p>
+              <div class="download-count" aria-live="polite">
+                <span class="pulse-dot"></span>
+                已被下载 <strong id="windows-download-count">...</strong> 次
+              </div>
+              <button class="download-main download-trigger" data-platform="windows" type="button">下载 Windows 版</button>
+              <a class="download-github" href="https://github.com/Quartzsyr/MuseFilm">查看 GitHub 源码</a>
+              <div class="requirements" aria-label="Windows 系统要求">
+                <span>Windows 10 / Windows 11</span>
+                <span>源码运行需 Python 3.10+</span>
+                <span>推荐 4GB 以上内存</span>
+              </div>
+            </div>
+            <div class="download-card">
+              <div class="download-icon mac-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3v12"></path>
+                  <path d="m7 10 5 5 5-5"></path>
+                  <path d="M5 21h14"></path>
+                </svg>
+              </div>
+              <h3>MuseFilm 2.0</h3>
+              <p>macOS 原生版本 · build 2</p>
+              <div class="download-count" aria-live="polite">
+                <span class="pulse-dot"></span>
+                已被下载 <strong id="mac-download-count">...</strong> 次
+              </div>
+              <button class="download-main download-trigger" data-platform="mac" type="button">下载 Mac 版</button>
+              <a class="download-github" href="./mac.html">查看 Mac 版介绍</a>
+              <div class="requirements" aria-label="Mac 版本信息">
+                <span>macOS 原生 SwiftUI</span>
+                <span>Liquid Glass 视觉</span>
+                <span>本地优先档案管理</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <div class="section-heading">
+          <p class="eyebrow">Windows screenshots</p>
+          <h2>胶片档案的主要界面。</h2>
+        </div>
+        <div class="screenshot-grid">
+          <figure class="large"><img src="./images/image.png" alt="Windows 首页"><figcaption>首页</figcaption></figure>
+          <figure><img src="./images/image(2).png" alt="Windows 档案"><figcaption>档案</figcaption></figure>
+          <figure><img src="./images/image(3).png" alt="Windows 导入"><figcaption>导入</figcaption></figure>
+          <figure><img src="./images/image(4).png" alt="Windows 胶卷库"><figcaption>胶卷库</figcaption></figure>
+          <figure><img src="./images/image(6).png" alt="Windows 观片台"><figcaption>观片台</figcaption></figure>
+          <figure><img src="./images/image(8).png" alt="Windows 预览"><figcaption>预览</figcaption></figure>
+          <figure><img src="./images/image(10).png" alt="Windows 搜索"><figcaption>搜索</figcaption></figure>
+          <figure><img src="./images/image(12).png" alt="Windows 设置"><figcaption>设置</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="cta">
+        <p class="eyebrow">Next</p>
+        <h2>想看看原生 macOS 版本？</h2>
+        <a class="button primary" href="./mac.html">进入 Mac 版页面</a>
+      </section>
+    </main>
+
+    <footer>
+      <span>MuseFilm</span>
+      <span>Quartz SYR · SYRQuartz@gmail.com</span>
+    </footer>
+    <script>
+      const downloadUrls = {
+        windows: "https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe",
+        mac: "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg"
+      };
+      const countKeys = {
+        windows: "downloads",
+        mac: "mac-downloads"
+      };
+      const countEls = {
+        windows: document.getElementById("windows-download-count"),
+        mac: document.getElementById("mac-download-count")
+      };
+      const totalDownloadEl = document.getElementById("total-download-count");
+      const downloadTotals = {
+        windows: 0,
+        mac: 0
+      };
+
+      function formatDownloads(value) {
+        if (value === null || value === undefined) return "...";
+        return value >= 1000 ? `${(value / 1000).toFixed(1)}k` : Number(value).toLocaleString();
+      }
+
+      async function countApi(action, key) {
+        const response = await fetch(`https://api.countapi.xyz/${action}/musefilm/${key}`);
+        return response.json();
+      }
+
+      async function fetchDownloadCount(platform) {
+        try {
+          const data = await countApi("get", countKeys[platform]);
+          downloadTotals[platform] = data.value || 0;
+          if (countEls[platform]) countEls[platform].textContent = formatDownloads(downloadTotals[platform]);
+          updateTotalDownloads();
+        } catch (error) {
+          if (countEls[platform]) countEls[platform].textContent = "0";
+          updateTotalDownloads();
+        }
+      }
+
+      function updateTotalDownloads() {
+        if (totalDownloadEl) {
+          totalDownloadEl.textContent = formatDownloads(downloadTotals.windows + downloadTotals.mac);
+        }
+      }
+
+      async function recordVisit() {
+        try {
+          await countApi("hit", "visits");
+        } catch (error) {
+        }
+      }
+
+      async function handleDownload(event) {
+        const platform = event.currentTarget.dataset.platform || "windows";
+        try {
+          const data = await countApi("hit", countKeys[platform]);
+          downloadTotals[platform] = data.value || 0;
+          if (countEls[platform]) countEls[platform].textContent = formatDownloads(downloadTotals[platform]);
+          updateTotalDownloads();
+        } catch (error) {
+          if (countEls[platform]) countEls[platform].textContent = countEls[platform].textContent || "0";
+        }
+        window.open(downloadUrls[platform], "_blank");
+      }
+
+      document.querySelectorAll(".download-trigger").forEach((button) => {
+        button.addEventListener("click", handleDownload);
+      });
+      fetchDownloadCount("windows");
+      fetchDownloadCount("mac");
+      recordVisit();
+    </script>
   </body>
 </html>
