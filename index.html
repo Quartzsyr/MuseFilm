@@ -1,282 +1,206 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-page="home">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuseFilm | Windows 胶片档案工具</title>
-    <meta name="description" content="MuseFilm 是面向胶片摄影用户的本地优先桌面档案管理工具，支持 Windows，并提供 macOS 原生版本预览。">
-    <link rel="stylesheet" href="./site.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="MuseFilm 是为胶片摄影用户打造的本地优先桌面档案工具。整理胶卷、扫描照片、器材、地点和冲扫记录，让每一卷都有归处。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="MuseFilm">
+    <meta property="og:title" content="MuseFilm — A living archive of analog photography">
+    <meta property="og:description" content="把每一卷胶片，安放在一处。">
+    <meta property="og:url" content="https://musefilm.top/">
+    <meta property="og:image" content="https://musefilm.top/images/og-darkroom.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://musefilm.top/images/og-darkroom.jpg">
+    <link rel="canonical" href="https://musefilm.top/">
+    <link rel="icon" href="./images/app-icon.png" type="image/png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
+    <title>MuseFilm — 胶片摄影档案</title>
+    <script type="module" crossorigin src="./assets/site-D63LbW83.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/site-BRmm-xyV.css">
   </head>
   <body>
-    <header class="nav">
-      <a class="brand" href="./index.html">MuseFilm</a>
-      <nav aria-label="站点导航">
-        <a href="#overview">概览</a>
-        <a href="#windows">Windows</a>
-        <a href="#download">下载</a>
-        <a href="#gallery">截图</a>
-        <a href="./mac.html">Mac 版</a>
-        <a href="https://github.com/Quartzsyr/MuseFilm">GitHub</a>
+    <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
+
+    <header class="header" data-header>
+      <a class="logo" href="#product" aria-label="MuseFilm 首页"><img class="logo-mark" src="./images/app-icon.png" width="32" height="32" alt="" aria-hidden="true">MuseFilm</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav" data-menu-toggle><span data-i18n="menu">菜单</span><i></i></button>
+      <nav id="nav" class="nav" aria-label="主导航" data-i18n-aria="aria.nav" data-menu>
+        <a href="#product" data-i18n="nav.product">产品</a>
+        <a href="#screens" data-i18n="nav.screens">界面</a>
+        <a href="#gallery" data-i18n="nav.gallery">影像</a>
+        <a href="#download" data-i18n="nav.download">下载</a>
+        <a href="https://github.com/Quartzsyr/MuseFilm" target="_blank" rel="noopener">GitHub ↗</a>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Switch to English">EN</button>
       </nav>
     </header>
 
-    <main>
-      <section class="hero hero-light" id="overview">
-        <div class="hero-copy">
-          <p class="eyebrow">MuseFilm for Windows</p>
-          <h1>归档胶卷，赛博观片。</h1>
-          <p class="lead">
-            MuseFilm 把胶片卷、扫描照片、胶卷库、观片台、标签和备注放进一个本地优先的桌面应用。
-            图片不移动、不复制，只保存路径和元数据，适合长期维护自己的胶片档案。
-          </p>
-          <div class="actions">
-            <a
-              class="button primary download-trigger"
-              data-platform="windows"
-              href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe"
-              target="_blank"
-              rel="noopener"
-            >下载 Windows 版</a>
-            <a class="button secondary" href="./mac.html">了解 Mac 版</a>
+    <main id="main">
+      <section class="cinematic" id="product" data-cinematic>
+        <div class="cinematic-sticky">
+          <figure class="cinematic-visual film-model" data-film-model>
+            <img class="model-poster" src="./images/hero-film-roll.avif" width="1536" height="1024" alt="缓慢转动的 35mm 胶片盘与展开的底片 3D 模型" fetchpriority="high">
+            <div class="model-stage" aria-hidden="true"></div>
+            <div class="darkroom-haze" aria-hidden="true"></div>
+            <div class="cinematic-screen-stack" aria-hidden="true">
+              <figure class="cinematic-frame is-active" data-cinematic-frame="1">
+                <img src="./images/app-details/02-archive.avif" width="1046" height="768" alt="" fetchpriority="high">
+                <figcaption>FRAME 01 · ARCHIVE</figcaption>
+              </figure>
+              <figure class="cinematic-frame" data-cinematic-frame="2">
+                <img src="./images/app-details/03-film-library.avif" width="1046" height="768" alt="" loading="lazy">
+                <figcaption>FRAME 02 · FILM LIBRARY</figcaption>
+              </figure>
+              <figure class="cinematic-frame" data-cinematic-frame="3">
+                <img src="./images/app-details/06-light-table.avif" width="1046" height="768" alt="" loading="lazy">
+                <figcaption>FRAME 03 · LIGHT TABLE</figcaption>
+              </figure>
+              <figure class="cinematic-frame" data-cinematic-frame="4">
+                <img src="./images/app-details/08-search.avif" width="1046" height="768" alt="" loading="lazy">
+                <figcaption>FRAME 04 · SEARCH</figcaption>
+              </figure>
+            </div>
+          </figure>
+
+          <div class="cinematic-scenes">
+            <article class="cinematic-scene hero-scene is-active" data-cinematic-scene="0">
+              <p class="overline" data-i18n="hero.overline">一份持续生长的胶片摄影档案。</p>
+              <h1>MuseFilm</h1>
+              <p class="hero-cn"><span data-i18n="hero.line1">把每一卷胶片，</span><br><span data-i18n="hero.line2">安放在一处。</span></p>
+              <p class="hero-description" data-i18n="hero.description">面向胶片摄影用户的本地优先档案工具。整理胶卷、扫描照片和拍摄记忆，不移动你的原片。</p>
+              <div class="hero-actions">
+                <a class="primary-button download-trigger" data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-i18n="hero.downloadWindows">下载 Windows 版</span> <span>↓</span></a>
+                <a class="text-button" href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
+              </div>
+              <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>77</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
+            </article>
+
+            <article class="cinematic-scene chapter-scene" data-cinematic-scene="1">
+              <p class="chapter-index">01 / 04 · ARCHIVE</p>
+              <p class="overline" data-i18n="chapter.archive.overline">从胶卷开始</p>
+              <h2 data-i18n="chapter.archive.title">上下文，比文件夹更重要。</h2>
+              <p data-i18n="chapter.archive.body">围绕每一卷整理照片、日期、相机、地点、标签与冲扫记录，让一组扫描重新成为完整的拍摄记忆。</p>
+            </article>
+
+            <article class="cinematic-scene chapter-scene" data-cinematic-scene="2">
+              <p class="chapter-index">02 / 04 · FILM LIBRARY</p>
+              <p class="overline" data-i18n="chapter.library.overline">胶卷库</p>
+              <h2 data-i18n="chapter.library.title">每一种胶片，都留下自己的性格。</h2>
+              <p data-i18n="chapter.library.body">保存胶片品牌、感光度、格式与使用记录，在下一次装卷之前重新找到熟悉的色彩。</p>
+            </article>
+
+            <article class="cinematic-scene chapter-scene" data-cinematic-scene="3">
+              <p class="chapter-index">03 / 04 · LIGHT TABLE</p>
+              <p class="overline" data-i18n="chapter.table.overline">数字观片台</p>
+              <h2 data-i18n="chapter.table.title">让一卷照片重新回到光下。</h2>
+              <p data-i18n="chapter.table.body">像查看底片一样浏览整卷影像，在全局、细节和元数据之间自然切换。</p>
+            </article>
+
+            <article class="cinematic-scene chapter-scene" data-cinematic-scene="4">
+              <p class="chapter-index">04 / 04 · SEARCH</p>
+              <p class="overline" data-i18n="chapter.search.overline">重新发现</p>
+              <h2 data-i18n="chapter.search.title">记忆不再埋在硬盘深处。</h2>
+              <p data-i18n="chapter.search.body">按时间、器材、胶片、地点与标签快速回到某一卷、某一次旅行或某一束光。</p>
+            </article>
+          </div>
+
+          <div class="cinematic-status" aria-hidden="true">
+            <span>ROLL 01</span>
+            <div><i data-cinematic-progress></i></div>
+            <span data-cinematic-count>FRAME 00</span>
+          </div>
+          <div class="cinematic-controls">
+            <button type="button" class="sound-toggle" data-sound-toggle aria-pressed="false"><i></i><span data-i18n="sound.off">声音关闭</span></button>
+            <span class="scroll-cue" data-i18n="hero.scroll">滚动展开胶片</span>
           </div>
         </div>
-        <figure class="device-frame hero-device">
-          <img src="./images/image.png" alt="MuseFilm Windows 首页截图">
+      </section>
+
+      <section class="museum-section section" id="screens">
+        <div class="museum-heading" data-reveal>
+          <div>
+            <p class="overline" data-i18n="museum.overline">完整界面展馆</p>
+            <h2 data-i18n="museum.title">走进 MuseFilm。</h2>
+          </div>
+          <p data-i18n="museum.body">在 Mac 与 Windows 的真实界面之间移动。方向键、拖动或按钮均可切换画面。</p>
+        </div>
+        <div class="screen-showcase" data-screen-deck data-reveal tabindex="0" aria-label="MuseFilm 3D 截图展馆，可用左右方向键切换" data-i18n-aria="aria.deck">
+          <div class="museum-toolbar">
+            <div class="platform-switch" role="tablist" aria-label="平台截图" data-i18n-aria="aria.platforms">
+              <button type="button" role="tab" aria-selected="true" data-screen-platform="mac">macOS <small>18</small></button>
+              <button type="button" role="tab" aria-selected="false" data-screen-platform="windows">Windows <small>3</small></button>
+            </div>
+            <button class="fullscreen-button" type="button" data-screen-fullscreen><span data-i18n="museum.fullscreen">全屏观看</span> <i>⛶</i></button>
+          </div>
+          <div class="screen-stage-shell">
+            <div class="screen-stage" data-screen-stage></div>
+          </div>
+          <div class="screen-deck-nav">
+            <button type="button" data-screen-prev aria-label="上一张截图" data-i18n-aria="aria.prev">←</button>
+            <p aria-live="polite"><span data-screen-current>01</span><i>/</i><span data-screen-total>18</span><strong data-screen-label>档案总览</strong></p>
+            <button type="button" data-screen-next aria-label="下一张截图" data-i18n-aria="aria.next">→</button>
+          </div>
+          <div class="screen-progress" data-screen-progress aria-hidden="true"></div>
+          <noscript><img class="screen-fallback" src="./images/app-details/01-home.png" width="1046" height="768" alt="MuseFilm macOS interface"></noscript>
+        </div>
+      </section>
+
+      <section class="local-section section">
+        <div class="local-copy" data-reveal>
+          <p class="overline" data-i18n="local.overline">从设计开始，本地优先</p>
+          <h2 data-i18n="local.title">照片始终属于你。</h2>
+          <p data-i18n="local.lead">没有云端，没有重复图库，没有强制迁移。</p>
+          <p class="local-cn" data-i18n="local.body">照片仍然保存在原来的硬盘位置。你可以自由备份、迁移，也可以在离开 MuseFilm 后继续拥有完整的照片库。</p>
+        </div>
+      </section>
+
+      <section class="gallery-section section" id="gallery">
+        <div class="section-heading compact" data-reveal>
+          <p class="overline" data-i18n="gallery.overline">为摄影而生</p>
+          <h2 data-i18n="gallery.title">档案的终点，仍然是照片。</h2>
+          <p data-i18n="gallery.body">软件退到背后，让一卷胶片里的光、时间和记忆回到画面中心。</p>
+        </div>
+        <figure class="film-gallery" data-reveal>
+          <img src="./images/film-gallery.avif" width="1824" height="920" alt="三格原创胶片摄影作品：建筑、红门与湖边树木" loading="lazy">
         </figure>
       </section>
 
-      <section class="product-switch">
-        <a class="switch-card active" href="./index.html">
-          <span>Windows</span>
-          <strong>成熟的 PyQt6 + WebView 桌面版本</strong>
-        </a>
-        <a class="switch-card" href="./mac.html">
-          <span>macOS</span>
-          <strong>原生 SwiftUI 与 Liquid Glass 视觉重构</strong>
-        </a>
-      </section>
-
-      <section class="section" id="windows">
-        <div class="section-heading">
-          <p class="eyebrow">Built for film archive</p>
-          <h2>从导入、整理到回看，一条完整的胶片工作流。</h2>
+      <section class="download-section section" id="download">
+        <div class="download-heading" data-reveal>
+          <p class="overline" data-i18n="download.overline">下载 MuseFilm</p>
+          <h2 data-i18n="download.title">从一卷开始。</h2>
+          <p data-i18n="download.body">安装包由 GitHub Releases 托管，下载次数来自真实资产记录。</p>
+          <div class="total-count" aria-live="polite"><strong data-total-downloads>77</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
-        <div class="feature-grid">
+        <div class="download-grid" data-reveal>
           <article>
-            <span class="feature-number">01</span>
-            <h3>按卷导入</h3>
-            <p>选择本地照片文件夹，绑定胶卷类型、拍摄信息、标签和备注。MuseFilm 只记录路径，不改变原图位置。</p>
+            <div class="platform"><span>Windows</span><small>01</small></div>
+            <h3>MuseFilm Beta</h3>
+            <p data-i18n="download.winReq">Windows 10 / 11 · 278 MB</p>
+            <p class="platform-count"><strong data-download-count="windows">65</strong> <span data-i18n="download.count">次下载</span></p>
+            <a class="download-link download-trigger" data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-i18n="download.windows">下载 Windows 版</span> <span>↓</span></a>
           </article>
           <article>
-            <span class="feature-number">02</span>
-            <h3>胶卷库</h3>
-            <p>内置常见胶卷，也支持自定义库存、封面、暗盒和包装图，让扫描档案与真实耗材保持关联。</p>
+            <div class="platform"><span>macOS</span><small>02</small></div>
+            <h3>MuseFilm 2.0</h3>
+            <p data-i18n="download.macReq">原生 SwiftUI · build 2 · 5.3 MB</p>
+            <p class="platform-count"><strong data-download-count="mac">12</strong> <span data-i18n="download.count">次下载</span></p>
+            <a class="download-link download-trigger" data-platform="mac" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg" target="_blank" rel="noopener"><span data-i18n="download.mac">下载 macOS 版</span> <span>↓</span></a>
           </article>
-          <article>
-            <span class="feature-number">03</span>
-            <h3>观片台</h3>
-            <p>横向浏览底片条，在预览、随机一张和图库之间快速切换，用更接近摄影的方式回看照片。</p>
-          </article>
-          <article>
-            <span class="feature-number">04</span>
-            <h3>本地数据</h3>
-            <p>卷宗、胶卷、标签和设置都存放在本地 JSON 中，便于备份、迁移和二次开发。</p>
-          </article>
+          <div class="download-meta"><span data-download-status aria-live="polite">下载次数已与 GitHub Releases 同步</span><a href="https://github.com/Quartzsyr/MuseFilm/releases" data-i18n="download.releaseNotes">版本说明 ↗</a></div>
         </div>
-      </section>
-
-      <section class="section contrast">
-        <div class="split">
-          <div>
-            <p class="eyebrow">Desktop architecture</p>
-            <h2>Windows 版保留了开放、可维护的混合架构。</h2>
-            <p>
-              Python 负责数据读写、缩略图缓存、EXIF、备份和系统能力，Web 前端负责界面表达。
-              两者通过 QWebChannel 桥接，适合快速迭代胶片工作流。
-            </p>
-          </div>
-          <div class="spec-list">
-            <div><span>运行环境</span><strong>Python 3.10+ / PyQt6</strong></div>
-            <div><span>界面</span><strong>HTML / CSS / JavaScript SPA</strong></div>
-            <div><span>图片</span><strong>Pillow 缩略图与全图缓存</strong></div>
-            <div><span>数据</span><strong>本地 JSON / 可导出备份</strong></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="download-section" id="download">
-        <div class="download-panel">
-          <div class="section-heading centered">
-            <p class="eyebrow">Download</p>
-            <h2>开始你的胶片之旅。</h2>
-            <p>选择适合你的桌面版本。下载次数会按平台记录，顶部显示 Windows 与 Mac 的总下载次数。</p>
-          </div>
-          <div class="total-download-count" aria-live="polite">
-            <span class="pulse-dot"></span>
-            总下载 <strong id="total-download-count">50</strong> 次
-          </div>
-          <div class="download-grid">
-            <div class="download-card">
-              <div class="download-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <path d="M21 15l-5-5L5 21"></path>
-                </svg>
-              </div>
-              <h3>MuseFilm 0.6.2</h3>
-              <p>Windows 内测版本</p>
-              <div class="download-count" aria-live="polite">
-                <span class="pulse-dot"></span>
-                已被下载 <strong id="windows-download-count">49</strong> 次
-              </div>
-              <a
-                class="download-main download-trigger"
-                data-platform="windows"
-                href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe"
-                target="_blank"
-                rel="noopener"
-              >下载 Windows 版</a>
-              <a class="download-github" href="https://github.com/Quartzsyr/MuseFilm">查看 GitHub 源码</a>
-              <div class="requirements" aria-label="Windows 系统要求">
-                <span>Windows 10 / Windows 11</span>
-                <span>源码运行需 Python 3.10+</span>
-                <span>推荐 4GB 以上内存</span>
-              </div>
-            </div>
-            <div class="download-card">
-              <div class="download-icon mac-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 3v12"></path>
-                  <path d="m7 10 5 5 5-5"></path>
-                  <path d="M5 21h14"></path>
-                </svg>
-              </div>
-              <h3>MuseFilm 2.0</h3>
-              <p>macOS 原生版本 · build 2</p>
-              <div class="download-count" aria-live="polite">
-                <span class="pulse-dot"></span>
-                已被下载 <strong id="mac-download-count">1</strong> 次
-              </div>
-              <a
-                class="download-main download-trigger"
-                data-platform="mac"
-                href="https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg"
-                target="_blank"
-                rel="noopener"
-              >下载 Mac 版</a>
-              <a class="download-github" href="./mac.html">查看 Mac 版介绍</a>
-              <div class="requirements" aria-label="Mac 版本信息">
-                <span>macOS 原生 SwiftUI</span>
-                <span>Liquid Glass 视觉</span>
-                <span>本地优先档案管理</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="gallery">
-        <div class="section-heading">
-          <p class="eyebrow">Windows screenshots</p>
-          <h2>胶片档案的主要界面。</h2>
-        </div>
-        <div class="screenshot-grid">
-          <figure class="large"><img src="./images/image.png" alt="Windows 首页"><figcaption>首页</figcaption></figure>
-          <figure><img src="./images/image(2).png" alt="Windows 档案"><figcaption>档案</figcaption></figure>
-          <figure><img src="./images/image(3).png" alt="Windows 导入"><figcaption>导入</figcaption></figure>
-          <figure><img src="./images/image(4).png" alt="Windows 胶卷库"><figcaption>胶卷库</figcaption></figure>
-          <figure><img src="./images/image(6).png" alt="Windows 观片台"><figcaption>观片台</figcaption></figure>
-          <figure><img src="./images/image(8).png" alt="Windows 预览"><figcaption>预览</figcaption></figure>
-          <figure><img src="./images/image(10).png" alt="Windows 搜索"><figcaption>搜索</figcaption></figure>
-          <figure><img src="./images/image(12).png" alt="Windows 设置"><figcaption>设置</figcaption></figure>
-        </div>
-      </section>
-
-      <section class="cta">
-        <p class="eyebrow">Next</p>
-        <h2>想看看原生 macOS 版本？</h2>
-        <a class="button primary" href="./mac.html">进入 Mac 版页面</a>
       </section>
     </main>
 
-    <footer>
-      <span>MuseFilm</span>
-      <span>Quartz SYR · SYRQuartz@gmail.com</span>
+    <footer class="footer">
+      <a class="logo" href="#product"><img class="logo-mark" src="./images/app-icon.png" width="32" height="32" alt="" aria-hidden="true">MuseFilm</a>
+      <p data-i18n="footer.slogan">献给仍在拍胶片的人。</p>
+      <div><a href="https://github.com/Quartzsyr/MuseFilm">GitHub</a><span>© <b data-year>2026</b> Quartz SYR</span></div>
     </footer>
-    <script>
-      const countKeys = {
-        windows: "downloads",
-        mac: "mac-downloads"
-      };
-      const countEls = {
-        windows: document.getElementById("windows-download-count"),
-        mac: document.getElementById("mac-download-count")
-      };
-      const totalDownloadEl = document.getElementById("total-download-count");
-      const releaseApiUrl = "https://api.github.com/repos/Quartzsyr/MuseFilm/releases";
-      const assetNames = {
-        windows: "MuseFilmSetup.exe",
-        mac: "musefilm-2.0-build2-2026-06-06-154741.dmg"
-      };
-      const downloadTotals = {
-        windows: 49,
-        mac: 1
-      };
 
-      function formatDownloads(value) {
-        if (value === null || value === undefined) return "...";
-        return value >= 1000 ? `${(value / 1000).toFixed(1)}k` : Number(value).toLocaleString();
-      }
-
-      async function fetchGitHubDownloadCounts() {
-        try {
-          const response = await fetch(releaseApiUrl, { headers: { Accept: "application/vnd.github+json" } });
-          const releases = await response.json();
-          releases.forEach((release) => {
-            (release.assets || []).forEach((asset) => {
-              Object.entries(assetNames).forEach(([platform, name]) => {
-                if (asset.name === name) {
-                  downloadTotals[platform] = asset.download_count || 0;
-                }
-              });
-            });
-          });
-          Object.keys(countEls).forEach((platform) => {
-            if (countEls[platform]) countEls[platform].textContent = formatDownloads(downloadTotals[platform]);
-          });
-          updateTotalDownloads();
-        } catch (error) {
-          updateTotalDownloads();
-        }
-      }
-
-      function updateTotalDownloads() {
-        if (totalDownloadEl) {
-          totalDownloadEl.textContent = formatDownloads(downloadTotals.windows + downloadTotals.mac);
-        }
-      }
-
-      async function recordVisit() {
-        try {
-          await fetch("https://api.countapi.xyz/hit/musefilm/visits", { mode: "no-cors" });
-        } catch (error) {
-        }
-      }
-
-      function handleDownload(event) {
-        const platform = event.currentTarget.dataset.platform || "windows";
-        downloadTotals[platform] += 1;
-        if (countEls[platform]) countEls[platform].textContent = formatDownloads(downloadTotals[platform]);
-        updateTotalDownloads();
-      }
-
-      document.querySelectorAll(".download-trigger").forEach((button) => {
-        button.addEventListener("click", handleDownload);
-      });
-      updateTotalDownloads();
-      fetchGitHubDownloadCounts();
-      recordVisit();
-    </script>
+    <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
   </body>
 </html>
