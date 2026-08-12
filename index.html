@@ -19,8 +19,8 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <title>MuseFilm — 胶片摄影档案</title>
-    <script type="module" crossorigin src="./assets/site-D63LbW83.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/site-BRmm-xyV.css">
+    <script type="module" crossorigin src="./assets/site-CwCfF-un.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/site-DLHunS80.css">
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
@@ -40,28 +40,25 @@
 
     <main id="main">
       <section class="cinematic" id="product" data-cinematic>
+        <span class="screens-anchor" id="screens" aria-hidden="true"></span>
         <div class="cinematic-sticky">
           <figure class="cinematic-visual film-model" data-film-model>
             <img class="model-poster" src="./images/hero-film-roll.avif" width="1536" height="1024" alt="缓慢转动的 35mm 胶片盘与展开的底片 3D 模型" fetchpriority="high">
             <div class="model-stage" aria-hidden="true"></div>
             <div class="darkroom-haze" aria-hidden="true"></div>
-            <div class="cinematic-screen-stack" aria-hidden="true">
-              <figure class="cinematic-frame is-active" data-cinematic-frame="1">
-                <img src="./images/app-details/02-archive.avif" width="1046" height="768" alt="" fetchpriority="high">
-                <figcaption>FRAME 01 · ARCHIVE</figcaption>
+            <div class="cinematic-screen-stack" data-narrative-deck tabindex="0" aria-label="MuseFilm 胶卷联动界面叙事" data-i18n-aria="aria.deck">
+              <div class="narrative-platform-switch" role="tablist" aria-label="平台截图" data-i18n-aria="aria.platforms">
+                <button type="button" role="tab" aria-selected="true" data-narrative-platform="mac">macOS <small>8</small></button>
+                <button type="button" role="tab" aria-selected="false" data-narrative-platform="windows">Windows <small>13</small></button>
+              </div>
+              <figure class="cinematic-frame is-active" data-narrative-frame>
+                <img src="./images/app-details/01-home.avif" width="1046" height="768" alt="MuseFilm Mac 首页与最近导入" fetchpriority="high" data-narrative-image>
+                <figcaption>
+                  <div><span data-narrative-meta>MAC / 01 / 08</span><strong data-narrative-label>首页概览</strong></div>
+                </figcaption>
               </figure>
-              <figure class="cinematic-frame" data-cinematic-frame="2">
-                <img src="./images/app-details/03-film-library.avif" width="1046" height="768" alt="" loading="lazy">
-                <figcaption>FRAME 02 · FILM LIBRARY</figcaption>
-              </figure>
-              <figure class="cinematic-frame" data-cinematic-frame="3">
-                <img src="./images/app-details/06-light-table.avif" width="1046" height="768" alt="" loading="lazy">
-                <figcaption>FRAME 03 · LIGHT TABLE</figcaption>
-              </figure>
-              <figure class="cinematic-frame" data-cinematic-frame="4">
-                <img src="./images/app-details/08-search.avif" width="1046" height="768" alt="" loading="lazy">
-                <figcaption>FRAME 04 · SEARCH</figcaption>
-              </figure>
+              <div class="narrative-film-strip" data-narrative-progress role="slider" tabindex="0" aria-label="胶片截图进度" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" aria-valuetext="首页概览，1 / 8"></div>
+              <div class="narrative-hint" aria-hidden="true"><span>SCROLL</span><i></i><span data-narrative-sequence>01 / 08</span></div>
             </div>
           </figure>
 
@@ -72,38 +69,38 @@
               <p class="hero-cn"><span data-i18n="hero.line1">把每一卷胶片，</span><br><span data-i18n="hero.line2">安放在一处。</span></p>
               <p class="hero-description" data-i18n="hero.description">面向胶片摄影用户的本地优先档案工具。整理胶卷、扫描照片和拍摄记忆，不移动你的原片。</p>
               <div class="hero-actions">
-                <a class="primary-button download-trigger" data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-i18n="hero.downloadWindows">下载 Windows 版</span> <span>↓</span></a>
+                <a class="primary-button download-trigger" data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
                 <a class="text-button" href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
-              <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>77</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
+              <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>79</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
             </article>
 
             <article class="cinematic-scene chapter-scene" data-cinematic-scene="1">
-              <p class="chapter-index">01 / 04 · ARCHIVE</p>
-              <p class="overline" data-i18n="chapter.archive.overline">从胶卷开始</p>
-              <h2 data-i18n="chapter.archive.title">上下文，比文件夹更重要。</h2>
-              <p data-i18n="chapter.archive.body">围绕每一卷整理照片、日期、相机、地点、标签与冲扫记录，让一组扫描重新成为完整的拍摄记忆。</p>
+              <p class="chapter-index" data-narrative-copy-index>MACOS · 01 / 08</p>
+              <p class="overline" data-i18n="chapter.archive.overline" data-narrative-copy-overline>从胶卷开始</p>
+              <h2 data-i18n="chapter.archive.title" data-narrative-copy-title>上下文，比文件夹更重要。</h2>
+              <p data-i18n="chapter.archive.body" data-narrative-copy-description>围绕每一卷整理照片、日期、相机、地点、标签与冲扫记录，让一组扫描重新成为完整的拍摄记忆。</p>
             </article>
 
             <article class="cinematic-scene chapter-scene" data-cinematic-scene="2">
-              <p class="chapter-index">02 / 04 · FILM LIBRARY</p>
-              <p class="overline" data-i18n="chapter.library.overline">胶卷库</p>
-              <h2 data-i18n="chapter.library.title">每一种胶片，都留下自己的性格。</h2>
-              <p data-i18n="chapter.library.body">保存胶片品牌、感光度、格式与使用记录，在下一次装卷之前重新找到熟悉的色彩。</p>
+              <p class="chapter-index" data-narrative-copy-index>MACOS · 01 / 08</p>
+              <p class="overline" data-i18n="chapter.library.overline" data-narrative-copy-overline>胶卷库</p>
+              <h2 data-i18n="chapter.library.title" data-narrative-copy-title>每一种胶片，都留下自己的性格。</h2>
+              <p data-i18n="chapter.library.body" data-narrative-copy-description>保存胶片品牌、感光度、格式与使用记录，在下一次装卷之前重新找到熟悉的色彩。</p>
             </article>
 
             <article class="cinematic-scene chapter-scene" data-cinematic-scene="3">
-              <p class="chapter-index">03 / 04 · LIGHT TABLE</p>
-              <p class="overline" data-i18n="chapter.table.overline">数字观片台</p>
-              <h2 data-i18n="chapter.table.title">让一卷照片重新回到光下。</h2>
-              <p data-i18n="chapter.table.body">像查看底片一样浏览整卷影像，在全局、细节和元数据之间自然切换。</p>
+              <p class="chapter-index" data-narrative-copy-index>MACOS · 01 / 08</p>
+              <p class="overline" data-i18n="chapter.table.overline" data-narrative-copy-overline>数字观片台</p>
+              <h2 data-i18n="chapter.table.title" data-narrative-copy-title>让一卷照片重新回到光下。</h2>
+              <p data-i18n="chapter.table.body" data-narrative-copy-description>像查看底片一样浏览整卷影像，在全局、细节和元数据之间自然切换。</p>
             </article>
 
             <article class="cinematic-scene chapter-scene" data-cinematic-scene="4">
-              <p class="chapter-index">04 / 04 · SEARCH</p>
-              <p class="overline" data-i18n="chapter.search.overline">重新发现</p>
-              <h2 data-i18n="chapter.search.title">记忆不再埋在硬盘深处。</h2>
-              <p data-i18n="chapter.search.body">按时间、器材、胶片、地点与标签快速回到某一卷、某一次旅行或某一束光。</p>
+              <p class="chapter-index" data-narrative-copy-index>MACOS · 01 / 08</p>
+              <p class="overline" data-i18n="chapter.search.overline" data-narrative-copy-overline>重新发现</p>
+              <h2 data-i18n="chapter.search.title" data-narrative-copy-title>记忆不再埋在硬盘深处。</h2>
+              <p data-i18n="chapter.search.body" data-narrative-copy-description>按时间、器材、胶片、地点与标签快速回到某一卷、某一次旅行或某一束光。</p>
             </article>
           </div>
 
@@ -116,35 +113,6 @@
             <button type="button" class="sound-toggle" data-sound-toggle aria-pressed="false"><i></i><span data-i18n="sound.off">声音关闭</span></button>
             <span class="scroll-cue" data-i18n="hero.scroll">滚动展开胶片</span>
           </div>
-        </div>
-      </section>
-
-      <section class="museum-section section" id="screens">
-        <div class="museum-heading" data-reveal>
-          <div>
-            <p class="overline" data-i18n="museum.overline">完整界面展馆</p>
-            <h2 data-i18n="museum.title">走进 MuseFilm。</h2>
-          </div>
-          <p data-i18n="museum.body">在 Mac 与 Windows 的真实界面之间移动。方向键、拖动或按钮均可切换画面。</p>
-        </div>
-        <div class="screen-showcase" data-screen-deck data-reveal tabindex="0" aria-label="MuseFilm 3D 截图展馆，可用左右方向键切换" data-i18n-aria="aria.deck">
-          <div class="museum-toolbar">
-            <div class="platform-switch" role="tablist" aria-label="平台截图" data-i18n-aria="aria.platforms">
-              <button type="button" role="tab" aria-selected="true" data-screen-platform="mac">macOS <small>18</small></button>
-              <button type="button" role="tab" aria-selected="false" data-screen-platform="windows">Windows <small>3</small></button>
-            </div>
-            <button class="fullscreen-button" type="button" data-screen-fullscreen><span data-i18n="museum.fullscreen">全屏观看</span> <i>⛶</i></button>
-          </div>
-          <div class="screen-stage-shell">
-            <div class="screen-stage" data-screen-stage></div>
-          </div>
-          <div class="screen-deck-nav">
-            <button type="button" data-screen-prev aria-label="上一张截图" data-i18n-aria="aria.prev">←</button>
-            <p aria-live="polite"><span data-screen-current>01</span><i>/</i><span data-screen-total>18</span><strong data-screen-label>档案总览</strong></p>
-            <button type="button" data-screen-next aria-label="下一张截图" data-i18n-aria="aria.next">→</button>
-          </div>
-          <div class="screen-progress" data-screen-progress aria-hidden="true"></div>
-          <noscript><img class="screen-fallback" src="./images/app-details/01-home.png" width="1046" height="768" alt="MuseFilm macOS interface"></noscript>
         </div>
       </section>
 
@@ -163,34 +131,102 @@
           <h2 data-i18n="gallery.title">档案的终点，仍然是照片。</h2>
           <p data-i18n="gallery.body">软件退到背后，让一卷胶片里的光、时间和记忆回到画面中心。</p>
         </div>
-        <figure class="film-gallery" data-reveal>
-          <img src="./images/film-gallery.avif" width="1824" height="920" alt="三格原创胶片摄影作品：建筑、红门与湖边树木" loading="lazy">
-        </figure>
+        <div class="light-table" data-light-table data-reveal>
+          <header class="light-table-toolbar">
+            <div><span data-i18n="lightTable.eyebrow">模拟观片台</span><strong data-i18n="lightTable.title">把照片放回光下。</strong></div>
+            <div class="light-table-actions">
+              <span class="light-table-count"><b data-light-table-count>3</b> <span data-i18n="lightTable.frames">张画面</span></span>
+              <div class="light-table-edit-actions">
+                <button type="button" data-light-table-reset data-i18n="lightTable.reset">复位</button>
+                <button type="button" class="light-table-import" data-light-table-upload data-i18n="lightTable.upload">导入照片</button>
+                <button type="button" data-light-table-exit data-i18n="lightTable.exit">退出</button>
+              </div>
+              <input type="file" data-light-table-input accept="image/*" multiple hidden>
+            </div>
+          </header>
+          <div class="light-table-workspace">
+            <div class="light-table-board" data-light-table-board tabindex="0" data-i18n-aria="aria.lightTable">
+              <div class="light-table-grid" aria-hidden="true"></div>
+              <div class="light-table-stage" data-light-table-stage role="listbox" data-i18n-aria="aria.lightTablePhotos"></div>
+              <div class="light-table-loupe" data-light-table-loupe aria-hidden="true">
+                <div class="light-table-loupe-glass">
+                  <div class="light-table-loupe-stage" data-light-table-loupe-stage></div>
+                </div>
+                <span>2.0×</span>
+              </div>
+              <div class="light-table-launch">
+                <button type="button" data-light-table-enter><span data-i18n="lightTable.enter">进入模拟观片台</span><i aria-hidden="true">↗</i></button>
+                <small data-i18n="lightTable.enterHint">点击后可拖动、缩放与导入本地照片</small>
+              </div>
+              <div class="light-table-drop-hint" data-light-table-drop-hint><span>＋</span><strong data-i18n="lightTable.dropTitle">将照片拖到这里</strong><small data-i18n="lightTable.dropBody">支持 JPG、PNG、HEIC、WebP 等本地图片</small></div>
+              <div class="light-table-board-status" aria-hidden="true"><span>LIGHT TABLE · 5600 K</span><span data-light-table-frame-status>FRAME 01 / 03</span></div>
+            </div>
+            <aside class="light-table-inspector" data-light-table-inspector aria-live="polite">
+              <div class="light-table-preview" data-light-table-preview></div>
+              <span class="light-table-index" data-light-table-index>FRAME 01 / 03</span>
+              <h3 data-light-table-name>Kodak 5222 · 布达拉宫</h3>
+              <p data-light-table-description>高反差的黑白颗粒勾勒云层、树枝与拉萨山脊，让布达拉宫一带的光线留下更坚实的年代感。</p>
+              <dl>
+                <div><dt data-i18n="lightTable.source">来源</dt><dd data-light-table-source>示例胶卷</dd></div>
+                <div><dt data-i18n="lightTable.dimensions">尺寸</dt><dd data-light-table-dimensions>—</dd></div>
+                <div><dt data-i18n="lightTable.size">文件大小</dt><dd data-light-table-size>内置示例</dd></div>
+              </dl>
+              <div class="light-table-controls">
+                <button type="button" data-light-table-zoom-out data-i18n-aria="aria.zoomOut">−</button>
+                <span><b data-light-table-zoom>100</b>%</span>
+                <button type="button" data-light-table-zoom-in data-i18n-aria="aria.zoomIn">＋</button>
+                <button type="button" class="light-table-remove" data-light-table-remove data-i18n="lightTable.remove">移除画面</button>
+              </div>
+              <p class="light-table-privacy"><i></i><span data-i18n="lightTable.privacy">照片只在当前浏览器中预览，不会上传。</span></p>
+            </aside>
+          </div>
+        </div>
       </section>
 
       <section class="download-section section" id="download">
+        <figure class="download-film-finale" data-film-finale data-cinematic-progress="0.72" aria-hidden="true"><div class="model-stage"></div></figure>
         <div class="download-heading" data-reveal>
           <p class="overline" data-i18n="download.overline">下载 MuseFilm</p>
           <h2 data-i18n="download.title">从一卷开始。</h2>
           <p data-i18n="download.body">安装包由 GitHub Releases 托管，下载次数来自真实资产记录。</p>
-          <div class="total-count" aria-live="polite"><strong data-total-downloads>77</strong><span data-i18n="download.total">已验证下载总数</span></div>
+          <div class="total-count" aria-live="polite"><strong data-total-downloads>79</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
         <div class="download-grid" data-reveal>
-          <article>
+          <article data-release-card="windows">
             <div class="platform"><span>Windows</span><small>01</small></div>
-            <h3>MuseFilm Beta</h3>
-            <p data-i18n="download.winReq">Windows 10 / 11 · 278 MB</p>
-            <p class="platform-count"><strong data-download-count="windows">65</strong> <span data-i18n="download.count">次下载</span></p>
+            <h3 data-release-name="windows">MuseFilm Beta</h3>
+            <p data-release-details="windows" data-i18n="download.winReq">Windows 10 / 11 · 278 MB</p>
+            <dl class="release-facts">
+              <div><dt data-i18n="download.published">发布</dt><dd data-release-date="windows">—</dd></div>
+              <div><dt data-i18n="download.checksum">SHA-256</dt><dd><code data-release-digest="windows">—</code><button type="button" data-copy-digest="windows" data-i18n="download.copy">复制</button></dd></div>
+            </dl>
+            <p class="platform-count"><strong data-download-count="windows">67</strong> <span data-i18n="download.count">次下载</span></p>
             <a class="download-link download-trigger" data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-i18n="download.windows">下载 Windows 版</span> <span>↓</span></a>
           </article>
-          <article>
+          <article data-release-card="mac">
             <div class="platform"><span>macOS</span><small>02</small></div>
-            <h3>MuseFilm 2.0</h3>
-            <p data-i18n="download.macReq">原生 SwiftUI · build 2 · 5.3 MB</p>
+            <h3 data-release-name="mac">MuseFilm 2.0</h3>
+            <p data-release-details="mac" data-i18n="download.macReq">原生 SwiftUI · build 2 · 5.3 MB</p>
+            <dl class="release-facts">
+              <div><dt data-i18n="download.published">发布</dt><dd data-release-date="mac">—</dd></div>
+              <div><dt data-i18n="download.checksum">SHA-256</dt><dd><code data-release-digest="mac">—</code><button type="button" data-copy-digest="mac" data-i18n="download.copy">复制</button></dd></div>
+            </dl>
             <p class="platform-count"><strong data-download-count="mac">12</strong> <span data-i18n="download.count">次下载</span></p>
             <a class="download-link download-trigger" data-platform="mac" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg" target="_blank" rel="noopener"><span data-i18n="download.mac">下载 macOS 版</span> <span>↓</span></a>
           </article>
           <div class="download-meta"><span data-download-status aria-live="polite">下载次数已与 GitHub Releases 同步</span><a href="https://github.com/Quartzsyr/MuseFilm/releases" data-i18n="download.releaseNotes">版本说明 ↗</a></div>
+          <article class="release-notes" data-release-notes-card>
+            <div><p class="overline" data-i18n="download.notesOverline">最新版本</p><h3 data-release-notes-title>Release Notes</h3><time data-release-notes-date></time></div>
+            <div class="release-notes-body" data-release-notes-body><p data-i18n="download.notesFallback">正在从 GitHub 获取最新更新说明。</p></div>
+            <a href="https://github.com/Quartzsyr/MuseFilm/releases" target="_blank" rel="noopener" data-release-notes-link data-i18n="download.fullNotes">查看完整版本说明 ↗</a>
+          </article>
+          <details class="release-history" data-release-history>
+            <summary>
+              <div><p class="overline" data-i18n="download.historyOverline">版本历史</p><h3 data-i18n="download.historyTitle">展开查看全部版本</h3></div>
+              <div class="release-history-total"><span><b data-release-history-count>—</b> <span data-i18n="download.historyCount">个版本</span></span><i aria-hidden="true">＋</i></div>
+            </summary>
+            <div class="release-history-list" data-release-history-list aria-live="polite"><p class="release-history-state" data-i18n="download.historyLoading">正在读取 GitHub Releases…</p></div>
+          </details>
         </div>
       </section>
     </main>
