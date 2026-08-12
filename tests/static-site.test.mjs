@@ -133,8 +133,13 @@ test("mounts the hero film reel as a progressive 3D enhancement", async () => {
 
   assert.match(home, /data-film-model/);
   assert.match(home, /model-poster/);
-  assert.match(script, /import\("\.\/film-model\.js"\)/);
+  assert.match(script, /import\("\.\/film-model\.js\?v=\d{8}-3d\d+"\)/);
   assert.match(model, /WebGLRenderer/);
+  assert.match(model, /\.\/vendor\/three\.module\.min\.js/);
+  await Promise.all([
+    access(new URL("vendor/three.module.min.js", root)),
+    access(new URL("vendor/three.core.min.js", root)),
+  ]);
   assert.match(model, /reducedMotion/);
   assert.match(model, /IntersectionObserver/);
   assert.match(home, /data-cinematic/);

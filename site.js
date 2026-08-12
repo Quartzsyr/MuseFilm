@@ -393,12 +393,13 @@ function applyLanguage(language) {
 const filmModel = document.querySelector("[data-film-model]");
 const filmFinale = document.querySelector("[data-film-finale]");
 if (filmModel || filmFinale) {
-  import("./film-model.js")
+  import("./film-model.js?v=20260812-3d1")
     .then(({ mountFilmModel }) => {
       if (filmModel) mountFilmModel(filmModel, { reducedMotion });
       if (filmFinale) mountFilmModel(filmFinale, { reducedMotion, finale: true });
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error("MuseFilm 3D model failed to load", error);
       filmModel?.classList.add("model-fallback");
       filmFinale?.classList.add("model-fallback");
     });
