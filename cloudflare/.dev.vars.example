@@ -1,0 +1,3 @@
+TURNSTILE_SECRET_KEY=
+FINGERPRINT_SALT=replace-with-a-long-random-secret
+ADMIN_TOKEN=replace-with-a-long-random-secret

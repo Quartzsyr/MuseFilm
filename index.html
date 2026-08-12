@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#080808">
     <meta name="description" content="MuseFilm 是为胶片摄影用户打造的本地优先桌面档案工具。整理胶卷、扫描照片、器材、地点和冲扫记录，让每一卷都有归处。">
+    <meta name="musefilm-api-base" content="https://musefilm-feedback-api.syrquartz.workers.dev">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:site_name" content="MuseFilm">
@@ -18,9 +19,8 @@
     <link rel="icon" href="./images/app-icon.png" type="image/png">
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
+    <link rel="stylesheet" href="./site.css">
     <title>MuseFilm — 胶片摄影档案</title>
-    <script type="module" crossorigin src="./assets/site-E_Agi0Pt.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/site-BCeTWCw1.css">
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
@@ -237,6 +237,52 @@
       <div><a href="https://github.com/Quartzsyr/MuseFilm">GitHub</a><span>© <b data-year>2026</b> Quartz SYR</span></div>
     </footer>
 
+    <button class="feedback-trigger" type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-dialog">
+      <i aria-hidden="true"><span></span><span></span><span></span></i>
+      <span data-i18n="feedback.trigger">反馈</span>
+    </button>
+
+    <dialog class="feedback-dialog" id="feedback-dialog" data-feedback-dialog aria-labelledby="feedback-title">
+      <form class="feedback-form" method="dialog" data-feedback-form>
+        <header>
+          <div>
+            <p class="overline" data-i18n="feedback.overline">写给 MuseFilm</p>
+            <h2 id="feedback-title" data-i18n="feedback.title">让下一卷更好。</h2>
+          </div>
+          <button class="feedback-close" type="button" data-feedback-close data-i18n-aria="feedback.close">×</button>
+        </header>
+        <p class="feedback-intro" data-i18n="feedback.intro">告诉我哪里不顺手，或你希望下一次打开时多出什么。反馈会被安全保存，并保留可选联系方式，便于后续跟进。</p>
+        <div class="feedback-fields">
+          <label>
+            <span data-i18n="feedback.type">反馈类型</span>
+            <select name="type" required>
+              <option value="bug" data-i18n="feedback.typeBug">遇到问题</option>
+              <option value="suggestion" data-i18n="feedback.typeSuggestion">功能建议</option>
+              <option value="other" data-i18n="feedback.typeOther">其他想法</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="feedback.message">具体内容</span>
+            <textarea name="message" minlength="10" maxlength="2000" rows="6" required data-i18n-placeholder="feedback.placeholder" placeholder="发生了什么？你希望它怎样工作？"></textarea>
+            <small><b data-feedback-count>0</b> / 2000</small>
+          </label>
+          <label>
+            <span data-i18n="feedback.email">联系邮箱 · 选填</span>
+            <input name="email" type="email" maxlength="160" autocomplete="email" data-i18n-placeholder="feedback.emailPlaceholder" placeholder="方便回复你的邮箱">
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true" tabindex="-1">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="feedback-turnstile" data-feedback-turnstile hidden></div>
+        <p class="feedback-privacy"><i></i><span data-i18n="feedback.privacy">只记录必要的页面与设备信息，不保存原始 IP。</span></p>
+        <p class="feedback-status" data-feedback-status role="status" aria-live="polite"></p>
+        <footer>
+          <a href="https://github.com/Quartzsyr/MuseFilm/issues/new?labels=feedback&amp;title=%5BFeedback%5D%20" target="_blank" rel="noopener" data-i18n="feedback.github">改用 GitHub Issue ↗</a>
+          <button class="feedback-submit" type="submit"><span data-i18n="feedback.submit">发送反馈</span><i aria-hidden="true">↗</i></button>
+        </footer>
+      </form>
+    </dialog>
+
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
+    <script type="module" src="./site.js"></script>
   </body>
 </html>

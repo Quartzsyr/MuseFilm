@@ -1,0 +1,35 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "musefilm-feedback-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://musefilm.top,https://www.musefilm.top,https://quartzsyr.github.io,http://127.0.0.1:5174,http://localhost:5174",
+    "TURNSTILE_SITE_KEY": "",
+    "FEEDBACK_TO_EMAIL": "",
+    "FEEDBACK_FROM_EMAIL": ""
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "musefilm-feedback",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
+  "triggers": {
+    "crons": ["17 3 * * *"]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+  // After musefilm.top is active in Cloudflare DNS, add a custom-domain
+  // route for api.musefilm.top. Until then, keep the workers.dev URL.
+}
