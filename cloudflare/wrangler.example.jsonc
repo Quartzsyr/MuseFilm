@@ -6,7 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "vars": {
-    "ALLOWED_ORIGINS": "https://musefilm.top,https://www.musefilm.top,https://quartzsyr.github.io,http://127.0.0.1:5174,http://localhost:5174",
+    "ALLOWED_ORIGINS": "https://musefilm.top,https://www.musefilm.top,http://musefilm.top,https://quartzsyr.github.io,http://127.0.0.1:5174,http://localhost:5174",
     "TURNSTILE_SITE_KEY": "",
     "FEEDBACK_TO_EMAIL": "",
     "FEEDBACK_FROM_EMAIL": ""

@@ -56,6 +56,11 @@ test("serves public configuration only to allowed website origins", async () => 
   assert.equal(allowed.headers.get("Access-Control-Allow-Origin"), origin);
   assert.deepEqual(await allowed.json(), { ok: true, turnstileEnabled: false, turnstileSiteKey: "" });
 
+  const temporaryHttpOrigin = "http://musefilm.top";
+  const allowedHttp = await worker.fetch(new Request("https://api.musefilm.top/api/config", { headers: { Origin: temporaryHttpOrigin } }), {});
+  assert.equal(allowedHttp.status, 200);
+  assert.equal(allowedHttp.headers.get("Access-Control-Allow-Origin"), temporaryHttpOrigin);
+
   const rejected = await worker.fetch(new Request("https://api.musefilm.top/api/config", { headers: { Origin: "https://example.com" } }), {});
   assert.equal(rejected.status, 403);
 

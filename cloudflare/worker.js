@@ -1,6 +1,9 @@
 const DEFAULT_ORIGINS = [
   "https://musefilm.top",
   "https://www.musefilm.top",
+  // Temporary compatibility origin. Remove after GitHub Pages can enforce
+  // HTTPS for the custom domain.
+  "http://musefilm.top",
   "https://quartzsyr.github.io",
   "http://127.0.0.1:5174",
   "http://localhost:5174",
