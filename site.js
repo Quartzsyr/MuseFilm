@@ -352,12 +352,8 @@ const TRANSLATIONS = {
 
 const PAGE_META = {
   home: {
-    zh: { title: "MuseFilm — 胶片摄影档案", description: "MuseFilm 是为胶片摄影用户打造的本地优先桌面档案工具。" },
-    en: { title: "MuseFilm — Analog photography archive", description: "MuseFilm is a local-first desktop archive for film photographers." },
-  },
-  mac: {
-    zh: { title: "MuseFilm Mac 版 — 原生胶片档案", description: "MuseFilm Mac 版是原生 SwiftUI 胶片摄影档案工具。" },
-    en: { title: "MuseFilm for Mac — Native film archive", description: "MuseFilm for Mac is a native SwiftUI archive for film photography." },
+    zh: { title: "MuseFilm｜Windows 与 macOS 胶片摄影档案工具", description: "MuseFilm 是面向 Windows 与 macOS 的本地优先胶片摄影档案工具。" },
+    en: { title: "MuseFilm — Film archive for Windows and macOS", description: "MuseFilm is a local-first film photography archive for Windows and macOS." },
   },
 };
 
