@@ -146,5 +146,34 @@ test("queues a feedback notification through the restricted email binding", asyn
   assert.equal(sent[0].replyTo, "visitor@example.com");
   assert.match(sent[0].subject, /MuseFilm.*问题反馈/);
   assert.match(sent[0].text, /右下角标签/);
+  assert.match(sent[0].html, /ISSUE REPORT/);
+  assert.match(sent[0].html, /#ff665a/);
+  assert.match(sent[0].html, /这里有一处，值得被修好/);
   assert.ok(database.calls.some((call) => /UPDATE feedback SET email_status/.test(call.sql) && call.values[0] === "sent"));
+});
+
+test("renders distinct, injection-safe HTML for every feedback category", () => {
+  const base = {
+    message: "希望加入 <script>alert('film')</script> 标签。",
+    email: "visitor@example.com",
+    page: "https://musefilm.top/#screens",
+    locale: "zh",
+    platform: "mac",
+    country: "CN",
+    browser: "Safari",
+    id: "feedback-id",
+    createdAt: "2026-08-13T06:00:00.000Z",
+  };
+  const bug = __test.feedbackEmailHtml({ ...base, type: "bug" });
+  const suggestion = __test.feedbackEmailHtml({ ...base, type: "suggestion" });
+  const other = __test.feedbackEmailHtml({ ...base, type: "other" });
+
+  assert.match(bug, /ISSUE REPORT/);
+  assert.match(suggestion, /FEATURE NOTE/);
+  assert.match(suggestion, /#67b8ff/);
+  assert.match(other, /A NEW THOUGHT/);
+  assert.match(other, /#d8a85f/);
+  assert.doesNotMatch(bug, /<script>alert/);
+  assert.match(bug, /&lt;script&gt;alert\(&#39;film&#39;\)&lt;\/script&gt;/);
+  assert.match(bug, /mailto:visitor@example\.com/);
 });
