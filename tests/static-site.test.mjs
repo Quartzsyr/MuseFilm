@@ -5,10 +5,9 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const dist = new URL("../dist/", import.meta.url);
 
-test("builds both GitHub Pages entry points and required metadata", async () => {
+test("builds the unified GitHub Pages entry point and required metadata", async () => {
   await Promise.all([
     access(new URL("index.html", dist)),
-    access(new URL("mac.html", dist)),
     access(new URL("CNAME", dist)),
     access(new URL("site.webmanifest", dist)),
     access(new URL("sitemap.xml", dist)),
@@ -19,21 +18,22 @@ test("builds both GitHub Pages entry points and required metadata", async () => 
     access(new URL("images/light-table-kodak-5207-memory.jpg", dist)),
   ]);
 
-  const [home, mac, cname] = await Promise.all([
+  const [home, cname, sitemap] = await Promise.all([
     readFile(new URL("index.html", dist), "utf8"),
-    readFile(new URL("mac.html", dist), "utf8"),
     readFile(new URL("CNAME", dist), "utf8"),
+    readFile(new URL("sitemap.xml", dist), "utf8"),
   ]);
 
-  assert.match(home, /<title>MuseFilm/);
+  assert.match(home, /<title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具<\/title>/);
+  assert.match(home, /"operatingSystem": "Windows 10, Windows 11, macOS"/);
   assert.match(home, /https:\/\/musefilm\.top\/images\/og-darkroom\.jpg/);
   assert.match(home, /releases\/download\/Beta\/MuseFilmSetup\.exe/);
   assert.match(home, /releases\/download\/Mac\/musefilm-2\.0-build2-2026-06-06-154741\.dmg/);
-  assert.match(mac, /MuseFilm for Mac/);
-  assert.match(home + mac, /images\/app-icon\.png/);
+  assert.match(home, /images\/app-icon\.png/);
   assert.doesNotMatch(home, /class="local-shot"/);
   assert.equal(cname.trim(), "musefilm.top");
-  assert.doesNotMatch(home + mac, /localhost|127\.0\.0\.1|\/Users\//);
+  assert.doesNotMatch(home, /localhost|127\.0\.0\.1|\/Users\//);
+  assert.doesNotMatch(sitemap, /mac\.html/);
 });
 
 test("uses GitHub Release assets as the download-count source of truth", async () => {
@@ -231,19 +231,16 @@ test("keeps optional darkroom sound user-controlled", async () => {
   assert.match(script, /soundButton\?\.addEventListener\("click"/);
 });
 
-test("supports Chinese and English across both entry points", async () => {
-  const [home, mac, script] = await Promise.all([
+test("supports Chinese and English on the unified page", async () => {
+  const [home, script] = await Promise.all([
     readFile(new URL("index.html", root), "utf8"),
-    readFile(new URL("mac.html", root), "utf8"),
     readFile(new URL("site.js", root), "utf8"),
   ]);
   assert.match(home, /data-language-toggle/);
-  assert.match(mac, /data-language-toggle/);
   assert.match(script, /const TRANSLATIONS/);
   assert.match(script, /document\.documentElement\.lang/);
   assert.match(script, /currentLanguage === "zh" \? "en" : "zh"/);
   assert.match(script, /"hero\.description"/);
-  assert.match(script, /"mac\.workflowBody"/);
-  const translationKeys = [...(home + mac).matchAll(/data-i18n(?:-aria)?="([^"]+)"/g)].map((match) => match[1]);
+  const translationKeys = [...home.matchAll(/data-i18n(?:-aria)?="([^"]+)"/g)].map((match) => match[1]);
   translationKeys.forEach((key) => assert.match(script, new RegExp(`"${key.replaceAll(".", "\\.")}"\\s*:`)));
 });
