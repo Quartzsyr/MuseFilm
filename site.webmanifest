@@ -1,7 +1,7 @@
 {
   "name": "MuseFilm",
   "short_name": "MuseFilm",
-  "description": "A living archive of analog photography.",
+  "description": "A local-first film photography archive for Windows and macOS.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#080808",
