@@ -20,7 +20,9 @@
   ],
   "send_email": [
     {
-      "name": "EMAIL"
+      "name": "EMAIL",
+      "destination_address": "YOUR_VERIFIED_DESTINATION_EMAIL",
+      "allowed_sender_addresses": ["feedback@musefilm.top"]
     }
   ],
   "triggers": {
