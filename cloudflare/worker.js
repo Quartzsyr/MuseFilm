@@ -164,6 +164,127 @@ function feedbackSubject(type) {
   return "MuseFilm 用户反馈";
 }
 
+const FEEDBACK_EMAIL_THEMES = {
+  bug: {
+    label: "问题反馈",
+    eyebrow: "ISSUE REPORT",
+    title: "这里有一处，值得被修好。",
+    accent: "#ff665a",
+    accentSoft: "#351817",
+    mark: "!",
+  },
+  suggestion: {
+    label: "功能建议",
+    eyebrow: "FEATURE NOTE",
+    title: "下一卷，可以更好。",
+    accent: "#67b8ff",
+    accentSoft: "#12283a",
+    mark: "+",
+  },
+  other: {
+    label: "其他想法",
+    eyebrow: "A NEW THOUGHT",
+    title: "一束新的想法，抵达 MuseFilm。",
+    accent: "#d8a85f",
+    accentSoft: "#322619",
+    mark: "·",
+  },
+};
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "'": "&#39;",
+    '"': "&quot;",
+  }[character]));
+}
+
+function feedbackEmailHtml(feedback) {
+  const theme = FEEDBACK_EMAIL_THEMES[feedback.type] || FEEDBACK_EMAIL_THEMES.other;
+  const message = escapeHtml(feedback.message).replace(/\r?\n/g, "<br>");
+  const contact = feedback.email ? escapeHtml(feedback.email) : "未填写";
+  const page = feedback.page ? escapeHtml(feedback.page) : "未知";
+  const pageCell = feedback.page
+    ? `<a href="${page}" style="color:${theme.accent};text-decoration:none;word-break:break-all;">${page}</a>`
+    : page;
+  const replyButton = feedback.email
+    ? `<a href="mailto:${contact}" style="display:inline-block;background:${theme.accent};color:#080808;text-decoration:none;font-size:13px;font-weight:700;line-height:44px;padding:0 22px;border-radius:999px;">回复反馈者&nbsp;&nbsp;↗</a>`
+    : "";
+  const detailRows = [
+    ["联系邮箱", contact],
+    ["页面", pageCell],
+    ["平台", escapeHtml(feedback.platform)],
+    ["语言", escapeHtml(feedback.locale)],
+    ["国家 / 地区", escapeHtml(feedback.country)],
+    ["浏览器", escapeHtml(feedback.browser)],
+  ].map(([label, value]) => `
+    <tr>
+      <td class="meta-label" style="padding:11px 0;color:#77756f;font-size:12px;letter-spacing:.08em;border-bottom:1px solid #2b2a27;vertical-align:top;width:112px;">${label}</td>
+      <td style="padding:11px 0;color:#d8d6d0;font-size:13px;line-height:1.55;border-bottom:1px solid #2b2a27;vertical-align:top;word-break:break-word;">${value}</td>
+    </tr>`).join("");
+
+  return `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    @media only screen and (max-width:620px){
+      .shell{width:100%!important}.pad{padding-left:24px!important;padding-right:24px!important}
+      .headline{font-size:30px!important}.meta-label{width:88px!important}
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#090909;color:#f5f2ec;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${escapeHtml(theme.label)} · ${escapeHtml(feedback.message).slice(0, 80)}</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#090909;">
+    <tr><td align="center" style="padding:30px 14px;">
+      <table role="presentation" class="shell" width="600" cellspacing="0" cellpadding="0" border="0" style="width:600px;max-width:600px;background:#151514;border:1px solid #302f2c;border-radius:24px;overflow:hidden;">
+        <tr>
+          <td class="pad" style="padding:28px 38px 22px;background:${theme.accentSoft};border-bottom:1px solid #302f2c;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td style="font-size:18px;font-weight:750;color:#f6f2ea;letter-spacing:-.02em;">MuseFilm</td>
+                <td align="right"><span style="display:inline-block;padding:7px 11px;border:1px solid ${theme.accent};border-radius:999px;color:${theme.accent};font-size:10px;font-weight:700;letter-spacing:.12em;">${theme.eyebrow}</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" style="padding:42px 38px 18px;">
+            <div style="width:44px;height:44px;line-height:42px;text-align:center;border-radius:50%;background:${theme.accent};color:#090909;font-size:24px;font-weight:800;margin-bottom:25px;">${theme.mark}</div>
+            <div style="color:${theme.accent};font-size:11px;font-weight:700;letter-spacing:.16em;margin-bottom:12px;">${theme.label}</div>
+            <div class="headline" style="font-size:38px;line-height:1.16;font-weight:760;letter-spacing:-.045em;color:#f7f3ec;">${theme.title}</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" style="padding:22px 38px 8px;">
+            <div style="padding:24px 25px;background:#1d1d1b;border:1px solid #34332f;border-left:3px solid ${theme.accent};border-radius:15px;color:#f0ede7;font-size:16px;line-height:1.85;word-break:break-word;">${message}</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" style="padding:25px 38px 8px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">${detailRows}</table>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" style="padding:27px 38px 38px;">${replyButton}</td>
+        </tr>
+        <tr>
+          <td class="pad" style="padding:20px 38px;background:#10100f;border-top:1px solid #292825;color:#66645f;font-size:10px;line-height:1.7;letter-spacing:.05em;">
+            FEEDBACK&nbsp;&nbsp;${escapeHtml(feedback.id)}<br>
+            ${escapeHtml(feedback.createdAt)} · 由 musefilm.top 安全接收
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
 async function deliverFeedbackEmail(env, feedback) {
   let emailStatus = "not_configured";
   if (env.EMAIL && env.FEEDBACK_TO_EMAIL && env.FEEDBACK_FROM_EMAIL) {
@@ -186,6 +307,7 @@ async function deliverFeedbackEmail(env, feedback) {
         to: env.FEEDBACK_TO_EMAIL,
         from: env.FEEDBACK_FROM_EMAIL,
         subject: `[MuseFilm] ${feedbackSubject(feedback.type)}`,
+        html: feedbackEmailHtml(feedback),
         text: lines.join("\n"),
         ...(feedback.email ? { replyTo: feedback.email } : {}),
       });
@@ -351,4 +473,4 @@ export default {
   },
 };
 
-export const __test = { browserFamily, cleanText, normalizePage, normalizePath, validEmail };
+export const __test = { browserFamily, cleanText, escapeHtml, feedbackEmailHtml, normalizePage, normalizePath, validEmail };
