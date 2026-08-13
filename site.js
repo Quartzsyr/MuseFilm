@@ -4,7 +4,6 @@ const menu = document.querySelector("[data-menu]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let currentLanguage = "zh";
 let refreshScreenDeckLanguage = () => {};
-let refreshSoundLanguage = () => {};
 let refreshReleaseLanguage = () => {};
 let refreshGalleryLanguage = () => {};
 let refreshPlatformDownload = () => {};
@@ -400,7 +399,6 @@ function applyLanguage(language) {
     document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
   }
   refreshScreenDeckLanguage();
-  refreshSoundLanguage();
   refreshReleaseLanguage();
   refreshGalleryLanguage();
   refreshPlatformDownload();
@@ -409,7 +407,7 @@ function applyLanguage(language) {
 const filmModel = document.querySelector("[data-film-model]");
 const filmFinale = document.querySelector("[data-film-finale]");
 if (filmModel || filmFinale) {
-  import("./film-model.js?v=20260814-3d30")
+  import("./film-model.js?v=20260814-3d31")
     .then(({ mountFilmModel }) => {
       if (filmModel) mountFilmModel(filmModel, { reducedMotion });
       if (filmFinale) mountFilmModel(filmFinale, { reducedMotion, finale: true });
@@ -426,102 +424,6 @@ if (filmModel || filmFinale) {
       filmFinale?.classList.add("model-fallback");
     });
 }
-
-const soundButton = document.querySelector("[data-sound-toggle]");
-let ambientAudio = null;
-let soundEnabled = false;
-
-function playFilmDetent() {
-  if (!soundEnabled || !ambientAudio || reducedMotion) return;
-  const { context, master } = ambientAudio;
-  if (context.state === "closed") return;
-  const oscillator = context.createOscillator();
-  const gain = context.createGain();
-  oscillator.type = "triangle";
-  oscillator.frequency.setValueAtTime(148, context.currentTime);
-  oscillator.frequency.exponentialRampToValueAtTime(54, context.currentTime + .052);
-  gain.gain.setValueAtTime(.028, context.currentTime);
-  gain.gain.exponentialRampToValueAtTime(.0001, context.currentTime + .072);
-  oscillator.connect(gain).connect(master);
-  oscillator.start();
-  oscillator.stop(context.currentTime + .08);
-}
-
-function updateSoundButton() {
-  if (!soundButton) return;
-  soundButton.setAttribute("aria-pressed", String(soundEnabled));
-  const label = soundButton.querySelector("span");
-  if (label) label.textContent = translate(soundEnabled ? "sound.on" : "sound.off");
-}
-
-async function startDarkroomSound() {
-  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) return false;
-  const context = new AudioContextClass();
-  const master = context.createGain();
-  master.gain.value = 0.0001;
-  master.connect(context.destination);
-
-  const buffer = context.createBuffer(1, context.sampleRate * 3, context.sampleRate);
-  const samples = buffer.getChannelData(0);
-  let brown = 0;
-  for (let index = 0; index < samples.length; index++) {
-    brown = (brown + (Math.random() * 2 - 1) * 0.018) / 1.018;
-    samples[index] = brown * 2.4;
-  }
-  const noise = context.createBufferSource();
-  noise.buffer = buffer;
-  noise.loop = true;
-  const filter = context.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = 520;
-  noise.connect(filter).connect(master);
-  noise.start();
-
-  const click = () => {
-    if (context.state === "closed") return;
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = "triangle";
-    oscillator.frequency.setValueAtTime(118, context.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(48, context.currentTime + .045);
-    gain.gain.setValueAtTime(.018, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.0001, context.currentTime + .055);
-    oscillator.connect(gain).connect(master);
-    oscillator.start();
-    oscillator.stop(context.currentTime + .06);
-  };
-  const clickTimer = window.setInterval(click, 420);
-  await context.resume();
-  master.gain.exponentialRampToValueAtTime(.032, context.currentTime + .45);
-  ambientAudio = { context, master, noise, clickTimer };
-  return true;
-}
-
-function stopDarkroomSound() {
-  if (!ambientAudio) return;
-  const { context, master, noise, clickTimer } = ambientAudio;
-  window.clearInterval(clickTimer);
-  master.gain.cancelScheduledValues(context.currentTime);
-  master.gain.exponentialRampToValueAtTime(.0001, context.currentTime + .22);
-  window.setTimeout(() => {
-    try { noise.stop(); } catch {}
-    context.close();
-  }, 260);
-  ambientAudio = null;
-}
-
-soundButton?.addEventListener("click", async () => {
-  if (soundEnabled) {
-    soundEnabled = false;
-    stopDarkroomSound();
-  } else {
-    soundEnabled = await startDarkroomSound();
-  }
-  updateSoundButton();
-});
-refreshSoundLanguage = updateSoundButton;
-window.addEventListener("pagehide", stopDarkroomSound, { once: true });
 
 const SCREENSHOTS = [
   { platform: "mac", src: "./images/app-details/01-home.avif", width: 1046, height: 768, kickerZh: "所有故事，从全局开始", kickerEn: "Every story begins with the whole", zh: "从这一刻，看见整个档案。", en: "See the whole archive at once.", descZh: "最近导入的照片、仍在生长的胶卷，以及被时间慢慢填满的收藏，都在这里安静相遇。无需翻找文件夹，目光落下的地方，就是你下一次整理的起点。", descEn: "Recent imports, growing rolls, and a collection slowly shaped by time meet in one quiet view. No folders to hunt through—the place your eye lands is where the next chapter begins.", altZh: "MuseFilm Mac 首页与最近导入", altEn: "MuseFilm Mac home and recent imports" },
@@ -678,7 +580,6 @@ if (cinematic) {
         window.setTimeout(() => {
           if (transitionId === shotTransitionId) cinematic.classList.remove("is-exposing", "is-detenting");
         }, 1040);
-        playFilmDetent();
       }
       const preload = shots[Math.min(shots.length - 1, nextIndex + 1)];
       if (preload && preload !== shot) {

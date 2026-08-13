@@ -141,8 +141,8 @@ test("mounts the generated film canister and supplied GLB objects as a progressi
   assert.match(home, /model-poster/);
   assert.match(home, /data-model-loading/);
   assert.match(home, /data-model-loading-progress/);
-  assert.match(home, /site\.css\?v=20260814-load1/);
-  assert.match(home, /site\.js\?v=20260814-load1/);
+  assert.match(home, /site\.css\?v=20260814-model2/);
+  assert.match(home, /site\.js\?v=20260814-model2/);
   assert.match(script, /import\("\.\/film-model\.js\?v=\d{8}-3d\d+"\)/);
   assert.match(model, /WebGLRenderer/);
   assert.match(model, /\.\/vendor\/three\.module\.min\.js/);
@@ -334,15 +334,14 @@ test("ships all Mac and Windows screenshots in the reel-linked narrative", async
   assert.doesNotMatch(script, /scale\(\.99[48]\)/);
 });
 
-test("keeps optional darkroom sound user-controlled", async () => {
+test("keeps the cinematic experience intentionally silent", async () => {
   const [home, script] = await Promise.all([
     readFile(new URL("index.html", root), "utf8"),
     readFile(new URL("site.js", root), "utf8"),
   ]);
-  assert.match(home, /data-sound-toggle/);
-  assert.match(home, /aria-pressed="false"/);
-  assert.match(script, /AudioContext/);
-  assert.match(script, /soundButton\?\.addEventListener\("click"/);
+  assert.doesNotMatch(home, /data-sound-toggle/);
+  assert.doesNotMatch(script, /AudioContext/);
+  assert.doesNotMatch(script, /playFilmDetent/);
 });
 
 test("supports Chinese and English on the unified page", async () => {
