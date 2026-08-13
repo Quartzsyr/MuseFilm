@@ -344,6 +344,72 @@ h1, h2, h3, p, figure { margin: 0; }
 .verified i { width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--red); }
 .verified strong { color: rgba(242,239,232,.68); }
 
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .65rem 1rem;
+  margin-top: 1.1rem;
+}
+.hero-proof .verified { margin-top: 0; }
+.visitor-counter {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  min-height: 1.8rem;
+  margin: 0;
+  padding: .3rem .62rem .3rem .38rem;
+  color: rgba(242,239,232,.46);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255,255,255,.11), transparent 42%),
+    linear-gradient(135deg, rgba(255,255,255,.065), rgba(7,7,7,.34));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 .45rem 1.4rem rgba(0,0,0,.16);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  font-size: .55rem;
+  letter-spacing: .045em;
+  transition: color 240ms ease, border-color 240ms ease, transform 320ms var(--ease);
+}
+.visitor-counter::after {
+  content: "";
+  position: absolute;
+  top: -140%;
+  left: -30%;
+  width: 22%;
+  height: 380%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  transform: rotate(18deg);
+  transition: left 700ms var(--ease);
+}
+.visitor-counter:hover { color: rgba(242,239,232,.7); border-color: rgba(208,82,72,.26); transform: translateY(-1px); }
+.visitor-counter:hover::after { left: 118%; }
+.visitor-counter strong { color: rgba(242,239,232,.9); font-size: .62rem; font-variant-numeric: tabular-nums; }
+.visitor-counter-mark {
+  position: relative;
+  width: 1.1rem;
+  height: 1.1rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(208,82,72,.34);
+  border-radius: 50%;
+  background: rgba(185,58,50,.08);
+}
+.visitor-counter-mark::before,
+.visitor-counter-mark::after {
+  content: "";
+  position: absolute;
+  inset: .22rem;
+  border: 1px solid rgba(208,82,72,.3);
+  border-radius: 50%;
+}
+.visitor-counter-mark::after { inset: .42rem; border: 0; background: var(--red-light); }
+.visitor-counter.is-synced .visitor-counter-mark i { width: 100%; height: 100%; border-radius: 50%; animation: visitorSignal 3.2s ease-out infinite; }
+@keyframes visitorSignal { 0% { box-shadow: 0 0 0 0 rgba(208,82,72,.22); } 55%,100% { box-shadow: 0 0 0 .45rem transparent; } }
+
 /* Scroll-directed darkroom film */
 .cinematic {
   --cinematic-progress: 0;
