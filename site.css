@@ -344,25 +344,17 @@ h1, h2, h3, p, figure { margin: 0; }
 .verified i { width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--red); }
 .verified strong { color: rgba(242,239,232,.68); }
 
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .65rem 1rem;
-  margin-top: 1.1rem;
-}
-.hero-proof .verified { margin-top: 0; }
 .visitor-counter {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: .42rem;
-  min-height: 1.8rem;
+  min-height: 2rem;
   margin: 0;
-  padding: .3rem .62rem .3rem .38rem;
-  color: rgba(242,239,232,.46);
-  border: 1px solid rgba(255,255,255,.11);
+  padding: .3rem .72rem .3rem .4rem;
+  color: rgba(242,239,232,.5);
+  border: 1px solid rgba(255,255,255,.1);
   border-radius: 2rem;
   background:
     radial-gradient(circle at 18% 0%, rgba(255,255,255,.11), transparent 42%),
@@ -370,8 +362,9 @@ h1, h2, h3, p, figure { margin: 0; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 .45rem 1.4rem rgba(0,0,0,.16);
   backdrop-filter: blur(14px) saturate(135%);
   -webkit-backdrop-filter: blur(14px) saturate(135%);
-  font-size: .55rem;
-  letter-spacing: .045em;
+  font-size: .5rem;
+  font-weight: 650;
+  letter-spacing: .09em;
   transition: color 240ms ease, border-color 240ms ease, transform 320ms var(--ease);
 }
 .visitor-counter::after {
@@ -869,6 +862,13 @@ h1, h2, h3, p, figure { margin: 0; }
   justify-content: space-between;
   pointer-events: none;
 }
+.cinematic-controls .visitor-counter {
+  position: absolute;
+  left: 50%;
+  pointer-events: auto;
+  transform: translateX(-50%);
+}
+.cinematic-controls .visitor-counter:hover { transform: translateX(-50%) translateY(-1px); }
 .sound-toggle {
   display: inline-flex;
   align-items: center;
@@ -2734,6 +2734,7 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
 }
 
 @media (max-width: 440px) {
+  .cinematic-controls .visitor-counter { bottom: 2.6rem; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .primary-button { width: 100%; }
   .text-button { justify-content: space-between; min-height: 3rem; }
