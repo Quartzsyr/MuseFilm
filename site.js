@@ -62,7 +62,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "查看所有版本",
     "hero.explore": "探索 MuseFilm",
     "hero.verified": "次 GitHub Releases 已验证下载",
-    "hero.visitors": "次匿名到访",
+    "hero.visitMoment": "次光影在此停留",
     "hero.scroll": "滚动展开胶片",
     "sound.off": "声音关闭",
     "sound.on": "声音开启",
@@ -231,7 +231,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "View all releases",
     "hero.explore": "Explore MuseFilm",
     "hero.verified": "verified downloads on GitHub Releases",
-    "hero.visitors": "anonymous visits",
+    "hero.visitMoment": "moments of light paused here",
     "hero.scroll": "Scroll to unspool the film",
     "sound.off": "Sound off",
     "sound.on": "Sound on",
@@ -2005,6 +2005,9 @@ function renderVisitorCount(value) {
   const locale = currentLanguage === "en" ? "en-US" : "zh-CN";
   document.querySelectorAll("[data-visitor-total]").forEach((element) => {
     element.textContent = new Intl.NumberFormat(locale).format(safeValue);
+  });
+  document.querySelectorAll("[data-visitor-label]").forEach((element) => {
+    element.textContent = translate("hero.visitMoment");
   });
 }
 
