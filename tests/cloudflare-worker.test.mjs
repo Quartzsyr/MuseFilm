@@ -18,6 +18,7 @@ class FakeD1 {
       },
       async first() {
         database.calls.push({ method: "first", sql, values: this.values });
+        if (/AS visitors/.test(sql)) return { visitors: 8 };
         return /COUNT\(\*\)/.test(sql) ? { count: 0 } : { ok: 1 };
       },
       async all() {
@@ -66,6 +67,12 @@ test("serves public configuration only to allowed website origins", async () => 
 
   const missingOrigin = await worker.fetch(new Request("https://api.musefilm.top/api/config"), {});
   assert.equal(missingOrigin.status, 403);
+
+  const database = new FakeD1();
+  const visitors = await worker.fetch(new Request("https://api.musefilm.top/api/visitors", { headers: { Origin: origin } }), { DB: database });
+  assert.equal(visitors.status, 200);
+  assert.deepEqual(await visitors.json(), { ok: true, visitors: 8 });
+  assert.match(visitors.headers.get("Cache-Control"), /max-age=300/);
 });
 
 test("records deduplicated visits and durable feedback through D1", async () => {
