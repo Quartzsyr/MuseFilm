@@ -20,7 +20,7 @@
     <link rel="icon" href="./images/app-icon.png" type="image/png">
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
-    <link rel="stylesheet" href="./site.css?v=20260813-counter2">
+    <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -34,6 +34,8 @@
         "downloadUrl": "https://github.com/Quartzsyr/MuseFilm/releases"
       }
     </script>
+    <script type="module" crossorigin src="./assets/home-DeUrrNPG.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/home-Bw1gW3rg.css">
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
@@ -56,7 +58,7 @@
         <span class="screens-anchor" id="screens" aria-hidden="true"></span>
         <div class="cinematic-sticky">
           <figure class="cinematic-visual film-model" data-film-model>
-            <img class="model-poster" src="./images/hero-film-roll.avif" width="1536" height="1024" alt="缓慢转动的 35mm 胶片盘与展开的底片 3D 模型" fetchpriority="high">
+            <img class="model-poster" src="./images/hero-film-roll.avif" width="1536" height="1024" alt="随滚动依次出现的胶卷、相机与摄影档案 3D 模型" fetchpriority="high">
             <div class="model-stage" aria-hidden="true"></div>
             <div class="darkroom-haze" aria-hidden="true"></div>
             <div class="cinematic-screen-stack" data-narrative-deck tabindex="0" aria-label="MuseFilm 胶卷联动界面叙事" data-i18n-aria="aria.deck">
@@ -301,6 +303,5 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20260813-counter2"></script>
   </body>
 </html>
