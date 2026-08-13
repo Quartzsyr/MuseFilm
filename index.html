@@ -21,6 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
+    <link rel="stylesheet" href="./site.css?v=20260814-load1">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -34,8 +35,6 @@
         "downloadUrl": "https://github.com/Quartzsyr/MuseFilm/releases"
       }
     </script>
-    <script type="module" crossorigin src="./assets/home-B-2l20bz.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/home-CZrmHgyW.css">
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
@@ -60,6 +59,15 @@
           <figure class="cinematic-visual film-model" data-film-model>
             <img class="model-poster" src="./images/hero-film-roll.avif" width="1536" height="1024" alt="随滚动依次出现的胶卷、相机与摄影档案 3D 模型" fetchpriority="high">
             <div class="model-stage" aria-hidden="true"></div>
+            <div class="model-loading" data-model-loading role="status" aria-live="polite">
+              <div class="model-loading-copy">
+                <span data-model-loading-label data-i18n="model.loading.film">正在装入胶卷</span>
+                <strong data-model-loading-percent>0%</strong>
+              </div>
+              <div class="model-loading-track" role="progressbar" aria-label="3D 模型加载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-model-loading-progress>
+                <i></i>
+              </div>
+            </div>
             <div class="darkroom-haze" aria-hidden="true"></div>
             <div class="cinematic-screen-stack" data-narrative-deck tabindex="0" aria-label="MuseFilm 胶卷联动界面叙事" data-i18n-aria="aria.deck">
               <div class="narrative-platform-switch" role="tablist" aria-label="平台截图" data-i18n-aria="aria.platforms">
@@ -311,5 +319,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
+    <script type="module" src="./site.js?v=20260814-load1"></script>
   </body>
 </html>

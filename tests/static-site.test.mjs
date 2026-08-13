@@ -84,6 +84,8 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(home, /data-feedback-open/);
   assert.match(home, /data-feedback-dialog/);
   assert.match(home, /data-feedback-form/);
+  assert.match(home, /data-copy-qq="162879795"/);
+  assert.match(script, /feedback\.qqCopied/);
   assert.match(home, /data-visitor-total/);
   assert.match(home, /name="musefilm-api-base" content="https:\/\/musefilm-feedback-api\.syrquartz\.workers\.dev"/);
   assert.match(home, /为每一卷光，留一张观片台/);
@@ -127,7 +129,7 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(css, /:focus-visible/);
 });
 
-test("mounts the hero film reel as a progressive 3D enhancement", async () => {
+test("mounts the generated film canister and supplied GLB objects as a progressive 3D enhancement", async () => {
   const [home, script, model, css] = await Promise.all([
     readFile(new URL("index.html", root), "utf8"),
     readFile(new URL("site.js", root), "utf8"),
@@ -137,12 +139,92 @@ test("mounts the hero film reel as a progressive 3D enhancement", async () => {
 
   assert.match(home, /data-film-model/);
   assert.match(home, /model-poster/);
+  assert.match(home, /data-model-loading/);
+  assert.match(home, /data-model-loading-progress/);
+  assert.match(home, /site\.css\?v=20260814-load1/);
+  assert.match(home, /site\.js\?v=20260814-load1/);
   assert.match(script, /import\("\.\/film-model\.js\?v=\d{8}-3d\d+"\)/);
   assert.match(model, /WebGLRenderer/);
   assert.match(model, /\.\/vendor\/three\.module\.min\.js/);
+  assert.match(model, /GLTFLoader/);
+  assert.match(model, /MeshoptDecoder/);
+  assert.match(model, /musefilm-film-label-base\.png/);
+  assert.match(model, /context\.fillText\("MUSEFILM"/);
+  assert.match(model, /context\.fillText\("MUSEFILM", 276, 360\)/);
+  assert.match(model, /context\.fillText\("COLOR NEGATIVE FILM"/);
+  assert.match(model, /context\.fillText\("PROCESS C-41 · 35 mm"/);
+  assert.doesNotMatch(model, /BLACK & WHITE NEGATIVE FILM/);
+  assert.doesNotMatch(model, /PROCESS B&W/);
+  assert.match(model, /context\.fillText\("PROCESS C-41", 1400, 720\)/);
+  assert.match(model, /context\.fillText\("ISO 400"/);
+  assert.match(model, /createMuseFilmCanister/);
+  assert.match(model, /MUSEFILM/);
+  assert.match(model, /QUARTZ/);
+  assert.match(model, /ISO 400/);
+  assert.match(model, /createRibbonGeometry/);
+  assert.match(model, /CatmullRomCurve3/);
+  assert.match(model, /flexible-film-strip/);
+  assert.match(model, /FILM_FRAME_SOURCES/);
+  assert.match(model, /03-film-library\.avif/);
+  assert.match(model, /06-light-table\.avif/);
+  assert.match(model, /filmMaterial\.onBeforeCompile/);
+  assert.match(model, /museTransmissionAngle/);
+  assert.match(model, /filmContext\.globalAlpha = 0\.32/);
+  assert.match(model, /float museFrameReveal = 0\.08 \+ museTransmissionAngle \* 0\.32/);
+  assert.match(model, /const frameTravel = scrollProgress \* 3\.6/);
+  assert.match(model, /material\.map\.offset\.x = frameTravel/);
+  assert.match(model, /museFrameTexture\.offset\.x = frameTravel/);
+  assert.match(model, /updateFlexibleFilm/);
+  assert.match(model, /let heroRibbon = null/);
+  assert.match(model, /scene\.add\(heroRibbon\)/);
+  assert.match(model, /createRibbonGeometry\(filmCurve, canister\.userData\.labelHeight/);
+  assert.match(model, /film-socket/);
+  assert.match(model, /getWorldPosition\(ribbonAnchor\)/);
+  assert.match(model, /setDrawRange/);
+  assert.doesNotMatch(model, /applyAxisAngle\(tangent/);
+  assert.doesNotMatch(model, /manualWrap/);
+  assert.match(model, /cacheRibbonTargets/);
+  assert.match(model, /screenToWorld/);
+  assert.match(model, /models\[0\]\.userData\.labelHeight \* ribbonWorldScale\.y/);
+  assert.match(model, /reshapeRibbonGeometry/);
+  assert.match(model, /constrainPointOutsideCylinder/);
+  assert.match(model, /canister-collision/);
+  assert.match(model, /felt-film-slot/);
+  assert.match(model, /dx-code-iso-400-36/);
+  assert.match(model, /dxPattern/);
+  assert.match(model, /dxTop = label\.position\.y \+ canister\.userData\.labelHeight \* 0\.5/);
+  assert.match(model, /dxBottom = label\.position\.y - canister\.userData\.labelHeight \* 0\.5/);
+  assert.match(model, /dxRowStep/);
+  assert.match(model, /collisionInverseMatrix/);
+  assert.match(model, /collisionAxis/);
+  assert.match(model, /angleDelta/);
+  assert.match(model, /unwrappedWallAngle/);
+  assert.match(model, /previousWallAngle/);
+  assert.match(model, /displayDragX/);
+  assert.match(model, /wrappedTurns/);
+  assert.match(model, /accumulatedTurns/);
+  assert.match(model, /fractionalTurnAngle/);
+  assert.match(model, /visibleTurns/);
+  assert.doesNotMatch(model, /dragRotation\.x = THREE\.MathUtils\.euclideanModulo/);
+  assert.match(model, /distanceFromSocket/);
+  assert.doesNotMatch(model, /egressProgress/);
+  assert.match(model, /const dxPattern = \[\s*\[1, 1\],\s*\[1, 0\],\s*\[0, 1\]/);
+  assert.match(model, /filmAlphaTexture/);
+  assert.match(model, /alphaTest:\s*0\.48/);
+  assert.match(model, /depthWrite:\s*true/);
+  assert.match(model, /models\/camera\.glb/);
+  assert.match(model, /models\/archive\.glb/);
+  assert.match(model, /loadChunkedModel/);
+  assert.match(model, /loader\.parseAsync\(modelBuffer\.buffer, document\.baseURI\)/);
   await Promise.all([
     access(new URL("vendor/three.module.min.js", root)),
     access(new URL("vendor/three.core.min.js", root)),
+    access(new URL("vendor/GLTFLoader.js", root)),
+    access(new URL("vendor/BufferGeometryUtils.js", root)),
+    access(new URL("vendor/meshopt_decoder.module.js", root)),
+    access(new URL("images/generated/musefilm-film-label-base.png", dist)),
+    access(new URL("models/camera.glb", dist)),
+    access(new URL("models/archive.glb", dist)),
   ]);
   assert.match(model, /reducedMotion/);
   assert.match(model, /IntersectionObserver/);
@@ -155,7 +237,39 @@ test("mounts the hero film reel as a progressive 3D enhancement", async () => {
   assert.match(home, /data-film-finale/);
   assert.match(script, /is-film-finished/);
   assert.match(model, /finale = false/);
-  assert.match(model, /Math\.round\(rollingAngle/);
+  assert.match(model, /modelOpacity/);
+  assert.match(model, /transitionMaskState/);
+  assert.match(model, /model-transition-mask/);
+  assert.match(model, /horizontalRelayState/);
+  assert.match(model, /const local = clamp\(\(progress - 0\.54\) \/ 0\.07\)/);
+  assert.match(model, /model\.position\.x -= horizontalRelay\.travel \* horizontalTravel/);
+  assert.match(model, /model\.position\.x \+= approach \* horizontalTravel/);
+  assert.match(model, /--mask-cover/);
+  assert.match(css, /\.model-transition-film/);
+  assert.doesNotMatch(css, /\.model-orbit-guide/);
+  assert.match(model, /loadAsync/);
+  assert.match(model, /fetchChunkWithProgress/);
+  assert.match(model, /updateLoadingProgress/);
+  assert.match(model, /Promise\.all\(chunkUrls\.map/);
+  assert.match(css, /\.model-loading-track/);
+  assert.match(css, /\.film-model\.model-fallback \.model-poster/);
+  assert.match(model, /museOriginalDepthWrite/);
+  assert.doesNotMatch(model, /clone\.depthWrite\s*=\s*false/);
+  assert.match(model, /const dragRotation = new THREE\.Vector2\(\)/);
+  assert.match(model, /springStrength/);
+  assert.match(model, /springDamping/);
+  assert.match(model, /dragVelocityX/);
+  assert.match(model, /const modelDragX = index === 0 \? displayDragX : 0/);
+  assert.match(model, /if \(!models\[0\]\?\.visible \|\| modelOpacity\(0, scrollProgress\) <= 0\.4\) return/);
+  assert.doesNotMatch(model, /createNegativeStrip/);
+  assert.match(model, /material\.opacity = originalOpacity \* opacity/);
+  assert.match(model, /opacity < 0\.995/);
+  assert.match(model, /return 1 - smoothstep\(0\.585, 0\.61, progress\)/);
+  assert.match(model, /return smoothstep\(0\.54, 0\.565, progress\)/);
+  assert.match(model, /const maskedPush = opacity \? maskState\.cover : 0/);
+  assert.match(model, /host\.setPointerCapture/);
+  assert.match(model, /pointercancel/);
+  assert.match(css, /\.film-model\.is-model-ready\.is-dragging/);
   assert.match(css, /finalFilmTail/);
 });
 

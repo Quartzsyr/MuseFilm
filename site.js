@@ -45,6 +45,10 @@ const TRANSLATIONS = {
     "feedback.placeholder": "发生了什么？你希望它怎样工作？",
     "feedback.email": "联系邮箱 · 选填",
     "feedback.emailPlaceholder": "方便回复你的邮箱",
+    "feedback.qqLabel": "MuseFilm QQ 群",
+    "feedback.qqHint": "交流使用体验、问题与摄影想法",
+    "feedback.qqCopy": "复制群号",
+    "feedback.qqCopied": "已复制",
     "feedback.privacy": "只记录必要的页面与设备信息，不保存原始 IP。",
     "feedback.github": "改用 GitHub Issue ↗",
     "feedback.submit": "发送反馈",
@@ -64,6 +68,10 @@ const TRANSLATIONS = {
     "hero.verified": "次 GitHub Releases 已验证下载",
     "hero.visitMoment": "次光影在此停留",
     "hero.scroll": "滚动展开胶片",
+    "model.loading.film": "正在装入胶卷",
+    "model.loading.camera": "正在装入相机",
+    "model.loading.archive": "正在装入档案袋",
+    "model.loading.fallback": "已保留预览图",
     "sound.off": "声音关闭",
     "sound.on": "声音开启",
     "chapter.archive.overline": "从胶卷开始",
@@ -214,6 +222,10 @@ const TRANSLATIONS = {
     "feedback.placeholder": "What happened, and how should it work instead?",
     "feedback.email": "Contact email · optional",
     "feedback.emailPlaceholder": "An email for a possible reply",
+    "feedback.qqLabel": "MuseFilm QQ group",
+    "feedback.qqHint": "Discuss the app, report issues, and share photography ideas",
+    "feedback.qqCopy": "Copy group ID",
+    "feedback.qqCopied": "Copied",
     "feedback.privacy": "Only essential page and device context is recorded. Raw IP addresses are never stored.",
     "feedback.github": "Use GitHub Issue instead ↗",
     "feedback.submit": "Send feedback",
@@ -233,6 +245,10 @@ const TRANSLATIONS = {
     "hero.verified": "verified downloads on GitHub Releases",
     "hero.visitMoment": "moments of light paused here",
     "hero.scroll": "Scroll to unspool the film",
+    "model.loading.film": "Loading film roll",
+    "model.loading.camera": "Loading camera",
+    "model.loading.archive": "Loading archive",
+    "model.loading.fallback": "Preview retained",
     "sound.off": "Sound off",
     "sound.on": "Sound on",
     "chapter.archive.overline": "Begin with the roll",
@@ -393,14 +409,20 @@ function applyLanguage(language) {
 const filmModel = document.querySelector("[data-film-model]");
 const filmFinale = document.querySelector("[data-film-finale]");
 if (filmModel || filmFinale) {
-  import("./film-model.js?v=20260812-3d1")
+  import("./film-model.js?v=20260814-3d30")
     .then(({ mountFilmModel }) => {
       if (filmModel) mountFilmModel(filmModel, { reducedMotion });
       if (filmFinale) mountFilmModel(filmFinale, { reducedMotion, finale: true });
     })
     .catch((error) => {
       console.error("MuseFilm 3D model failed to load", error);
-      filmModel?.classList.add("model-fallback");
+      if (filmModel) {
+        filmModel.classList.add("model-fallback");
+        const label = filmModel.querySelector("[data-model-loading-label]");
+        const percent = filmModel.querySelector("[data-model-loading-percent]");
+        if (label) label.textContent = TRANSLATIONS[currentLanguage]["model.loading.fallback"];
+        if (percent) percent.textContent = "";
+      }
       filmFinale?.classList.add("model-fallback");
     });
 }
@@ -1823,10 +1845,22 @@ const feedbackMessage = feedbackForm?.elements?.namedItem("message");
 const feedbackCount = document.querySelector("[data-feedback-count]");
 const feedbackSubmit = feedbackForm?.querySelector(".feedback-submit");
 const feedbackTurnstile = document.querySelector("[data-feedback-turnstile]");
+const feedbackQqCopy = document.querySelector("[data-copy-qq]");
 let feedbackConfig = { turnstileEnabled: false, turnstileSiteKey: "" };
 let feedbackTurnstileToken = "";
 let feedbackTurnstileWidget = null;
 let feedbackConfigPromise = null;
+
+feedbackQqCopy?.addEventListener("click", async () => {
+  const groupId = feedbackQqCopy.dataset.copyQq || "162879795";
+  try {
+    await navigator.clipboard.writeText(groupId);
+    feedbackQqCopy.textContent = translate("feedback.qqCopied");
+    window.setTimeout(() => { feedbackQqCopy.textContent = translate("feedback.qqCopy"); }, 1400);
+  } catch {
+    feedbackQqCopy.textContent = groupId;
+  }
+});
 
 function anonymousEventId() {
   if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
