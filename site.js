@@ -31,6 +31,7 @@ const TRANSLATIONS = {
     "aria.lightTablePhotos": "观片台中的照片",
     "aria.zoomOut": "缩小所选画面",
     "aria.zoomIn": "放大所选画面",
+    "aria.visitorCounter": "MuseFilm 匿名访问计数",
     "feedback.trigger": "反馈",
     "feedback.overline": "写给 MuseFilm",
     "feedback.title": "让下一卷更好。",
@@ -61,6 +62,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "查看所有版本",
     "hero.explore": "探索 MuseFilm",
     "hero.verified": "次 GitHub Releases 已验证下载",
+    "hero.visitors": "次匿名到访",
     "hero.scroll": "滚动展开胶片",
     "sound.off": "声音关闭",
     "sound.on": "声音开启",
@@ -198,6 +200,7 @@ const TRANSLATIONS = {
     "aria.lightTablePhotos": "Photos on the light table",
     "aria.zoomOut": "Zoom out selected frame",
     "aria.zoomIn": "Zoom in selected frame",
+    "aria.visitorCounter": "MuseFilm anonymous visit counter",
     "feedback.trigger": "Feedback",
     "feedback.overline": "A note for MuseFilm",
     "feedback.title": "Make the next roll better.",
@@ -228,6 +231,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "View all releases",
     "hero.explore": "Explore MuseFilm",
     "hero.verified": "verified downloads on GitHub Releases",
+    "hero.visitors": "anonymous visits",
     "hero.scroll": "Scroll to unspool the film",
     "sound.off": "Sound off",
     "sound.on": "Sound on",
@@ -1993,10 +1997,32 @@ async function recordAnonymousVisit() {
   } catch {}
 }
 
+let lastVisitorCount = 8;
+
+function renderVisitorCount(value) {
+  const safeValue = Number.isFinite(Number(value)) ? Math.max(0, Number(value)) : lastVisitorCount;
+  lastVisitorCount = safeValue;
+  const locale = currentLanguage === "en" ? "en-US" : "zh-CN";
+  document.querySelectorAll("[data-visitor-total]").forEach((element) => {
+    element.textContent = new Intl.NumberFormat(locale).format(safeValue);
+  });
+}
+
+async function syncVisitorCount() {
+  try {
+    const result = await musefilmApi("/api/visitors", { method: "GET", headers: {} });
+    renderVisitorCount(Number(result.visitors));
+    document.querySelectorAll(".visitor-counter").forEach((element) => element.classList.add("is-synced"));
+  } catch {
+    renderVisitorCount(lastVisitorCount);
+  }
+}
+
 document.querySelectorAll("[data-language-toggle]").forEach((button) => {
   button.addEventListener("click", () => {
     applyLanguage(currentLanguage === "zh" ? "en" : "zh");
     renderCounts(lastCounts, lastCountsSynced);
+    renderVisitorCount(lastVisitorCount);
   });
 });
 
@@ -2007,4 +2033,4 @@ document.querySelectorAll("[data-year]").forEach((element) => {
 applyLanguage("zh");
 renderCounts(FALLBACK_COUNTS, false);
 syncDownloadCounts();
-void recordAnonymousVisit();
+void recordAnonymousVisit().then(syncVisitorCount);
