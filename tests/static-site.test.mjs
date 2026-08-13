@@ -104,6 +104,7 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(script, /\/api\/feedback/);
   assert.match(script, /\/api\/visit/);
   assert.match(script, /\/api\/visitors/);
+  assert.match(script, /translate\("hero\.visitMoment"\)/);
   assert.match(script, /if \(!lightTableInteractive\) return;/);
   assert.match(script, /URL\.createObjectURL/);
   assert.match(script, /setPointerCapture/);
