@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#080808">
-    <meta name="description" content="MuseFilm 是为胶片摄影用户打造的本地优先桌面档案工具。整理胶卷、扫描照片、器材、地点和冲扫记录，让每一卷都有归处。">
+    <meta name="description" content="MuseFilm 是面向 Windows 与 macOS 的本地优先胶片摄影档案工具。整理胶卷、扫描照片、器材、地点和冲扫记录，让每一卷都有归处。">
     <meta name="musefilm-api-base" content="https://musefilm-feedback-api.syrquartz.workers.dev">
     <!-- Feedback and anonymous visit records are served by the Cloudflare Worker above. -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:site_name" content="MuseFilm">
-    <meta property="og:title" content="MuseFilm — A living archive of analog photography">
-    <meta property="og:description" content="把每一卷胶片，安放在一处。">
+    <meta property="og:title" content="MuseFilm — Windows 与 macOS 胶片摄影档案">
+    <meta property="og:description" content="在 Windows 与 macOS 上，把每一卷胶片、扫描与拍摄记忆安放在一处。">
     <meta property="og:url" content="https://musefilm.top/">
     <meta property="og:image" content="https://musefilm.top/images/og-darkroom.jpg">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,19 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="stylesheet" href="./site.css?v=20260813-counter2">
-    <title>MuseFilm — 胶片摄影档案</title>
+    <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "MuseFilm",
+        "url": "https://musefilm.top/",
+        "applicationCategory": "PhotographyApplication",
+        "operatingSystem": "Windows 10, Windows 11, macOS",
+        "description": "面向 Windows 与 macOS 的本地优先胶片摄影档案工具。",
+        "downloadUrl": "https://github.com/Quartzsyr/MuseFilm/releases"
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
