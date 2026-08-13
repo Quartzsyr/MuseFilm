@@ -10,7 +10,7 @@ const DEFAULT_ORIGINS = [
 ];
 
 const FEEDBACK_TYPES = new Set(["bug", "suggestion", "other"]);
-const PUBLIC_API_PATHS = new Set(["/api/config", "/api/visit", "/api/feedback"]);
+const PUBLIC_API_PATHS = new Set(["/api/config", "/api/visit", "/api/visitors", "/api/feedback"]);
 
 function json(data, status = 200, headers = {}) {
   return new Response(JSON.stringify(data), {
@@ -156,6 +156,17 @@ async function recordVisit(request, env, headers) {
   `).bind(id, fingerprint, path, platform, locale, referrer, country, browserFamily(agent), now.toISOString()).run();
 
   return json({ ok: true, recorded: Number(result.meta?.changes || 0) > 0 }, 202, headers);
+}
+
+async function publicVisitorCount(env, headers) {
+  const result = await env.DB.prepare("SELECT COUNT(DISTINCT fingerprint) AS visitors FROM visit_events").first();
+  return json({
+    ok: true,
+    visitors: Math.max(0, Number(result?.visitors || 0)),
+  }, 200, {
+    ...headers,
+    "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+  });
 }
 
 function feedbackSubject(type) {
@@ -439,6 +450,7 @@ async function handleRequest(request, env, ctx) {
     }, 200, headers);
   }
   if (url.pathname === "/api/visit" && request.method === "POST") return recordVisit(request, env, headers);
+  if (url.pathname === "/api/visitors" && request.method === "GET") return publicVisitorCount(env, headers);
   if (url.pathname === "/api/feedback" && request.method === "POST") return submitFeedback(request, env, headers, ctx);
   if (url.pathname === "/api/admin/stats" && request.method === "GET") return adminStats(request, env, headers);
   if (url.pathname === "/api/admin/feedback" && request.method === "GET") return adminFeedback(request, env, headers);
