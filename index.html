@@ -20,7 +20,7 @@
     <link rel="icon" href="./images/app-icon.png" type="image/png">
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
-    <link rel="stylesheet" href="./site.css?v=20260813-counter">
+    <link rel="stylesheet" href="./site.css?v=20260813-counter2">
     <title>MuseFilm — 胶片摄影档案</title>
   </head>
   <body>
@@ -73,14 +73,7 @@
                 <a class="primary-button download-trigger" data-magnetic data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
                 <a class="text-button" data-magnetic href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
-              <div class="hero-proof">
-                <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>79</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
-                <p class="visitor-counter" aria-live="polite" aria-label="MuseFilm 匿名访问计数" data-i18n-aria="aria.visitorCounter">
-                  <span class="visitor-counter-mark" aria-hidden="true"><i></i></span>
-                  <strong data-visitor-total>8</strong>
-                  <span data-i18n="hero.visitors">次匿名到访</span>
-                </p>
-              </div>
+              <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>79</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
             </article>
 
             <article class="cinematic-scene chapter-scene" data-cinematic-scene="1">
@@ -119,6 +112,11 @@
           </div>
           <div class="cinematic-controls">
             <button type="button" class="sound-toggle" data-sound-toggle aria-pressed="false"><i></i><span data-i18n="sound.off">声音关闭</span></button>
+            <p class="visitor-counter" aria-live="polite" aria-label="MuseFilm 匿名访问计数" data-i18n-aria="aria.visitorCounter">
+              <span class="visitor-counter-mark" aria-hidden="true"><i></i></span>
+              <strong data-visitor-total>8</strong>
+              <span data-visitor-label>次光影在此停留</span>
+            </p>
             <span class="scroll-cue" data-i18n="hero.scroll">滚动展开胶片</span>
           </div>
         </div>
@@ -291,6 +289,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20260813-counter"></script>
+    <script type="module" src="./site.js?v=20260813-counter2"></script>
   </body>
 </html>
