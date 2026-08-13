@@ -108,3 +108,43 @@ test("records deduplicated visits and durable feedback through D1", async () => 
   assert.ok(database.calls.some((call) => /INSERT INTO feedback/.test(call.sql)));
   assert.ok(database.calls.every((call) => !call.values.includes("203.0.113.9")));
 });
+
+test("queues a feedback notification through the restricted email binding", async () => {
+  const database = new FakeD1();
+  const sent = [];
+  const env = {
+    DB: database,
+    EMAIL: { async send(message) { sent.push(message); return { messageId: "test-message" }; } },
+    FEEDBACK_TO_EMAIL: "owner@example.com",
+    FEEDBACK_FROM_EMAIL: "feedback@musefilm.top",
+    FINGERPRINT_SALT: "test-only-long-random-salt-over-32-characters",
+    ALLOW_UNPROTECTED_FEEDBACK: "true",
+  };
+  const response = await worker.fetch(new Request("https://api.musefilm.top/api/feedback", {
+    method: "POST",
+    headers: {
+      Origin: origin,
+      "Content-Type": "application/json",
+      "CF-Connecting-IP": "203.0.113.10",
+      "User-Agent": "Mozilla/5.0 Version/18 Safari/605.1",
+    },
+    body: JSON.stringify({
+      type: "bug",
+      message: "切换胶卷画面后，右下角标签偶尔没有及时更新。",
+      email: "visitor@example.com",
+      page: "https://musefilm.top/#screens",
+      locale: "zh",
+      platform: "mac",
+    }),
+  }), env);
+
+  assert.equal(response.status, 202);
+  assert.equal((await response.json()).emailQueued, true);
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].to, "owner@example.com");
+  assert.equal(sent[0].from, "feedback@musefilm.top");
+  assert.equal(sent[0].replyTo, "visitor@example.com");
+  assert.match(sent[0].subject, /MuseFilm.*问题反馈/);
+  assert.match(sent[0].text, /右下角标签/);
+  assert.ok(database.calls.some((call) => /UPDATE feedback SET email_status/.test(call.sql) && call.values[0] === "sent"));
+});
