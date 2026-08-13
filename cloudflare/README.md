@@ -27,9 +27,10 @@ Current production Worker:
 5. Create a Turnstile widget for `musefilm.top` and
    `quartzsyr.github.io`. Put the public site key in `TURNSTILE_SITE_KEY` and
    save the secret key as `TURNSTILE_SECRET_KEY`.
-6. Verify the destination address and sending domain in Cloudflare Email
-   Service. Set `FEEDBACK_TO_EMAIL`, `FEEDBACK_FROM_EMAIL`, and restrict the
-   email binding to the verified destination.
+6. Verify the destination address and enable Email Routing for `musefilm.top`
+   in Cloudflare Email Service. Set `FEEDBACK_TO_EMAIL`, set
+   `FEEDBACK_FROM_EMAIL` to `feedback@musefilm.top`, and restrict the email
+   binding with both `destination_address` and `allowed_sender_addresses`.
 7. Deploy the Worker. It can start on its `workers.dev` URL; for the production
    frontend, connect `api.musefilm.top` as a Worker custom domain and keep the
    main site on GitHub Pages.
