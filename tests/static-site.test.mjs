@@ -84,6 +84,7 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(home, /data-feedback-open/);
   assert.match(home, /data-feedback-dialog/);
   assert.match(home, /data-feedback-form/);
+  assert.match(home, /data-visitor-total/);
   assert.match(home, /name="musefilm-api-base" content="https:\/\/musefilm-feedback-api\.syrquartz\.workers\.dev"/);
   assert.match(home, /为每一卷光，留一张观片台/);
   assert.match(script, /const LIGHT_TABLE_EXAMPLES = \[/);
@@ -102,6 +103,7 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(script, /prepareFeedbackVerification/);
   assert.match(script, /\/api\/feedback/);
   assert.match(script, /\/api\/visit/);
+  assert.match(script, /\/api\/visitors/);
   assert.match(script, /if \(!lightTableInteractive\) return;/);
   assert.match(script, /URL\.createObjectURL/);
   assert.match(script, /setPointerCapture/);
@@ -116,6 +118,7 @@ test("keeps interaction and accessibility fallbacks", async () => {
   assert.match(css, /clip-path:\s*inset\(1px round 25%\)/);
   assert.match(css, /\.feedback-trigger/);
   assert.match(css, /\.feedback-dialog/);
+  assert.match(css, /\.visitor-counter/);
   assert.match(css, /repeating-linear-gradient/);
   assert.match(home, /width="1536" height="1024"/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
