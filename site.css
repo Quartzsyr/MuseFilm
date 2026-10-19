@@ -2536,8 +2536,6 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
 .download-email-label > span { color:var(--text); font-size:.68rem; }
 .download-email-label input { width:100%; min-height:3.15rem; padding:.8rem 1rem; color:var(--text); background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:.7rem; font:inherit; font-size:.8rem; transition:border-color 180ms ease,box-shadow 180ms ease; }
 .download-email-label input:focus { border-color:var(--red-light); outline:none; box-shadow:0 0 0 3px rgba(185,58,50,.12); }
-.download-subscribe { display:flex; gap:.65rem; align-items:flex-start; margin-top:1rem; color:rgba(242,239,232,.8); font-size:.68rem; line-height:1.65; cursor:pointer; }
-.download-subscribe input { width:1rem; height:1rem; flex-shrink:0; margin:.1rem 0 0; accent-color:var(--red); }
 .download-email-note { margin-top:.8rem; color:var(--muted); font-size:.6rem; line-height:1.75; }
 .download-dialog-status { min-height:1rem; margin-top:.6rem; color:#e39a91; font-size:.65rem; line-height:1.6; }
 .download-form footer { display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin-top:.7rem; padding-top:1.2rem; border-top:1px solid var(--line); }

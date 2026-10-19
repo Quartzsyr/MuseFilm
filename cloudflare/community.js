@@ -1,5 +1,6 @@
 // Embedded in worker.js by scripts/bundle-community.mjs for dashboard deployment.
-const CONSENT_VERSION = "2026-10-20";
+const CONSENT_VERSION = "2026-10-20"; // Legacy checkbox flow, retained for cached clients.
+const DIRECT_CONSENT_VERSION = "2026-10-20-email-subscription-v2";
 const COMMUNITY_ORIGIN = "https://musefilm-feedback-api.syrquartz.workers.dev";
 
 function communityMailReady(env) {
@@ -78,7 +79,7 @@ function thankYouContent(subscriber) {
   const paragraphs = ["谢谢你选择 MuseFilm。愿每一卷光，都有值得停留的位置。", "下载已经为你准备好。期待 MuseFilm 能陪你整理胶卷、扫描和那些不想遗忘的拍摄记忆。", "用起来顺手吗？有没有哪个地方让你停顿、困惑，或想要一个新的功能？直接回复这封邮件，或点下面的按钮告诉我。"];
   if (pending) paragraphs.push("你也勾选了接收版本更新与新闻。请点击「确认订阅」后再接收后续资讯；不确认不会被加入群发名单。");
   const action = emailButton(feedbackUrl, "告诉我你的使用感受") + (pending ? `<br>${emailButton(links.confirm, "确认订阅更新与新闻")}` : "");
-  const footer = `此邮件因你在下载时自愿留下邮箱而发送。${pending ? "后续资讯仍需你确认订阅。" : "不会因留下邮箱自动订阅新闻。"}<br><a href="${escapeHtml(links.unsubscribe)}" style="color:#bd9d85">不再接收邮件</a> · <a href="https://musefilm.top" style="color:#bd9d85">musefilm.top</a>`;
+  const footer = `此邮件因你在下载时自愿留下邮箱而发送。${pending ? "后续资讯仍需你确认订阅。" : subscriber.status === "subscribed" ? "你已订阅 MuseFilm 的版本更新与新闻，可随时退订。" : "不会因留下邮箱自动订阅新闻。"}<br><a href="${escapeHtml(links.unsubscribe)}" style="color:#bd9d85">不再接收邮件</a> · <a href="https://musefilm.top" style="color:#bd9d85">musefilm.top</a>`;
   return { subject: "感谢下载 MuseFilm，期待听见你的使用感受", html: subscriberEmailHtml("感谢你，让光继续留下。", paragraphs, action, footer), text: paragraphs.join("\n\n") + `\n\n反馈：${feedbackUrl}` + (pending ? `\n确认订阅：${links.confirm}` : "") + `\n不再接收邮件：${links.unsubscribe}` };
 }
 
@@ -86,16 +87,17 @@ async function saveDownloadContact(env, body, event) {
   const email = cleanText(body.email, 160).toLowerCase();
   if (!email) return null;
   const now = event.created_at;
-  const requested = body.subscribe === true && body.consentVersion === CONSENT_VERSION;
-  await env.DB.prepare(`INSERT INTO subscribers(id,email,status,locale,platform,consent_version,consent_at,confirmation_token,unsubscribe_token,created_at,last_download_at)
-    VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(email) DO UPDATE SET
+  const direct = body.consentVersion === DIRECT_CONSENT_VERSION;
+  const requested = direct || body.subscribe === true && body.consentVersion === CONSENT_VERSION;
+  await env.DB.prepare(`INSERT INTO subscribers(id,email,status,locale,platform,consent_version,consent_at,confirmed_at,confirmation_token,unsubscribe_token,created_at,last_download_at)
+    VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(email) DO UPDATE SET
     locale=excluded.locale, platform=excluded.platform, last_download_at=excluded.last_download_at,
-    status=CASE WHEN excluded.status='pending' AND subscribers.status IN ('contact','unsubscribed') THEN 'pending' ELSE subscribers.status END,
+    status=CASE WHEN excluded.status='subscribed' THEN 'subscribed' WHEN excluded.status='pending' AND subscribers.status IN ('contact','unsubscribed') THEN 'pending' ELSE subscribers.status END,
     confirmation_token=CASE WHEN excluded.status='pending' AND subscribers.status='unsubscribed' THEN excluded.confirmation_token ELSE subscribers.confirmation_token END,
-    consent_at=CASE WHEN excluded.status='pending' THEN excluded.consent_at ELSE subscribers.consent_at END,
-    confirmed_at=CASE WHEN excluded.status='pending' AND subscribers.status='unsubscribed' THEN NULL ELSE subscribers.confirmed_at END,
-    consent_version=CASE WHEN excluded.status='pending' THEN excluded.consent_version ELSE subscribers.consent_version END`)
-    .bind(crypto.randomUUID(),email,requested ? "pending" : "contact",event.locale || "zh",event.platform,requested ? CONSENT_VERSION : "",requested ? now : null,crypto.randomUUID()+crypto.randomUUID(),crypto.randomUUID()+crypto.randomUUID(),now,now).run();
+    consent_at=CASE WHEN excluded.status IN ('pending','subscribed') THEN excluded.consent_at ELSE subscribers.consent_at END,
+    confirmed_at=CASE WHEN excluded.status='subscribed' THEN excluded.confirmed_at WHEN excluded.status='pending' AND subscribers.status='unsubscribed' THEN NULL ELSE subscribers.confirmed_at END,
+    consent_version=CASE WHEN excluded.status IN ('pending','subscribed') THEN excluded.consent_version ELSE subscribers.consent_version END`)
+    .bind(crypto.randomUUID(),email,direct ? "subscribed" : requested ? "pending" : "contact",event.locale || "zh",event.platform,requested ? body.consentVersion : "",requested ? now : null,direct ? now : null,crypto.randomUUID()+crypto.randomUUID(),crypto.randomUUID()+crypto.randomUUID(),now,now).run();
   const subscriber = await env.DB.prepare("SELECT * FROM subscribers WHERE email=?").bind(email).first();
   if (subscriber) await env.DB.prepare("INSERT OR IGNORE INTO subscriber_downloads(download_id,subscriber_id) VALUES(?,?)").bind(event.id,subscriber.id).run();
   if (!subscriber || subscriber.status === "unsubscribed") return { subscriber, mailId: null };
@@ -181,7 +183,7 @@ async function adminSubscribers(request,env) {
 
 function campaignContent(campaign,subscriber) {
   const unsubscribe = subscriberLinks(subscriber).unsubscribe;
-  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton("https://musefilm.top/#download","打开 MuseFilm"),`你已确认订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
+  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton("https://musefilm.top/#download","打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
 }
 
 async function campaignProgress(env,id) {

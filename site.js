@@ -144,14 +144,13 @@ const TRANSLATIONS = {
     "download.dialogClose": "关闭下载弹窗",
     "download.dialogIntro": "愿每一卷光，都有值得停留的位置。留下邮箱，收一封感谢来信，也欢迎告诉我 MuseFilm 用起来如何。",
     "download.selectedInstaller": "即将下载",
-    "download.optionalEmail": "你的邮箱 · 完全选填",
-    "download.subscribe": "也愿意收到 MuseFilm 的版本更新与新闻。请发邮件让我确认订阅。",
-    "download.emailNote": "邮箱会由 MuseFilm 站长保存。只留邮箱会收到一封感谢邮件；后续资讯需勾选并在邮件中确认，随时可以退订。",
+    "download.optionalEmail": "你的邮箱 · 选填，填写即订阅",
+    "download.emailNote": "填写并提交邮箱，即同意接收 MuseFilm 的感谢邮件、版本更新与新闻。邮箱由站长保存，可随时通过邮件退订；也可跳过直接下载。",
     "download.skip": "跳过，直接下载",
-    "download.share": "分享邮箱并下载",
+    "download.share": "订阅并下载",
     "download.noEmailNeeded": "不填邮箱，也能完整使用 MuseFilm。",
     "download.started": "下载已开始。愿你与下一卷光，慢慢相遇。",
-    "download.emailQueued": "下载已开始，感谢邮件正在安排发送；若勾选资讯，请在邮件中确认订阅。",
+    "download.emailQueued": "下载已开始，正在保存订阅并安排感谢邮件。",
     "download.emailSaved": "下载已开始，邮箱已保存。请留意邮件；重复下载的感谢来信会合并处理。",
     "download.emailFailed": "下载已开始，但邮箱暂未保存成功。你仍可通过网站反馈入口联系我。",
     "download.emailRequired": "请填写邮箱，或选择「跳过，直接下载」。",
@@ -341,14 +340,13 @@ const TRANSLATIONS = {
     "download.dialogClose": "Close download dialog",
     "download.dialogIntro": "May every roll find a place to stay. Leave your email for a thank-you note, and tell me how MuseFilm feels to use.",
     "download.selectedInstaller": "YOUR DOWNLOAD",
-    "download.optionalEmail": "Your email · entirely optional",
-    "download.subscribe": "I would also like MuseFilm updates and news. Email me a link to confirm my subscription.",
-    "download.emailNote": "The MuseFilm creator stores this email. Leaving it sends one thank-you note; future news requires opting in and confirming by email. Unsubscribe at any time.",
+    "download.optionalEmail": "Your email · optional, submitting subscribes",
+    "download.emailNote": "By submitting your email, you agree to receive a thank-you note, MuseFilm updates and news. The creator stores your email. Unsubscribe from any email, or skip to download without subscribing.",
     "download.skip": "Skip and download",
-    "download.share": "Share email & download",
+    "download.share": "Subscribe & download",
     "download.noEmailNeeded": "MuseFilm works fully without sharing an email.",
     "download.started": "Your download has started. Enjoy the next roll of light.",
-    "download.emailQueued": "Your download has started. A thank-you note is being queued; confirm by email if you opted into news.",
+    "download.emailQueued": "Your download has started. Your subscription and thank-you note are being arranged.",
     "download.emailSaved": "Your download has started and your email is saved. Repeated download thank-you notes are combined.",
     "download.emailFailed": "Your download has started, but your email could not be saved. You can still use the feedback button.",
     "download.emailRequired": "Enter your email or choose “Skip and download”.",
@@ -1973,7 +1971,8 @@ function showDownloadToast(message) {
   downloadToastTimeout = window.setTimeout(() => { toast.hidden = true; }, 8000);
 }
 
-function completeDownload(email = "", subscribe = false) {
+function completeDownload(email = "") {
+  const subscribe = Boolean(email);
   if (!pendingDownload) return;
   const downloadUrl = pendingDownload;
   pendingDownload = null;
@@ -1992,7 +1991,7 @@ function completeDownload(email = "", subscribe = false) {
   showDownloadToast(translate(email ? "download.emailQueued" : "download.started"));
   void musefilmApi("/api/download", {
     method: "POST", keepalive: true,
-    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20" : "" }),
+    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
   }).then((result) => {
     if (email && !result.thankYouQueued) showDownloadToast(translate("download.emailSaved"));
   }).catch(() => {
@@ -2021,14 +2020,13 @@ document.querySelector("[data-download-skip]")?.addEventListener("click", () => 
 downloadForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const email = downloadEmailInput.value.trim();
-  const subscribe = downloadForm.elements.namedItem("subscribe").checked;
   if (!email) {
     downloadDialogStatus.textContent = translate("download.emailRequired");
     downloadEmailInput.focus();
     return;
   }
   if (!downloadForm.reportValidity()) return;
-  completeDownload(email, subscribe);
+  completeDownload(email);
 });
 
 async function recordAnonymousVisit() {
