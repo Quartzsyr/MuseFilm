@@ -169,6 +169,7 @@ const TRANSLATIONS = {
     "download.viewMacRelease": "查看 macOS 版本",
     "footer.slogan": "献给仍在拍胶片的人。",
     "status.synced": "下载次数已与 GitHub Releases 同步",
+    "status.snapshot": "GitHub Releases 下载记录 · 定时同步",
     "status.fallback": "GitHub 暂时不可用 · 显示最近验证数据",
     "status.opened": "已打开 GitHub · 完成下载后会自动记录",
     "mac.overline": "原生 macOS 应用",
@@ -346,6 +347,7 @@ const TRANSLATIONS = {
     "download.viewMacRelease": "View macOS release",
     "footer.slogan": "Made for people who still shoot film.",
     "status.synced": "Live counts synced from GitHub Releases",
+    "status.snapshot": "GitHub Releases download records · periodically synced",
     "status.fallback": "GitHub temporarily unavailable · showing last verified totals",
     "status.opened": "Opened on GitHub · completed downloads are recorded automatically",
     "mac.overline": "Native on macOS",
@@ -1353,11 +1355,12 @@ if (downloadSection) {
 
 const RELEASE_API = "https://api.github.com/repos/Quartzsyr/MuseFilm/releases?per_page=100";
 const RELEASES_URL = "https://github.com/Quartzsyr/MuseFilm/releases";
-const FALLBACK_COUNTS = { windows: 67, mac: 12 };
+const FALLBACK_COUNTS = { windows: 117, mac: 88 };
 let lastCounts = FALLBACK_COUNTS;
 let lastCountsSynced = false;
 let downloadOpened = false;
 let lastReleaseData = null;
+let releaseSnapshotLoaded = false;
 
 function detectDownloadPlatform() {
   const userAgent = String(navigator.userAgent || "").toLowerCase();
@@ -1677,36 +1680,55 @@ function renderCounts(counts, synced) {
   document.querySelectorAll("[data-download-status]").forEach((element) => {
     element.textContent = downloadOpened
       ? translate("status.opened")
-      : translate(synced ? "status.synced" : "status.fallback");
+      : translate(synced ? "status.synced" : releaseSnapshotLoaded ? "status.snapshot" : "status.fallback");
+  });
+}
+
+function applyReleaseDownloads(releases, synced) {
+  const counts = { windows: 0, mac: 0 };
+  releases.forEach((release) => {
+    (release.assets || []).forEach((asset) => {
+      const platform = assetPlatform(asset, release);
+      if (platform) counts[platform] += Number(asset.download_count || 0);
+    });
+  });
+  renderCounts(counts, synced);
+  renderReleaseData({
+    platforms: {
+      windows: latestPlatformRelease(releases, "windows"),
+      mac: latestPlatformRelease(releases, "mac"),
+    },
+    latestRelease: releases[0],
+    releases,
   });
 }
 
 async function syncDownloadCounts() {
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 12000);
+  const snapshotController = new AbortController();
+  const snapshotTimeout = window.setTimeout(() => snapshotController.abort(), 4000);
   try {
-    const releases = await fetchAllReleases(controller.signal);
-    const counts = { windows: 0, mac: 0 };
-    releases.forEach((release) => {
-      (release.assets || []).forEach((asset) => {
-        const platform = assetPlatform(asset, release);
-        if (platform) counts[platform] += Number(asset.download_count || 0);
-      });
-    });
-    Object.keys(counts).forEach((platform) => {
-      if (!counts[platform]) counts[platform] = FALLBACK_COUNTS[platform];
-    });
-    renderCounts(counts, true);
-    renderReleaseData({
-      platforms: {
-        windows: latestPlatformRelease(releases, "windows"),
-        mac: latestPlatformRelease(releases, "mac"),
-      },
-      latestRelease: releases[0],
-      releases,
-    });
+    const response = await fetch("./releases.json", { cache: "no-cache", signal: snapshotController.signal });
+    if (!response.ok) throw new Error(String(response.status));
+    const snapshot = await response.json();
+    const updatedAt = Date.parse(snapshot.updatedAt);
+    if (!Array.isArray(snapshot.releases) || !Number.isFinite(updatedAt)) throw new Error("Invalid release snapshot");
+    releaseSnapshotLoaded = true;
+    applyReleaseDownloads(sortReleasesByDate(snapshot.releases.filter((release) => !release.draft)), false);
+    const age = Date.now() - updatedAt;
+    if (age >= 0 && age < 2 * 60 * 60 * 1000) return;
   } catch {
-    renderCounts(FALLBACK_COUNTS, false);
+    // Direct GitHub access remains available if the same-origin snapshot fails.
+  } finally {
+    window.clearTimeout(snapshotTimeout);
+  }
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    applyReleaseDownloads(await fetchAllReleases(controller.signal), true);
+  } catch {
+    renderCounts(lastCounts, false);
+    if (releaseSnapshotLoaded) return;
     const notesBody = document.querySelector("[data-release-notes-body]");
     if (notesBody) notesBody.textContent = currentLanguage === "en" ? "GitHub is temporarily unavailable. Open Releases for the latest details." : "GitHub 暂时不可用，可前往 Releases 查看最新说明。";
     const history = document.querySelector("[data-release-history-list]");

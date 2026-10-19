@@ -1,0 +1,46 @@
+name: Sync release download counts
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  release:
+    types: [published, edited, deleted]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: release-download-counts
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Read authenticated GitHub download records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases?per_page=100" > "$RUNNER_TEMP/releases.json"
+      - name: Update public snapshot and initial counts
+        run: node scripts/update-release-snapshot.mjs "$RUNNER_TEMP/releases.json"
+      - name: Publish updated counts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases.json index.html site.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Update verified release download counts"
+            git push origin HEAD:main
+          fi
+          # GITHUB_TOKEN pushes do not start a branch-based Pages build.
+          gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

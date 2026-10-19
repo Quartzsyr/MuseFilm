@@ -1,0 +1,170 @@
+{
+  "updatedAt": "2026-10-19T12:14:04.618Z",
+  "releases": [
+    {
+      "name": "v0.6.2",
+      "tag_name": "Windows",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/Windows",
+      "published_at": "2026-08-13T14:20:09Z",
+      "created_at": "2026-08-13T13:57:43Z",
+      "prerelease": false,
+      "body": "# MuseFilm v0.6.2\r\n\r\n发布日期：2026-08-13\r\n\r\n## ✨ 新功能\r\n\r\n### 预览编辑与随机浏览增强\r\n- 预览页与「随机一张」新增图片编辑弹窗。\r\n- 支持单张图片旋转、水平/垂直翻转与轻量裁剪。\r\n- 采用统一磨砂玻璃风格界面。\r\n- 编辑结果可另存为新文件，并自动应用至预览页及后续随机浏览。\r\n\r\n### 胶卷缩印（Contact Sheet）导出\r\n- 观片台新增整卷缩印导出功能。\r\n- 支持导出标准 Contact Sheet 便于打印、归档与分享。\r\n- 提供磨砂弹窗预览。\r\n- 支持输入个人签名。\r\n- 自动生成 MuseFilm © Quartz 页眉与品牌标识。\r\n\r\n### 图库与档案体验升级\r\n- 图库支持按照片原始比例展示横幅与竖幅照片。\r\n- 优化瀑布式网格布局与浏览体验。\r\n- 档案页新增胶卷详情弹窗。\r\n- 集中展示缩略图、拍摄信息及胶卷数据。\r\n\r\n---\r\n\r\n## 🛠 修复\r\n\r\n### 元数据写入修复\r\n- 修复「随机一张」页面中 Kimi 评分无法正确写入本地元数据的问题。\r\n- 修复「随机一张」页面中备注无法保存的问题。\r\n- 统一随机浏览与普通预览页的数据写入逻辑。\r\n\r\n---\r\n\r\n## 🎨 优化\r\n\r\n### 界面与交互\r\n- 优化图片编辑流程与状态同步。\r\n- 优化随机浏览后的图片刷新逻辑。\r\n- 提升缩印生成与预览性能。\r\n- 改进图库大尺寸照片展示效果。\r\n- 完善档案页胶卷信息查看体验。\r\n\r\n---\r\n\r\n## 📦 历史版本\r\n\r\n### v0.5.2 · 胶卷库有效期、介绍与封面\r\n- 有效期支持日历选择器，同时保留 YYYY-MM-DD 手动输入。\r\n- 新增胶卷介绍自定义功能。\r\n- 支持自定义暗盒封面与包装封面图片 URL。\r\n- 过期日期同步写入 `data/film_data.json`。\r\n\r\n### v0.4.1 · 胶卷库天气与默认城市\r\n- 天气请求迁移至后端代理 Open-Meteo。\r\n- 定位失败自动回退默认城市。\r\n- 新增默认城市设置。\r\n- 新增天气与拍摄建议开关及调试信息。\r\n\r\n### v0.4.0 · AI 欢迎语与摄影史节选\r\n- 支持 DeepSeek AI 欢迎语。\r\n- 首页改为摄影史节选展示。\r\n- 新增调试模式。\r\n- 欢迎语本地缓存与后台刷新机制。\r\n\r\n### v0.3.1 · Bug 修复\r\n- 修复删除文档后本地缓存未同步删除的问题。\r\n- 修复最近访问记录残留问题。\r\n\r\n### v0.3.0 · 胶卷库与封面增强\r\n- 内置胶卷扩展至 30 种。\r\n- 新增拟物胶卷视图。\r\n- 支持暗盒图与包装图作为封面。\r\n- 保持观片台拟物卷槽样式。\r\n\r\n### v0.2.0 · 主题与界面增强\r\n- 新增五种胶片风格主题。\r\n- 支持无边框档案袋窗口。\r\n- 统一拟物滚动条样式。\r\n- 新增打赏入口。\r\n\r\n### v0.1.0 · 空状态与预览体验\r\n- 统一全局空状态设计。\r\n- 优化预览页无图引导。\r\n\r\n### v0.0.9 · 打磨与联动\r\n- 新增自动备份。\r\n- 页面淡入切换动画。\r\n- 优化跨页面状态同步。\r\n\r\n### v0.0.8 · 设置完善\r\n- 新增主题切换。\r\n- 支持缩略图边长配置。\r\n- 支持默认导入目录设置。\r\n\r\n### v0.0.7 · 首页仪表盘\r\n- 新增统计摘要。\r\n- 胶卷类型分布统计。\r\n- 最近添加与最近浏览面板。\r\n\r\n### v0.0.6 · 搜索与胶卷库\r\n- 支持关键字、日期、星级搜索。\r\n- 新增胶卷库存管理。\r\n\r\n### v0.0.5 · 备份与数据目录\r\n- 支持备份导出与恢复。\r\n- 支持数据目录迁移。\r\n\r\n### v0.0.4 · 预览页增强\r\n- 新增 EXIF 信息展示。\r\n- 支持评分与单张备注。\r\n- 新增胶片条导航与快捷键。\r\n\r\n### v0.0.3 · 观片台拟物界面\r\n- 新增观片台。\r\n- 支持亮度与倍率调节。\r\n- 支持导出观片台画面。\r\n\r\n### v0.0.2 · 图库视图\r\n- 新增图库页面。\r\n- 支持筛选与网格浏览。\r\n\r\n### v0.0.1 · 基础导入与档案\r\n- 实现胶卷导入。\r\n- 建立基础档案管理系统。",
+      "assets": [
+        {
+          "name": "MuseFilmSetup_v0.6.2.exe",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Windows/MuseFilmSetup_v0.6.2.exe",
+          "size": 291551390,
+          "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
+          "download_count": 7
+        }
+      ]
+    },
+    {
+      "name": "MAC_V3.2.2",
+      "tag_name": "MAC3.2.2",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC3.2.2",
+      "published_at": "2026-09-18T03:05:16Z",
+      "created_at": "2026-08-13T18:47:05Z",
+      "prerelease": false,
+      "body": "# MuseFilm 3.2.2 for macOS\r\n\r\n> MuseFilm 3.2.2 是以修复 macOS 15 及更早受支持系统上的启动报错为主的维护版本，同时改进了编辑界面与档案操作。\r\n\r\n## 版本信息\r\n\r\n| 项目 | 信息 |\r\n| --- | --- |\r\n| 版本 | 3.2.2 |\r\n| Build | 34 |\r\n| 系统要求 | macOS 14.0 或更高版本 |\r\n| 芯片 | Apple Silicon 与 Intel Mac |\r\n| 签名 | 本地临时签名（ad-hoc），未经过 Apple 公证 |\r\n\r\n## 主要修复：启动报错\r\n\r\n- 修复状态栏项目在 SwiftUI 应用初始化阶段过早创建、可能导致 macOS 15 启动时崩溃的问题。\r\n- 状态栏现在会等待 AppKit 完成启动后再创建，并处理 `NSApp` 尚未建立的边界情况。\r\n- 主应用与快速操作扩展的最低系统版本均为 macOS 14.0。\r\n\r\n## 其他改进\r\n\r\n- 胶卷编辑窗口提供始终可见的关闭入口，表单可滚动，完成按钮固定显示。\r\n- 器材编辑窗口及新增表单可滚动，避免内容被裁切。\r\n- 卷宗编辑使用草稿：取消或关闭不会意外保存部分修改。\r\n- 删除卷宗前增加确认，并清理相关选片资料和最近浏览记录；不会删除原始照片。\r\n- 启动时保留用户修改过的内置胶卷冲洗工艺；异步抓图不会写回已关闭或已改名的新增表单。\r\n\r\n## 安装\r\n\r\n1. 退出正在运行的 MuseFilm。\r\n2. 打开 `MuseFilm-3.2.2-build34-universal.dmg`，将 MuseFilm 拖入 Applications。\r\n3. 如已有旧版，选择替换原应用。\r\n\r\n如需让下载并解压后的 DMG 文件继续显示专属安装图标，请下载 `MuseFilm-3.2.2-build34-universal-icon-preserved.zip`。更新不会移动或删除原始照片；建议升级前从设置导出 JSON 数据备份，并单独备份照片文件夹。\r\n\r\n## 发布验证\r\n\r\n- `hdiutil verify` 通过，DMG 卷标为 `MuseFilm 3.2.2`。\r\n- 主应用与快速操作扩展版本一致：`3.2.2 (34)`；主程序与扩展均包含 `arm64` 和 `x86_64`。\r\n- `codesign --verify --deep --strict` 通过。\r\n- DMG 内包含 `.VolumeIcon.icns`，挂载卷具有 Custom Icon 标记；DMG 文件具有 Custom Icon 标记和 ResourceFork。\r\n- ZIP 使用 `ditto --sequesterRsrc` 创建；解压后的 DMG 数据、FinderInfo 与 ResourceFork 均验证一致。\r\n- 现有 18 项自动化测试通过；尚未在 macOS 15 实机上完成交互回归。\r\n\r\n## SHA-256\r\n\r\n| 文件 | SHA-256 | 大小 |\r\n| --- | --- | ---: |\r\n| `MuseFilm-3.2.2-build34-universal.dmg` | `a3fd9e3c813a315eaa51a991c2b4abb5ba95c8d1839b78cd4a701dca68908b91` | 35,150,283 bytes |\r\n| `MuseFilm-3.2.2-build34-universal-icon-preserved.zip` | `09baa530c2401abc1e4f914ee6ecbbc97a9669e2faac6e9ff142e4ec9a178e63` | 37,489,020 bytes |\r\n\r\n## 反馈\r\n\r\n如仍遇到报错，请在 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 附上 macOS 版本、MuseFilm 版本与 Build、复现步骤及崩溃报告。\r\n",
+      "assets": [
+        {
+          "name": "MuseFilm-3.2.2-build34-universal-icon-preserved.zip",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal-icon-preserved.zip",
+          "size": 37489020,
+          "digest": "sha256:09baa530c2401abc1e4f914ee6ecbbc97a9669e2faac6e9ff142e4ec9a178e63",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-3.2.2-build34-universal.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal.dmg",
+          "size": 35150283,
+          "digest": "sha256:a3fd9e3c813a315eaa51a991c2b4abb5ba95c8d1839b78cd4a701dca68908b91",
+          "download_count": 7
+        }
+      ]
+    },
+    {
+      "name": "MAC V3.2.1（修复）",
+      "tag_name": "MAC3.2.1_Fixed",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC3.2.1_Fixed",
+      "published_at": "2026-09-13T03:15:05Z",
+      "created_at": "2026-08-13T18:47:05Z",
+      "prerelease": false,
+      "body": "# MuseFilm 3.2.1 for macOS\r\n\r\nMuseFilm 3.2.1 是面向 macOS 14 与 macOS 15 的兼容性修复版本，保留 3.2 的完整胶片导入、器材管理、选片、冲扫与归档体验。\r\n\r\n> 修复macOS 15等早期版本的闪退崩溃问题\r\n\r\n## 版本信息\r\n\r\n| 项目 | 信息 |\r\n| --- | --- |\r\n| 版本 | 3.2.1 |\r\n| Build | 33 |\r\n| 平台 | macOS |\r\n| 系统要求 | macOS 14.0 或更高版本 |\r\n| 芯片 | Apple Silicon 与 Intel Mac |\r\n| 安装包 | 通用版 DMG；另附保留 Finder 安装图标的 ZIP |\r\n| 签名 | 本地临时签名（ad-hoc），未经过 Apple 公证 |\r\n\r\n## 本次更新\r\n\r\n### 修复 macOS 15 启动崩溃\r\n\r\n- 修复状态栏项目在 SwiftUI 应用初始化阶段过早创建的问题。\r\n- 状态栏现在会等待 AppKit 完成启动、建立 WindowServer 连接后再创建，避免 macOS 15 在 SkyLight / CGS 内部断言退出。\r\n- 补充处理测试宿主或特殊启动环境中 `NSApp` 尚未建立的边界情况。\r\n\r\n### 扩大系统兼容范围\r\n\r\n- 主应用与快速操作扩展的最低系统版本统一调整为 macOS 14.0。\r\n- 主应用和扩展均提供 `arm64` 与 `x86_64` 架构。\r\n\r\n## 安装与更新\r\n\r\n1. 下载 `MuseFilm-3.2.1-build33-universal.dmg`。\r\n2. 退出正在运行的 MuseFilm。\r\n3. 打开 DMG，将左侧的 MuseFilm 拖到右侧 Applications。\r\n4. 已安装旧版时，选择替换原应用。\r\n5. 从“应用程序”打开 MuseFilm；首次访问照片目录时，按 macOS 提示授权。\r\n\r\n如需让下载并解压后的 DMG 文件继续显示专属安装图标，请使用 `MuseFilm-3.2.1-build33-universal-icon-preserved.zip`。\r\n\r\n更新不会移动原始照片。建议升级前从设置导出一份 JSON 数据备份，并继续单独备份照片文件夹。\r\n\r\n## 安装盘说明\r\n\r\n- Finder 安装窗口为 820 × 430。\r\n- MuseFilm.app 位于 `(188, 212)`，Applications 位于 `(632, 212)`，图标尺寸为 128 px。\r\n- 安装窗口隐藏工具栏、侧边栏、状态栏、标签栏和路径栏。\r\n- 标准与 Retina 背景保持原设计，安装盘 Logo 未合成进背景，也未替换应用自身图标。\r\n- 专属 Logo 仅用于 DMG 文件自定义图标和挂载卷图标。\r\n\r\n## 发布验证\r\n\r\n- `hdiutil verify` 校验通过。\r\n- 主应用与快速操作扩展版本一致：`3.2.1 (33)`。\r\n- 主程序与扩展均包含 `arm64`、`x86_64`。\r\n- `codesign --verify --deep --strict` 校验通过。\r\n- DMG 内包含 `.VolumeIcon.icns`，挂载卷具有 Custom Icon 标记。\r\n- DMG 文件具有 Custom Icon 标记及 2,443,461-byte ResourceFork。\r\n- ZIP 使用 `ditto --sequesterRsrc` 创建；解压后的 DMG 仍保留 FinderInfo、ResourceFork 和专属图标，且数据 SHA-256 与原 DMG 一致。\r\n\r\n## 下载校验\r\n\r\n| 文件 | SHA-256 | 大小 |\r\n| --- | --- | ---: |\r\n| `MuseFilm-3.2.1-build33-universal.dmg` | `dba06e3256795723bc5935a37b49a14ff18dbf9345c6fee0a31f497337d60a2c` | 35,146,556 bytes |\r\n| `MuseFilm-3.2.1-build33-universal-icon-preserved.zip` | `c91f3b90bc6c0b3d1a81e34fe5813952e2edfd24552cafa0120abf0e8216763e` | 37,452,492 bytes |\r\n\r\n## 反馈\r\n\r\n欢迎通过 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 提交问题。请附上 macOS 版本、MuseFilm 版本与 Build、复现步骤，以及相关截图或崩溃报告。\r\n",
+      "assets": [
+        {
+          "name": "MuseFilm-3.2.1-build33-universal.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.1_Fixed/MuseFilm-3.2.1-build33-universal.dmg",
+          "size": 35146556,
+          "digest": "sha256:dba06e3256795723bc5935a37b49a14ff18dbf9345c6fee0a31f497337d60a2c",
+          "download_count": 6
+        }
+      ]
+    },
+    {
+      "name": "Mac V3.2(macOS15不可用)",
+      "tag_name": "MAC3.2",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC3.2",
+      "published_at": "2026-09-11T02:44:33Z",
+      "created_at": "2026-08-13T18:47:05Z",
+      "prerelease": false,
+      "body": "# MuseFilm 3.2 for macOS · 让导入消失，只留下胶卷\r\n\r\nMuseFilm 3.2 把照片导入重新做成了一段完整的胶片动作。\r\n\r\n你可以让应用启动后直接呈现一枚可拖动的拟物胶卷，不出现软件边框、侧边栏或普通表单；整理完成后，只需选择打开 MuseFilm，或让应用在完成归档后自动退出。器材库里的机身装卷、品牌纸片与红色蜡笔选片也在这一版形成联动，让拍摄、选片与归档更接近真实暗房工作流。\r\n\r\n<img width=\"1672\" height=\"941\" alt=\"MuseFilm-3 2-launch-keynote-image2 5\" src=\"https://github.com/user-attachments/assets/87c7ed16-18dd-49f5-b4e6-644b0ba573d3\" />\r\n\r\n## 版本信息\r\n\r\n| 项目 | 信息 |\r\n| --- | --- |\r\n| 版本 | 3.2 |\r\n| Build | 32 |\r\n| 平台 | macOS |\r\n| 系统要求 | macOS 15.6 或更高版本 |\r\n| 芯片 | Apple Silicon 与 Intel Mac |\r\n| 安装包 | 通用版 DMG；另附保留 Finder 安装图标的 ZIP |\r\n| 数据方式 | 本地优先，原始照片保留在原文件夹 |\r\n\r\n## 本次重点更新\r\n\r\n### 01 · 无感导入：打开应用，直接拿起一卷胶片\r\n\r\n设置中新增「无感模式」，并聚焦于最频繁的导入动作。开启后，MuseFilm 启动时直接复用现有拟物胶卷导入模型，不再经过首页、侧边栏或独立导入弹窗。\r\n\r\n- 提供「关闭」「本次」「常驻」三种模式。\r\n- 「本次」只在当前运行期间进入无感导入，下次启动恢复完整界面。\r\n- 「常驻」会记住选择，以后每次启动都直接进入拟物胶卷导入。\r\n- 无感导入使用透明、无软件边框的桌面层，只显示胶卷、底片与必要操作。\r\n- 胶卷模型支持拖动查看，字段与模型保持在同一段拟物流程中。\r\n- 按 `Esc` 可暂时回到设置，随时关闭常驻模式。\r\n\r\n<img width=\"2032\" height=\"1462\" alt=\"QQ20260911-103215\" src=\"https://github.com/user-attachments/assets/83a00ca3-1fe9-46ea-b256-af932a76ea7e\" />\r\n\r\n### 02 · 导入完成后，只做一次自然选择\r\n\r\n归档完成后，胶卷流程不会突然跳回主界面。应用会显示一张轻量的 Liquid Glass 完成卡片，确认照片已经归档，并给出两个清楚的去向。\r\n\r\n- 选择「完成并退出」，MuseFilm 会保存归档并自动关闭。\r\n- 选择「打开 MuseFilm」，直接进入新卷宗的观片与整理界面。\r\n- 常驻选择会被保留，下一次启动仍从拟物胶卷开始。\r\n- 非常驻模式会在流程结束后自动复位，不改变下一次启动习惯。\r\n\r\n<img width=\"750\" height=\"444\" alt=\"QQ_1789094309578\" src=\"https://github.com/user-attachments/assets/3d1f3730-cfea-4a98-91c6-ce6ee01ca5ed\" />\r\n\r\n### 03 · 相机背面的纸片，成为机身里那卷胶片的记忆\r\n\r\n器材库中的机身装卷界面改为直接操作相机背面。相机模型与纸片共同构成信息载体，型号、ISO、已拍张数、装卷日期和一句话不再分散在多个弹窗里。\r\n\r\n- 复用现有网页相机模型，并调整尺寸与镜头视角，避免机身超出显示区域。\r\n- 相机背面纸片严格贴合模型背板，拖动模型时保持同步。\r\n- 支持拖拽查看机身，纸片不会漂浮或脱离相机。\r\n- Kodak、Fujifilm 与 Ilford 使用各自的品牌纸片语言。\r\n- 胶卷、ISO、装卷日期、已拍张数和随手记在底部悬浮控制条中联动更新。\r\n- 关闭操作移至底部悬浮条，减少视线在窗口顶部与模型之间来回移动。\r\n\r\n<img width=\"2288\" height=\"1632\" alt=\"QQ_1789094110266\" src=\"https://github.com/user-attachments/assets/3b003460-9d87-4d9e-880b-af910b1a56ea\" />\r\n\r\n### 04 · 红色蜡笔选片，同时读懂圆圈与叉\r\n\r\n接触印样上的红色蜡笔不再只是装饰。MuseFilm 会识别摄影师常用的圈选和划叉动作，并把它们转换成选片状态。\r\n\r\n- 支持单笔或多笔形成的红色圆圈。\r\n- 放宽闭合度、椭圆比例与笔迹抖动条件，可识别粗糙圆、开口圆和快速画出的椭圆。\r\n- 支持两笔交叉形成的红色叉。\r\n- 普通划线不会轻易被误判为选择标记。\r\n- 识别结果与接触印样中的照片状态同步，仍可手动调整。\r\n\r\n<img width=\"1872\" height=\"1536\" alt=\"QQ_1789094189648\" src=\"https://github.com/user-attachments/assets/9d1198e7-e7b6-4ab5-bbaa-732815b479d0\" />\r\n\r\n### 05 · 深色模式图标恢复透明边缘\r\n\r\n修复深色外观下 Dock 与应用图标圆角外出现不透明底色的问题。深色图标现在使用独立透明资源，在浅色、深色和不同桌面壁纸上都保持干净轮廓。\r\n\r\n\r\n### 06 · 新的安装体验\r\n\r\n3.2 使用新的胶片灯箱 DMG 背景：MuseFilm 位于左侧片盘，Applications 位于右侧片盘，中间的底片箭头提示拖入方向。\r\n\r\n安装盘同时采用为本次版本单独生成的 3D 胶片卷盘 Logo。石墨金属、琥珀片基与蓝色玻璃轴心对应 MuseFilm 的暗房质感。Logo 用于 DMG 安装文件与挂载后的磁盘卷标，不占用安装窗口内部的拖拽画面。\r\n\r\n<img width=\"1704\" height=\"924\" alt=\"QQ_1789094578053\" src=\"https://github.com/user-attachments/assets/95d3237d-6740-418c-81e3-ab2aca84ece1\" />\r\n<img width=\"214\" height=\"192\" alt=\"QQ_1789094623507\" src=\"https://github.com/user-attachments/assets/808fe401-421d-48e0-b509-68b67571663a\" />\r\n\r\n\r\n## 工作流联动\r\n\r\n### 从机身到卷宗\r\n\r\n1. 在器材库为相机装入胶卷，记录 ISO、日期、已拍张数与纸片上的一句话。\r\n2. 导入照片时，MuseFilm 可沿用常用相机、镜头与胶卷信息，减少重复填写。\r\n3. 归档后，可在卷宗、观片台、搜索与足迹中继续使用这些元数据。\r\n\r\n### 从接触印样到选片\r\n\r\n1. 在接触印样上用红色蜡笔圈出保留画面，或为淘汰画面划叉。\r\n2. MuseFilm 识别圆圈、开口椭圆与双笔叉，并同步照片状态。\r\n3. 选片结果可继续用于浏览、评分、整理与导出。\r\n\r\n### 从 Finder 到无感导入\r\n\r\n1. 可从 Finder 快速操作将最多 200 张图片送入 MuseFilm。\r\n2. 开启无感模式后，应用直接进入拟物胶卷流程。\r\n3. 导入完成后选择打开卷宗，或让应用自动退出。\r\n\r\n## 仍然包含的完整功能\r\n\r\n- 以「卷」为单位导入文件夹或多张照片，并自动识别常见格式与 EXIF。\r\n- 检测重复导入，避免重复建立卷宗。\r\n- 记录胶卷、相机、镜头、地点、日期、标签、备注与评分。\r\n- 管理胶卷库存、有效期、默认冲洗工艺与自定义胶卷。\r\n- 管理相机、镜头及器材使用记录。\r\n- 支持黑白、C-41、E-6 冲洗配方、多阶段计时与通知。\r\n- 批量生成寄扫标签并导出可打印 PDF。\r\n- 在观片台自由排列、旋转和导出照片。\r\n- 按卷名、胶卷、标签、器材、地点、评分与照片信息搜索。\r\n- 在地图和时间线中查看拍摄足迹。\r\n- 导出 JSON 备份、恢复前预览，并迁移 Windows 版数据。\r\n\r\n## 安装与更新\r\n\r\n1. 下载 `MuseFilm-3.2-build32-universal.dmg`。\r\n2. 退出正在运行的 MuseFilm。\r\n3. 打开 DMG，将左侧的 MuseFilm 拖到右侧「Applications」。如需让下载后的 DMG 文件继续显示专属安装图标，请下载 `icon-preserved.zip`，解压后再打开其中的 DMG。\r\n4. 已安装旧版时，选择替换原应用。\r\n5. 从「应用程序」打开 MuseFilm；首次访问照片目录时，按 macOS 提示授权。\r\n\r\n更新不会主动移动原始照片。建议在升级前从设置导出一份 JSON 数据备份，并继续单独备份照片文件夹。\r\n\r\n## 无感模式使用说明\r\n\r\n- 在「设置 → 导入体验 → 无感模式」中选择使用方式。\r\n- 选择「本次」后，当前运行立即进入拟物导入。\r\n- 选择「常驻」后，每次打开 MuseFilm 都会直接显示拟物胶卷。\r\n- 想回到完整界面时，可在完成卡片选择「打开 MuseFilm」，或按 `Esc` 暂时进入设置并关闭常驻。\r\n\r\n## 隐私与数据\r\n\r\n- 原始照片保留在你选择的文件夹中，不会因建档而被移动或复制。\r\n- 卷宗、评分、备注、器材与冲洗记录保存在本机。\r\n- JSON 备份包含档案和元数据，不包含原始照片。\r\n- 地图定位、天气与在线胶卷素材只在对应功能需要时访问网络。\r\n\r\n## 使用说明\r\n\r\n- 首次使用通知、定位或照片目录时，macOS 会请求相应权限。\r\n- 移动照片文件夹或更改外置磁盘名称后，可能需要重新授权目录。\r\n- Finder 快速操作可在「系统设置 → 通用 → 登录项与扩展」中启用。\r\n- 更新图标后，如 Dock 仍显示旧缓存，请完全退出应用并重新打开。\r\n- 当前提供的本地构建使用临时签名，未经过 Apple 公证；如 macOS 阻止首次打开，可在 Finder 中右键应用并选择「打开」。\r\n\r\n## 下载校验\r\n\r\n| 文件 | SHA-256 | 大小 |\r\n| --- | --- | --- |\r\n| `MuseFilm-3.2-build32-universal.dmg` | `67344b44cdc4c69f2ba47751efee2583b154576189d8ae2e76baa655c8d3665e` | 35,101,076 bytes（约 35.1 MB） |\r\n| `MuseFilm-3.2-build32-universal-icon-preserved.zip` | `fa0e86e1fd0007e8af3749c9edfa69dd941f9fec39d829d779494f37d63e9dab` | 37,438,512 bytes（约 37.4 MB） |\r\n\r\n## 反馈\r\n\r\n欢迎通过 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 提交问题。请附上 macOS 版本、MuseFilm 版本与 Build、复现步骤，以及能说明问题的截图或录屏。\r\n\r\n感谢每一位仍在拍胶片，也认真保存每一卷记忆的人。\r\n",
+      "assets": [
+        {
+          "name": "MuseFilm-2.0-20260908-camera-crayon-universal.zip",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2/MuseFilm-2.0-20260908-camera-crayon-universal.zip",
+          "size": 14981522,
+          "digest": "sha256:2ac2238f79321db53897f8a6a6dc7b5eab087fc0b924798ffc5fe2d92eff4e4d",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-3.2-build32-universal.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2/MuseFilm-3.2-build32-universal.dmg",
+          "size": 35101076,
+          "digest": "sha256:67344b44cdc4c69f2ba47751efee2583b154576189d8ae2e76baa655c8d3665e",
+          "download_count": 6
+        }
+      ]
+    },
+    {
+      "name": "MAC 3.0b_test",
+      "tag_name": "Mac_beta",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/Mac_beta",
+      "published_at": "2026-09-06T12:12:28Z",
+      "created_at": "2026-08-13T18:47:05Z",
+      "prerelease": true,
+      "body": "# [MuseFilm](https://musefilm.top)3.0b for macOS · 让每一卷胶片拥有自己的归档仪式\r\n\r\n胶片的故事，不该停在扫描完成的那一刻。\r\n\r\n拍摄时用过的相机与镜头、装进机身的那卷胶片、走过的地点，以及按下快门时的心情，都值得和照片一起留下。\r\n\r\nMuseFilm 是一款为胶片摄影打造的 macOS 档案管理应用。它以「卷」为单位整理照片，把胶卷、器材、拍摄记录、冲洗流程与观片体验放在同一个桌面空间里。\r\n\r\n这次更新，我们重新设计了导入过程：让一卷胶片从暗盒中展开，承载照片与拍摄记忆，再回到属于它的档案位置。\r\n\r\n<img width=\"2818\" height=\"1940\" alt=\"image\" src=\"https://github.com/user-attachments/assets/3b4225e4-6d66-4637-a257-ad17858cb1ab\" />\r\n\r\n\r\n## 本次重点更新\r\n\r\n### 01 · 从一枚暗盒开始，重新体验照片导入\r\n\r\n新的拟物导入界面，将胶卷暗盒与底片变成可以交互的整理空间。\r\n\r\n从选择照片，到补充器材、地点与拍摄记录，导入信息沿着底片逐段展开。已经填写的内容会随着底片向后延伸，让整理过程有清晰的顺序，也保留回看和修改的空间。\r\n\r\n- 在可交互的胶卷与底片界面中完成归档。\r\n- 选择照片文件夹或多张照片，建立新的胶片卷宗。\r\n- 补充卷名、相机、镜头、地点、日期、标签与备注。\r\n- 已填写的信息保留在底片上，支持返回修改。\r\n- 调整输入画幅与字段间距，让填写内容更舒展。\r\n\r\n<img width=\"2818\" height=\"1940\" alt=\"image\" src=\"https://github.com/user-attachments/assets/a3235ec2-1a68-4495-8372-c53d1650867f\" />\r\n\r\n\r\n### 02 · 点击胶卷贴纸，选中这一卷的色彩\r\n\r\n胶卷选择融入了暗盒本身。点击贴纸即可打开胶卷选择，按品牌筛选或搜索，找到本次拍摄使用的胶卷。\r\n\r\n选择完成后，暗盒贴纸会随之更新。彩色负片、黑白胶片与反转片采用不同的片基色调，让导入界面更贴近正在整理的这一卷。\r\n\r\n- 从暗盒贴纸进入胶卷选择。\r\n- 支持品牌筛选与搜索。\r\n- 贴纸随胶卷选择同步更新。\r\n- 不同胶片类型呈现对应的片基色调。\r\n- 调整出片口与底片宽度的匹配，让衔接更自然。\r\n\r\n\r\n\r\n### 03 · 让归档拥有完整的收尾\r\n\r\n完成填写后，导入过程会以收纳动画结束：模型向新卷宗的可见封面卡片收拢，卡片同时给出高亮反馈，帮助你确认这一卷已经归档。\r\n\r\n如果取消导入，底片会先收回暗盒，再完成退场。填写过内容时，应用会提示是否放弃本次整理。\r\n\r\n- 归档完成后，以收纳动画连接导入界面与卷宗卡片。\r\n- 新卷宗卡片提供高亮反馈。\r\n- 取消时先收回底片，再关闭导入界面。\r\n- 修复归档收尾镜头缩放被覆盖的问题。\r\n- 增加暗盒边界检查，减少动画中的边缘裁切。\r\n- 动画结束后保留当前页面，方便继续浏览。\r\n\r\n<img width=\"2818\" height=\"1940\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f80db096-dc32-4dd4-99c7-6c35cc3e7f08\" />\r\n\r\n\r\n### 04 · 也可以使用独立的标准导入页面\r\n\r\n如果你更习惯清晰的表单，可以在设置中切换到「标准导入」。\r\n\r\n标准导入使用独立的原生页面，按步骤整理照片来源、器材与拍摄信息，并在归档前查看汇总。你可以根据自己的使用习惯，在两种导入体验之间选择。\r\n\r\n- 设置中提供「拟物导入」与「标准导入」选项。\r\n- 标准导入采用独立的原生表单页面。\r\n- 支持步骤切换与归档前的信息确认。\r\n- 支持系统「减少动态效果」设置。\r\n\r\n<img width=\"2818\" height=\"1940\" alt=\"image\" src=\"https://github.com/user-attachments/assets/1362ab10-b654-40f8-b476-65b4c5089fa6\" />\r\n\r\n\r\n### 05 · 修复夜间模式图标的实色背景\r\n\r\n修复切换到深色外观后，Dock 图标圆角外仍出现不透明深色背景的问题。深色图标沿用统一的透明轮廓，保留暗房主体与底片的暖色光线，让图标在不同桌面背景上自然显示。\r\n\r\n<img width=\"218\" height=\"268\" alt=\"QQ_1788696579146\" src=\"https://github.com/user-attachments/assets/9d03cf2b-093d-47b2-a3ea-1bfca39fe0ba\" />\r\n\r\n\r\n## 在 MuseFilm 中，继续整理你的胶片生活\r\n\r\n### 以「卷」为单位，保存完整的拍摄记忆\r\n\r\n每个卷宗都可以关联胶卷、相机、镜头与拍摄信息。通过档案网格浏览封面，打开卷宗查看照片，随时补充标签、评分与备注。\r\n\r\n- 按照片文件夹或多张照片建立卷宗。\r\n- 识别常见图片格式与 EXIF 信息。\r\n- 检测重复导入，减少重复建档。\r\n- 编辑卷宗资料，导出接触印样。\r\n- 原始照片保留在原目录，归档不会移动或复制原文件。\r\n\r\n\r\n### 胶卷库与器材库，连接每一次拍摄\r\n\r\n整理常用胶卷与器材，让拍摄记录更容易保持一致。\r\n\r\n- 内置常用胶卷资料，也可以创建和编辑自定义胶卷。\r\n- 管理胶卷库存、有效期与默认冲洗工艺。\r\n- 支持胶卷盒图、暗盒图和本地图片素材。\r\n- 按品牌、库存状态与冲洗工艺筛选胶卷。\r\n- 提供不同的胶卷卡片样式与显示密度。\r\n- 管理相机、镜头及其图片，在导入时快速关联器材。\r\n\r\n\r\n### 从冲洗计时，到寄扫标签\r\n\r\n为每一卷保留冲洗流程，也让送洗前的准备更方便。\r\n\r\n- 支持黑白、C-41、E-6 等冲洗流程。\r\n- 记录显影液、稀释比例、温度、时间与处理步骤。\r\n- 保存自定义冲洗配方与历史记录。\r\n- 提供多阶段计时、温度补偿、声音提示与阶段完成通知。\r\n- 批量生成寄扫标签，填写实验室、收件人、联系方式与备注。\r\n- 将寄扫标签导出为适合打印的 PDF。\r\n\r\n\r\n### 把照片放回观片台\r\n\r\n除了逐张预览，也可以在自由画布上排列照片，重新感受挑选、比较与组织画面的过程。\r\n\r\n- 在观片台拖放照片，调整位置、旋转角度和画幅样式。\r\n- 使用胶片边框、齿孔与观片台光效。\r\n- 导出完整的观片台合成图。\r\n- 大图预览支持前后切换、缩略图浏览与随机浏览。\r\n- 查看 EXIF、评分、备注和最近浏览记录。\r\n- 折叠照片信息栏，为画面留出更多空间。\r\n\r\n\r\n### 用搜索、地图与时间线，找回某一次拍摄\r\n\r\n记得胶卷型号、拍摄地点，或只记得当时写下的一句话，都可以成为重新找到照片的线索。\r\n\r\n- 按卷名、胶卷、标签、备注、相机、地点、评分与照片信息搜索。\r\n- 在地图上查看卷宗的拍摄地点。\r\n- 按时间线回看不同日期与地点的拍摄记录。\r\n- 查看地点关联的代表照片、常用胶卷与标签。\r\n\r\n\r\n### 备份、迁移与桌面快捷入口\r\n\r\n- 导出 JSON 数据备份，恢复前预览备份内容与数据数量。\r\n- 支持从 Windows 版 MuseFilm 的 JSON 数据迁移档案与元数据。\r\n- 管理缩略图缓存目录，支持迁移、重置与清理。\r\n- 通过 Finder 快速操作，将选中的照片发送至 MuseFilm。\r\n- 提供菜单栏快捷入口。\r\n- 支持蓝调时刻、日出、黄金时刻、日落与夜间拍摄提醒。\r\n\r\n\r\n## 系统要求\r\n\r\n| 项目 | 要求 |\r\n| --- | --- |\r\n| 版本 | MuseFilm 3.0b |\r\n| 系统 | macOS 15.6 或更高版本 |\r\n| 芯片 | Apple Silicon 或 Intel Mac |\r\n| 安装包 | 通用版 DMG / ZIP |\r\n| 数据存储 | 本地优先 |\r\n\r\n## 安装与更新\r\n\r\n1. 从本 Release 的 **Assets** 下载 DMG 安装包；也可以下载 ZIP 后解压。\r\n2. 退出正在运行的 MuseFilm。\r\n3. 打开 DMG，将 MuseFilm 拖入「应用程序」文件夹；使用 ZIP 时，将解压得到的应用放入「应用程序」。\r\n4. 已安装旧版时，替换原应用。建议更新前先在设置中导出一份数据备份。\r\n5. 重新打开 MuseFilm。首次访问照片文件夹时，按系统提示授权。\r\n\r\n## 从 Windows 版迁移\r\n\r\n先在 Windows 版中导出 MuseFilm 数据，再到 macOS 版的设置中导入 Windows JSON 数据。\r\n\r\n迁移包含胶卷、卷宗、照片元数据与冲洗记录。原始照片需要自行保留并放在可访问的位置；迁移后首次访问照片时，可能需要重新选择并授权照片目录。\r\n\r\n## 关于照片与数据\r\n\r\nMuseFilm 以本地档案管理为核心。原始照片保留在你选择的文件夹中，卷宗、评分、备注与冲洗记录保存在本机。\r\n\r\nJSON 备份用于保存档案与元数据，不包含原始照片。请同时为照片目录做好备份。使用图片抓取、地图定位、天气等功能时，应用会按功能需要访问网络。\r\n\r\n## 使用说明\r\n\r\n- 首次使用通知、定位或照片目录时，系统可能请求对应权限。\r\n- 如果移动照片文件夹，或更改外置磁盘名称，可能需要重新授权目录。\r\n- Finder 快速操作可能需要在「系统设置 → 通用 → 登录项与扩展」中启用。\r\n- 更新图标后，请完全退出并重新打开应用，再查看 Dock 中的深色图标。\r\n\r\n## 反馈\r\n\r\n欢迎通过 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 提交问题或建议。反馈时请附上 macOS 版本、MuseFilm 版本、复现步骤，以及有助于说明问题的截图或录屏。\r\n\r\n感谢每一位仍在拍胶片、也认真保存照片的人。\r\n\r\n愿下一次打开 MuseFilm 时，你不只找到一张照片，也能找回拍下它的那一天。\r\n",
+      "assets": [
+        {
+          "name": "3.0.1b.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac_beta/3.0.1b.dmg",
+          "size": 9511755,
+          "digest": "sha256:514465ebca3d4123ddd10ce801406e2c7ad028598a91b9099167c44d6ae69b24",
+          "download_count": 3
+        },
+        {
+          "name": "3.0.1b.zip",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac_beta/3.0.1b.zip",
+          "size": 8532364,
+          "digest": "sha256:18a11ddeb38ced648507f6a8bc40a21b58b26024bb77a2cccf1d9dbe270fcd4e",
+          "download_count": 0
+        }
+      ]
+    },
+    {
+      "name": "New Version of Mac",
+      "tag_name": "MAC2.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC2.0",
+      "published_at": "2026-08-12T09:40:49Z",
+      "created_at": "2026-08-11T18:16:36Z",
+      "prerelease": false,
+      "body": "# MuseFilm 2.0 for macOS\r\n\r\nMuseFilm 2.0 是为胶片摄影重新打造的原生 macOS 档案管理工具。\r\n\r\n从胶卷入库、照片导入和卷宗整理，到冲洗计时、寄扫标签、观片、搜索与拍摄足迹，MuseFilm 将完整的胶片摄影工作流集中在一个安静、清晰且本地优先的桌面空间中。\r\n\r\n## 版本信息\r\n\r\n| 项目 | 信息 |\r\n| --- | --- |\r\n| 版本 | 2.0 |\r\n| Build | 2 |\r\n| 平台 | macOS |\r\n| 系统要求 | macOS 15.6 或更高版本 |\r\n| 数据存储 | 本地优先 |\r\n\r\n## 本次更新亮点\r\n\r\n### 原生 macOS 体验\r\n\r\n- 使用 SwiftUI 与 SwiftData 原生构建。\r\n- 采用侧边栏导航、统一工具栏与符合 macOS 使用习惯的窗口交互。\r\n- 支持系统、浅色和深色显示模式。\r\n- 提供 Muse 默认主题与胶卷色彩主题。\r\n- 加入 Liquid Glass 视觉、透明窗口与实体暗房工作台设计。\r\n- 支持菜单栏快捷入口、系统通知和应用内快速导航。\r\n\r\n### 胶片卷宗管理\r\n\r\n- 按“卷”导入本地照片文件夹或多张照片。\r\n- 自动识别常见图片格式与 EXIF 信息。\r\n- 检测重复导入，避免重复建立卷宗。\r\n- 记录卷名、胶卷、相机、镜头、地点、拍摄日期、标签与备注。\r\n- 支持档案网格、预览模式、卷宗编辑和接触印样导出。\r\n- 用户照片始终保留在原始目录，MuseFilm 不会移动或复制原文件。\r\n\r\n### Finder 快速导入\r\n\r\n- 新增 Finder 快速操作。\r\n- 可直接从 macOS 服务菜单将选中的照片发送至 MuseFilm。\r\n- 单次支持最多 200 张图片。\r\n\r\n### 胶卷库\r\n\r\n- 内置常用胶卷资料。\r\n- 支持创建与编辑自定义胶卷。\r\n- 管理胶卷库存、有效期和默认冲洗工艺。\r\n- 支持胶卷盒图、暗盒图和本地图片素材。\r\n- 可按品牌、库存状态和冲洗工艺筛选。\r\n- 提供多种胶卷卡片样式与显示密度。\r\n\r\n### 相机与镜头器材库\r\n\r\n- 管理常用相机和镜头。\r\n- 支持器材图片与基础资料。\r\n- 导入卷宗时可快速关联常用器材。\r\n\r\n### 胶卷冲洗\r\n\r\n- 支持黑白、C-41 和 E-6 等冲洗流程。\r\n- 保存显影液、稀释比例、温度、时间和完整处理步骤。\r\n- 支持自定义冲洗配方和历史记录。\r\n- 提供多阶段计时、温度补偿、阶段切换和声音提示。\r\n- 冲洗阶段完成时可发送系统通知。\r\n\r\n### 寄扫标签\r\n\r\n- 按胶卷批量生成寄扫标签。\r\n- 支持实验室名称、收件人、联系方式、备注和加急标记。\r\n- 可导出适合打印的 PDF 文件。\r\n\r\n### 观片台\r\n\r\n- 在自由画布中浏览和排列照片。\r\n- 支持拖放照片、调整位置、旋转角度和画幅样式。\r\n- 提供胶片边框、齿孔和观片台光效。\r\n- 可导出完整观片台合成图。\r\n\r\n### 照片预览\r\n\r\n- 支持大图预览、缩略图浏览与前后切换。\r\n- 支持随机浏览照片。\r\n- 查看照片 EXIF、评分和备注。\r\n- 提供照片评分建议与最近浏览记录。\r\n- 可折叠照片信息栏，为画面留出更多空间。\r\n\r\n### 搜索与拍摄足迹\r\n\r\n- 可按卷名、胶卷、标签、备注、相机、地点、评分和照片信息搜索。\r\n- 通过地图查看照片卷宗的拍摄地点。\r\n- 按时间线浏览不同日期与地点的拍摄记录。\r\n- 查看地点对应的代表照片、常用胶卷和标签。\r\n\r\n### 备份与数据迁移\r\n\r\n- 支持导出完整 JSON 备份。\r\n- 恢复前可预览备份内容与数据数量。\r\n- 支持从 Windows 版 MuseFilm JSON 数据迁移至 macOS 版。\r\n- 可迁移胶卷、卷宗、照片元数据和冲洗记录。\r\n- 支持查看、迁移、重置与清理缩略图缓存目录。\r\n\r\n### 拍摄提醒\r\n\r\n- 根据当前位置安排拍摄时刻提醒。\r\n- 支持蓝调时刻、日出、黄金时刻、日落与夜间提醒。\r\n- 可设置提前提醒时间、安排天数和天气提示。\r\n\r\n## 安装方法\r\n\r\n1. 在本 Release 页面底部的 **Assets** 中下载最新 `.dmg` 安装包。\r\n2. 打开 DMG，将 MuseFilm 拖入“应用程序”文件夹。\r\n3. 从“应用程序”中启动 MuseFilm。\r\n4. 首次导入照片时，根据系统提示授权访问对应文件夹。\r\n\r\n> 安装包将在完成最终签名与发布检查后附加到本 Release。\r\n\r\n## 从 Windows 版迁移\r\n\r\n如需迁移旧版数据，请先在 Windows 版中备份 MuseFilm 数据，再前往 macOS 版的“设置”导入 Windows JSON 数据。\r\n\r\n迁移只导入档案与元数据，不会复制原始照片。首次访问原照片时，macOS 可能要求重新选择对应的照片目录。\r\n\r\n## 隐私与数据\r\n\r\nMuseFilm 坚持本地优先：\r\n\r\n- 原始照片不会被上传。\r\n- 原始照片不会被移动或复制。\r\n- 卷宗、评分、备注和冲洗记录保存在本机。\r\n- 只有在使用图片抓取、地图定位、天气建议等相关功能时，应用才会发起必要的网络请求。\r\n\r\n## 已知说明\r\n\r\n- 首次使用通知、定位或照片目录时，macOS 会显示相应的权限请求。\r\n- 如果照片目录被移动或外置磁盘名称发生变化，需要重新授权该目录。\r\n- Finder 快速操作可能需要在“系统设置 → 通用 → 登录项与扩展”中启用。\r\n\r\n## 反馈与支持\r\n\r\n如果你在使用过程中遇到问题，欢迎前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 提交反馈。\r\n\r\n提交问题时，请尽量附上：\r\n\r\n- macOS 版本\r\n- MuseFilm 版本与 Build\r\n- 问题复现步骤\r\n- 截图或相关日志\r\n\r\n感谢你使用 MuseFilm，也感谢每一位仍在拍胶片的人。\r\n",
+      "assets": [
+        {
+          "name": "musefilm-2.0-build2-2026-06-13-142933.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC2.0/musefilm-2.0-build2-2026-06-13-142933.dmg",
+          "size": 5926476,
+          "digest": "sha256:f22b9c8956efa6c00b8a1971a69808be4616eaba7b3b7c7a80cfd9464ba331c5",
+          "download_count": 7
+        }
+      ]
+    },
+    {
+      "name": "Mac version",
+      "tag_name": "Mac",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/Mac",
+      "published_at": "2026-06-06T13:36:17Z",
+      "created_at": "2026-02-26T06:39:55Z",
+      "prerelease": false,
+      "body": "",
+      "assets": [
+        {
+          "name": "musefilm-2.0-build2-2026-06-06-154741.dmg",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
+          "size": 5532874,
+          "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
+          "download_count": 59
+        }
+      ]
+    },
+    {
+      "name": "Beta V0.3.1",
+      "tag_name": "Beta",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/Beta",
+      "published_at": "2026-02-15T18:09:21Z",
+      "created_at": "2026-02-15T17:24:36Z",
+      "prerelease": true,
+      "body": "## 🎞️ MuseFilm v0.3.1-beta - Windows 内测版\r\n\r\n**赛博观片台 · 数字暗房体验**\r\n\r\n📅 发布日期：2026-02-26  \r\n🔖 版本标签：v0.6.2-beta  \r\n💻 平台：Windows 10/11 (x64)\r\n\r\n---\r\n\r\n### 📥 下载安装包\r\n\r\n| 文件名 | 大小 | 下载 | 校验值 (SHA256) |\r\n|--------|------|------|----------------|\r\n| MuseFilm-0.3.1-Windows-x64.exe | ~45MB | [下载](链接) | `a1b2c3d4...` |\r\n| MuseFilm-0.3.1-Windows-x64.zip | ~42MB | [下载](链接) | `e5f6g7h8...` |\r\n| Source Code (zip) | - | [下载](链接) | - |\r\n\r\n&gt; 💡 **推荐**：普通用户请下载 `.exe` 安装包，一键安装无需配置环境。\r\n\r\n---\r\n\r\n### 🚀 快速开始\r\n\r\n#### 方式一：安装包安装（推荐）\r\n1. 下载 `MuseFilm-0.6.2-Windows-x64.exe`\r\n2. 双击运行，按向导完成安装\r\n3. 桌面生成快捷方式，直接启动\r\n4. 首次启动选择「胶片库」存储路径（建议选空间充足的磁盘）\r\n\r\n#### 方式二：便携版（绿色版）\r\n1. 下载 `.zip` 压缩包并解压\r\n2. 运行文件夹内的 `MuseFilm.exe`\r\n3. 适合放在 U 盘随身携带，即插即用\r\n\r\n#### 方式三：源码运行（开发者）\r\n```bash\r\n# 克隆仓库\r\ngit clone https://github.com/Quartzsyr/MuseFilm.git\r\ncd MuseFilm\r\n\r\n# 安装依赖\r\npip install -r requirements.txt\r\n\r\n# 运行\r\npython main.py",
+      "assets": [
+        {
+          "name": "MuseFilmSetup.exe",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe",
+          "size": 291551390,
+          "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
+          "download_count": 110
+        }
+      ]
+    }
+  ]
+}

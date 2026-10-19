@@ -43,3 +43,7 @@ Do not replace the direct GitHub Release asset URLs. `site.js` reads the public 
 - Current in-app product tour: `public/images/app-details/` (captured directly from the running macOS app)
 
 Keep photography and product screenshots at practical web sizes, set explicit image dimensions in HTML, and prefer WebP or AVIF for future photographic assets when browser support and replacement workflow allow it.
+
+## Download count synchronization
+
+The browser reads `releases.json` from the same domain before using the public GitHub API. The snapshot is refreshed hourly and on release changes by `.github/workflows/release-download-counts.yml`, using the built-in authenticated Actions token. No token is included in public assets. Initial HTML counts and the JavaScript fallback are updated from the same records. If both data sources are unavailable, the latest displayed counts and release details are retained. The workflow explicitly requests a Pages build after publishing the snapshot, keeping the existing main-branch deployment.
