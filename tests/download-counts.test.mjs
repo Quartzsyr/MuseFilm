@@ -54,7 +54,8 @@ test("missing snapshot falls back to paginated GitHub and preserves genuine zero
 
 test("network failures retain verified initial counts", async () => {
   const app = harness(async () => { throw new Error("offline"); });
+  const initialCounts = app.state().counts;
   await app.runSync();
-  assert.deepEqual(app.state().counts, { windows: 117, mac: 88 });
+  assert.deepEqual(app.state().counts, initialCounts);
   assert.equal(app.state().synced, false);
 });
