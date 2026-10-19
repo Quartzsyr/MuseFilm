@@ -140,6 +140,21 @@ const TRANSLATIONS = {
     "download.title": "从一卷开始。",
     "download.body": "安装包由 GitHub Releases 托管，下载次数来自真实资产记录。",
     "download.total": "已验证下载总数",
+    "download.dialogTitle": "为下一卷，留个回音。",
+    "download.dialogClose": "关闭下载弹窗",
+    "download.dialogIntro": "愿每一卷光，都有值得停留的位置。留下邮箱，收一封感谢来信，也欢迎告诉我 MuseFilm 用起来如何。",
+    "download.selectedInstaller": "即将下载",
+    "download.optionalEmail": "你的邮箱 · 完全选填",
+    "download.subscribe": "也愿意收到 MuseFilm 的版本更新与新闻。请发邮件让我确认订阅。",
+    "download.emailNote": "邮箱会由 MuseFilm 站长保存。只留邮箱会收到一封感谢邮件；后续资讯需勾选并在邮件中确认，随时可以退订。",
+    "download.skip": "跳过，直接下载",
+    "download.share": "分享邮箱并下载",
+    "download.noEmailNeeded": "不填邮箱，也能完整使用 MuseFilm。",
+    "download.started": "下载已开始。愿你与下一卷光，慢慢相遇。",
+    "download.emailQueued": "下载已开始，感谢邮件正在安排发送；若勾选资讯，请在邮件中确认订阅。",
+    "download.emailSaved": "下载已开始，邮箱已保存。请留意邮件；重复下载的感谢来信会合并处理。",
+    "download.emailFailed": "下载已开始，但邮箱暂未保存成功。你仍可通过网站反馈入口联系我。",
+    "download.emailRequired": "请填写邮箱，或选择「跳过，直接下载」。",
     "download.privacy": "下载点击会记录 IP、大致地区、系统与浏览器、安装包及时间，并邮件通知站长，用于下载统计与问题排查；点击不代表下载完成。",
     "download.direct": "也可直接前往 GitHub Releases 下载。",
     "download.shortPrivacy": "下载点击会记录 IP、大致地区和设备，并通知站长。",
@@ -322,6 +337,21 @@ const TRANSLATIONS = {
     "download.title": "Start with one roll.",
     "download.body": "Installers are hosted on GitHub Releases, with counts taken from the real release assets.",
     "download.total": "Total verified downloads",
+    "download.dialogTitle": "Leave a little light behind.",
+    "download.dialogClose": "Close download dialog",
+    "download.dialogIntro": "May every roll find a place to stay. Leave your email for a thank-you note, and tell me how MuseFilm feels to use.",
+    "download.selectedInstaller": "YOUR DOWNLOAD",
+    "download.optionalEmail": "Your email · entirely optional",
+    "download.subscribe": "I would also like MuseFilm updates and news. Email me a link to confirm my subscription.",
+    "download.emailNote": "The MuseFilm creator stores this email. Leaving it sends one thank-you note; future news requires opting in and confirming by email. Unsubscribe at any time.",
+    "download.skip": "Skip and download",
+    "download.share": "Share email & download",
+    "download.noEmailNeeded": "MuseFilm works fully without sharing an email.",
+    "download.started": "Your download has started. Enjoy the next roll of light.",
+    "download.emailQueued": "Your download has started. A thank-you note is being queued; confirm by email if you opted into news.",
+    "download.emailSaved": "Your download has started and your email is saved. Repeated download thank-you notes are combined.",
+    "download.emailFailed": "Your download has started, but your email could not be saved. You can still use the feedback button.",
+    "download.emailRequired": "Enter your email or choose “Skip and download”.",
     "download.privacy": "Download clicks record your IP, approximate region, OS, browser, installer and time, and email the site owner for download statistics and troubleshooting. A click does not confirm a completed download.",
     "download.direct": "You can also download directly from GitHub Releases.",
     "download.shortPrivacy": "Download clicks record your IP, approximate region and device, and notify the owner.",
@@ -1759,15 +1789,6 @@ document.querySelectorAll("[data-copy-digest]").forEach((button) => {
   });
 });
 
-document.querySelectorAll(".download-trigger").forEach((link) => {
-  link.addEventListener("click", () => {
-    downloadOpened = true;
-    document.querySelectorAll("[data-download-status]").forEach((status) => {
-      status.textContent = translate("status.opened");
-    });
-  });
-});
-
 const apiBase = (document.querySelector('meta[name="musefilm-api-base"]')?.content || "https://api.musefilm.top").replace(/\/$/, "");
 const feedbackDialog = document.querySelector("[data-feedback-dialog]");
 const feedbackForm = document.querySelector("[data-feedback-form]");
@@ -1936,26 +1957,79 @@ feedbackForm?.addEventListener("submit", async (event) => {
   }
 });
 
+const downloadDialog = document.querySelector("[data-download-dialog]");
+const downloadForm = document.querySelector("[data-download-form]");
+const downloadEmailInput = document.querySelector("[data-download-email]");
+const downloadDialogStatus = document.querySelector("[data-download-dialog-status]");
+let pendingDownload = null;
+let downloadToastTimeout;
+
+function showDownloadToast(message) {
+  const toast = document.querySelector("[data-download-toast]");
+  if (!toast) return;
+  window.clearTimeout(downloadToastTimeout);
+  toast.textContent = message;
+  toast.hidden = false;
+  downloadToastTimeout = window.setTimeout(() => { toast.hidden = true; }, 8000);
+}
+
+function completeDownload(email = "", subscribe = false) {
+  if (!pendingDownload) return;
+  const downloadUrl = pendingDownload;
+  pendingDownload = null;
+  downloadDialog?.close();
+  // Start the installer within the user's click, independently of email delivery.
+  const link = document.createElement("a");
+  link.href = downloadUrl;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.dataset.downloadBypass = "true";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  downloadOpened = true;
+  renderCounts(lastCounts, lastCountsSynced);
+  showDownloadToast(translate(email ? "download.emailQueued" : "download.started"));
+  void musefilmApi("/api/download", {
+    method: "POST", keepalive: true,
+    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20" : "" }),
+  }).then((result) => {
+    if (email && !result.thankYouQueued) showDownloadToast(translate("download.emailSaved"));
+  }).catch(() => {
+    if (email) showDownloadToast(translate("download.emailFailed"));
+  });
+}
+
 function recordDownloadClick(event) {
   if (!(event.target instanceof Element)) return;
   const link = event.target.closest("a[href]");
-  if (!link || !/^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(link.href)) return;
-  // keepalive allows the notification request to finish as GitHub opens.
-  void musefilmApi("/api/download", {
-    method: "POST",
-    keepalive: true,
-    body: JSON.stringify({
-      eventId: anonymousEventId(),
-      downloadUrl: link.href,
-      noticeVersion: "2026-10-19",
-      locale: currentLanguage,
-      referrerHost: referrerHost(),
-    }),
-  }).catch(() => {});
+  if (!link || link.dataset.downloadBypass || !/^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(link.href)) return;
+  if (!downloadDialog?.showModal) return;
+  event.preventDefault();
+  pendingDownload = link.href;
+  downloadForm.reset();
+  downloadDialogStatus.textContent = "";
+  document.querySelector("[data-download-installer]").textContent = decodeURIComponent(new URL(link.href).pathname.split("/").pop());
+  if (!downloadDialog.open) downloadDialog.showModal();
 }
 
 document.addEventListener("click", recordDownloadClick);
 document.addEventListener("auxclick", (event) => { if (event.button === 1) recordDownloadClick(event); });
+document.querySelector("[data-download-close]")?.addEventListener("click", () => downloadDialog.close());
+downloadDialog?.addEventListener("close", () => { pendingDownload = null; });
+document.querySelector("[data-download-skip]")?.addEventListener("click", () => completeDownload());
+downloadForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const email = downloadEmailInput.value.trim();
+  const subscribe = downloadForm.elements.namedItem("subscribe").checked;
+  if (!email) {
+    downloadDialogStatus.textContent = translate("download.emailRequired");
+    downloadEmailInput.focus();
+    return;
+  }
+  if (!downloadForm.reportValidity()) return;
+  completeDownload(email, subscribe);
+});
 
 async function recordAnonymousVisit() {
   const path = `${location.pathname}${location.hash}`.slice(0,300);
@@ -2014,3 +2088,8 @@ applyLanguage("zh");
 renderCounts(FALLBACK_COUNTS, false);
 syncDownloadCounts();
 void recordAnonymousVisit().then(syncVisitorCount);
+
+if (new URLSearchParams(location.search).get("feedback") === "1") {
+  feedbackDialog?.showModal?.();
+  void prepareFeedbackVerification();
+}

@@ -21,7 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
-    <link rel="stylesheet" href="./site.css?v=20260814-model2">
+    <link rel="stylesheet" href="./site.css?v=20261020-download-community">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -266,6 +266,21 @@
       <div><a href="https://github.com/Quartzsyr/MuseFilm">GitHub</a><span>© <b data-year>2026</b> Quartz SYR</span></div>
     </footer>
 
+    <dialog class="feedback-dialog download-dialog" data-download-dialog aria-labelledby="download-dialog-title" aria-describedby="download-dialog-intro">
+      <form class="download-form" data-download-form>
+        <header><div><p class="overline">MUSEFILM · A NOTE BEFORE YOU GO</p><h2 id="download-dialog-title" data-i18n="download.dialogTitle">为下一卷，留个回音。</h2></div><button class="feedback-close" type="button" data-download-close data-i18n-aria="download.dialogClose" aria-label="关闭下载弹窗">×</button></header>
+        <p class="download-dialog-intro" id="download-dialog-intro" data-i18n="download.dialogIntro">愿每一卷光，都有值得停留的位置。留下邮箱，收一封感谢来信，也欢迎告诉我 MuseFilm 用起来如何。</p>
+        <div class="download-installer"><span class="download-film-mark" aria-hidden="true">◫</span><div><span data-i18n="download.selectedInstaller">即将下载</span><strong data-download-installer></strong></div><span aria-hidden="true">↓</span></div>
+        <label class="download-email-label"><span data-i18n="download.optionalEmail">你的邮箱 · 完全选填</span><input data-download-email name="email" type="email" maxlength="160" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="download-email-note"></label>
+        <label class="download-subscribe"><input name="subscribe" type="checkbox"><span data-i18n="download.subscribe">也愿意收到 MuseFilm 的版本更新与新闻。请发邮件让我确认订阅。</span></label>
+        <p class="download-email-note" id="download-email-note" data-i18n="download.emailNote">邮箱会由 MuseFilm 站长保存。只留邮箱会收到一封感谢邮件；后续资讯需勾选并在邮件中确认，随时可以退订。</p>
+        <p class="download-dialog-status" data-download-dialog-status role="status"></p>
+        <footer><button class="download-skip" type="button" data-download-skip data-i18n="download.skip">跳过，直接下载</button><button class="feedback-submit" type="submit"><span data-i18n="download.share">分享邮箱并下载</span><span aria-hidden="true">↗</span></button></footer>
+        <p class="download-fine-print" data-i18n="download.noEmailNeeded">不填邮箱，也能完整使用 MuseFilm。</p>
+      </form>
+    </dialog>
+    <div class="download-toast" data-download-toast role="status" aria-live="polite" hidden></div>
+
     <button class="feedback-trigger" type="button" data-feedback-open aria-haspopup="dialog" aria-controls="feedback-dialog">
       <i aria-hidden="true"><span></span><span></span><span></span></i>
       <span data-i18n="feedback.trigger">反馈</span>
@@ -320,6 +335,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261019-visit-download-notifications-v2"></script>
+    <script type="module" src="./site.js?v=20261020-download-community"></script>
   </body>
 </html>

@@ -2520,6 +2520,33 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
   -webkit-backdrop-filter: blur(2rem) saturate(145%);
 }
 .feedback-dialog::backdrop { background: rgba(0,0,0,.68); backdrop-filter: blur(.55rem); -webkit-backdrop-filter: blur(.55rem); }
+.download-dialog { width: min(35rem,calc(100vw - 2rem)); max-height: calc(100svh - 2rem); }
+.download-form { padding: clamp(1.35rem,4vw,2.25rem); }
+.download-form > header { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
+.download-form .overline { color:var(--red-light); font-size:.55rem; letter-spacing:.16em; }
+.download-form h2 { margin-top:.85rem; font-size:clamp(1.9rem,5vw,2.8rem); letter-spacing:-.06em; line-height:1.13; }
+.download-dialog-intro { margin-top:1.2rem; color:var(--muted); font-size:.78rem; line-height:1.85; }
+.download-installer { display:flex; align-items:center; gap:.9rem; margin:1.5rem 0; padding:.9rem 1rem; border:1px solid var(--line); border-radius:.8rem; background:rgba(255,255,255,.025); }
+.download-film-mark { display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:.5rem; color:#e2b89a; background:linear-gradient(150deg,#5d2b25,#211b18); font-size:1.8rem; }
+.download-installer > div { min-width:0; flex:1; }
+.download-installer > div > span { display:block; color:var(--muted); font-size:.55rem; letter-spacing:.08em; }
+.download-installer strong { display:block; overflow:hidden; margin-top:.3rem; text-overflow:ellipsis; white-space:nowrap; font-size:.72rem; font-weight:500; }
+.download-installer > span:last-child { color:var(--muted); }
+.download-email-label { display:grid; gap:.6rem; }
+.download-email-label > span { color:var(--text); font-size:.68rem; }
+.download-email-label input { width:100%; min-height:3.15rem; padding:.8rem 1rem; color:var(--text); background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:.7rem; font:inherit; font-size:.8rem; transition:border-color 180ms ease,box-shadow 180ms ease; }
+.download-email-label input:focus { border-color:var(--red-light); outline:none; box-shadow:0 0 0 3px rgba(185,58,50,.12); }
+.download-subscribe { display:flex; gap:.65rem; align-items:flex-start; margin-top:1rem; color:rgba(242,239,232,.8); font-size:.68rem; line-height:1.65; cursor:pointer; }
+.download-subscribe input { width:1rem; height:1rem; flex-shrink:0; margin:.1rem 0 0; accent-color:var(--red); }
+.download-email-note { margin-top:.8rem; color:var(--muted); font-size:.6rem; line-height:1.75; }
+.download-dialog-status { min-height:1rem; margin-top:.6rem; color:#e39a91; font-size:.65rem; line-height:1.6; }
+.download-form footer { display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin-top:.7rem; padding-top:1.2rem; border-top:1px solid var(--line); }
+.download-skip { min-height:3rem; padding:.6rem .15rem; color:var(--muted); background:none; border:none; font-size:.72rem; cursor:pointer; }
+.download-skip:hover { color:var(--text); }
+.download-fine-print { margin-top:1.1rem; text-align:center; color:rgba(242,239,232,.35); font-size:.55rem; }
+.download-toast { position:fixed; z-index:220; bottom:1.5rem; left:50%; transform:translateX(-50%); width:max-content; max-width:calc(100vw - 2rem); padding:.9rem 1.2rem; color:var(--text); border:1px solid var(--glass-line); border-radius:.8rem; background:rgba(24,23,22,.96); box-shadow:var(--glass-shadow); font-size:.75rem; line-height:1.6; }
+.download-toast[hidden] { display:none; }
+@media(max-width:480px) { .download-form footer { flex-direction:column-reverse; align-items:stretch; } .download-form .feedback-submit { width:100%; justify-content:space-between; } .download-skip { min-height:2.7rem; } }
 .feedback-dialog[open] { animation: feedbackEnter 440ms var(--ease) both; }
 .feedback-form { padding: clamp(1.25rem,4vw,2rem); }
 .feedback-form > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
