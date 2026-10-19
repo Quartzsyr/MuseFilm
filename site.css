@@ -2442,6 +2442,14 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
 .footer > p { color: rgba(242,239,232,.65); font-family: Georgia, serif; font-size: clamp(1.2rem,2vw,1.8rem); font-style: italic; }
 .footer > div { display: flex; gap: 1.5rem; font-size: 0.58rem; letter-spacing: 0.06em; }
 .footer b { font-weight: inherit; }
+.footer-friends { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .35rem 1.25rem; padding-top: 1.1rem; border-top: 1px solid rgba(242,239,232,.06); color: rgba(242,239,232,.46); font-size: .62rem; line-height: 1.8; letter-spacing: .035em; }
+.footer-friends > span { font-size: .55rem; letter-spacing: .08em; }
+.footer-friends a { display: inline-flex; align-items: center; gap: .45rem; padding: .25rem 0; transition: color 180ms ease; }
+.footer-friends a img { width: 16px; height: 16px; flex: 0 0 16px; object-fit: contain; border-radius: 3px; opacity: .8; transition: opacity 180ms ease; }
+.footer-friends a:hover img, .footer-friends a:focus-visible img { opacity: 1; }
+.footer-friends a:hover { color: #d4b69a; }
+.footer-friends a:focus-visible { color: var(--text); outline: 1px solid #d4b69a; outline-offset: .3rem; border-radius: 2px; }
+
 
 .feedback-trigger {
   position: fixed;
