@@ -1990,7 +1990,7 @@ function renderVisitorCount(value) {
 
 async function syncVisitorCount() {
   try {
-    const result = await musefilmApi("/api/visitors", { method: "GET", headers: {} });
+    const result = await musefilmApi("/api/visitors", { method: "GET", headers: {}, cache: "no-store" });
     renderVisitorCount(Number(result.visitors));
     document.querySelectorAll(".visitor-counter").forEach((element) => element.classList.add("is-synced"));
   } catch {
