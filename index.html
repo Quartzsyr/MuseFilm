@@ -95,6 +95,7 @@
                 <a class="primary-button download-trigger" data-magnetic data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
                 <a class="text-button" data-magnetic href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
+              <p class="hero-description" style="font-size:.65rem;line-height:1.6"><span data-i18n="download.shortPrivacy">下载点击会记录 IP、大致地区和设备，并通知站长。</span> <a href="#download-privacy" data-i18n="download.privacyLink">查看说明</a></p>
               <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>205</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
             </article>
 
@@ -133,10 +134,10 @@
             <span data-cinematic-count>FRAME 00</span>
           </div>
           <div class="cinematic-controls">
-            <p class="visitor-counter" aria-live="polite" aria-label="MuseFilm 匿名访问计数" data-i18n-aria="aria.visitorCounter">
+            <p class="visitor-counter" aria-live="polite" aria-label="MuseFilm 累计访问次数" data-i18n-aria="aria.visitorCounter">
               <span class="visitor-counter-mark" aria-hidden="true"><i></i></span>
-              <strong data-visitor-total>8</strong>
-              <span data-visitor-label>次光影在此停留</span>
+              <strong data-visitor-total>—</strong>
+              <span data-visitor-label>次访问在此停留</span>
             </p>
             <span class="scroll-cue" data-i18n="hero.scroll">滚动展开胶片</span>
           </div>
@@ -216,6 +217,7 @@
           <p class="overline" data-i18n="download.overline">下载 MuseFilm</p>
           <h2 data-i18n="download.title">从一卷开始。</h2>
           <p data-i18n="download.body">安装包由 GitHub Releases 托管，下载次数来自真实资产记录。</p>
+          <p id="download-privacy" style="font-size:.75rem;line-height:1.7"><span data-i18n="download.privacy">下载点击会记录 IP、大致地区、系统与浏览器、安装包及时间，并邮件通知站长，用于下载统计与问题排查；点击不代表下载完成。</span> <a href="https://github.com/Quartzsyr/MuseFilm/releases" target="_blank" rel="noopener" data-i18n="download.direct">也可直接前往 GitHub Releases 下载。</a></p>
           <div class="total-count" aria-live="polite"><strong data-total-downloads>205</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
         <div class="download-grid" data-reveal>
@@ -318,6 +320,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261019-download-counts"></script>
+    <script type="module" src="./site.js?v=20261019-visit-download-notifications"></script>
   </body>
 </html>

@@ -142,7 +142,7 @@ test("mounts the generated film canister and supplied GLB objects as a progressi
   assert.match(home, /data-model-loading/);
   assert.match(home, /data-model-loading-progress/);
   assert.match(home, /site\.css\?v=20260814-model2/);
-  assert.match(home, /site\.js\?v=20261019-download-counts/);
+  assert.match(home, /site\.js\?v=20261019-visit-download-notifications/);
   assert.match(script, /import\("\.\/film-model\.js\?v=\d{8}-3d\d+"\)/);
   assert.match(model, /WebGLRenderer/);
   assert.match(model, /\.\/vendor\/three\.module\.min\.js/);

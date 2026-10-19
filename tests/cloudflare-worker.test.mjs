@@ -48,14 +48,14 @@ test("validates and normalizes feedback context without retaining raw addresses"
   assert.match(schema, /CREATE TABLE IF NOT EXISTS feedback/);
   assert.match(schema, /idx_visit_events_fingerprint_created_at/);
   assert.match(schema, /idx_feedback_fingerprint_created_at/);
-  assert.doesNotMatch(schema, /ip_address|raw_ip|user_agent/i);
+  assert.doesNotMatch(schema.split("CREATE TABLE IF NOT EXISTS feedback")[0], /ip_address|raw_ip|user_agent/i);
 });
 
 test("serves public configuration only to allowed website origins", async () => {
   const allowed = await worker.fetch(new Request("https://api.musefilm.top/api/config", { headers: { Origin: origin } }), {});
   assert.equal(allowed.status, 200);
   assert.equal(allowed.headers.get("Access-Control-Allow-Origin"), origin);
-  assert.deepEqual(await allowed.json(), { ok: true, turnstileEnabled: false, turnstileSiteKey: "" });
+  assert.deepEqual(await allowed.json(), { ok: true, turnstileEnabled: false, turnstileSiteKey: "", downloadNotificationsEnabled: false });
 
   const temporaryHttpOrigin = "http://musefilm.top";
   const allowedHttp = await worker.fetch(new Request("https://api.musefilm.top/api/config", { headers: { Origin: temporaryHttpOrigin } }), {});
@@ -71,11 +71,11 @@ test("serves public configuration only to allowed website origins", async () => 
   const database = new FakeD1();
   const visitors = await worker.fetch(new Request("https://api.musefilm.top/api/visitors", { headers: { Origin: origin } }), { DB: database });
   assert.equal(visitors.status, 200);
-  assert.deepEqual(await visitors.json(), { ok: true, visitors: 8 });
-  assert.match(visitors.headers.get("Cache-Control"), /max-age=300/);
+  assert.deepEqual(await visitors.json(), { ok: true, visitors: 8, metric: "page_views" });
+  assert.match(visitors.headers.get("Cache-Control"), /no-store/);
 });
 
-test("records deduplicated visits and durable feedback through D1", async () => {
+test("records page loads and durable feedback through D1", async () => {
   const database = new FakeD1();
   const env = {
     DB: database,

@@ -30,7 +30,7 @@ const TRANSLATIONS = {
     "aria.lightTablePhotos": "观片台中的照片",
     "aria.zoomOut": "缩小所选画面",
     "aria.zoomIn": "放大所选画面",
-    "aria.visitorCounter": "MuseFilm 匿名访问计数",
+    "aria.visitorCounter": "MuseFilm 累计访问次数",
     "feedback.trigger": "反馈",
     "feedback.overline": "写给 MuseFilm",
     "feedback.title": "让下一卷更好。",
@@ -65,7 +65,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "查看所有版本",
     "hero.explore": "探索 MuseFilm",
     "hero.verified": "次 GitHub Releases 已验证下载",
-    "hero.visitMoment": "次光影在此停留",
+    "hero.visitMoment": "次访问在此停留",
     "hero.scroll": "滚动展开胶片",
     "model.loading.film": "正在装入胶卷",
     "model.loading.camera": "正在装入相机",
@@ -140,6 +140,10 @@ const TRANSLATIONS = {
     "download.title": "从一卷开始。",
     "download.body": "安装包由 GitHub Releases 托管，下载次数来自真实资产记录。",
     "download.total": "已验证下载总数",
+    "download.privacy": "下载点击会记录 IP、大致地区、系统与浏览器、安装包及时间，并邮件通知站长，用于下载统计与问题排查；点击不代表下载完成。",
+    "download.direct": "也可直接前往 GitHub Releases 下载。",
+    "download.shortPrivacy": "下载点击会记录 IP、大致地区和设备，并通知站长。",
+    "download.privacyLink": "查看说明",
     "download.winReq": "Windows 10 / 11 · 278 MB",
     "download.macReq": "原生 SwiftUI · build 2 · 5.3 MB",
     "download.count": "次下载",
@@ -208,7 +212,7 @@ const TRANSLATIONS = {
     "aria.lightTablePhotos": "Photos on the light table",
     "aria.zoomOut": "Zoom out selected frame",
     "aria.zoomIn": "Zoom in selected frame",
-    "aria.visitorCounter": "MuseFilm anonymous visit counter",
+    "aria.visitorCounter": "MuseFilm total page views",
     "feedback.trigger": "Feedback",
     "feedback.overline": "A note for MuseFilm",
     "feedback.title": "Make the next roll better.",
@@ -243,7 +247,7 @@ const TRANSLATIONS = {
     "hero.downloadReleases": "View all releases",
     "hero.explore": "Explore MuseFilm",
     "hero.verified": "verified downloads on GitHub Releases",
-    "hero.visitMoment": "moments of light paused here",
+    "hero.visitMoment": "visits paused here",
     "hero.scroll": "Scroll to unspool the film",
     "model.loading.film": "Loading film roll",
     "model.loading.camera": "Loading camera",
@@ -318,6 +322,10 @@ const TRANSLATIONS = {
     "download.title": "Start with one roll.",
     "download.body": "Installers are hosted on GitHub Releases, with counts taken from the real release assets.",
     "download.total": "Total verified downloads",
+    "download.privacy": "Download clicks record your IP, approximate region, OS, browser, installer and time, and email the site owner for download statistics and troubleshooting. A click does not confirm a completed download.",
+    "download.direct": "You can also download directly from GitHub Releases.",
+    "download.shortPrivacy": "Download clicks record your IP, approximate region and device, and notify the owner.",
+    "download.privacyLink": "Details",
     "download.winReq": "Windows 10 / 11 · 278 MB",
     "download.macReq": "Native SwiftUI · build 2 · 5.3 MB",
     "download.count": "downloads",
@@ -1928,13 +1936,29 @@ feedbackForm?.addEventListener("submit", async (event) => {
   }
 });
 
+function recordDownloadClick(event) {
+  if (!(event.target instanceof Element)) return;
+  const link = event.target.closest("a[href]");
+  if (!link || !/^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(link.href)) return;
+  // keepalive allows the notification request to finish as GitHub opens.
+  void musefilmApi("/api/download", {
+    method: "POST",
+    keepalive: true,
+    body: JSON.stringify({
+      eventId: anonymousEventId(),
+      downloadUrl: link.href,
+      noticeVersion: "2026-10-19",
+      locale: currentLanguage,
+      referrerHost: referrerHost(),
+    }),
+  }).catch(() => {});
+}
+
+document.addEventListener("click", recordDownloadClick);
+document.addEventListener("auxclick", (event) => { if (event.button === 1) recordDownloadClick(event); });
+
 async function recordAnonymousVisit() {
   const path = `${location.pathname}${location.hash}`.slice(0,300);
-  const storageKey = `musefilm:visit:${path}`;
-  try {
-    if (sessionStorage.getItem(storageKey)) return;
-    sessionStorage.setItem(storageKey, "1");
-  } catch {}
   try {
     await musefilmApi("/api/visit", {
       method: "POST",
@@ -1950,14 +1974,14 @@ async function recordAnonymousVisit() {
   } catch {}
 }
 
-let lastVisitorCount = 8;
+let lastVisitorCount = null;
 
 function renderVisitorCount(value) {
-  const safeValue = Number.isFinite(Number(value)) ? Math.max(0, Number(value)) : lastVisitorCount;
+  const safeValue = value !== null && Number.isFinite(Number(value)) ? Math.max(0, Number(value)) : lastVisitorCount;
   lastVisitorCount = safeValue;
   const locale = currentLanguage === "en" ? "en-US" : "zh-CN";
   document.querySelectorAll("[data-visitor-total]").forEach((element) => {
-    element.textContent = new Intl.NumberFormat(locale).format(safeValue);
+    element.textContent = safeValue === null ? "—" : new Intl.NumberFormat(locale).format(safeValue);
   });
   document.querySelectorAll("[data-visitor-label]").forEach((element) => {
     element.textContent = translate("hero.visitMoment");

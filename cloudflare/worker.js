@@ -10,7 +10,7 @@ const DEFAULT_ORIGINS = [
 ];
 
 const FEEDBACK_TYPES = new Set(["bug", "suggestion", "other"]);
-const PUBLIC_API_PATHS = new Set(["/api/config", "/api/visit", "/api/visitors", "/api/feedback"]);
+const PUBLIC_API_PATHS = new Set(["/api/config", "/api/visit", "/api/visitors", "/api/feedback", "/api/download"]);
 
 function json(data, status = 200, headers = {}) {
   return new Response(JSON.stringify(data), {
@@ -132,8 +132,9 @@ async function recordVisit(request, env, headers) {
   const day = now.toISOString().slice(0, 10);
   const path = normalizePath(body.path);
   const fingerprint = await visitorFingerprint(request, env, day);
-  const halfHourBucket = Math.floor(now.getTime() / 1_800_000);
-  const id = await sha256(`${halfHourBucket}:${fingerprint}:${path}`);
+  // A new page load counts again. Replaying the same event does not.
+  const eventId = cleanText(body.eventId, 100) || crypto.randomUUID();
+  const id = await sha256(`${fingerprint}:${eventId}`);
   const agent = request.headers.get("User-Agent") || "";
   const platform = cleanText(body.platform, 24) || "other";
   const locale = cleanText(body.locale, 12) || "unknown";
@@ -143,7 +144,7 @@ async function recordVisit(request, env, headers) {
   const recent = await env.DB.prepare(`
     SELECT COUNT(*) AS count
     FROM visit_events
-    WHERE fingerprint = ? AND created_at >= datetime('now', '-1 hour')
+    WHERE fingerprint = ? AND created_at >= strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-1 hour')
   `).bind(fingerprint).first();
   if (Number(recent?.count || 0) >= 120) {
     return json({ ok: false, error: "rate_limited" }, 429, headers);
@@ -159,13 +160,14 @@ async function recordVisit(request, env, headers) {
 }
 
 async function publicVisitorCount(env, headers) {
-  const result = await env.DB.prepare("SELECT COUNT(DISTINCT fingerprint) AS visitors FROM visit_events").first();
+  const result = await env.DB.prepare("SELECT value AS visitors FROM site_counters WHERE name = 'page_views'").first();
   return json({
     ok: true,
     visitors: Math.max(0, Number(result?.visitors || 0)),
+    metric: "page_views",
   }, 200, {
     ...headers,
-    "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+    "Cache-Control": "no-store",
   });
 }
 
@@ -389,6 +391,103 @@ async function submitFeedback(request, env, headers, ctx) {
   return json({ ok: true, id, stored: true, emailQueued: emailConfigured }, 202, headers);
 }
 
+function installerInfo(value) {
+  try {
+    const url = new URL(value);
+    if (url.origin !== "https://github.com" || url.username || url.password || url.search || url.hash) return null;
+    const match = url.pathname.match(/^\/Quartzsyr\/MuseFilm\/releases\/download\/([^/]+)\/([^/]+)$/i);
+    if (!match) return null;
+    const name = decodeURIComponent(match[2]);
+    const tag = decodeURIComponent(match[1]);
+    const platform = /\.(exe|msi|msix)$/i.test(name) ? "windows"
+      : /\.(dmg|pkg)$/i.test(name) || (/\.zip$/i.test(name) && /mac|darwin|osx/i.test(`${name} ${tag}`)) ? "mac" : null;
+    return platform ? { url: url.href, name: cleanText(name, 240), tag: cleanText(tag, 100), platform } : null;
+  } catch { return null; }
+}
+
+function operatingSystem(agent) {
+  if (/iPhone|iPad|iPod/.test(agent)) return "iOS/iPadOS";
+  if (/Android/.test(agent)) return "Android";
+  if (/Windows/.test(agent)) return "Windows";
+  if (/Macintosh|Mac OS/.test(agent)) return "macOS";
+  if (/Linux/.test(agent)) return "Linux";
+  return "Other";
+}
+
+function downloadEmailConfigured(env) {
+  return Boolean(env.EMAIL && (env.DOWNLOAD_TO_EMAIL || env.FEEDBACK_TO_EMAIL) && env.FEEDBACK_FROM_EMAIL);
+}
+
+function downloadEmailContent(event) {
+  const rows = [
+    ["事件", "网站下载点击（不代表 GitHub 已完成下载）"],
+    ["安装包", event.asset_name], ["版本", event.release_tag], ["下载平台", event.platform],
+    ["IP", event.ip_address], ["大致位置（IP 推测）", [event.country, event.region, event.city].filter(Boolean).join(" / ") || "未知"],
+    ["时区", event.timezone], ["网络运营商", event.network], ["访问系统", event.operating_system],
+    ["浏览器", event.browser], ["浏览器信息", event.user_agent], ["语言", event.locale],
+    ["来源域名", event.referrer_host], ["点击时间（UTC）", event.created_at], ["下载地址", event.download_url], ["事件编号", event.id],
+  ];
+  return {
+    text: rows.map(([label, value]) => `${label}: ${value || "未知"}`).join("\n"),
+    html: `<!doctype html><html lang="zh-CN"><body style="margin:0;padding:28px;background:#10100f;color:#eee;font-family:Arial,'PingFang SC',sans-serif"><main style="max-width:660px;margin:auto"><p style="color:#d8a85f">MUSEFILM · DOWNLOAD CLICK</p><h1>有人点击了 ${escapeHtml(event.platform === "mac" ? "macOS" : "Windows")} 下载</h1><p>这是网站下载点击通知，不能确认安装包是否下载完成。位置来自 IP 推测，可能受代理或移动网络影响。</p><table style="width:100%;border-collapse:collapse">${rows.map(([label, value]) => `<tr><th style="text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid #333;white-space:nowrap">${escapeHtml(label)}</th><td style="padding:12px;border-bottom:1px solid #333;word-break:break-all">${escapeHtml(value || "未知")}</td></tr>`).join("")}</table><p style="color:#999">此通知包含访问者网络信息，请仅用于下载统计和问题排查。</p></main></body></html>`,
+  };
+}
+
+async function deliverDownloadEmail(env, event) {
+  let status = "not_configured";
+  if (downloadEmailConfigured(env)) {
+    try {
+      await env.EMAIL.send({
+        to: env.DOWNLOAD_TO_EMAIL || env.FEEDBACK_TO_EMAIL,
+        from: env.FEEDBACK_FROM_EMAIL,
+        subject: `[MuseFilm] ${event.platform === "mac" ? "macOS" : "Windows"} 下载点击 · ${event.country || "地区未知"}`,
+        ...downloadEmailContent(event),
+      });
+      status = "sent";
+    } catch {
+      status = "failed";
+      console.error(JSON.stringify({ message: "download notification failed", eventId: event.id }));
+    }
+  }
+  await env.DB.prepare("UPDATE download_events SET email_status = ? WHERE id = ?").bind(status, event.id).run();
+}
+
+async function recordDownload(request, env, headers, ctx) {
+  const body = await readJson(request, 4096);
+  const installer = installerInfo(body.downloadUrl);
+  if (!installer || body.noticeVersion !== "2026-10-19") return json({ ok: false, error: "invalid_download" }, 400, headers);
+  const fingerprint = await feedbackFingerprint(request, env);
+  const recent = await env.DB.prepare("SELECT COUNT(*) AS count FROM download_events WHERE fingerprint = ? AND created_at >= strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-1 hour')").bind(fingerprint).first();
+  if (Number(recent?.count || 0) >= 30) return json({ ok: false, error: "rate_limited" }, 429, headers);
+  const eventId = cleanText(body.eventId, 100) || crypto.randomUUID();
+  const agent = cleanText(request.headers.get("User-Agent"), 600);
+  const event = {
+    id: await sha256(`${fingerprint}:${eventId}`), fingerprint,
+    platform: installer.platform, download_url: installer.url, asset_name: installer.name, release_tag: installer.tag,
+    // Only trust Cloudflare's connection and geolocation fields, never body-supplied IPs.
+    ip_address: clientIp(request), country: cleanText(request.cf?.country, 8),
+    region: cleanText(request.cf?.region, 100), city: cleanText(request.cf?.city, 100),
+    timezone: cleanText(request.cf?.timezone, 80), network: cleanText(request.cf?.asOrganization, 160),
+    operating_system: operatingSystem(agent), browser: browserFamily(agent), user_agent: agent,
+    locale: cleanText(body.locale, 20), referrer_host: cleanText(body.referrerHost, 160), created_at: new Date().toISOString(),
+  };
+  const result = await env.DB.prepare(`INSERT OR IGNORE INTO download_events
+    (id, fingerprint, platform, download_url, asset_name, release_tag, ip_address, country, region, city, timezone, network, operating_system, browser, user_agent, locale, referrer_host, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    .bind(...Object.values(event)).run();
+  if (!Number(result.meta?.changes || 0)) return json({ ok: true, recorded: false, emailQueued: false }, 202, headers);
+  const promise = deliverDownloadEmail(env, event);
+  if (ctx?.waitUntil) ctx.waitUntil(promise);
+  else await promise;
+  return json({ ok: true, recorded: true, emailQueued: downloadEmailConfigured(env) }, 202, headers);
+}
+
+async function adminDownloads(request, env, headers) {
+  if (!(await adminAuthorized(request, env))) return json({ ok: false, error: "unauthorized" }, 401, headers);
+  const result = await env.DB.prepare("SELECT * FROM download_events ORDER BY created_at DESC LIMIT 100").all();
+  return json({ ok: true, downloads: result.results || [] }, 200, headers);
+}
+
 async function secureEqual(left, right) {
   if (!left || !right) return false;
   const encoder = new TextEncoder();
@@ -447,13 +546,16 @@ async function handleRequest(request, env, ctx) {
       ok: true,
       turnstileEnabled: Boolean(env.TURNSTILE_SECRET_KEY && env.TURNSTILE_SITE_KEY),
       turnstileSiteKey: env.TURNSTILE_SITE_KEY || "",
+      downloadNotificationsEnabled: downloadEmailConfigured(env),
     }, 200, headers);
   }
   if (url.pathname === "/api/visit" && request.method === "POST") return recordVisit(request, env, headers);
   if (url.pathname === "/api/visitors" && request.method === "GET") return publicVisitorCount(env, headers);
+  if (url.pathname === "/api/download" && request.method === "POST") return recordDownload(request, env, headers, ctx);
   if (url.pathname === "/api/feedback" && request.method === "POST") return submitFeedback(request, env, headers, ctx);
   if (url.pathname === "/api/admin/stats" && request.method === "GET") return adminStats(request, env, headers);
   if (url.pathname === "/api/admin/feedback" && request.method === "GET") return adminFeedback(request, env, headers);
+  if (url.pathname === "/api/admin/downloads" && request.method === "GET") return adminDownloads(request, env, headers);
   if (url.pathname === "/health" && request.method === "GET") {
     await env.DB.prepare("SELECT 1").first();
     return json({ ok: true, service: "musefilm-feedback-api" }, 200, headers);
@@ -482,7 +584,8 @@ export default {
   async scheduled(_event, env) {
     const result = await env.DB.prepare("DELETE FROM visit_events WHERE created_at < datetime('now','-90 days')").run();
     console.log(JSON.stringify({ message: "expired visits removed", changes: Number(result.meta?.changes || 0) }));
+    await env.DB.prepare("DELETE FROM download_events WHERE created_at < strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-90 days')").run();
   },
 };
 
-export const __test = { browserFamily, cleanText, escapeHtml, feedbackEmailHtml, normalizePage, normalizePath, validEmail };
+export const __test = { browserFamily, cleanText, escapeHtml, feedbackEmailHtml, normalizePage, normalizePath, validEmail, installerInfo, downloadEmailContent };

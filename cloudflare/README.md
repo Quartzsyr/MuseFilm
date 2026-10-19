@@ -9,10 +9,12 @@ Current production Worker:
 
 ## Data behavior
 
-- Raw IP addresses and full user-agent strings are never stored.
+- Page views store only a salted daily IP hash, not the raw IP or full user agent.
+- Download clicks separately store the connection IP, approximate Cloudflare country/region/city, OS/browser, user agent, installer/version, source domain and timestamp for owner notifications. The website discloses this before downloads and offers a direct GitHub Releases route.
 - Visit fingerprints are salted and change every day.
-- One page view is accepted per visitor, path, and 30-minute window.
-- Visit event rows are deleted after 90 days by the scheduled Worker.
+- Each page load counts as a page view, including repeat visits and refreshes. Replayed event IDs are deduplicated. The durable aggregate is initialized from existing recorded events and survives the 90-day event cleanup.
+- Visit and download-click event rows are deleted after 90 days by the scheduled Worker. The cumulative page-view counter is retained.
+- Download-click emails use `DOWNLOAD_TO_EMAIL` when set, otherwise the existing `FEEDBACK_TO_EMAIL`, and the existing restricted email binding. Send status is stored as sent/failed/not_configured. GitHub completed-download totals remain separate; GitHub does not provide downloader IPs to this site.
 - Feedback is rate-limited to five submissions per fingerprint per hour.
 - Light-table photographs are never sent to this API.
 
@@ -48,3 +50,7 @@ provides two private JSON endpoints protected by `ADMIN_TOKEN`:
 
 Send `Authorization: Bearer <ADMIN_TOKEN>`. Never put this token in the website
 or any public repository.
+
+## 2026-10-19 migration
+
+Before deploying this Worker, apply `migrations/20261019-visit-download-notifications.sql` to the existing database. This creates the durable page-view aggregate, insert trigger and download-click table without replacing existing data. Deploy the Worker while retaining its existing bindings/secrets and then publish the frontend. `GET /api/visitors` now returns `metric: "page_views"` with a non-cached cumulative count. `POST /api/download` accepts only this repository’s installer URLs and the current disclosure version. `GET /api/admin/downloads` requires `ADMIN_TOKEN` and exposes the last 100 download events and delivery statuses. IP locations are approximate and no GPS or precise location is collected.
