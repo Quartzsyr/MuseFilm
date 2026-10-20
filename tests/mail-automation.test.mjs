@@ -3,6 +3,7 @@ import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {DatabaseSync} from 'node:sqlite';
 import {EventEmitter} from 'node:events';
+import {releaseSnapshot} from '../scripts/release-snapshot.mjs';
 import worker,{__test as t} from '../cloudflare/worker.js';
 const schema=await readFile(new URL('../cloudflare/schema.sql',import.meta.url),'utf8');
 const origin='https://musefilm-feedback-api.syrquartz.workers.dev',now=()=>new Date().toISOString();
@@ -53,10 +54,20 @@ test('IMAP uses verified TLS, EXAMINE and BODY.PEEK with byte-safe literals and 
  let options;const writes=[],raw=dsn('mf-'+'1'.repeat(64)+'@musefilm.top');class Socket extends EventEmitter {setTimeout(){}end(){}destroy(){}write(value,cb){writes.push(value);queueMicrotask(()=>{cb?.();const tag=value.split(' ')[0];let reply='';if(value.includes('LOGIN'))reply=tag+' OK login\r\n';else if(value.includes(' ID '))reply=tag+' OK id\r\n';else if(value.includes('EXAMINE'))reply='* OK [UIDVALIDITY 123] yes\r\n* OK [UIDNEXT 9] yes\r\n'+tag+' OK examined\r\n';else if(value.includes('SEARCH'))reply='* SEARCH 8\r\n'+tag+' OK search\r\n';else if(value.includes('FETCH'))reply='* 1 FETCH (UID 8 BODY[] {'+Buffer.byteLength(raw)+'}\r\n'+raw+')\r\n'+tag+' OK fetch\r\n';if(reply){const bytes=Buffer.from(reply);for(let i=0;i<bytes.length;i+=17)this.emit('data',bytes.subarray(i,i+17))}})}}
  const connect=opts=>{options=opts;const s=new Socket();queueMicrotask(()=>s.emit('data',Buffer.from('* OK ready\r\n')));return s};const r=await t.qqImapReports({SMTP_USER:'owner@qq.com',SMTP_PASSWORD:'test-only'}, {},connect);assert.equal(options.port,993);assert.equal(options.rejectUnauthorized,true);assert.equal(r.reports[0].raw,raw);assert.equal(r.cursor,8);assert.match(writes.join(''),/EXAMINE INBOX/);assert.match(writes.join(''),/BODY\.PEEK/);assert.doesNotMatch(writes.join(''),/STORE|EXPUNGE|DELETE/);
 });
-test('release trigger rejects anonymous requests and verifies GitHub signature, audience, repo and workflow',async()=>{
+test('release trigger rejects anonymous requests and verifies GitHub signature, audience, repo and workflow',async context=>{
  const f=fixture();const denied=await worker.fetch(new Request(origin+'/api/releases/check',{method:'POST'}),f.env);assert.equal(denied.status,401);
  const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);const jwk=await crypto.subtle.exportKey('jwk',pair.publicKey);jwk.kid='test-key';const enc=o=>Buffer.from(JSON.stringify(o)).toString('base64url'),seconds=Math.floor(Date.now()/1000),claims={iss:'https://token.actions.githubusercontent.com',aud:origin+'/api/releases/check',repository_id:'1158598100',repository:'Quartzsyr/MuseFilm',event_name:'release',workflow_ref:'Quartzsyr/MuseFilm/.github/workflows/notify-release-subscribers.yml@refs/tags/v99',iat:seconds,nbf:seconds-5,exp:seconds+300};const sign=async data=>{const prefix=enc({alg:'RS256',kid:'test-key'})+'.'+enc(data);return prefix+'.'+Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',pair.privateKey,new TextEncoder().encode(prefix))).toString('base64url')};const fetcher=async()=>Response.json({keys:[jwk]});await t.verifyReleaseToken(await sign(claims),fetcher);
  for(const change of [{repository_id:'123'},{aud:'evil'},{event_name:'pull_request'},{workflow_ref:'Quartzsyr/MuseFilm/.github/workflows/evil.yml@refs/heads/main'},{exp:seconds-1}]){const token=await sign({...claims,...change});await assert.rejects(()=>t.verifyReleaseToken(token,fetcher))}
+ await t.verifyReleaseToken(await sign({...claims,event_name:'schedule',workflow_ref:'Quartzsyr/MuseFilm/.github/workflows/notify-release-subscribers.yml@refs/heads/main'}),fetcher);
+ // The signed Actions delivery carries fresh public metadata, so it needs no Worker REST request.
+ await t.scanReleases(f.env,true,feed([release(1)]));add(f,'win','windows');
+ context.mock.method(globalThis,'fetch',async()=>{throw new Error('Worker must not fetch the REST API for a signed payload')});
+ const snapshot={schemaVersion:1,repository:'Quartzsyr/MuseFilm',updatedAt:now(),releases:[release(2,'windows'),release(1)]};
+ const request=()=>new Request(origin+'/api/releases/check',{method:'POST',headers:{Authorization:'Bearer '+validToken,'Content-Type':'application/json'},body:JSON.stringify(snapshot)});
+ const validToken=await sign(claims);let delivered=await worker.fetch(request(),f.env);assert.equal(delivered.status,200);assert.equal((await delivered.json()).source,'github_actions');
+ delivered=await worker.fetch(request(),f.env);assert.equal((await delivered.json()).created,0);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,1);
+ assert.equal((await worker.fetch(new Request(origin+'/api/releases/check',{method:'POST',body:JSON.stringify(snapshot)}),f.env)).status,401);
+ snapshot.updatedAt='2020-01-01T00:00:00Z';assert.equal((await worker.fetch(request(),f.env)).status,503);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,1);
  const valid=await sign(claims),parts=valid.split('.');parts[1]=enc({...claims,iat:seconds-1});await assert.rejects(()=>t.verifyReleaseToken(parts.join('.'),fetcher));
 });
 
@@ -71,3 +82,27 @@ test('a not-yet-due retry does not prevent a different queued campaign from disp
 
 test('manual retry only resends safe failures and restoring suppression never resubscribes a contact',async()=>{const f=fixture();add(f,'one');const c=queued(f);f.env.SUBSCRIBER_EMAIL.send=async()=>{throw {code:'SMTP_535',stage:'auth'}};await t.dispatchCampaign(f.env,c);assert.equal((await api(f,'campaigns/c/retry',{})).retried,1);f.env.SUBSCRIBER_EMAIL.send=async m=>f.mail.push(m);await t.dispatchMail(f.env);assert.equal(f.mail.length,1);assert.equal((await api(f,'campaigns/c/retry',{})).status,409);f.DB.db.prepare("INSERT INTO mail_suppressions VALUES('one@example.test','hard_bounce','test',?)").run(now());f.DB.db.prepare("UPDATE subscribers SET status='unsubscribed'").run();assert.equal((await api(f,'bounces/restore',{email:'one@example.test',confirmEmail:'wrong@example.test'})).status,400);assert.equal((await api(f,'bounces/restore',{email:'one@example.test',confirmEmail:'one@example.test'})).status,200);assert.equal(f.DB.db.prepare('SELECT status FROM subscribers').get().status,'unsubscribed')});
 test('resuming mail observes unseen paused releases before enabling new notifications',async context=>{const f=fixture();add(f,'one');await t.scanReleases(f.env,true,feed([release(1)]));f.DB.db.prepare('UPDATE mail_settings SET enabled=0').run();const paused=release(2);context.mock.method(globalThis,'fetch',feed([paused,release(1)]));const r=await api(f,'automation',{enabled:true,includePrerelease:false,imapEnabled:true},'PATCH');assert.equal(r.status,200);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,0);assert.equal((await t.scanReleases(f.env,true,feed([paused,release(1)]))).created,0);assert.equal((await t.scanReleases(f.env,true,feed([release(3),paused,release(1)]))).created,1)});
+
+const snapshot=list=>({schemaVersion:1,repository:'Quartzsyr/MuseFilm',updatedAt:now(),releases:list});
+test('API 403 switches to the authenticated snapshot without changing release identities or duplicating mail',async()=>{
+ const f=fixture();add(f,'win','windows');await t.scanReleases(f.env,true,feed([release(1)]));const calls=[];
+ const fetcher=async(url,options)=>{calls.push({url,headers:options.headers});return url.includes('api.github.com')?new Response('rate limited',{status:403}):Response.json(snapshot([release(2,'windows'),release(1)]),{headers:{ETag:'"snapshot"'}})};
+ const result=await t.scanReleases(f.env,true,fetcher);assert.equal(result.source,'github_snapshot');assert.equal(result.created,1);assert.equal(calls.length,2);assert.equal(calls[0].headers['If-None-Match'],'"feed"');assert.equal(calls[1].headers['If-None-Match'],undefined);
+ let settings=f.DB.db.prepare('SELECT * FROM mail_settings').get();assert.equal(settings.scan_error,'');assert.equal(settings.etag,'');
+ assert.equal((await t.scanReleases(f.env,true,fetcher)).created,0);await t.dispatchMail(f.env);await t.dispatchMail(f.env);assert.equal(f.mail.length,1);assert.equal(f.mail[0].to,'win@example.test');
+ // Returning to the live API shares the same numeric release IDs and dedupe markers.
+ assert.equal((await t.scanReleases(f.env,true,feed([release(2,'windows'),release(1)]))).created,0);
+});
+test('network failure uses the snapshot, while API 304 preserves conditional checks without a second request',async()=>{
+ const f=fixture();let calls=0;const fallback=await t.scanReleases(f.env,true,async url=>{calls++;if(url.includes('api.github.com'))throw new TypeError('network unavailable');return Response.json(snapshot([release(1)]))});assert.equal(fallback.baseline,true);assert.equal(fallback.source,'github_snapshot');assert.equal(calls,2);
+ calls=0;const result=await t.scanReleases(f.env,true,async()=>{calls++;return new Response(null,{status:304})});assert.equal(result.unchanged,true);assert.equal(calls,1);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,0);
+});
+test('stale, foreign, legacy and malformed fallback snapshots cannot reset the baseline or enqueue mail',async()=>{
+ const samples=[{...snapshot([release(2)]),updatedAt:'2020-01-01T00:00:00Z'},{...snapshot([release(2)]),updatedAt:new Date(Date.now()+3600000).toISOString()},{...snapshot([release(2)]),repository:'someone/else'},{updatedAt:now(),releases:[release(2)]},snapshot([{...release(2),id:undefined}]),snapshot([])];
+ for(const sample of samples){const f=fixture();add(f,'one');await t.scanReleases(f.env,true,feed([release(1)]));const previous=f.DB.db.prepare('SELECT baseline_at,last_scan_at FROM mail_settings').get();const result=await t.scanReleases(f.env,true,async url=>url.includes('api.github.com')?new Response('',{status:429}):Response.json(sample));assert.ok(result.error);assert.deepEqual(f.DB.db.prepare('SELECT baseline_at,last_scan_at FROM mail_settings').get(),previous);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,0);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM mail_releases').get().n,1)}
+});
+test('public snapshot builder retains IDs and asset states and excludes private drafts and unrelated API data',()=>{
+ const r={...release(12),private_field:'never publish',assets:[{name:'MuseFilm.dmg',state:'uploaded',download_count:2,browser_download_url:release(12).assets[0].browser_download_url,secret:'never publish'}]};
+ const data=releaseSnapshot([[r,{...r,id:13,draft:true}]]);assert.equal(data.repository,'Quartzsyr/MuseFilm');assert.equal(data.schemaVersion,1);assert.equal(data.releases.length,1);assert.equal(data.releases[0].id,12);assert.equal(data.releases[0].assets[0].state,'uploaded');assert.equal(data.releases[0].assets[0].download_count,2);assert.doesNotMatch(JSON.stringify(data),/never publish|private_field|secret/);
+ assert.throws(()=>releaseSnapshot([[{...r,id:undefined}]]));assert.throws(()=>releaseSnapshot([[{...r,assets:[{download_count:-1}]}]]));assert.throws(()=>releaseSnapshot([]));
+});

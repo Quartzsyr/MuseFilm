@@ -3,6 +3,8 @@ name: Notify release subscribers
 on:
   release:
     types: [published, edited, released]
+  schedule:
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,7 +19,22 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Ask MuseFilm to check the authoritative release feed
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+          sparse-checkout: /scripts/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Read public release metadata with GitHub authentication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases?per_page=100" > "$RUNNER_TEMP/releases.json"
+          node scripts/prepare-release-feed.mjs "$RUNNER_TEMP/releases.json" "$RUNNER_TEMP/release-feed.json"
+      - name: Deliver authenticated release metadata to MuseFilm
         env:
           RELEASE_ENDPOINT: https://musefilm-feedback-api.syrquartz.workers.dev/api/releases/check
         shell: bash
@@ -30,4 +47,4 @@ jobs:
           echo "::add-mask::$token"
           curl --fail-with-body --silent --show-error --retry 2 --retry-delay 5 \
             --max-time 30 -X POST -H "Authorization: Bearer $token" \
-            -H "Content-Type: application/json" --data '{}' "$RELEASE_ENDPOINT"
+            -H "Content-Type: application/json" --data-binary "@$RUNNER_TEMP/release-feed.json" "$RELEASE_ENDPOINT"

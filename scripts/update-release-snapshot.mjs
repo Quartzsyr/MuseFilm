@@ -1,34 +1,15 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { releaseSnapshot } from "./release-snapshot.mjs";
 
 // Input comes from authenticated `gh api --paginate --slurp`, never a browser token.
 const input = JSON.parse(await readFile(process.argv[2], "utf8"));
 if (!Array.isArray(input)) throw new Error("Expected GitHub release pages");
-const releases = input.flat().filter((release) => !release.draft).map((release) => ({
-  name: release.name,
-  tag_name: release.tag_name,
-  html_url: release.html_url,
-  published_at: release.published_at,
-  created_at: release.created_at,
-  prerelease: release.prerelease,
-  body: release.body,
-  assets: (release.assets || []).map((asset) => {
-    if (!Number.isSafeInteger(asset.download_count) || asset.download_count < 0) {
-      throw new Error("Invalid GitHub download count");
-    }
-    return {
-      name: asset.name,
-      browser_download_url: asset.browser_download_url,
-      size: asset.size,
-      digest: asset.digest,
-      download_count: asset.download_count,
-    };
-  }),
-}));
+const snapshot=releaseSnapshot(input),{releases}=snapshot;
 
 // Do not replace a valid snapshot with a failed/empty API response.
 if (!releases.length) throw new Error("No public releases returned");
-await writeFile(existsSync("public") ? "public/releases.json" : "releases.json", JSON.stringify({ updatedAt: new Date().toISOString(), releases }, null, 2) + "\n");
+await writeFile(existsSync("public") ? "public/releases.json" : "releases.json", JSON.stringify(snapshot, null, 2) + "\n");
 
 const counts = { windows: 0, mac: 0 };
 for (const release of releases) {
