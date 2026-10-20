@@ -1093,7 +1093,7 @@ h1, h2, h3, p, figure { margin: 0; }
   line-height: 0.95;
 }
 .section-heading > p:last-child,
-.download-heading > p,
+.download-copy > p,
 .local-cn,
 .mac-hero-copy > p,
 .mac-section .section-heading > p:last-child {
@@ -2213,7 +2213,9 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
   margin-bottom: 0;
   font-size: clamp(3.4rem, 6.3vw, 6.3rem);
 }
-.download-heading > p { grid-column: 2; grid-row: 2; }
+.download-copy { grid-column: 2; grid-row: 2; display: grid; gap: .85rem; min-width: 0; }
+.download-copy > p { margin: 0; }
+.download-copy .download-privacy { font-size: .75rem; line-height: 1.7; }
 .total-count {
   grid-column: 3;
   grid-row: 2;
@@ -2705,7 +2707,7 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
     grid-template-columns: minmax(0,1fr) auto;
     column-gap: 3rem;
   }
-  .download-heading > p { grid-column: 1; grid-row: 3; max-width: 34rem; margin-top: 1rem; }
+  .download-copy { grid-column: 1; grid-row: 3; max-width: 34rem; margin-top: 1rem; }
   .total-count { grid-column: 2; grid-row: 2 / span 2; }
   .download-grid { width: 100%; justify-self: stretch; }
   .mac-hero { grid-template-columns: 1fr; }
@@ -2873,7 +2875,7 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
   .download-film-finale { top: -3rem; right: -45%; width: 120%; height: 30rem; opacity: 0; }
   .download-section.is-film-finishing .download-film-finale { opacity: .34; }
   .download-heading { display: block; }
-  .download-heading > p { max-width: 30rem; margin-top: 0; }
+  .download-copy { max-width: 30rem; margin-top: 1.2rem; }
   .total-count {
     margin-top: 2rem;
     padding: 1rem 0 0;
