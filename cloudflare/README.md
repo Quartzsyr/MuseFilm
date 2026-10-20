@@ -10,7 +10,7 @@ Current production Worker:
 ## Data behavior
 
 - Page views store only a salted daily IP hash, not the raw IP or full user agent.
-- Download clicks separately store the connection IP, approximate Cloudflare country/region/city, OS/browser, user agent, installer/version, source domain and timestamp for owner notifications. The website discloses this before downloads and offers a direct GitHub Releases route.
+- Download clicks separately store the connection IP, approximate Cloudflare country/region/city, OS/browser, user agent, installer/version, source domain and timestamp for owner notifications. The footer Privacy terms dialog explains these records, owner email notifications and the direct GitHub Releases route.
 - Visit fingerprints are salted and change every day.
 - Each page load counts as a page view, including repeat visits and refreshes. Replayed event IDs are deduplicated. The durable aggregate is initialized from existing recorded events and survives the 90-day event cleanup.
 - Visit and download-click event rows are deleted after 90 days by the scheduled Worker. The cumulative page-view counter is retained.

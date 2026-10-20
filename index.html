@@ -21,7 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
-    <link rel="stylesheet" href="./site.css?v=20261020-download-layout">
+    <link rel="stylesheet" href="./site.css?v=20261020-privacy-terms">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -95,7 +95,6 @@
                 <a class="primary-button download-trigger" data-magnetic data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
                 <a class="text-button" data-magnetic href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
-              <p class="hero-description" style="font-size:.65rem;line-height:1.6"><span data-i18n="download.shortPrivacy">下载点击会记录 IP、大致地区和设备，并通知站长。</span> <a href="#download-privacy" data-i18n="download.privacyLink">查看说明</a></p>
               <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>207</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
             </article>
 
@@ -218,7 +217,6 @@
           <h2 data-i18n="download.title">从一卷开始。</h2>
           <div class="download-copy">
             <p data-i18n="download.body">安装包由 GitHub Releases 托管，下载次数来自真实资产记录。</p>
-            <p id="download-privacy" class="download-privacy"><span data-i18n="download.privacy">下载点击会记录 IP、大致地区、系统与浏览器、安装包及时间，并邮件通知站长，用于下载统计与问题排查；点击不代表下载完成。</span> <a href="https://github.com/Quartzsyr/MuseFilm/releases" target="_blank" rel="noopener" data-i18n="download.direct">也可直接前往 GitHub Releases 下载。</a></p>
           </div>
           <div class="total-count" aria-live="polite"><strong data-total-downloads>207</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
@@ -272,7 +270,43 @@
         <a href="https://paiban.musefilm.top/" target="_blank" rel="noopener"><img src="./images/friends/paiban.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span>Paiban</span></a>
         <a href="https://mazemouse.musefilm.top/" target="_blank" rel="noopener"><img src="./images/friends/mazemouse.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span>MazeMouse</span></a>
       </nav>
+      <small class="footer-legal"><a href="#privacy" data-privacy-open aria-haspopup="dialog" aria-controls="privacy-dialog" data-i18n="privacy.link">隐私条款</a></small>
     </footer>
+
+    <dialog class="feedback-dialog privacy-dialog" id="privacy-dialog" data-privacy-dialog aria-labelledby="privacy-title" aria-describedby="privacy-intro">
+      <header class="privacy-header"><div><p class="overline">MUSEFILM · PRIVACY</p><h2 id="privacy-title" data-i18n="privacy.title">隐私条款</h2><p class="privacy-updated" data-i18n="privacy.updated">更新日期：2026 年 10 月 20 日</p></div><button class="feedback-close" type="button" data-privacy-close data-i18n-aria="privacy.close" aria-label="关闭隐私条款">×</button></header>
+      <div class="privacy-content"><p class="privacy-intro" id="privacy-intro" data-i18n="privacy.intro">这里说明 MuseFilm 网站会处理哪些信息、为什么处理，以及你可以如何管理自己的选择。</p>
+        <section><h3 data-i18n="privacy.scopeTitle">01 · 适用范围与站长</h3>
+          <p data-i18n="privacy.scope">本条款适用于 musefilm.top 网站及其反馈、下载记录和邮件订阅服务。信息处理者为 MuseFilm 站长 Quartz SYR。观片台中导入的照片只在当前浏览器内预览，不会由本站上传；本条款不替代桌面应用或外部网站各自的说明。</p>
+        </section>
+        <section><h3 data-i18n="privacy.visitsTitle">02 · 访问统计与下载记录</h3>
+          <p data-i18n="privacy.visits">浏览页面时，本站记录页面路径、访问时间、语言、平台、来源域名、国家/地区、浏览器类别，以及使用每日变化的加盐 IP 哈希生成的访问标识。访问统计表不保存原始 IP 或完整浏览器标识。重复访问和刷新会累计，重复提交的同一事件会去重。</p>
+          <p data-i18n="privacy.downloads">点击本站安装包下载并继续下载时，本站会单独保存连接 IP、由 IP 推测的国家/地区/城市、时区、网络运营商、操作系统、浏览器及完整 User-Agent、语言、来源域名、安装包、版本与时间；如自愿留下邮箱，也会关联该次下载。相关信息会通过邮件通知站长，用于下载统计、问题排查与安全管理。位置为网络推测值，不是 GPS 定位；下载点击不代表安装包已下载完成。</p>
+          <p data-i18n="privacy.github">公开显示的安装包下载量来自 GitHub Releases。你也可以直接前往 GitHub Releases 获取安装包；该方式不经过本站的下载点击记录接口，GitHub 会按其自身规则处理请求。</p>
+          <a href="https://github.com/Quartzsyr/MuseFilm/releases" target="_blank" rel="noopener">GitHub Releases ↗</a>
+        </section>
+        <section><h3 data-i18n="privacy.emailTitle">03 · 邮箱订阅与反馈</h3>
+          <p data-i18n="privacy.email">邮箱为选填项。填写邮箱并点击「订阅并下载」，即订阅 MuseFilm 感谢邮件、版本更新与新闻，无需再次确认。本站保存邮箱、语言、下载平台、订阅状态、提交时间及所用说明版本。跳过邮箱不影响下载或使用；你可通过邮件内的退订入口停止后续资讯，退订不会自动删除既有记录。</p>
+          <p data-i18n="privacy.feedback">提交反馈时，本站保存反馈内容、类型、选填邮箱、页面、语言、平台、国家/地区、浏览器类别、时间和用于防滥用的加盐标识，并向站长发送反馈通知。反馈表不单独保存原始 IP。请勿在反馈中填写密码、授权码或其他无关的敏感信息。</p>
+        </section>
+        <section><h3 data-i18n="privacy.servicesTitle">04 · 服务提供方与信息接收方</h3>
+          <p data-i18n="privacy.services">页面与安装包使用 GitHub 服务，接口、数据库及反馈防滥用验证使用 Cloudflare 服务；邮件通过 Cloudflare 邮件服务或 QQ 邮箱 SMTP 发送。站长是下载提醒和反馈邮件的接收方，订阅邮件只发给对应收件人。上述服务商会处理提供托管、网络安全、验证或投递所需的请求与邮件数据，其服务节点可能位于不同国家或地区。本站不出售访客邮箱或下载记录，也不将其用于第三方广告营销。</p>
+          <p data-i18n="privacy.external">页脚友情链接和其他外部链接由各自运营者负责。打开外部网站或 GitHub 下载页面后，对方可能独立处理网络请求信息，请查看其隐私说明。</p>
+        </section>
+        <section><h3 data-i18n="privacy.retentionTitle">05 · 保存期限与安全</h3>
+          <p data-i18n="privacy.retention">访问事件和下载点击的数据库明细按计划清理超过 90 天的记录；不含事件明细的累计访问总数继续保留。邮箱、订阅状态、投递记录和反馈内容目前没有固定的自动删除周期，会为订阅管理、退订抑制或问题跟进保留；你可联系站长申请删除。已经发出的邮件副本、服务商运行日志与备份不属于上述数据库 90 天清理范围，由相应系统管理。</p>
+          <p data-i18n="privacy.security">本站通过加密传输、后台登录验证与访问限制保护记录。普通访客无法查看他人的邮箱和下载明细。管理员登录使用验证码与会话 Cookie；反馈验证可能使用 Cloudflare 所需的安全存储机制。本站不设置广告追踪 Cookie。</p>
+        </section>
+        <section><h3 data-i18n="privacy.rightsTitle">06 · 你的选择与联系方式</h3>
+          <p data-i18n="privacy.rights">你可以不填写邮箱、直接通过 GitHub 下载、使用邮件中的退订入口，或联系站长申请查阅、更正、删除相关记录和撤回订阅。站长可能需要核实请求与你有关，以免将他人的记录提供或删除。退订对后续资讯生效，已经完成的处理不会因此自动撤销。</p>
+          <p><span data-i18n="privacy.contactLabel">隐私与数据请求：</span><a href="mailto:2271886466@qq.com">2271886466@qq.com</a></p>
+        </section>
+        <section><h3 data-i18n="privacy.changesTitle">07 · 条款更新</h3>
+          <p data-i18n="privacy.changes">当网站功能或信息处理方式发生变化时，本站会更新本条款与日期；对处理目的、范围等重要事项的变化，会作相应说明并在需要时重新征求选择。阅读或关闭本弹窗本身不表示订阅邮件。</p>
+        </section>
+        <footer><button class="feedback-submit" type="button" data-privacy-close><span data-i18n="privacy.return">返回网站</span><span aria-hidden="true">↗</span></button></footer>
+      </div>
+    </dialog>
 
     <dialog class="feedback-dialog download-dialog" data-download-dialog aria-labelledby="download-dialog-title" aria-describedby="download-dialog-intro">
       <form class="download-form" data-download-form>
@@ -332,7 +366,6 @@
           </div>
           <button type="button" data-copy-qq="162879795" data-i18n="feedback.qqCopy">复制群号</button>
         </div>
-        <p class="feedback-privacy"><i></i><span data-i18n="feedback.privacy">只记录必要的页面与设备信息，不保存原始 IP。</span></p>
         <p class="feedback-status" data-feedback-status role="status" aria-live="polite"></p>
         <footer>
           <a href="https://github.com/Quartzsyr/MuseFilm/issues/new?labels=feedback&amp;title=%5BFeedback%5D%20" target="_blank" rel="noopener" data-i18n="feedback.github">改用 GitHub Issue ↗</a>
@@ -342,6 +375,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261020-footer-links"></script>
+    <script type="module" src="./site.js?v=20261020-privacy-terms"></script>
   </body>
 </html>

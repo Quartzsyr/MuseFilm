@@ -48,7 +48,6 @@ const TRANSLATIONS = {
     "feedback.qqHint": "交流使用体验、问题与摄影想法",
     "feedback.qqCopy": "复制群号",
     "feedback.qqCopied": "已复制",
-    "feedback.privacy": "只记录必要的页面与设备信息，不保存原始 IP。",
     "feedback.github": "改用 GitHub Issue ↗",
     "feedback.submit": "发送反馈",
     "feedback.sending": "正在送出…",
@@ -154,10 +153,7 @@ const TRANSLATIONS = {
     "download.emailSaved": "下载已开始，邮箱已保存。请留意邮件；重复下载的感谢来信会合并处理。",
     "download.emailFailed": "下载已开始，但邮箱暂未保存成功。你仍可通过网站反馈入口联系我。",
     "download.emailRequired": "请填写邮箱，或选择「跳过，直接下载」。",
-    "download.privacy": "下载点击会记录 IP、大致地区、系统与浏览器、安装包及时间，并邮件通知站长，用于下载统计与问题排查；点击不代表下载完成。",
     "download.direct": "也可直接前往 GitHub Releases 下载。",
-    "download.shortPrivacy": "下载点击会记录 IP、大致地区和设备，并通知站长。",
-    "download.privacyLink": "查看说明",
     "download.winReq": "Windows 10 / 11 · 278 MB",
     "download.macReq": "原生 SwiftUI · build 2 · 5.3 MB",
     "download.count": "次下载",
@@ -186,6 +182,32 @@ const TRANSLATIONS = {
     "download.noInstaller": "暂无安装包",
     "download.viewMacRelease": "查看 macOS 版本",
     "footer.slogan": "献给仍在拍胶片的人。",
+    "privacy.link": "隐私条款",
+    "privacy.title": "隐私条款",
+    "privacy.close": "关闭隐私条款",
+    "privacy.updated": "更新日期：2026 年 10 月 20 日",
+    "privacy.intro": "这里说明 MuseFilm 网站会处理哪些信息、为什么处理，以及你可以如何管理自己的选择。",
+    "privacy.scopeTitle": "01 · 适用范围与站长",
+    "privacy.scope": "本条款适用于 musefilm.top 网站及其反馈、下载记录和邮件订阅服务。信息处理者为 MuseFilm 站长 Quartz SYR。观片台中导入的照片只在当前浏览器内预览，不会由本站上传；本条款不替代桌面应用或外部网站各自的说明。",
+    "privacy.visitsTitle": "02 · 访问统计与下载记录",
+    "privacy.visits": "浏览页面时，本站记录页面路径、访问时间、语言、平台、来源域名、国家/地区、浏览器类别，以及使用每日变化的加盐 IP 哈希生成的访问标识。访问统计表不保存原始 IP 或完整浏览器标识。重复访问和刷新会累计，重复提交的同一事件会去重。",
+    "privacy.downloads": "点击本站安装包下载并继续下载时，本站会单独保存连接 IP、由 IP 推测的国家/地区/城市、时区、网络运营商、操作系统、浏览器及完整 User-Agent、语言、来源域名、安装包、版本与时间；如自愿留下邮箱，也会关联该次下载。相关信息会通过邮件通知站长，用于下载统计、问题排查与安全管理。位置为网络推测值，不是 GPS 定位；下载点击不代表安装包已下载完成。",
+    "privacy.github": "公开显示的安装包下载量来自 GitHub Releases。你也可以直接前往 GitHub Releases 获取安装包；该方式不经过本站的下载点击记录接口，GitHub 会按其自身规则处理请求。",
+    "privacy.emailTitle": "03 · 邮箱订阅与反馈",
+    "privacy.email": "邮箱为选填项。填写邮箱并点击「订阅并下载」，即订阅 MuseFilm 感谢邮件、版本更新与新闻，无需再次确认。本站保存邮箱、语言、下载平台、订阅状态、提交时间及所用说明版本。跳过邮箱不影响下载或使用；你可通过邮件内的退订入口停止后续资讯，退订不会自动删除既有记录。",
+    "privacy.feedback": "提交反馈时，本站保存反馈内容、类型、选填邮箱、页面、语言、平台、国家/地区、浏览器类别、时间和用于防滥用的加盐标识，并向站长发送反馈通知。反馈表不单独保存原始 IP。请勿在反馈中填写密码、授权码或其他无关的敏感信息。",
+    "privacy.servicesTitle": "04 · 服务提供方与信息接收方",
+    "privacy.services": "页面与安装包使用 GitHub 服务，接口、数据库及反馈防滥用验证使用 Cloudflare 服务；邮件通过 Cloudflare 邮件服务或 QQ 邮箱 SMTP 发送。站长是下载提醒和反馈邮件的接收方，订阅邮件只发给对应收件人。上述服务商会处理提供托管、网络安全、验证或投递所需的请求与邮件数据，其服务节点可能位于不同国家或地区。本站不出售访客邮箱或下载记录，也不将其用于第三方广告营销。",
+    "privacy.external": "页脚友情链接和其他外部链接由各自运营者负责。打开外部网站或 GitHub 下载页面后，对方可能独立处理网络请求信息，请查看其隐私说明。",
+    "privacy.retentionTitle": "05 · 保存期限与安全",
+    "privacy.retention": "访问事件和下载点击的数据库明细按计划清理超过 90 天的记录；不含事件明细的累计访问总数继续保留。邮箱、订阅状态、投递记录和反馈内容目前没有固定的自动删除周期，会为订阅管理、退订抑制或问题跟进保留；你可联系站长申请删除。已经发出的邮件副本、服务商运行日志与备份不属于上述数据库 90 天清理范围，由相应系统管理。",
+    "privacy.security": "本站通过加密传输、后台登录验证与访问限制保护记录。普通访客无法查看他人的邮箱和下载明细。管理员登录使用验证码与会话 Cookie；反馈验证可能使用 Cloudflare 所需的安全存储机制。本站不设置广告追踪 Cookie。",
+    "privacy.rightsTitle": "06 · 你的选择与联系方式",
+    "privacy.rights": "你可以不填写邮箱、直接通过 GitHub 下载、使用邮件中的退订入口，或联系站长申请查阅、更正、删除相关记录和撤回订阅。站长可能需要核实请求与你有关，以免将他人的记录提供或删除。退订对后续资讯生效，已经完成的处理不会因此自动撤销。",
+    "privacy.contactLabel": "隐私与数据请求：",
+    "privacy.changesTitle": "07 · 条款更新",
+    "privacy.changes": "当网站功能或信息处理方式发生变化时，本站会更新本条款与日期；对处理目的、范围等重要事项的变化，会作相应说明并在需要时重新征求选择。阅读或关闭本弹窗本身不表示订阅邮件。",
+    "privacy.return": "返回网站",
     "footer.friends": "友情链接",
     "status.synced": "下载次数已与 GitHub Releases 同步",
     "status.snapshot": "GitHub Releases 下载记录 · 定时同步",
@@ -245,7 +267,6 @@ const TRANSLATIONS = {
     "feedback.qqHint": "Discuss the app, report issues, and share photography ideas",
     "feedback.qqCopy": "Copy group ID",
     "feedback.qqCopied": "Copied",
-    "feedback.privacy": "Only essential page and device context is recorded. Raw IP addresses are never stored.",
     "feedback.github": "Use GitHub Issue instead ↗",
     "feedback.submit": "Send feedback",
     "feedback.sending": "Sending…",
@@ -351,10 +372,7 @@ const TRANSLATIONS = {
     "download.emailSaved": "Your download has started and your email is saved. Repeated download thank-you notes are combined.",
     "download.emailFailed": "Your download has started, but your email could not be saved. You can still use the feedback button.",
     "download.emailRequired": "Enter your email or choose “Skip and download”.",
-    "download.privacy": "Download clicks record your IP, approximate region, OS, browser, installer and time, and email the site owner for download statistics and troubleshooting. A click does not confirm a completed download.",
     "download.direct": "You can also download directly from GitHub Releases.",
-    "download.shortPrivacy": "Download clicks record your IP, approximate region and device, and notify the owner.",
-    "download.privacyLink": "Details",
     "download.winReq": "Windows 10 / 11 · 278 MB",
     "download.macReq": "Native SwiftUI · build 2 · 5.3 MB",
     "download.count": "downloads",
@@ -383,6 +401,32 @@ const TRANSLATIONS = {
     "download.noInstaller": "No installer attached",
     "download.viewMacRelease": "View macOS release",
     "footer.slogan": "Made for people who still shoot film.",
+    "privacy.link": "Privacy",
+    "privacy.title": "Privacy terms",
+    "privacy.close": "Close privacy terms",
+    "privacy.updated": "Updated October 20, 2026",
+    "privacy.intro": "What MuseFilm collects on this website, why it is used, and how you can manage your choices.",
+    "privacy.scopeTitle": "01 · Scope and operator",
+    "privacy.scope": "These terms cover musefilm.top and its feedback, download records and email subscriptions. The operator is Quartz SYR, the MuseFilm creator. Photos imported into the light table stay in your current browser and are not uploaded by this website. These terms do not replace the notices for the desktop app or external sites.",
+    "privacy.visitsTitle": "02 · Visits and download records",
+    "privacy.visits": "Page visits record the path, time, language, platform, referring domain, country or region, browser family and an event identifier derived from a salted IP hash that changes daily. The visits table does not store raw IPs or full browser identifiers. Repeat visits and refreshes count again; replays of the same event are deduplicated.",
+    "privacy.downloads": "When you continue an installer download from this website, a separate record stores your connection IP, IP-derived country, region and city, time zone, network operator, OS, browser and full User-Agent, language, referring domain, installer, version and time. An email you choose to provide is linked to that download. These details are emailed to the site owner for download statistics, troubleshooting and security. Location is inferred from the network, not GPS. A click does not prove a completed download.",
+    "privacy.github": "Public installer download totals come from GitHub Releases. You can download directly from GitHub Releases to bypass this website’s download-click endpoint; GitHub handles those requests under its own rules.",
+    "privacy.emailTitle": "03 · Email subscriptions and feedback",
+    "privacy.email": "Email is optional. Entering an email and choosing “Subscribe & download” subscribes you to a thank-you message, MuseFilm updates and news without a second confirmation. We retain the address, language, download platform, subscription status, submission time and notice version. Skipping email does not affect downloads or use. Unsubscribe using the link in an email to stop future news; this does not automatically erase existing records.",
+    "privacy.feedback": "Feedback stores the message, category, optional email, page, language, platform, country or region, browser family, time and a salted abuse-prevention identifier, and sends a notification to the owner. The feedback table does not separately store raw IPs. Do not include passwords, authorization codes or unrelated sensitive information.",
+    "privacy.servicesTitle": "04 · Providers and recipients",
+    "privacy.services": "GitHub hosts pages and installers. Cloudflare provides the API, database and feedback abuse checks. Email is delivered through Cloudflare email services or QQ SMTP. The owner receives download and feedback notifications; subscriber messages go to the intended recipient. Providers process requests and message data needed for hosting, security, verification or delivery and may operate in different countries or regions. We do not sell visitor emails or download records or use them for third-party advertising.",
+    "privacy.external": "Footer links and other external websites are operated independently. When you open another site or a GitHub download page, its operator may process network request information under its own privacy notice.",
+    "privacy.retentionTitle": "05 · Retention and security",
+    "privacy.retention": "Database details for visits and download clicks are scheduled for cleanup after 90 days. The cumulative visit total, without individual event details, is retained. Emails, subscription states, delivery records and feedback currently have no fixed automatic deletion schedule and remain for subscriptions, unsubscribe suppression or follow-up; contact the owner to request deletion. Sent email copies, provider logs and backups are outside the database’s 90-day cleanup and are managed by their respective systems.",
+    "privacy.security": "Encrypted connections, administrator sign-in and access controls protect records. Public visitors cannot view other people’s emails or download details. Administrator sign-in uses verification codes and session cookies; feedback verification may use Cloudflare security storage. This website does not set advertising tracking cookies.",
+    "privacy.rightsTitle": "06 · Your choices and contact",
+    "privacy.rights": "You may skip email, download through GitHub, unsubscribe using an email link, or contact the owner to request access, correction, deletion or withdrawal of your subscription. The owner may verify that a request concerns you before sharing or deleting records. Unsubscribing stops future news and does not automatically reverse processing already completed.",
+    "privacy.contactLabel": "Privacy and data requests: ",
+    "privacy.changesTitle": "07 · Updates",
+    "privacy.changes": "We update these terms and their date when features or information practices change. Material changes to purposes or scope will be explained and a new choice requested where needed. Reading or closing this dialog does not itself subscribe you to email.",
+    "privacy.return": "Back to the website",
     "footer.friends": "Elsewhere",
     "status.synced": "Live counts synced from GitHub Releases",
     "status.snapshot": "GitHub Releases download records · periodically synced",
@@ -1956,6 +2000,26 @@ feedbackForm?.addEventListener("submit", async (event) => {
     feedbackSubmit?.removeAttribute("disabled");
   }
 });
+
+// Privacy reading does not submit data or change subscription preferences.
+const privacyDialog = document.querySelector("[data-privacy-dialog]");
+function openPrivacy() {
+  if (!privacyDialog || privacyDialog.open) return;
+  privacyDialog.showModal();
+  privacyDialog.scrollTop = 0;
+}
+document.querySelectorAll("[data-privacy-open]").forEach(link => link.addEventListener("click", event => {
+  event.preventDefault();
+  openPrivacy();
+}));
+document.querySelectorAll("[data-privacy-close]").forEach(button => button.addEventListener("click", () => privacyDialog?.close()));
+privacyDialog?.addEventListener("click", event => {
+  if (event.target !== privacyDialog) return;
+  const bounds = privacyDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) privacyDialog.close();
+});
+if (location.hash === "#privacy") openPrivacy();
+window.addEventListener("hashchange", () => { if (location.hash === "#privacy") openPrivacy(); });
 
 const downloadDialog = document.querySelector("[data-download-dialog]");
 const downloadForm = document.querySelector("[data-download-form]");
