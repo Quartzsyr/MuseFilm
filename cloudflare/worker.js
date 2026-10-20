@@ -1322,8 +1322,16 @@ function ownerReportContent(report,test=false) {
 }
 function releaseDraftBody(item) {
   const label=item.platform==='mac'?'macOS':'Windows';
-  const notes=item.notes.replace(/^#{1,6}\s+/gm,'').replace(/\*\*([^*]+)\*\*/g,'$1').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/\n{3,}/g,'\n\n');
-  return `你好，\n\nMuseFilm ${label} ${item.title}${item.preview?'（预览版）':''} 已准备好。\n\n这次更新带来了这些改进：\n${notes.slice(0,3500)}${notes.length>3500?'\n…更多内容请查看完整版本说明。':''}\n\n查看完整说明与下载：\n${item.url}\n\n用起来有什么感受或建议，欢迎直接回复这封邮件。谢谢你陪 MuseFilm 留住每一卷光。`;
+  const bullets=[],paragraphs=[];let include=true;
+  for(const raw of item.notes.split(/\r?\n/)) {
+    const heading=raw.match(/^#{1,6}\s+(.+)/);
+    if(heading){if(/历史版本|历史更新/.test(heading[1]))break;include=!/版本信息|安装|发布验证|SHA.?256|校验|反馈|签名|构建|测试/.test(heading[1]);continue}
+    const line=raw.replace(/\*\*([^*]+)\*\*/g,'$1').replace(/`([^`]+)`/g,'$1').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').trim();
+    if(!include || !line || /^\||^[-_*]{3,}$|^https?:/.test(line))continue;
+    if(/^[-*+]\s+/.test(line))bullets.push(line.replace(/^[-*+]\s+/,''));else if(!/^>/.test(line))paragraphs.push(line);
+  }
+  const selected=(bullets.length?bullets:paragraphs).slice(0,6),notes=selected.map(line=>'• '+(line.length>180?line.slice(0,180)+'…':line)).join('\n') || '本次更新已经准备好，欢迎查看完整版本说明。';
+  return `你好，\n\nMuseFilm ${label} ${item.title}${item.preview?'（预览版）':''} 已准备好。\n\n这次更新带来了这些改进：\n${notes}\n\n查看完整说明与下载：\n${item.url}\n\n用起来有什么感受或建议，欢迎直接回复这封邮件。谢谢你陪 MuseFilm 留住每一卷光。`;
 }
 async function followupAllowed(env,subscriberId) {
   const row=await env.DB.prepare("SELECT s.id FROM subscribers s WHERE s.id=? AND s.status='subscribed' AND (SELECT followup_enabled FROM workflow_settings WHERE id=1)=1 AND NOT EXISTS(SELECT 1 FROM mail_suppressions x WHERE x.email=s.email) AND NOT EXISTS(SELECT 1 FROM feedback f WHERE lower(trim(f.contact_email))=s.email)").bind(subscriberId).first();
@@ -1391,7 +1399,7 @@ async function handleWorkflowsAdmin(request,env) {
     const s=await env.DB.prepare('SELECT * FROM mail_settings WHERE id=1').first(),feed=await releaseFeed({...s,etag:''},fetch);
     const item=releaseVariants(feed.releases,Boolean(s.include_prerelease)).filter(r=>r.platform===b.platform).sort((a,b)=>Date.parse(b.published)-Date.parse(a.published))[0];
     if(!item)return json({ok:false,error:'没有找到该平台的可用版本。'},404);
-    const key='review:'+item.key,existing=await env.DB.prepare('SELECT campaign_id FROM campaign_options WHERE source_key=?').bind(key).first();if(existing)return json({ok:true,id:existing.campaign_id,existing:true});
+    const key='review:'+item.key,existing=await env.DB.prepare('SELECT campaign_id FROM campaign_options WHERE source_key IN (?,?)').bind(key,item.key).first();if(existing)return json({ok:true,id:existing.campaign_id,existing:true});
     const id=crypto.randomUUID(),now=isoNow(),label=item.platform==='mac'?'macOS':'Windows';
     await env.DB.batch([env.DB.prepare("INSERT INTO campaigns(id,subject,body,created_at,updated_at) VALUES(?,?,?,?,?)").bind(id,`MuseFilm ${label} ${item.title} 已发布`,releaseDraftBody(item),now,now),env.DB.prepare("INSERT INTO campaign_options(campaign_id,audience,kind,source_key,release_url) VALUES(?,?,'release',?,?)").bind(id,item.platform,key,item.url)]);
     return json({ok:true,id});
