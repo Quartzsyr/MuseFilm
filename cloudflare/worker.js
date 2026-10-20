@@ -1083,7 +1083,7 @@ async function qqImapReports(env,{uidvalidity='',cursor=0}={},connectOverride) {
 async function pollBounces(env,force=false,reader=qqImapReports) {
   const release=await mailLock(env,'imap',60);if(!release)return {busy:true};
   try {
-    const s=await env.DB.prepare('SELECT * FROM mail_settings WHERE id=1').first();if(!s.imap_enabled || !force && s.imap_due>isoNow())return {skipped:true};
+    const s=await env.DB.prepare('SELECT * FROM mail_settings WHERE id=1').first();if(!force && (!s.imap_enabled || s.imap_due>isoNow()))return {skipped:true};
     const result=await reader(env,{uidvalidity:s.imap_uidvalidity,cursor:s.imap_cursor});let matched=0;
     for(const message of result.reports) {
       const seen=await env.DB.prepare('SELECT mail_key FROM mail_imap_seen WHERE mail_key=?').bind(message.key).first();if(seen)continue;
@@ -1120,6 +1120,11 @@ async function handleMailAdmin(request,env,ctx) {
     if(request.method==='PATCH') {
       const b=await readJson(request,2048);
       if(typeof b.enabled!=='boolean' || typeof b.includePrerelease!=='boolean' || typeof b.imapEnabled!=='boolean')return json({ok:false,error:'invalid_settings'},400);
+      const previous=await env.DB.prepare('SELECT enabled FROM mail_settings WHERE id=1').first();
+      if(b.enabled && !previous.enabled) {
+        const baseline=await scanReleases(env,true);
+        if(baseline.error || baseline.busy)return json({ok:false,error:'恢复前的版本检查尚未完成，请稍后重试。'},503);
+      }
       await env.DB.prepare("UPDATE mail_settings SET enabled=?,include_prerelease=?,imap_enabled=?,etag='',scan_due='' WHERE id=1").bind(b.enabled?1:0,b.includePrerelease?1:0,b.imapEnabled?1:0).run();
     }
     const settings=await env.DB.prepare('SELECT * FROM mail_settings WHERE id=1').first();
