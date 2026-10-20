@@ -329,21 +329,26 @@ async function handleMailAdmin(request,env,ctx) {
   const match=path.match(/^\/api\/admin\/campaigns\/([^/]+)(?:\/(preview|test|start|process|progress|cancel|retry))?$/);
   if((path==='/api/admin/campaigns' && request.method==='POST') || match && !match[2] && request.method==='PATCH') {
     const body=await readJson(request,24576),subject=cleanText(body.subject,160),text=cleanText(body.body,20000),audience=body.audience || 'all';
-    if(subject.length<3 || text.length<10 || !['all','windows','mac'].includes(audience))return json({ok:false,error:'请填写标题、正文（至少 10 字）和收件平台。'},400);
+    if(!subject || !text || !['all','windows','mac'].includes(audience))return json({ok:false,error:'请填写邮件标题、正文和收件平台。'},400);
     const id=match?match[1]:crypto.randomUUID(),now=isoNow();
     if(match) {
-      const result=await env.DB.prepare("UPDATE campaigns SET subject=?,body=?,test_status='',tested_at=NULL,updated_at=? WHERE id=? AND status='draft'").bind(subject,text,now,id).run();
+      const current=await env.DB.prepare(campaignSelect+' WHERE c.id=?').bind(id).first();
+      if(current?.status!=='draft')return json({ok:false,error:'只有草稿可以修改。'},409);
+      if(body.expectedUpdatedAt && body.expectedUpdatedAt!==current.updated_at)return json({ok:false,error:'草稿已在其他页面更新，请重新打开后编辑。'},409);
+      if(current.subject===subject && current.body===text && current.audience===audience)return json({ok:true,id,unchanged:true,updatedAt:current.updated_at});
+      const result=await env.DB.prepare("UPDATE campaigns SET subject=?,body=?,test_status='',tested_at=NULL,updated_at=? WHERE id=? AND status='draft' AND updated_at=?").bind(subject,text,now,id,current.updated_at).run();
       if(!Number(result.meta?.changes))return json({ok:false,error:'只有草稿可以修改。'},409);
     } else await env.DB.prepare('INSERT INTO campaigns(id,subject,body,created_at,updated_at) VALUES(?,?,?,?,?)').bind(id,subject,text,now,now).run();
     await env.DB.prepare("INSERT INTO campaign_options(campaign_id,audience) VALUES(?,?) ON CONFLICT(campaign_id) DO UPDATE SET audience=excluded.audience").bind(id,audience).run();
-    return json({ok:true,id});
+    return json({ok:true,id,updatedAt:now});
   }
   if(!match)return null;
   const campaign=await env.DB.prepare(campaignSelect+' WHERE c.id=?').bind(match[1]).first();if(!campaign)return json({ok:false,error:'not_found'},404);
   const action=match[2];
+  if(!action && request.method==='GET')return json({ok:true,campaign});
   if(action==='preview')return json({ok:true,campaign,html:campaignContent(campaign,{unsubscribe_token:'preview',confirmation_token:'preview'}).html,recipientCount:await recipientCount(env,campaign.audience)});
   if(action==='progress') {
-    const recipients=await env.DB.prepare("SELECT s.email,r.status,r.error_code,r.sent_at,d.attempts,d.next_attempt_at,d.last_stage FROM campaign_recipients r JOIN subscribers s ON s.id=r.subscriber_id LEFT JOIN mail_delivery d ON d.campaign_id=r.campaign_id AND d.subscriber_id=r.subscriber_id WHERE r.campaign_id=? ORDER BY r.status,s.email LIMIT 100").bind(campaign.id).all();
+    const recipients=await env.DB.prepare("SELECT s.email,r.status,r.error_code,r.sent_at,d.attempts,d.next_attempt_at,d.last_stage,d.retry_safe FROM campaign_recipients r JOIN subscribers s ON s.id=r.subscriber_id LEFT JOIN mail_delivery d ON d.campaign_id=r.campaign_id AND d.subscriber_id=r.subscriber_id WHERE r.campaign_id=? ORDER BY r.status,s.email LIMIT 100").bind(campaign.id).all();
     const attempts=await env.DB.prepare('SELECT a.*,s.email FROM mail_attempts a JOIN subscribers s ON s.id=a.subscriber_id WHERE a.campaign_id=? ORDER BY a.created_at DESC LIMIT 100').bind(campaign.id).all();
     return json({ok:true,campaign,progress:await campaignProgress(env,campaign.id),recipients:recipients.results || [],attempts:attempts.results || []});
   }
@@ -353,18 +358,22 @@ async function handleMailAdmin(request,env,ctx) {
     if(campaign.status!=='draft')return json({ok:false,error:'只有草稿可以发送测试。'},409);
     try {await sendCommunityMail(env,{to:env.FEEDBACK_TO_EMAIL,replyTo:env.FEEDBACK_TO_EMAIL,...campaignContent({...campaign,subject:'[测试] '+campaign.subject},{unsubscribe_token:'preview',confirmation_token:'preview'})})}
     catch(e){return json({ok:false,error:'测试邮件未发出：'+cleanText(e?.code || 'send_failed',80)},503)}
-    await env.DB.prepare("UPDATE campaigns SET test_status='sent',tested_at=? WHERE id=? AND status='draft'").bind(isoNow(),campaign.id).run();return json({ok:true});
+    const saved=await env.DB.prepare("UPDATE campaigns SET test_status='sent',tested_at=? WHERE id=? AND status='draft' AND updated_at=? AND subject=? AND body=? AND COALESCE((SELECT audience FROM campaign_options WHERE campaign_id=campaigns.id),'all')=?").bind(isoNow(),campaign.id,campaign.updated_at,campaign.subject,campaign.body,campaign.audience).run();
+    if(!Number(saved.meta?.changes))return json({ok:false,error:'测试期间草稿已有修改，请重新发送当前内容的测试邮件。'},409);
+    return json({ok:true});
   }
   if(action==='start') {
     if(campaign.status!=='draft' || campaign.test_status!=='sent')return json({ok:false,error:'请先向站长邮箱发送测试邮件。'},409);
-    const b=await readJson(request,2048),count=await recipientCount(env,campaign.audience);
+    const b=await readJson(request,2048);
+    if(b.expectedUpdatedAt && b.expectedUpdatedAt!==campaign.updated_at)return json({ok:false,error:'草稿已有更新，请重新预览后发送。'},409);
+    const count=await recipientCount(env,campaign.audience);
     if(!count || b.confirmRecipientCount!==count)return json({ok:false,error:'收件人数已变化，请重新预览确认。'},409);
     const now=isoNow(),scheduled=b.scheduledAt?new Date(b.scheduledAt):null;
     if(scheduled && (!Number.isFinite(scheduled.getTime()) || scheduled.getTime()<Date.now()+30000 || scheduled.getTime()>Date.now()+365*86400000))return json({ok:false,error:'预约时间须在 30 秒至一年之后。'},400);
     const status=scheduled?'scheduled':'queued',at=scheduled?scheduled.toISOString():now;
     await env.DB.prepare("INSERT OR IGNORE INTO campaign_options(campaign_id,audience) VALUES(?,?)").bind(campaign.id,campaign.audience).run();
     await env.DB.batch([
-      env.DB.prepare(`UPDATE campaigns SET status=?,updated_at=? WHERE id=? AND status='draft' AND test_status='sent' AND (SELECT COUNT(*) FROM subscribers s WHERE ${audienceWhere})=?`).bind(status,now,campaign.id,campaign.audience,campaign.audience,count),
+      env.DB.prepare(`UPDATE campaigns SET status=?,updated_at=? WHERE id=? AND status='draft' AND test_status='sent' AND updated_at=? AND COALESCE((SELECT audience FROM campaign_options WHERE campaign_id=campaigns.id),'all')=? AND (SELECT COUNT(*) FROM subscribers s WHERE ${audienceWhere})=?`).bind(status,now,campaign.id,campaign.updated_at,campaign.audience,campaign.audience,campaign.audience,count),
       env.DB.prepare("UPDATE campaign_options SET scheduled_at=? WHERE campaign_id=? AND EXISTS(SELECT 1 FROM campaigns c WHERE c.id=campaign_id AND c.updated_at=? AND c.status=?)").bind(at,campaign.id,now,status),
       env.DB.prepare(`INSERT OR IGNORE INTO campaign_recipients(campaign_id,subscriber_id) SELECT ?,s.id FROM subscribers s WHERE ${audienceWhere} AND EXISTS(SELECT 1 FROM campaigns c WHERE c.id=? AND c.status=? AND c.updated_at=?)`).bind(campaign.id,campaign.audience,campaign.audience,campaign.id,status,now)
     ]);

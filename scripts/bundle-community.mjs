@@ -1,12 +1,15 @@
 import { readFile, writeFile } from "node:fs/promises";
 const workerPath = new URL("../cloudflare/worker.js", import.meta.url);
-const [worker, source, html, automation] = await Promise.all([
+const [worker, source, template, automation, dashboard, client] = await Promise.all([
   readFile(workerPath,"utf8"),
   readFile(new URL("../cloudflare/community.js",import.meta.url),"utf8"),
   readFile(new URL("../cloudflare/admin.html",import.meta.url),"utf8"),
   readFile(new URL("../cloudflare/mail-automation.js",import.meta.url),"utf8"),
+  readFile(new URL("../cloudflare/dashboard.js",import.meta.url),"utf8"),
+  readFile(new URL("../cloudflare/admin-client.js",import.meta.url),"utf8"),
 ]);
+const html=template.replace("// INLINE_ADMIN_CLIENT",()=>client);
 const start="// BEGIN GENERATED COMMUNITY",end="// END GENERATED COMMUNITY";
-const generated=`${start}\nconst ADMIN_PAGE_HTML = ${JSON.stringify(html)};\n${source}\n${automation}\n${end}`;
+const generated=`${start}\nconst ADMIN_PAGE_HTML = ${JSON.stringify(html)};\n${source}\n${automation}\n${dashboard}\n${end}`;
 const next=worker.includes(start) ? worker.slice(0,worker.indexOf(start))+generated+worker.slice(worker.indexOf(end)+end.length) : worker.replace("export default {",generated+"\n\nexport default {");
 await writeFile(workerPath,next);

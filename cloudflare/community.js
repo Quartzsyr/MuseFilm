@@ -172,19 +172,6 @@ function csvCell(value) {
   return '"'+text.replace(/"/g,'""')+'"';
 }
 
-async function adminSubscribers(request,env) {
-  const url = new URL(request.url);
-  const q = cleanText(url.searchParams.get("q"),160);
-  const status = cleanText(url.searchParams.get("status"),20);
-  const page = Math.max(1,Math.min(100000,Number(url.searchParams.get("page")) || 1));
-  const values = [`%${q}%`,status,status];
-  const where = "WHERE email LIKE ? AND (?='' OR status=?)";
-  const count = await env.DB.prepare(`SELECT COUNT(*) AS count FROM subscribers ${where}`).bind(...values).first();
-  const rows = await env.DB.prepare(`SELECT id,email,status,locale,platform,(SELECT GROUP_CONCAT(platform) FROM subscriber_platforms WHERE subscriber_id=subscribers.id) AS platforms,(SELECT reason FROM mail_suppressions WHERE email=subscribers.email) AS suppression_reason,consent_at,confirmed_at,created_at,last_download_at,(SELECT status FROM subscriber_mail_log WHERE subscriber_id=subscribers.id ORDER BY created_at DESC LIMIT 1) AS thank_you_status FROM subscribers ${where} ORDER BY created_at DESC LIMIT 50 OFFSET ?`).bind(...values,(page-1)*50).all();
-  const stats = await env.DB.prepare("SELECT COUNT(*) AS total,SUM(status='subscribed') AS subscribed,SUM(status='pending') AS pending,SUM(status='contact') AS contact,SUM(status='unsubscribed') AS unsubscribed FROM subscribers").first();
-  return json({ok:true,subscribers:rows.results || [],total:Number(count?.count || 0),page,stats});
-}
-
 function campaignContent(campaign,subscriber) {
   const unsubscribe = subscriberLinks(subscriber).unsubscribe;
   return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton(campaign.release_url || "https://musefilm.top/#download",campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
@@ -221,18 +208,15 @@ async function handleCommunity(request,env,ctx) {
   if (path === "/api/admin/login/request" && request.method === "POST") return requestAdminCode(request,env);
   if (path === "/api/admin/login" && request.method === "POST") return loginAdmin(request,env);
   if (!(await adminAuthorized(request,env))) return json({ok:false,error:"unauthorized"},401);
+  const dashboardResponse=await handleDashboardAdmin(request,env);if(dashboardResponse)return dashboardResponse;
   if (path === "/api/admin/session") return json({ok:true});
-  if (path === "/api/admin/mail-config") return json({ok:true,ready:communityMailReady(env),provider:env.SMTP_PASSWORD ? "qq_smtp" : env.SUBSCRIBER_EMAIL ? "cloudflare" : "not_configured"});
+  if (path === "/api/admin/mail-config") return json({ok:true,ready:communityMailReady(env),ownerEmail:validEmail(env.FEEDBACK_TO_EMAIL) ? env.FEEDBACK_TO_EMAIL : "",provider:env.SMTP_PASSWORD ? "qq_smtp" : env.SUBSCRIBER_EMAIL ? "cloudflare" : "not_configured"});
   if (path === "/api/admin/logout" && request.method === "POST") {
     await env.DB.prepare("DELETE FROM admin_sessions WHERE token_hash=?").bind(await sha256(cookieValue(request,"musefilm_admin"))).run();
     return json({ok:true},200,{"Set-Cookie":"musefilm_admin=; Path=/api/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=0"});
   }
-  if (path === "/api/admin/subscribers" && request.method === "GET") return adminSubscribers(request,env);
-  if (path === "/api/admin/export" && request.method === "GET") {
-    const rows=await env.DB.prepare("SELECT email,status,locale,platform,consent_at,confirmed_at,created_at,last_download_at FROM subscribers ORDER BY created_at DESC").all();
-    const columns=["email","status","locale","platform","consent_at","confirmed_at","created_at","last_download_at"];
-    return new Response("\ufeff"+[columns.map(csvCell).join(","),...(rows.results || []).map(row=>columns.map(k=>csvCell(row[k])).join(","))].join("\r\n"),{headers:{"Content-Type":"text/csv; charset=utf-8","Content-Disposition":"attachment; filename=musefilm-subscribers.csv","Cache-Control":"no-store"}});
-  }
+  if (path === "/api/admin/subscribers" && request.method === "GET") return dashboardSubscribers(request,env);
+  if (path === "/api/admin/export" && request.method === "GET") return dashboardExport(request,env);
   const subscriberMatch=path.match(/^\/api\/admin\/subscribers\/([^/]+)$/);
   if(subscriberMatch && request.method === "PATCH") {
     const body=await readJson(request,1024);
