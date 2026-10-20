@@ -174,7 +174,7 @@ function csvCell(value) {
 
 function campaignContent(campaign,subscriber) {
   const unsubscribe = subscriberLinks(subscriber).unsubscribe;
-  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton(campaign.release_url || "https://musefilm.top/#download",campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
+  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton(campaign.release_url || "https://musefilm.top/#download",campaign.kind==="followup" ? "告诉我使用感受" : campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n${campaign.kind==="followup"?"反馈："+WORKFLOW_FEEDBACK_URL:"下载：https://musefilm.top/#download"}\n退订：${unsubscribe}` };
 }
 
 async function campaignProgress(env,id) {
@@ -224,5 +224,6 @@ async function handleCommunity(request,env,ctx) {
     await env.DB.prepare("UPDATE subscribers SET status='unsubscribed' WHERE id=?").bind(subscriberMatch[1]).run();
     return json({ok:true});
   }
+  const workflowsResponse=await handleWorkflowsAdmin(request,env);if(workflowsResponse)return workflowsResponse;
   return handleMailAdmin(request,env,ctx);
 }

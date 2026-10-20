@@ -49,5 +49,5 @@ const server=http.createServer(async(req,res)=>{try{
   if(relative==='index.html')data=Buffer.from(data.toString().replace('https://musefilm-feedback-api.syrquartz.workers.dev','http://127.0.0.1:'+port));
   res.writeHead(200,{'Content-Type':types[extname(relative)]||'application/octet-stream','Cache-Control':'no-store'});res.end(data);
 }catch(error){res.writeHead(500);res.end(error.message)}}).listen(port,'127.0.0.1',()=>console.log('Local dashboard preview (mock mail): http://127.0.0.1:'+port+'/admin'));
-let ticking=false;const tick=setInterval(async()=>{if(ticking)return;ticking=true;try{db.prepare('UPDATE mail_settings SET last_tick_at=? WHERE id=1').run(now());await automationTests.dispatchMail(env)}catch(error){console.error('Local queue failed:',error.code || error.message)}finally{ticking=false}},2000);
+let ticking=false;const tick=setInterval(async()=>{if(ticking)return;ticking=true;try{db.prepare('UPDATE mail_settings SET last_tick_at=? WHERE id=1').run(now());await automationTests.workflowsTick(env);await automationTests.dispatchMail(env)}catch(error){console.error('Local queue failed:',error.code || error.message)}finally{ticking=false}},2000);
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{clearInterval(tick);server.close(()=>process.exit(0))});

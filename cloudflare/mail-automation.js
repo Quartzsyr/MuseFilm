@@ -39,7 +39,7 @@ async function recordBounce(env,{campaignId,subscriberId,email,kind,diagnostic,s
 async function settleCampaign(env,id) {
   const p=await campaignProgress(env,id);
   const active=p.pending || p.sending || p.retry_wait;
-  if(!active) await env.DB.prepare("UPDATE campaigns SET status=?,updated_at=? WHERE id=? AND status IN ('sending','queued','retry_wait','sent')").bind(p.failed || p.bounced || p.uncertain ? 'partial_failure':'sent',isoNow(),id).run();
+  if(!active) await env.DB.prepare("UPDATE campaigns SET status=?,updated_at=? WHERE id=? AND status IN ('sending','queued','retry_wait','sent')").bind(p.failed || p.bounced || p.uncertain ? 'partial_failure':p.sent?'sent':'cancelled',isoNow(),id).run();
   return p;
 }
 async function dispatchCampaign(env,campaign,limit=2) {
@@ -56,7 +56,7 @@ async function dispatchCampaign(env,campaign,limit=2) {
     await env.DB.prepare("UPDATE campaign_recipients SET status='sending' WHERE campaign_id=? AND subscriber_id=? AND status IN ('pending','retry_wait')").bind(campaign.id,row.subscriber_id).run();
     const subscriber=await env.DB.prepare("SELECT s.* FROM subscribers s WHERE s.id=? AND s.status='subscribed' AND NOT EXISTS(SELECT 1 FROM mail_suppressions x WHERE x.email=s.email)").bind(row.subscriber_id).first();
     let status='skipped',code='',stage='',safe=false,next='';
-    if(subscriber) {
+    if(subscriber && (campaign.kind!=='followup' || await followupAllowed(env,subscriber.id))) {
       try {
         await sendCommunityMail(env,{to:subscriber.email,from:env.FEEDBACK_FROM_EMAIL,replyTo:env.FEEDBACK_TO_EMAIL,...campaignContent(campaign,subscriber),messageId});
         status='sent';stage='accepted';
@@ -141,6 +141,7 @@ async function scanReleases(env,force=false,fetcher=fetch,pushedSnapshot=null) {
     const releases=feed.releases;
     // Record all preview/stable variants even when preview mail is disabled, so toggling it never backfills old mail.
     const variants=releaseVariants(releases,true),existing=await env.DB.prepare("SELECT source_key FROM mail_releases").all(),seen=new Set((existing.results||[]).map(r=>r.source_key));
+    const workflow=await env.DB.prepare('SELECT release_mode FROM workflow_settings WHERE id=1').first(),review=workflow?.release_mode!=='auto';
     let created=0;const statements=[];
     for(const item of variants) {
       if(seen.has(item.key))continue;
@@ -150,10 +151,10 @@ async function scanReleases(env,force=false,fetcher=fetch,pushedSnapshot=null) {
       statements.push(env.DB.prepare("INSERT OR IGNORE INTO mail_releases(source_key,campaign_id,discovered_at) VALUES(?,?,?)").bind(item.key,id,now));
       if(!shouldSend)continue;
       const label=item.platform==='mac'?'macOS':'Windows',subject=`MuseFilm ${label} ${item.title}${item.preview?' · 预览版':''} 已发布`;
-      const body=`你订阅的 MuseFilm ${label} 有新版本了。\n\n${item.notes}\n\n查看本次版本与安装包：\n${item.url}\n\n感谢你一直陪着 MuseFilm 留住每一卷光。`;
-      statements.push(env.DB.prepare("INSERT INTO campaigns(id,subject,body,status,test_status,created_at,updated_at) VALUES(?,?,?,'queued','automatic',?,?)").bind(id,subject,body,now,now));
+      const body=releaseDraftBody(item);
+      statements.push(env.DB.prepare("INSERT INTO campaigns(id,subject,body,status,test_status,created_at,updated_at) VALUES(?,?,?,?,?,?,?)").bind(id,subject,body,review?'draft':'queued',review?'':'automatic',now,now));
       statements.push(env.DB.prepare("INSERT INTO campaign_options(campaign_id,audience,kind,scheduled_at,source_key,release_url) VALUES(?,?,'release',?,?,?)").bind(id,item.platform,now,item.key,item.url));
-      statements.push(env.DB.prepare(`INSERT INTO campaign_recipients(campaign_id,subscriber_id) SELECT ?,s.id FROM subscribers s WHERE ${audienceWhere}`).bind(id,item.platform,item.platform));created++;
+      if(!review)statements.push(env.DB.prepare(`INSERT INTO campaign_recipients(campaign_id,subscriber_id) SELECT ?,s.id FROM subscribers s WHERE ${audienceWhere}`).bind(id,item.platform,item.platform));created++;
     }
     statements.push(env.DB.prepare("UPDATE mail_settings SET baseline_at=COALESCE(baseline_at,?),last_scan_at=?,scan_due=?,scan_error='',etag=? WHERE id=1").bind(now,now,due,feed.etag));
     // Bound the transaction even when an authenticated paginated feed includes more history.
@@ -304,6 +305,7 @@ async function mailTick(env) {
   // Keep network/DB work bounded on the free Worker plan. Both checks run at least every few minutes.
   if(s.scan_due<=isoNow())await scanReleases(env);
   else if(s.imap_enabled && s.imap_due<=isoNow())await pollBounces(env);
+  await workflowsTick(env);
   await dispatchMail(env);
 }
 
