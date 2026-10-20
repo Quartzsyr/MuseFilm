@@ -90,3 +90,11 @@ test("email HTML escapes visitor-supplied strings", () => {
   assert.doesNotMatch(content.html, /<script>|<img/);
   assert.match(content.html, /&lt;img/);
 });
+
+test("iPhone and iPad simple POST requests are recorded and send owner notifications",async()=>{
+  for(const agent of ["Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) Safari/605.1","Mozilla/5.0 (iPad; CPU OS 18_0 like Mac OS X) Safari/605.1"]){
+    const config=env(),sent=[];config.EMAIL={async send(mail){sent.push(mail)}};
+    const req=request("/api/download",{eventId:crypto.randomUUID(),downloadUrl:installerUrl,noticeVersion:"2026-10-19"});req.headers.set("Content-Type","text/plain;charset=UTF-8");req.headers.set("User-Agent",agent);
+    const response=await worker.fetch(req,config);assert.equal(response.status,202);assert.equal((await response.json()).emailQueued,true);assert.equal(sent.length,1);assert.match(sent[0].text,/iOS\/iPadOS/);assert.equal(config.DB.statuses[0],"sent");
+  }
+});

@@ -61,7 +61,7 @@ const TRANSLATIONS = {
     "hero.description": "MuseFilm 把胶卷、扫描与拍摄记忆安放在一处。像在观片台上展开底片，先看见一卷的呼吸，再靠近那张真正留下来的照片。",
     "hero.downloadWindows": "下载 Windows 版",
     "hero.downloadMac": "下载 macOS 版",
-    "hero.downloadReleases": "查看所有版本",
+    "hero.downloadReleases": "选择安装包",
     "hero.explore": "探索 MuseFilm",
     "hero.verified": "次 GitHub Releases 已验证下载",
     "hero.visitMoment": "次访问在此停留",
@@ -280,7 +280,7 @@ const TRANSLATIONS = {
     "hero.description": "MuseFilm keeps rolls, scans, and memories in one quiet place. Read the rhythm of a strip on the light table, then move closer to the frame that stays with you.",
     "hero.downloadWindows": "Download for Windows",
     "hero.downloadMac": "Download for macOS",
-    "hero.downloadReleases": "View all releases",
+    "hero.downloadReleases": "Choose an installer",
     "hero.explore": "Explore MuseFilm",
     "hero.verified": "verified downloads on GitHub Releases",
     "hero.visitMoment": "visits paused here",
@@ -1463,10 +1463,13 @@ refreshPlatformDownload = () => {
   const icon = link.querySelector("[data-platform-download-icon]");
   if (detectedDownloadPlatform === "releases") {
     link.dataset.platform = "releases";
-    link.href = RELEASES_URL;
-    link.classList.add("is-release-only");
+    // Mobile visitors choose a desktop installer on this page, preserving
+    // the email dialog and notification path instead of bypassing it on GitHub.
+    link.href = "#download";
+    link.target = "_self";
+    link.classList.remove("is-release-only");
     if (label) label.textContent = translate("hero.downloadReleases");
-    if (icon) icon.textContent = "↗";
+    if (icon) icon.textContent = "↓";
     return;
   }
 
@@ -1476,6 +1479,7 @@ refreshPlatformDownload = () => {
   const assetUrl = info?.asset?.browser_download_url;
   const releaseUrl = info?.release?.html_url;
   link.dataset.platform = platform;
+  link.target = "_blank";
   link.href = assetUrl || releaseUrl || fallback?.href || RELEASES_URL;
   link.classList.toggle("is-release-only", Boolean(info && !assetUrl));
   if (label) label.textContent = translate(platform === "mac" ? "hero.downloadMac" : "hero.downloadWindows");
@@ -2043,6 +2047,17 @@ function completeDownload(email = "") {
   const downloadUrl = pendingDownload;
   pendingDownload = null;
   downloadDialog?.close();
+  // Initiate reporting before opening a tab can suspend the original page.
+  void musefilmApi("/api/download", {
+    method: "POST", keepalive: true,
+    // A CORS-simple request avoids a preflight while Safari opens the installer.
+    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
+  }).then((result) => {
+    if (email && !result.thankYouQueued) showDownloadToast(translate("download.emailSaved"));
+  }).catch(() => {
+    if (email) showDownloadToast(translate("download.emailFailed"));
+  });
   // Start the installer within the user's click, independently of email delivery.
   const link = document.createElement("a");
   link.href = downloadUrl;
@@ -2055,14 +2070,6 @@ function completeDownload(email = "") {
   downloadOpened = true;
   renderCounts(lastCounts, lastCountsSynced);
   showDownloadToast(translate(email ? "download.emailQueued" : "download.started"));
-  void musefilmApi("/api/download", {
-    method: "POST", keepalive: true,
-    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
-  }).then((result) => {
-    if (email && !result.thankYouQueued) showDownloadToast(translate("download.emailSaved"));
-  }).catch(() => {
-    if (email) showDownloadToast(translate("download.emailFailed"));
-  });
 }
 
 function recordDownloadClick(event) {

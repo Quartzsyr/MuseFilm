@@ -59,3 +59,23 @@ test("network failures retain verified initial counts", async () => {
   assert.deepEqual(app.state().counts, initialCounts);
   assert.equal(app.state().synced, false);
 });
+
+function platformEntry(navigator) {
+  const label={},icon={},classes=new Set();
+  const link={dataset:{},href:"",target:"_blank",querySelector:selector=>selector.includes("label")?label:icon,classList:{add:name=>classes.add(name),remove:name=>classes.delete(name),toggle(name,force){if(force)classes.add(name);else classes.delete(name)}}};
+  const fallback={href:"https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm.dmg"};
+  const context=vm.createContext({navigator,RELEASES_URL:"https://github.com/Quartzsyr/MuseFilm/releases",lastReleaseData:null,refreshPlatformDownload:()=>{},translate:key=>key,document:{querySelector:selector=>selector==="[data-platform-download]"?link:fallback}});
+  vm.runInContext(source.slice(source.indexOf("function detectDownloadPlatform()"),source.indexOf("function formatBytes("))+"\nrefreshPlatformDownload();",context);
+  return {link,label,icon};
+}
+test("phone and iPad entry points stay on the installer chooser instead of bypassing notifications",()=>{
+  for(const navigator of [
+    {userAgent:"Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit Safari",platform:"iPhone",maxTouchPoints:5},
+    {userAgent:"Mozilla/5.0 (iPad; CPU OS 18_0 like Mac OS X) AppleWebKit Safari",platform:"iPad",maxTouchPoints:5},
+    {userAgent:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit Safari",platform:"MacIntel",maxTouchPoints:5},
+    {userAgent:"Mozilla/5.0 (Linux; Android 15) Chrome",platform:"Linux armv8l",maxTouchPoints:5},
+  ]){const {link,label,icon}=platformEntry(navigator);assert.equal(link.href,"#download");assert.equal(link.target,"_self");assert.equal(label.textContent,"hero.downloadReleases");assert.equal(icon.textContent,"↓")}
+});
+test("desktop entry points retain their direct installer links",()=>{
+  for(const navigator of [{userAgent:"Macintosh",platform:"MacIntel",maxTouchPoints:0},{userAgent:"Windows NT 10.0",platform:"Win32",maxTouchPoints:0}]){const {link}=platformEntry(navigator);assert.match(link.href,/releases\/download\//);assert.equal(link.target,"_blank")}
+});
