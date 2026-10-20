@@ -79,7 +79,7 @@ async function dispatchMail(env) {
   if(!communityMailReady(env)) return;
   const release=await mailLock(env,'dispatch',75);if(!release)return;
   try {
-    await env.DB.prepare("UPDATE campaign_recipients SET status='uncertain',error_code='SEND_LEASE_EXPIRED' WHERE status IN ('sending','pending') AND EXISTS(SELECT 1 FROM mail_delivery d WHERE d.campaign_id=campaign_recipients.campaign_id AND d.subscriber_id=campaign_recipients.subscriber_id AND d.lease_token IS NOT NULL AND d.lease_until<?)").bind(isoNow()).run();
+    await env.DB.prepare("UPDATE campaign_recipients SET status='uncertain',error_code='SEND_LEASE_EXPIRED' WHERE status IN ('sending','pending','retry_wait') AND EXISTS(SELECT 1 FROM mail_delivery d WHERE d.campaign_id=campaign_recipients.campaign_id AND d.subscriber_id=campaign_recipients.subscriber_id AND d.lease_token IS NOT NULL AND d.lease_until<?)").bind(isoNow()).run();
     const rows=await env.DB.prepare(campaignSelect+" WHERE c.status IN ('scheduled','queued','sending','retry_wait') AND (o.scheduled_at IS NULL OR o.scheduled_at<=?) AND (EXISTS(SELECT 1 FROM campaign_recipients r LEFT JOIN mail_delivery d ON d.campaign_id=r.campaign_id AND d.subscriber_id=r.subscriber_id WHERE r.campaign_id=c.id AND (r.status='pending' OR r.status='retry_wait' AND d.next_attempt_at<=strftime('%Y-%m-%dT%H:%M:%fZ','now'))) OR NOT EXISTS(SELECT 1 FROM campaign_recipients r WHERE r.campaign_id=c.id AND r.status IN ('pending','sending','retry_wait'))) ORDER BY COALESCE(o.scheduled_at,c.created_at) LIMIT 1").bind(isoNow()).all();
     for(const campaign of rows.results || []) {
       if(campaign.status==='scheduled') {
@@ -340,7 +340,7 @@ async function handleMailAdmin(request,env,ctx) {
   if(action==='progress') {
     const recipients=await env.DB.prepare("SELECT s.email,r.status,r.error_code,r.sent_at,d.attempts,d.next_attempt_at,d.last_stage FROM campaign_recipients r JOIN subscribers s ON s.id=r.subscriber_id LEFT JOIN mail_delivery d ON d.campaign_id=r.campaign_id AND d.subscriber_id=r.subscriber_id WHERE r.campaign_id=? ORDER BY r.status,s.email LIMIT 100").bind(campaign.id).all();
     const attempts=await env.DB.prepare('SELECT a.*,s.email FROM mail_attempts a JOIN subscribers s ON s.id=a.subscriber_id WHERE a.campaign_id=? ORDER BY a.created_at DESC LIMIT 100').bind(campaign.id).all();
-    return json({ok:true,progress:await campaignProgress(env,campaign.id),recipients:recipients.results || [],attempts:attempts.results || []});
+    return json({ok:true,campaign,progress:await campaignProgress(env,campaign.id),recipients:recipients.results || [],attempts:attempts.results || []});
   }
   if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
   if(['test','start','process','retry'].includes(action) && !communityMailReady(env))return json({ok:false,error:'请先配置 QQ SMTP。'},503);
