@@ -12,7 +12,7 @@ function smtpMime(message, user) {
   const wrap = value => encode(value).match(/.{1,76}/g)?.join("\r\n") || "";
   const boundary = "musefilm-"+crypto.randomUUID();
   if (!validEmail(message.to) || !validEmail(user)) throw Object.assign(new Error("Invalid recipient"),{code:"SMTP_INVALID_ADDRESS"});
-  const headers = ["From: MuseFilm <"+user+">","To: <"+message.to+">","Subject: =?UTF-8?B?"+encode(String(message.subject || "").replace(/[\r\n]/g," "))+"?=","Date: "+new Date().toUTCString(),"Message-ID: <"+crypto.randomUUID()+"@musefilm.top>","MIME-Version: 1.0"];
+  const headers = ["From: MuseFilm <"+user+">","To: <"+message.to+">","Subject: =?UTF-8?B?"+encode(String(message.subject || "").replace(/[\r\n]/g," "))+"?=","Date: "+new Date().toUTCString(),"Message-ID: <"+(/^[a-z0-9-]+@musefilm\.top$/.test(message.messageId || "") ? message.messageId : crypto.randomUUID()+"@musefilm.top")+">","MIME-Version: 1.0"];
   if (validEmail(message.replyTo)) headers.push("Reply-To: <"+message.replyTo+">");
   headers.push('Content-Type: multipart/alternative; boundary="'+boundary+'"');
   return headers.join("\r\n")+"\r\n\r\n--"+boundary+"\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.text)+"\r\n--"+boundary+"\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.html)+"\r\n--"+boundary+"--\r\n";
@@ -23,27 +23,29 @@ async function sendQqSmtp(env,message,connectOverride) {
   if(!env.SMTP_PASSWORD || !validEmail(user)) throw Object.assign(new Error("QQ SMTP not configured"),{code:"SMTP_NOT_CONFIGURED"});
   const connect=connectOverride || (await import("node:tls")).connect;
   const socket=connect({host:"smtp.qq.com",port:465,servername:"smtp.qq.com",rejectUnauthorized:true});
-  let buffer="",pending=null,failed=null;const replies=[];
+  let buffer="",pending=null,failed=null,stage="connect",bodySubmitted=false;const replies=[];
+  const deadline=setTimeout(()=>{fail(Object.assign(new Error("SMTP deadline"),{code:"SMTP_TIMEOUT"}));socket.destroy()},20000);
   const fail=error=>{failed=error;if(pending){pending.reject(error);pending=null}};
   socket.on("error",()=>fail(Object.assign(new Error("SMTP connection failed"),{code:"SMTP_CONNECTION_FAILED"})));
-  socket.on("close",()=>{if(pending)fail(Object.assign(new Error("SMTP connection closed"),{code:"SMTP_CONNECTION_CLOSED"}))});
+  socket.on("close",()=>fail(Object.assign(new Error("SMTP connection closed"),{code:"SMTP_CONNECTION_CLOSED"})));
   socket.setTimeout(15000,()=>{fail(Object.assign(new Error("SMTP timeout"),{code:"SMTP_TIMEOUT"}));socket.destroy()});
   socket.on("data",chunk=>{
     buffer+=chunk.toString();if(buffer.length>131072){fail(Object.assign(new Error("SMTP reply too large"),{code:"SMTP_BAD_REPLY"}));socket.destroy();return}
     let end;
-    while((end=buffer.indexOf("\r\n"))>=0){const line=buffer.slice(0,end);buffer=buffer.slice(end+2);if(/^\d{3} /.test(line)){const code=Number(line.slice(0,3));if(pending){const current=pending;pending=null;current.resolve(code)}else replies.push(code)}}
+    while((end=buffer.indexOf("\r\n"))>=0){const line=buffer.slice(0,end);buffer=buffer.slice(end+2);if(/^\d{3} /.test(line)){const code={number:Number(line.slice(0,3)),enhanced:line.match(/\b([245]\.\d{1,3}\.\d{1,3})\b/)?.[1] || ""};if(pending){const current=pending;pending=null;current.resolve(code)}else replies.push(code)}}
   });
   const reply=()=>failed?Promise.reject(failed):replies.length?Promise.resolve(replies.shift()):new Promise((resolve,reject)=>{pending={resolve,reject}});
-  const expect=async code=>{const received=await reply();if(received!==code)throw Object.assign(new Error("SMTP rejected command"),{code:"SMTP_"+received})};
+  const expect=async code=>{const received=await reply();if(received.number!==code)throw Object.assign(new Error("SMTP rejected command"),{code:"SMTP_"+received.number,enhanced:received.enhanced})};
   const command=async(line,code)=>{await new Promise((resolve,reject)=>socket.write(line+"\r\n",error=>error?reject(error):resolve()));await expect(code)};
   const encode=value=>btoa(String.fromCharCode(...new TextEncoder().encode(value)));
   try {
-    await expect(220);await command("EHLO musefilm.top",250);await command("AUTH LOGIN",334);await command(encode(user),334);await command(encode(env.SMTP_PASSWORD),235);
-    await command("MAIL FROM:<"+user+">",250);await command("RCPT TO:<"+message.to+">",250);await command("DATA",354);
-    await command(smtpMime(message,user).replace(/(^|\r\n)\./g,"$1..")+"\r\n.",250);
+    await expect(220);stage="ehlo";await command("EHLO musefilm.top",250);stage="auth";await command("AUTH LOGIN",334);await command(encode(user),334);await command(encode(env.SMTP_PASSWORD),235);
+    stage="mail";await command("MAIL FROM:<"+user+">",250);stage="rcpt";await command("RCPT TO:<"+message.to+">",250);stage="data";await command("DATA",354);
+    stage="data_ack";bodySubmitted=true;await command(smtpMime(message,user).replace(/(^|\r\n)\./g,"$1..")+"\r\n.",250);
     // Successful DATA acknowledgement is the delivery boundary; QUIT is best effort.
     socket.write("QUIT\r\n");return {accepted:true};
-  } finally {socket.end();socket.destroy()}
+  } catch(error) {error.stage=stage;error.uncertain=bodySubmitted && !/^SMTP_\d{3}$/.test(error.code || "");throw error}
+  finally {clearTimeout(deadline);socket.end();socket.destroy()}
 }
 
 async function sendCommunityMail(env,message) {
@@ -99,6 +101,7 @@ async function saveDownloadContact(env, body, event) {
     consent_version=CASE WHEN excluded.status IN ('pending','subscribed') THEN excluded.consent_version ELSE subscribers.consent_version END`)
     .bind(crypto.randomUUID(),email,direct ? "subscribed" : requested ? "pending" : "contact",event.locale || "zh",event.platform,requested ? body.consentVersion : "",requested ? now : null,direct ? now : null,crypto.randomUUID()+crypto.randomUUID(),crypto.randomUUID()+crypto.randomUUID(),now,now).run();
   const subscriber = await env.DB.prepare("SELECT * FROM subscribers WHERE email=?").bind(email).first();
+  if (subscriber && ["windows","mac"].includes(event.platform)) await env.DB.prepare("INSERT OR IGNORE INTO subscriber_platforms(subscriber_id,platform,created_at) VALUES(?,?,?)").bind(subscriber.id,event.platform,now).run();
   if (subscriber) await env.DB.prepare("INSERT OR IGNORE INTO subscriber_downloads(download_id,subscriber_id) VALUES(?,?)").bind(event.id,subscriber.id).run();
   if (!subscriber || subscriber.status === "unsubscribed") return { subscriber, mailId: null };
   const id = crypto.randomUUID();
@@ -112,7 +115,8 @@ async function sendThankYou(env, contact) {
   let status = "sent", errorCode = "";
   try {
     const subscriber = await env.DB.prepare("SELECT * FROM subscribers WHERE id=?").bind(contact.subscriber.id).first();
-    if (!subscriber || subscriber.status === "unsubscribed") status = "suppressed";
+    const suppressed=subscriber && await env.DB.prepare("SELECT email FROM mail_suppressions WHERE email=?").bind(subscriber.email).first();
+    if (!subscriber || subscriber.status === "unsubscribed" || suppressed) status = "suppressed";
     else await sendCommunityMail(env,{ to: subscriber.email, from: env.FEEDBACK_FROM_EMAIL, replyTo: env.FEEDBACK_TO_EMAIL, ...thankYouContent(subscriber) });
   } catch (error) { status = "failed"; errorCode = cleanText(error?.code || "send_failed", 80); }
   await env.DB.prepare("UPDATE subscriber_mail_log SET status=?,error_code=?,sent_at=? WHERE id=?").bind(status,errorCode,status === "sent" ? new Date().toISOString() : null,contact.mailId).run();
@@ -176,14 +180,14 @@ async function adminSubscribers(request,env) {
   const values = [`%${q}%`,status,status];
   const where = "WHERE email LIKE ? AND (?='' OR status=?)";
   const count = await env.DB.prepare(`SELECT COUNT(*) AS count FROM subscribers ${where}`).bind(...values).first();
-  const rows = await env.DB.prepare(`SELECT id,email,status,locale,platform,consent_at,confirmed_at,created_at,last_download_at,(SELECT status FROM subscriber_mail_log WHERE subscriber_id=subscribers.id ORDER BY created_at DESC LIMIT 1) AS thank_you_status FROM subscribers ${where} ORDER BY created_at DESC LIMIT 50 OFFSET ?`).bind(...values,(page-1)*50).all();
+  const rows = await env.DB.prepare(`SELECT id,email,status,locale,platform,(SELECT GROUP_CONCAT(platform) FROM subscriber_platforms WHERE subscriber_id=subscribers.id) AS platforms,(SELECT reason FROM mail_suppressions WHERE email=subscribers.email) AS suppression_reason,consent_at,confirmed_at,created_at,last_download_at,(SELECT status FROM subscriber_mail_log WHERE subscriber_id=subscribers.id ORDER BY created_at DESC LIMIT 1) AS thank_you_status FROM subscribers ${where} ORDER BY created_at DESC LIMIT 50 OFFSET ?`).bind(...values,(page-1)*50).all();
   const stats = await env.DB.prepare("SELECT COUNT(*) AS total,SUM(status='subscribed') AS subscribed,SUM(status='pending') AS pending,SUM(status='contact') AS contact,SUM(status='unsubscribed') AS unsubscribed FROM subscribers").first();
   return json({ok:true,subscribers:rows.results || [],total:Number(count?.count || 0),page,stats});
 }
 
 function campaignContent(campaign,subscriber) {
   const unsubscribe = subscriberLinks(subscriber).unsubscribe;
-  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton("https://musefilm.top/#download","打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
+  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton(campaign.release_url || "https://musefilm.top/#download",campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n下载：https://musefilm.top/#download\n退订：${unsubscribe}` };
 }
 
 async function campaignProgress(env,id) {
@@ -193,25 +197,8 @@ async function campaignProgress(env,id) {
   return progress;
 }
 
-async function processCampaign(env,campaign) {
-  const rows = await env.DB.prepare("SELECT subscriber_id FROM campaign_recipients WHERE campaign_id=? AND status='pending' LIMIT 3").bind(campaign.id).all();
-  for (const row of rows.results || []) {
-    const claimed = await env.DB.prepare("UPDATE campaign_recipients SET status='sending' WHERE campaign_id=? AND subscriber_id=? AND status='pending'").bind(campaign.id,row.subscriber_id).run();
-    if (!Number(claimed.meta?.changes || 0)) continue;
-    const subscriber = await env.DB.prepare("SELECT * FROM subscribers WHERE id=? AND status='subscribed'").bind(row.subscriber_id).first();
-    let status="skipped",error="";
-    if (subscriber) {
-      try { await sendCommunityMail(env,{to:subscriber.email,from:env.FEEDBACK_FROM_EMAIL,replyTo:env.FEEDBACK_TO_EMAIL,...campaignContent(campaign,subscriber)});status="sent"; }
-      catch(e) { status="failed";error=cleanText(e?.code || "send_failed",80); }
-    }
-    await env.DB.prepare("UPDATE campaign_recipients SET status=?,error_code=?,sent_at=? WHERE campaign_id=? AND subscriber_id=?").bind(status,error,status==='sent' ? new Date().toISOString() : null,campaign.id,row.subscriber_id).run();
-  }
-  const progress = await campaignProgress(env,campaign.id);
-  if (!progress.pending && !progress.sending) await env.DB.prepare("UPDATE campaigns SET status=?,updated_at=? WHERE id=?").bind(progress.failed ? "partial_failure" : "sent",new Date().toISOString(),campaign.id).run();
-  return progress;
-}
-
-async function handleCommunity(request,env) {
+async function handleCommunity(request,env,ctx) {
+  const releaseResponse=await handleReleaseCheck(request,env,ctx);if(releaseResponse)return releaseResponse;
   const url = new URL(request.url),path=url.pathname;
   if (path === "/admin" || path === "/admin/") return communityHtml(ADMIN_PAGE_HTML);
   if (["/subscribe/confirm","/unsubscribe"].includes(path)) {
@@ -253,48 +240,5 @@ async function handleCommunity(request,env) {
     await env.DB.prepare("UPDATE subscribers SET status='unsubscribed' WHERE id=?").bind(subscriberMatch[1]).run();
     return json({ok:true});
   }
-  if(path === "/api/admin/campaigns" && request.method === "GET") {
-    const rows=await env.DB.prepare("SELECT * FROM campaigns ORDER BY created_at DESC LIMIT 50").all();return json({ok:true,campaigns:rows.results || []});
-  }
-  const match=path.match(/^\/api\/admin\/campaigns\/([^/]+)(?:\/(preview|test|start|process|progress))?$/);
-  if((path === "/api/admin/campaigns" && request.method === "POST") || (match && !match[2] && request.method === "PATCH")) {
-    const body=await readJson(request,24576),subject=cleanText(body.subject,160),text=cleanText(body.body,20000);
-    if(subject.length<3 || text.length<10) return json({ok:false,error:"请填写标题与正文（至少 10 字）。"},400);
-    const id=match ? match[1] : crypto.randomUUID(),now=new Date().toISOString();
-    if(match) {
-      const result=await env.DB.prepare("UPDATE campaigns SET subject=?,body=?,test_status='',tested_at=NULL,updated_at=? WHERE id=? AND status='draft'").bind(subject,text,now,id).run();
-      if(!Number(result.meta?.changes || 0)) return json({ok:false,error:"只有草稿可以修改。"},409);
-    } else await env.DB.prepare("INSERT INTO campaigns(id,subject,body,created_at,updated_at) VALUES(?,?,?,?,?)").bind(id,subject,text,now,now).run();
-    return json({ok:true,id});
-  }
-  if(match) {
-    const campaign=await env.DB.prepare("SELECT * FROM campaigns WHERE id=?").bind(match[1]).first();
-    if(!campaign) return json({ok:false,error:"not_found"},404);
-    const action=match[2];
-    if (["test","start","process"].includes(action) && !communityMailReady(env)) return json({ok:false,error:"请先配置 QQ 邮箱 SMTP_USER 和 SMTP_PASSWORD。"},503);
-    if(action === "preview") {
-      const count=await env.DB.prepare("SELECT COUNT(*) AS count FROM subscribers WHERE status='subscribed'").first();
-      return json({ok:true,html:campaignContent(campaign,{unsubscribe_token:"preview",confirmation_token:"preview"}).html,recipientCount:Number(count?.count || 0),campaign});
-    }
-    if(action === "progress") return json({ok:true,progress:await campaignProgress(env,campaign.id)});
-    if(action === "test" && request.method === "POST") {
-      try { await sendCommunityMail(env,{to:env.FEEDBACK_TO_EMAIL,from:env.FEEDBACK_FROM_EMAIL,replyTo:env.FEEDBACK_TO_EMAIL,...campaignContent({...campaign,subject:"[测试] "+campaign.subject},{unsubscribe_token:"preview",confirmation_token:"preview"})}); }
-      catch(error) {return json({ok:false,error:`测试邮件未发出：${cleanText(error?.code || "send_failed",80)}`},503);}
-      await env.DB.prepare("UPDATE campaigns SET test_status='sent',tested_at=? WHERE id=?").bind(new Date().toISOString(),campaign.id).run();return json({ok:true});
-    }
-    if(action === "start" && request.method === "POST") {
-      if(campaign.status!=="draft" || campaign.test_status!=="sent") return json({ok:false,error:"请先向站长邮箱发送测试邮件。"},409);
-      const body=await readJson(request,1024),count=await env.DB.prepare("SELECT COUNT(*) AS count FROM subscribers WHERE status='subscribed'").first();
-      if(!Number(count?.count) || body.confirmRecipientCount!==Number(count.count)) return json({ok:false,error:"收件人数已变化，请重新预览确认。"},409);
-      const changed=await env.DB.prepare("UPDATE campaigns SET status='sending',updated_at=? WHERE id=? AND status='draft'").bind(new Date().toISOString(),campaign.id).run();
-      if(!Number(changed.meta?.changes || 0)) return json({ok:false,error:"邮件已开始发送。"},409);
-      await env.DB.prepare("INSERT OR IGNORE INTO campaign_recipients(campaign_id,subscriber_id) SELECT ?,id FROM subscribers WHERE status='subscribed'").bind(campaign.id).run();
-      return json({ok:true,progress:await campaignProgress(env,campaign.id)});
-    }
-    if(action === "process" && request.method === "POST") {
-      if(campaign.status!=="sending") return json({ok:false,error:"此邮件不在发送状态。"},409);
-      return json({ok:true,progress:await processCampaign(env,campaign)});
-    }
-  }
-  return null;
+  return handleMailAdmin(request,env,ctx);
 }
