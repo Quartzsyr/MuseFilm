@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-21T08:32:31.962Z",
+  "updatedAt": "2026-10-21T11:59:16.721Z",
   "releases": [
     {
       "id": 419320613,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-artist-watermarks.png",
           "size": 1728952,
           "digest": "sha256:663bc5e5b0ab8344083647c37a7621eaf618f988c19a835ae30f8dedd9526d68",
-          "download_count": 0
+          "download_count": 3
         },
         {
           "name": "MuseFilm-3.3-build35-universal-icon-preserved.zip",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-build35-universal-icon-preserved.zip",
           "size": 38480139,
           "digest": "sha256:5b6064b0b80885ab3657597863ab376ec1d1fa1f6f24f3ee914ac25006ae6358",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-3.3-build35-universal.dmg",
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-build35-universal.dmg",
           "size": 36140726,
           "digest": "sha256:174eef01fa9dcca251922ddb3adf5a2a5f1681feac40b10eb61c53678c8c6a78",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-3.3-leica-watermarks.png",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-leica-watermarks.png",
           "size": 1475537,
           "digest": "sha256:4c7986212661ba5b5e42b5c8dfe5304afdc01ea498f205ad48fbdfc976c04a7b",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-3.3-watermark-studio-dark.png",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-dark.png",
           "size": 2591387,
           "digest": "sha256:b21951e774a3d8550d8dec9e21b7a866ad9c28b26279136d0db69a453ef4a0e3",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-3.3-watermark-studio-light.png",
@@ -60,7 +60,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-light.png",
           "size": 2664957,
           "digest": "sha256:cf147c13c29b2ef3e06fe790d5c316aeb86fb027d8e93e02059ff76acb213bfe",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-3.3.txt",
@@ -68,7 +68,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/SHA256SUMS-3.3.txt",
           "size": 629,
           "digest": "sha256:cea862e430d3f718f3ec9541fe237b4fe61266e7ec8b12e1dd7a8be7936014ff",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
