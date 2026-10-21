@@ -1,8 +1,61 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-21T13:59:08.150Z",
+  "updatedAt": "2026-10-21T15:45:54.598Z",
   "releases": [
+    {
+      "id": 419746991,
+      "name": "MuseFilm 4.0.1 for macOS · 侧栏滚动优化",
+      "tag_name": "MAC4.0.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC4.0.1",
+      "published_at": "2026-10-21T15:45:42Z",
+      "created_at": "2026-10-21T11:59:16Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 4.0.1 for macOS · 侧栏滚动优化\n\n功能越来越多，导航也需要更从容。4.0.1 为左侧导航加入独立滚动，在较小窗口中也能访问「动态桌面」「搜索」与「设置」，继续沿用 MuseFilm 的玻璃面板、图标与选中样式。\n\n**[下载 macOS 通用版 DMG](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg)** · [保留 Finder 图标的 DMG 压缩包](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal-icon-preserved.zip) · [SHA-256 校验文件](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/SHA256SUMS-4.0.1.txt)\n\n## 本次更新\n\n- 左侧导航支持触控板与鼠标滚轮上下滚动，窗口较矮时底部功能不再被挤出。\n- 顶部 MuseFilm 标题固定，底部为赞赏按钮预留空间，避免遮挡最后一项。\n- 通过菜单栏或其他入口跳转时，自动滚动显示当前选中的导航项。\n- 保留 4.0 的光页画册、动态桌面与全部 16 种水印，包括完整四款徕卡水印。功能介绍见 [4.0 发布说明](https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC4.0)。\n\n![浅色外观：滚动后显示底部设置入口](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-light.png)\n\n![深色外观：保留现有玻璃面板与选中样式](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-dark.png)\n\n界面图由实际 SwiftUI 界面在 1100 × 720 点窗口内原生离屏渲染，使用隔离测试数据。\n\n## 安装\n\n**4.0.1 / Build 37**，支持 **macOS 14.0 及以上**，Apple Silicon 与 Intel Mac 通用版。\n\n退出 MuseFilm，打开 DMG，将 MuseFilm 拖入 Applications，已有旧版时选择替换。ZIP 包含同一个 DMG，并保留其 Finder 图标资源。\n\n此版本继续使用本地临时签名（ad-hoc），未经过 Apple 公证；macOS 的首次打开验证提示仍可能出现。可按 [Apple 官方说明](https://support.apple.com/102445) 在确认下载来源后处理首次打开。\n\n## 发布验证\n\n- 69 项自动化测试通过，含 500、720、1000 点高度下的侧栏滚动与选中项可见性，以及完整界面的浅深色布局检查。\n- 水印、光页画册、动态桌面、导入与档案现有测试通过。\n- 主程序与 Finder 快速导入扩展的版本、双架构、权限及签名完整性均已检查。\n- DMG 完整性、挂载后内容、Applications 安装链接，以及 ZIP 解压后的数据和图标元数据均已校验。\n\n反馈请前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues)，附上系统版本、复现步骤与截图。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-4.0.1-build37-universal-icon-preserved.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal-icon-preserved.zip",
+          "size": 42271774,
+          "digest": "sha256:4a228d107acfe565a264db8253679f98af9f2a53cf3a9138e2837ad71f6b0c8b",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-4.0.1-build37-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg",
+          "size": 39970844,
+          "digest": "sha256:478cd46fb62386fdae65f6ba237bc8de9f8e48dea4c800b661aae4b912ea0312",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-4.0.1-sidebar-dark.png",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-dark.png",
+          "size": 922188,
+          "digest": "sha256:0c73b781cb352ac51055ab0e61e0ec66454ec8a7bf2bf86586995ce3443b9d36",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-4.0.1-sidebar-light.png",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-light.png",
+          "size": 880984,
+          "digest": "sha256:182dc4d2eeb667a00332fa4d4f0bc133a61d3b67a15913217e7e07897d32f94c",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.0.1.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/SHA256SUMS-4.0.1.txt",
+          "size": 418,
+          "digest": "sha256:4b39ac1898a7e936ef10339a197abc2e8759f4493ddfdfc75566f0568b9c1340",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 419625241,
       "name": "MuseFilm 4.0 for macOS · 光页画册与动态桌面",
@@ -20,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-artist-watermarks.png",
           "size": 1727320,
           "digest": "sha256:f78c59acc19af03c0502f5fef312d59b3b7f1b007babfcb405713643a2b2e934",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-4.0-build36-universal-icon-preserved.zip",
@@ -28,7 +81,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal-icon-preserved.zip",
           "size": 42266215,
           "digest": "sha256:f054d91f246f025681cdea98f54144f00c57cba70611ae8dcb991a320ad78106",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-4.0-build36-universal.dmg",
@@ -36,7 +89,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal.dmg",
           "size": 39957253,
           "digest": "sha256:02f918b6309b5ede965638966578552a3b70826d38382c88ef267a4e8327b1a5",
-          "download_count": 0
+          "download_count": 3
         },
         {
           "name": "MuseFilm-4.0-leica-watermarks.png",
@@ -44,7 +97,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-leica-watermarks.png",
           "size": 1473579,
           "digest": "sha256:c10fd8e12f9385073ab1857c3b440983999abf030267042ee854a2940ec4205a",
-          "download_count": 0
+          "download_count": 6
         },
         {
           "name": "MuseFilm-4.0-music-wallpaper.png",
@@ -52,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-music-wallpaper.png",
           "size": 2088207,
           "digest": "sha256:207006ee6e34e6536358b16e2f63cc2640df338544c5741a6f526c695bdf9a44",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-4.0-photobook-light.png",
@@ -60,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-photobook-light.png",
           "size": 2424992,
           "digest": "sha256:4d628edb4c53478d4526b1159d6792b3dc0130a889cc45ed1e625d3089e1e492",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-4.0-wallpaper-dark.png",
@@ -68,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-wallpaper-dark.png",
           "size": 3539706,
           "digest": "sha256:b5fa776bde1e435a4e5486a628863d6b7bf52d03b9fb9eb8bef57f4470ac3e33",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-4.0-watermark-studio-light.png",
@@ -76,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-watermark-studio-light.png",
           "size": 2414930,
           "digest": "sha256:5c71e2fb362d4cd2e5cc45d8957acd5459ac50d701c3e433c075e0fe51b0b6c6",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.0.txt",
@@ -84,7 +137,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/SHA256SUMS-4.0.txt",
           "size": 820,
           "digest": "sha256:1ba8a3e0f5b58b453a3e9dd49dd287fdb07040441d9de68e94ecaa5fb9913b66",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
