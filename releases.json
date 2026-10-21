@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-21T15:45:54.598Z",
+  "updatedAt": "2026-10-21T17:19:32.508Z",
   "releases": [
     {
       "id": 419746991,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal-icon-preserved.zip",
           "size": 42271774,
           "digest": "sha256:4a228d107acfe565a264db8253679f98af9f2a53cf3a9138e2837ad71f6b0c8b",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-4.0.1-build37-universal.dmg",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg",
           "size": 39970844,
           "digest": "sha256:478cd46fb62386fdae65f6ba237bc8de9f8e48dea4c800b661aae4b912ea0312",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-4.0.1-sidebar-dark.png",
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-dark.png",
           "size": 922188,
           "digest": "sha256:0c73b781cb352ac51055ab0e61e0ec66454ec8a7bf2bf86586995ce3443b9d36",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-4.0.1-sidebar-light.png",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-light.png",
           "size": 880984,
           "digest": "sha256:182dc4d2eeb667a00332fa4d4f0bc133a61d3b67a15913217e7e07897d32f94c",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.0.1.txt",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/SHA256SUMS-4.0.1.txt",
           "size": 418,
           "digest": "sha256:4b39ac1898a7e936ef10339a197abc2e8759f4493ddfdfc75566f0568b9c1340",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
