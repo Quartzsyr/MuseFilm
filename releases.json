@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-22T04:59:06.673Z",
+  "updatedAt": "2026-10-22T10:17:35.720Z",
   "releases": [
     {
       "id": 419746991,
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg",
           "size": 39970844,
           "digest": "sha256:478cd46fb62386fdae65f6ba237bc8de9f8e48dea4c800b661aae4b912ea0312",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "MuseFilm-4.0.1-sidebar-dark.png",
