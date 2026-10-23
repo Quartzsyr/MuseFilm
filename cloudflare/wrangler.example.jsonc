@@ -2,7 +2,7 @@
   "$schema": "../node_modules/wrangler/config-schema.json",
   "name": "musefilm-feedback-api",
   "main": "worker.js",
-  "compatibility_date": "2026-08-12",
+  "compatibility_date": "2026-08-14",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "vars": {
@@ -11,6 +11,7 @@
     "FEEDBACK_TO_EMAIL": "",
     "FEEDBACK_FROM_EMAIL": ""
   },
+  "services": [{"binding":"MEMBERSHIP","service":"musefilm-paid-membership"}],
   "d1_databases": [
     {
       "binding": "DB",

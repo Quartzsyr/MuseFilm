@@ -46,9 +46,44 @@ test("validates and normalizes feedback context without retaining raw addresses"
   const schema = await readFile(new URL("../cloudflare/schema.sql", import.meta.url), "utf8");
   assert.match(schema, /CREATE TABLE IF NOT EXISTS visit_events/);
   assert.match(schema, /CREATE TABLE IF NOT EXISTS feedback/);
+  assert.match(schema, /CREATE TABLE IF NOT EXISTS afterglow_notes/);
+  assert.match(schema, /CREATE TABLE IF NOT EXISTS afterglow_reveals/);
   assert.match(schema, /idx_visit_events_fingerprint_created_at/);
   assert.match(schema, /idx_feedback_fingerprint_created_at/);
   assert.doesNotMatch(schema.split("CREATE TABLE IF NOT EXISTS feedback")[0], /ip_address|raw_ip|user_agent/i);
+});
+
+test("supports anonymous afterglow notes and idempotent reveals", async () => {
+  const noteId = "123e4567-e89b-12d3-a456-426614174000";
+  class AfterglowD1 extends FakeD1 {
+    prepare(sql) {
+      const statement = super.prepare(sql);
+      const originalFirst = statement.first;
+      const originalAll = statement.all;
+      statement.first = async function () {
+        if (/FROM afterglow_notes WHERE id/.test(sql)) return { id: noteId, message: "胶卷把迟到的光留了下来。", mood: "glow", locale: "zh", country: "CN", reveal_count: 1, viewer_revealed: 1, created_at: "2026-08-14T00:00:00.000Z" };
+        return originalFirst.call(this);
+      };
+      statement.all = async function () {
+        if (/FROM afterglow_notes n/.test(sql)) return { results: [{ id: noteId, message: "胶卷把迟到的光留了下来。", mood: "glow", locale: "zh", country: "CN", reveal_count: 1, viewer_revealed: 0, created_at: "2026-08-14T00:00:00.000Z" }] };
+        return originalAll.call(this);
+      };
+      return statement;
+    }
+  }
+  const database = new AfterglowD1();
+  const env = { DB: database, FINGERPRINT_SALT: "test-only-long-random-salt-over-32-characters", ALLOW_UNPROTECTED_FEEDBACK: "true" };
+  const headers = { Origin: origin, "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.20", "User-Agent": "Safari" };
+  const list = await worker.fetch(new Request("https://api.musefilm.top/api/afterglow?locale=zh", { headers }), env);
+  assert.equal(list.status, 200);
+  assert.equal((await list.json()).notes[0].message, "胶卷把迟到的光留了下来。");
+  const create = await worker.fetch(new Request("https://api.musefilm.top/api/afterglow", { method: "POST", headers, body: JSON.stringify({ message: "有些光，要等到冲洗后才知道曾经来过。", mood: "grain", locale: "zh" }) }), env);
+  assert.equal(create.status, 202);
+  const reveal = await worker.fetch(new Request(`https://api.musefilm.top/api/afterglow/${noteId}/reveal`, { method: "POST", headers }), env);
+  assert.equal(reveal.status, 200);
+  assert.equal((await reveal.json()).note.revealed, true);
+  assert.ok(database.calls.some((call) => /INSERT INTO afterglow_notes/.test(call.sql)));
+  assert.ok(database.calls.some((call) => /INSERT OR IGNORE INTO afterglow_reveals/.test(call.sql)));
 });
 
 test("serves public configuration only to allowed website origins", async () => {

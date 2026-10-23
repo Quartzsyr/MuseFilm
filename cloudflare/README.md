@@ -58,7 +58,7 @@ Before deploying this Worker, apply `migrations/20261019-visit-download-notifica
 ## Download email and subscriber dashboard (2026-10-20)
 
 - Apply `migrations/20261019-download-community.sql` before deploying this version. All statements are additive and can be reapplied.
-- Edit `community.js`, `mail-automation.js`, `dashboard.js`, `admin.html` and `admin-client.js`, then run `node scripts/bundle-community.mjs`. The generated region is embedded in `worker.js` so Cloudflare Quick Edit can deploy one module while preserving bindings and secrets.
+- Edit `email-content.js`, `community.js`, `mail-automation.js`, `dashboard.js`, `admin.html` and `admin-client.js`, then run `node scripts/bundle-community.mjs`. The generated region is embedded in `worker.js` so Cloudflare Quick Edit can deploy one module while preserving bindings and secrets.
 - The creator dashboard is `/admin` on the API Worker. `https://musefilm.top/admin/` redirects there. Login codes go only to the existing `FEEDBACK_TO_EMAIL`; codes expire after 10 minutes and are single use. Sessions use secure HttpOnly cookies and expire after 12 hours. No administrator password or session token is exposed in site assets.
 - Downloaders can skip email entirely. The current dialog states that submitting an email subscribes to updates and news. Submission with disclosure version `2026-10-20-email-subscription-v2` immediately creates `subscribed` and records consent and subscription timestamps; no email confirmation is needed. Cached legacy clients retain their original contact/pending behavior. Existing records are not bulk-enrolled. Campaigns exclude contacts, unconfirmed addresses and unsubscribed addresses, and re-check consent before each delivery.
 - Configure `SMTP_USER` with the sending QQ address (defaults to `FEEDBACK_TO_EMAIL`) and save the QQ SMTP authorization code as the encrypted `SMTP_PASSWORD` secret. This is an SMTP authorization code, not the QQ account password. The Worker connects to the fixed `smtp.qq.com:465` host using TLS with certificate verification and sends UTF-8 MIME. The existing restricted Cloudflare EMAIL binding continues to send owner notifications and login codes. Credentials are never stored in subscribers, public assets, source code or logs.
@@ -112,3 +112,14 @@ Weekly reports cover the seven days ending at the configured local scheduled tim
 A follow-up is queued at most once per subscriber and uses the existing campaign delivery queue, retries, branded template and unsubscribe link. Both queueing and dispatch exclude unsubscribe/suppression, and dispatch rechecks website feedback or the workflow being disabled. Already submitted website feedback is matched by normalized email. Ordinary replies to QQ are not read by the DSN-only IMAP check. Pre-activation downloads are excluded.
 
 Settings and preview/test/draft endpoints live under authenticated, origin-checked `/api/admin/workflows`. No new service, secret, subscription or external AI model is required; release summaries are derived deterministically from the actual release notes.
+
+
+### 统一会员管理
+
+网站管理入口为 `https://api.musefilm.top/admin#membership`，使用原有的邮箱验证码登录。会员服务的旧管理入口跳转到此页面，用户兑换码领取链接保持可用。
+
+网站 Worker 通过 `MEMBERSHIP` Service Binding 调用独立会员服务。`MEMBERSHIP_ADMIN_TOKEN` 是网站 Worker Secret，取独立会员服务现有的 `ADMIN_TOKEN`；凭据仅存在服务端，不进入浏览器。所有代理操作继续校验 HttpOnly 站长会话和同源 Origin，且只允许预定的管理接口。
+
+「会员与充值」集中展示账号、核验订单、到账提醒、兑换码、爱发电关联审核和底片漂流举报。到账提醒按真实订单去重，旧历史及零元兑换不补发，无法确定投递结果的邮件需人工核实再重试。漂流举报支持查看副本、移除副本或暂停后续漂流，不影响账号会员权益。
+
+修改模板后运行 `node scripts/bundle-community.mjs`。验证：`node --test tests/community.test.mjs tests/dashboard.test.mjs tests/membership-admin.test.mjs tests/email-images.test.mjs`。

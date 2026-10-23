@@ -1,6 +1,6 @@
 'use strict';
 const $=selector=>document.querySelector(selector),$$=selector=>[...document.querySelectorAll(selector)];
-const names={overview:'概览',mail:'邮件',subscribers:'订阅者',activity:'活动记录',automation:'自动化'};
+const names={overview:'概览',mail:'邮件',subscribers:'订阅者',activity:'活动记录',automation:'自动化',membership:'会员与充值'};
 const audiences={all:'全部有效订阅者',windows:'Windows 用户',mac:'macOS 用户'};
 const deliveryNames={draft:'草稿',scheduled:'预约中',queued:'排队中',pending:'待发送',sending:'发送中',retry_wait:'等待重试',sent:'已提交',failed:'失败',partial_failure:'需要处理',uncertain:'待核实',bounced:'已退信',skipped:'已跳过',cancelled:'已取消',suppressed:'已停止',not_configured:'未配置'};
 const subscriptionNames={subscribed:'已订阅',pending:'待确认',contact:'仅留邮箱',unsubscribed:'已退订'};
@@ -20,7 +20,7 @@ function badge(status,kind='delivery'){
 function emptyRow(columns,title,description=''){return `<tr><td colspan="${columns}" class="empty"><strong>${esc(title)}</strong>${esc(description)}</td></tr>`}
 function toast(message,error=false){clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').classList.toggle('error',error);$('#toast').hidden=false;toastTimer=setTimeout(()=>$('#toast').hidden=true,error?8000:4500)}
 function pageError(error){$('#page-error-text').textContent=error.message || String(error);$('#page-error').hidden=false}
-function showLogin(message=''){clearTimeout(progressTimer);$('#dashboard').hidden=true;$('#login').hidden=false;$('#login-message').textContent=message}
+function showLogin(message=''){clearMemberData();clearTimeout(progressTimer);$('#dashboard').hidden=true;$('#login').hidden=false;$('#login-message').textContent=message}
 async function api(path,{method='GET',body,raw=false}={}){
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),40000);state.loaders++;$('#loading-line').hidden=false;
   try {
@@ -53,6 +53,7 @@ async function loadCurrent(){const token=state.viewToken;$('#page-error').hidden
   else if(state.view==='mail'){await loadCampaigns(token);if(!$('#mail-detail-view').hidden)await loadDelivery()}
   else if(state.view==='subscribers')await loadSubscribers(token);
   else if(state.view==='activity')await loadActivity(token);
+  else if(state.view==='membership')await loadMembership();
   else if(state.view==='automation')await loadAutomation(token);
   if(token===state.viewToken)updateSync();
 }catch(error){if(error.status!==401 && token===state.viewToken)pageError(error)}}
@@ -170,6 +171,15 @@ $('#resume-editor').onclick=()=>{showMailMode('editor');renderEditorStatus()};
 $('#mail-form').addEventListener('input',()=>{renderEditorStatus();$('#editor-error').hidden=true;for(const key of ['subject','body'])if(editorFields()[key]){$('#'+key+'-error').textContent='';$('#mail-'+key).removeAttribute('aria-invalid')}});
 $('#mail-form').addEventListener('change',renderEditorStatus);$('#mail-form').onsubmit=event=>{event.preventDefault();$('#prepare-send').click()};
 $('#save-mail').onclick=()=>mailAction($('#save-mail'),async()=>{await saveDraft();toast('草稿已保存。');await loadCampaigns()});
+$('#insert-mail-image').onclick=()=>{if(state.mailBusy)return;$('#mail-image-url').value='';$('#mail-image-alt').value='';$('#mail-image-error').textContent='';$('#mail-image-dialog').showModal();$('#mail-image-url').focus()};
+$('#close-mail-image').onclick=()=>$('#mail-image-dialog').close();
+$('#mail-image-form').onsubmit=event=>{
+  event.preventDefault();let url;
+  try {url=new URL($('#mail-image-url').value.trim());const host=url.hostname.toLowerCase();if(url.protocol!=='https:' || url.username || url.password || url.port && url.port!=='443' || !host.includes('.') || /^[\d.]+$/.test(host) || host.includes(':') || /(?:^|\.)(?:localhost|local|internal|test|invalid|lan|home)$/.test(host) || /\.(?:svg|html?|js)$/i.test(url.pathname))throw new Error();url.hash=''}catch{$('#mail-image-error').textContent='请填写可公开访问的 HTTPS 图片地址。';$('#mail-image-url').focus();return}
+  const body=$('#mail-body'),alt=($('#mail-image-alt').value.trim() || 'MuseFilm 功能预览').replace(/[\[\]\r\n]/g,' '),insert='\n\n!['+alt+']('+url.href+')\n\n';
+  if(body.value.length-(body.selectionEnd-body.selectionStart)+insert.length>20000){$('#mail-image-error').textContent='正文已接近长度上限，请精简内容后再插入。';return}
+  body.setRangeText(insert,body.selectionStart,body.selectionEnd,'end');body.dispatchEvent(new Event('input',{bubbles:true}));$('#mail-image-dialog').close();body.focus();toast('图片已插入正文，点击“更新预览”查看效果。');
+};
 $('#preview-mail').onclick=()=>mailAction($('#preview-mail'),()=>saveDraft());$('#test-mail').onclick=()=>mailAction($('#test-mail'),()=>sendTest());$('#prepare-send').onclick=()=>mailAction($('#prepare-send'),()=>prepareSend());
 $('#review-action').onclick=()=>mailAction($('#review-action'),()=>reviewAction(),{dialog:true});
 $$('[data-close-review]').forEach(button=>button.onclick=()=>{if(!state.mailBusy)$('#send-review').close()});$('#send-review').addEventListener('cancel',event=>{if(state.mailBusy)event.preventDefault()});
@@ -202,4 +212,5 @@ $('#test-report').onclick=()=>buttonAction($('#test-report'),async()=>{await pos
 $$('[data-release-draft]').forEach(button=>button.onclick=async()=>{buttonAction(button,async()=>{const data=await post('/api/admin/workflows/release-draft',{platform:button.dataset.releaseDraft});await openCampaign(data.id);toast(data.existing?'已打开该版本已有的审核邮件。':'版本草稿已生成，可预览、测试和审核发送。')})});
 $$('#workflow-form input,#workflow-form select,#save-workflows').forEach(c=>c.disabled=true);
 state.editor.sig=editorSignature();$('#timezone-label').textContent='按本地时区 '+(Intl.DateTimeFormat().resolvedOptions().timeZone || '')+' 保存，关闭后台仍会到时发送。';
+// INLINE_MEMBERSHIP_CLIENT
 boot();

@@ -1,26 +1,32 @@
 // Embedded in worker.js by scripts/bundle-community.mjs for dashboard deployment.
 const CONSENT_VERSION = "2026-10-20"; // Legacy checkbox flow, retained for cached clients.
 const DIRECT_CONSENT_VERSION = "2026-10-20-email-subscription-v2";
-const COMMUNITY_ORIGIN = "https://musefilm-feedback-api.syrquartz.workers.dev";
+const COMMUNITY_ORIGIN = "https://api.musefilm.top";
 
 function communityMailReady(env) {
   return Boolean(env.SMTP_PASSWORD && validEmail(env.SMTP_USER || env.FEEDBACK_TO_EMAIL) || env.SUBSCRIBER_EMAIL);
 }
 
 function smtpMime(message, user) {
-  const encode = value => btoa(String.fromCharCode(...new TextEncoder().encode(String(value || ""))));
-  const wrap = value => encode(value).match(/.{1,76}/g)?.join("\r\n") || "";
+  const wrap = value => emailBytesBase64(new TextEncoder().encode(String(value || "")));
+  const encode = value => wrap(value).replace(/\r\n/g,'');
   const boundary = "musefilm-"+crypto.randomUUID();
   if (!validEmail(message.to) || !validEmail(user)) throw Object.assign(new Error("Invalid recipient"),{code:"SMTP_INVALID_ADDRESS"});
   const headers = ["From: MuseFilm <"+user+">","To: <"+message.to+">","Subject: =?UTF-8?B?"+encode(String(message.subject || "").replace(/[\r\n]/g," "))+"?=","Date: "+new Date().toUTCString(),"Message-ID: <"+(/^[a-z0-9-]+@musefilm\.top$/.test(message.messageId || "") ? message.messageId : crypto.randomUUID()+"@musefilm.top")+">","MIME-Version: 1.0"];
   if (validEmail(message.replyTo)) headers.push("Reply-To: <"+message.replyTo+">");
-  headers.push('Content-Type: multipart/alternative; boundary="'+boundary+'"');
-  return headers.join("\r\n")+"\r\n\r\n--"+boundary+"\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.text)+"\r\n--"+boundary+"\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.html)+"\r\n--"+boundary+"--\r\n";
+  const alternative='Content-Type: multipart/alternative; boundary="'+boundary+'"';
+  const parts="--"+boundary+"\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.text)+"\r\n--"+boundary+"\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"+wrap(message.html)+"\r\n--"+boundary+"--\r\n";
+  const images=(message.inlineImages || []).slice(0,EMAIL_IMAGE_LIMIT).filter(i=>/^mf-image-\d+@musefilm\.top$/.test(i.id || '') && i.bytes instanceof Uint8Array && i.bytes.length<=EMAIL_IMAGE_BYTES && emailImageType(i.bytes)===i.type);
+  if(!images.length)return [...headers,alternative].join('\r\n')+'\r\n\r\n'+parts;
+  const related='musefilm-related-'+crypto.randomUUID();
+  headers.push('Content-Type: multipart/related; type="multipart/alternative"; boundary="'+related+'"');
+  return headers.join('\r\n')+'\r\n\r\n--'+related+'\r\n'+alternative+'\r\n\r\n'+parts+images.map((image,index)=>'--'+related+'\r\nContent-Type: '+image.type+'\r\nContent-Transfer-Encoding: base64\r\nContent-ID: <'+image.id+'>\r\nContent-Disposition: inline; filename="musefilm-'+(index+1)+'.'+({"image/png":"png","image/jpeg":"jpg","image/gif":"gif","image/webp":"webp"}[image.type])+'"\r\n\r\n'+emailBytesBase64(image.bytes)+'\r\n').join('')+'--'+related+'--\r\n';
 }
 
 async function sendQqSmtp(env,message,connectOverride) {
   const user=env.SMTP_USER || env.FEEDBACK_TO_EMAIL;
   if(!env.SMTP_PASSWORD || !validEmail(user)) throw Object.assign(new Error("QQ SMTP not configured"),{code:"SMTP_NOT_CONFIGURED"});
+  const mime=smtpMime(message,user);
   const connect=connectOverride || (await import("node:tls")).connect;
   const socket=connect({host:"smtp.qq.com",port:465,servername:"smtp.qq.com",rejectUnauthorized:true});
   let buffer="",pending=null,failed=null,stage="connect",bodySubmitted=false;const replies=[];
@@ -41,7 +47,7 @@ async function sendQqSmtp(env,message,connectOverride) {
   try {
     await expect(220);stage="ehlo";await command("EHLO musefilm.top",250);stage="auth";await command("AUTH LOGIN",334);await command(encode(user),334);await command(encode(env.SMTP_PASSWORD),235);
     stage="mail";await command("MAIL FROM:<"+user+">",250);stage="rcpt";await command("RCPT TO:<"+message.to+">",250);stage="data";await command("DATA",354);
-    stage="data_ack";bodySubmitted=true;await command(smtpMime(message,user).replace(/(^|\r\n)\./g,"$1..")+"\r\n.",250);
+    stage="data_ack";bodySubmitted=true;await command(mime.replace(/(^|\r\n)\./g,"$1..")+"\r\n.",250);
     // Successful DATA acknowledgement is the delivery boundary; QUIT is best effort.
     socket.write("QUIT\r\n");return {accepted:true};
   } catch(error) {error.stage=stage;error.uncertain=bodySubmitted && !/^SMTP_\d{3}$/.test(error.code || "");throw error}
@@ -49,21 +55,21 @@ async function sendQqSmtp(env,message,connectOverride) {
 }
 
 async function sendCommunityMail(env,message) {
-  if(env.SMTP_PASSWORD) return sendQqSmtp(env,message);
+  if(env.SMTP_PASSWORD) return sendQqSmtp(env,await prepareInlineEmailImages(message));
   if(env.SUBSCRIBER_EMAIL) return env.SUBSCRIBER_EMAIL.send(message);
   throw Object.assign(new Error("QQ SMTP not configured"),{code:"SMTP_NOT_CONFIGURED"});
 }
 
-function communityHtml(content, title = "MuseFilm") {
-  return new Response(content, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer", "X-Frame-Options": "DENY", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; frame-src 'self' about:; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" } });
+function communityHtml(content, title = "MuseFilm", emailPreview = false) {
+  return new Response(content, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer", "X-Frame-Options": "DENY", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:"+(emailPreview?' https:':'')+"; frame-src 'self' about:; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" } });
 }
 
 function communityMessage(title, body, action = "") {
   return `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} · MuseFilm</title><style>html{color-scheme:dark}body{margin:0;padding:12vh 24px;background:#080808;color:#f2efe8;font:16px/1.8 -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif}main{max-width:520px;margin:auto;padding:36px;border:1px solid #39332f;border-radius:24px;background:radial-gradient(at top right,#35201e,transparent 65%),#131312}small{color:#d05248;letter-spacing:.15em}h1{font-size:32px;line-height:1.2;letter-spacing:-.05em}p{color:#aaa59e}button,a.button{display:inline-block;border:1px solid #d05248;border-radius:99px;padding:12px 20px;color:#fff;background:#963e36;text-decoration:none;cursor:pointer;font:inherit}a{color:#d2b297}</style><main><small>MUSEFILM · KEEP THE LIGHT</small><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p>${action}<p><a href="https://musefilm.top/">回到 MuseFilm ↗</a></p></main></html>`;
 }
 
-function subscriberEmailHtml(title, paragraphs, action, footer) {
-  return `<!doctype html><html lang="zh-CN"><body style="margin:0;padding:32px 16px;background:#090909;color:#f2efe8;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',Arial,sans-serif"><table role="presentation" style="width:100%;max-width:600px;margin:auto;border:1px solid #38322e;border-radius:22px;background:#151413;border-collapse:separate"><tr><td style="padding:32px"><div style="color:#d4b69a;font-size:12px;letter-spacing:.16em">MUSEFILM · A LETTER FROM THE DARKROOM</div><h1 style="font-size:32px;font-weight:600;line-height:1.3;letter-spacing:-.04em;color:#f2efe8">${escapeHtml(title)}</h1>${paragraphs.map(p => `<p style="color:#c4bfb7;font-size:15px;line-height:1.9;white-space:pre-wrap">${escapeHtml(p)}</p>`).join("")}${action}<hr style="border:0;border-top:1px solid #37312d;margin:28px 0"><div style="font-size:11px;color:#928b81;line-height:1.8">${footer}</div></td></tr></table></body></html>`;
+function subscriberEmailHtml(title, paragraphs, action, footer, contentHtml = null) {
+  return `<!doctype html><html lang="zh-CN"><body style="margin:0;padding:32px 16px;background:#090909;color:#f2efe8;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',Arial,sans-serif"><table role="presentation" style="width:100%;max-width:600px;margin:auto;border:1px solid #38322e;border-radius:22px;background:#151413;border-collapse:separate"><tr><td style="padding:32px"><div style="color:#d4b69a;font-size:12px;letter-spacing:.16em">MUSEFILM · A LETTER FROM THE DARKROOM</div><h1 style="font-size:32px;font-weight:600;line-height:1.3;letter-spacing:-.04em;color:#f2efe8">${escapeHtml(title)}</h1>${contentHtml ?? paragraphs.map(p => `<p style="color:#c4bfb7;font-size:15px;line-height:1.9;white-space:pre-wrap">${escapeHtml(p)}</p>`).join("")}${action}<hr style="border:0;border-top:1px solid #37312d;margin:28px 0"><div style="font-size:11px;color:#928b81;line-height:1.8">${footer}</div></td></tr></table></body></html>`;
 }
 
 function emailButton(url, label) {
@@ -174,7 +180,8 @@ function csvCell(value) {
 
 function campaignContent(campaign,subscriber) {
   const unsubscribe = subscriberLinks(subscriber).unsubscribe;
-  return { subject:campaign.subject,html:subscriberEmailHtml(campaign.subject,campaign.body.split(/\n\s*\n/),emailButton(campaign.release_url || "https://musefilm.top/#download",campaign.kind==="followup" ? "告诉我使用感受" : campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`),text:campaign.subject+"\n\n"+campaign.body+`\n\n${campaign.kind==="followup"?"反馈："+WORKFLOW_FEEDBACK_URL:"下载：https://musefilm.top/#download"}\n退订：${unsubscribe}` };
+  const content=campaignBodyContent(campaign.body),target=campaign.release_url || "https://musefilm.top/#download";
+  return { subject:campaign.subject,emailImages:content.images,html:subscriberEmailHtml(campaign.subject,[],emailButton(target,campaign.kind==="followup" ? "告诉我使用感受" : campaign.kind==="release" ? "查看新版本与下载" : "打开 MuseFilm"),`你已订阅 MuseFilm 的版本更新与新闻。<br><a href="${escapeHtml(unsubscribe)}" style="color:#bd9d85">退订后续邮件</a> · musefilm.top`,content.html),text:campaign.subject+"\n\n"+content.text+`\n\n${campaign.kind==="followup"?"反馈：":"下载："}${target}\n退订：${unsubscribe}` };
 }
 
 async function campaignProgress(env,id) {
@@ -187,7 +194,7 @@ async function campaignProgress(env,id) {
 async function handleCommunity(request,env,ctx) {
   const releaseResponse=await handleReleaseCheck(request,env,ctx);if(releaseResponse)return releaseResponse;
   const url = new URL(request.url),path=url.pathname;
-  if (path === "/admin" || path === "/admin/") return communityHtml(ADMIN_PAGE_HTML);
+  if (path === "/admin" || path === "/admin/") return communityHtml(ADMIN_PAGE_HTML,"MuseFilm",true);
   if (["/subscribe/confirm","/unsubscribe"].includes(path)) {
     const token=cleanText(url.searchParams.get("token"),100),confirm=path==="/subscribe/confirm";
     const row=await env.DB.prepare(`SELECT id,status FROM subscribers WHERE ${confirm ? "confirmation_token" : "unsubscribe_token"}=?`).bind(token).first();
@@ -208,6 +215,7 @@ async function handleCommunity(request,env,ctx) {
   if (path === "/api/admin/login/request" && request.method === "POST") return requestAdminCode(request,env);
   if (path === "/api/admin/login" && request.method === "POST") return loginAdmin(request,env);
   if (!(await adminAuthorized(request,env))) return json({ok:false,error:"unauthorized"},401);
+  const membershipResponse=await membershipAdmin(request,env);if(membershipResponse)return membershipResponse;
   const dashboardResponse=await handleDashboardAdmin(request,env);if(dashboardResponse)return dashboardResponse;
   if (path === "/api/admin/session") return json({ok:true});
   if (path === "/api/admin/mail-config") return json({ok:true,ready:communityMailReady(env),ownerEmail:validEmail(env.FEEDBACK_TO_EMAIL) ? env.FEEDBACK_TO_EMAIL : "",provider:env.SMTP_PASSWORD ? "qq_smtp" : env.SUBSCRIBER_EMAIL ? "cloudflare" : "not_configured"});

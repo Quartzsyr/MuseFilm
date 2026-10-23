@@ -30,16 +30,17 @@ function ownerReportContent(report,test=false) {
 }
 function releaseDraftBody(item) {
   const label=item.platform==='mac'?'macOS':'Windows';
-  const bullets=[],paragraphs=[];let include=true;
+  const bullets=[],paragraphs=[],images=[];let include=true;
   for(const raw of item.notes.split(/\r?\n/)) {
     const heading=raw.match(/^#{1,6}\s+(.+)/);
     if(heading){if(/历史版本|历史更新/.test(heading[1]))break;include=!/版本信息|安装|发布验证|SHA.?256|校验|反馈|签名|构建|测试/.test(heading[1]);continue}
-    const line=raw.replace(/\*\*([^*]+)\*\*/g,'$1').replace(/`([^`]+)`/g,'$1').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').trim();
+    const withoutImages=raw.replace(emailImagePattern(),(match,alt,value)=>{const url=emailImageUrl(value);if(include && url && images.length<4 && !images.some(i=>i.url===url))images.push({url,alt:alt.trim() || 'MuseFilm 功能预览'});return ''});
+    const line=withoutImages.replace(/\*\*([^*]+)\*\*/g,'$1').replace(/`([^`]+)`/g,'$1').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').trim();
     if(!include || !line || /^\||^[-_*]{3,}$|^https?:/.test(line))continue;
     if(/^[-*+]\s+/.test(line))bullets.push(line.replace(/^[-*+]\s+/,''));else if(!/^>/.test(line))paragraphs.push(line);
   }
   const selected=(bullets.length?bullets:paragraphs).slice(0,6),notes=selected.map(line=>'• '+(line.length>180?line.slice(0,180)+'…':line)).join('\n') || '本次更新已经准备好，欢迎查看完整版本说明。';
-  return `你好，\n\nMuseFilm ${label} ${item.title}${item.preview?'（预览版）':''} 已准备好。\n\n这次更新带来了这些改进：\n${notes}\n\n查看完整说明与下载：\n${item.url}\n\n用起来有什么感受或建议，欢迎直接回复这封邮件。谢谢你陪 MuseFilm 留住每一卷光。`;
+  return `你好，\n\nMuseFilm ${label} ${item.title}${item.preview?'（预览版）':''} 已准备好。\n\n这次更新带来了这些改进：\n${notes}${images.length?'\n\n'+images.map(i=>'!['+i.alt+']('+i.url+')').join('\n\n'):''}\n\n查看完整说明与下载：\n${item.url}\n\n用起来有什么感受或建议，欢迎直接回复这封邮件。谢谢你陪 MuseFilm 留住每一卷光。`;
 }
 async function followupAllowed(env,subscriberId) {
   const row=await env.DB.prepare("SELECT s.id FROM subscribers s WHERE s.id=? AND s.status='subscribed' AND (SELECT followup_enabled FROM workflow_settings WHERE id=1)=1 AND NOT EXISTS(SELECT 1 FROM mail_suppressions x WHERE x.email=s.email) AND NOT EXISTS(SELECT 1 FROM feedback f WHERE lower(trim(f.contact_email))=s.email)").bind(subscriberId).first();

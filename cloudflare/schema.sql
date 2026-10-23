@@ -85,6 +85,20 @@ CREATE TABLE IF NOT EXISTS download_events (
 CREATE INDEX IF NOT EXISTS idx_download_events_created_at ON download_events(created_at);
 CREATE INDEX IF NOT EXISTS idx_download_events_fingerprint_created_at ON download_events(fingerprint, created_at);
 
+-- Local afterglow feature, retained independently of the production dashboard.
+CREATE TABLE IF NOT EXISTS afterglow_notes (
+ id TEXT PRIMARY KEY, message TEXT NOT NULL, mood TEXT NOT NULL DEFAULT 'glow',
+ locale TEXT NOT NULL DEFAULT 'zh', country TEXT NOT NULL DEFAULT 'XX', fingerprint TEXT NOT NULL,
+ status TEXT NOT NULL DEFAULT 'reviewing' CHECK(status IN ('reviewing','visible','hidden')),
+ reveal_count INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_afterglow_notes_status_created_at ON afterglow_notes(status,created_at);
+CREATE INDEX IF NOT EXISTS idx_afterglow_notes_fingerprint_created_at ON afterglow_notes(fingerprint,created_at);
+CREATE TABLE IF NOT EXISTS afterglow_reveals (
+ note_id TEXT NOT NULL, fingerprint TEXT NOT NULL, created_at TEXT NOT NULL,
+ PRIMARY KEY(note_id,fingerprint)
+);
+
 CREATE TABLE IF NOT EXISTS subscribers (
   id TEXT PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
