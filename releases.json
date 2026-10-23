@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T13:35:01.962Z",
+  "updatedAt": "2026-10-23T14:53:52.537Z",
   "releases": [
+    {
+      "id": 421966533,
+      "name": "MuseFilm 会员版 4.2.0 · 购买进度与个人账户",
+      "tag_name": "PAID-MAC4.2.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.2.0",
+      "published_at": "2026-10-23T14:53:44Z",
+      "created_at": "2026-10-23T13:35:02Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.2.0 · 购买进度与个人账户\n\n购买、兑换与光页权益现在围绕同一个账号联动，用户中心新增资料和外观自定义。\n\n- **购买进度**：显示前往付款、核验订单、权益到账。返回软件及等待期间自动检查；平台已核验订单但会员日期尚未同步时，明确显示等待权益同步。手动订单号核验保留。\n- **兑换前预览**：先显示领取账号、会员类型、当前同档到期日、兑换后的预计日期及叠加规则，确认后才领取。预览 5 分钟内有效，期间权益变化时需重新预览。相同档位从已核验的同档最晚到期日后顺延，不同档位分别计时，重复兑换不增加时长。\n- **Pro 光页不限次**：图片、PDF、摄影短片及 Live Photo 正式导出不限次数，不消耗券。有效 Pro 试用继续享有完整 Pro 权益。\n- **Plus 月度赠送**：每个 31 天权益周期赠送 1 个光页项目，周期末以会员到期日截断，未使用额度不结转；激活绑定当前项目，24 小时内可修改、重试和重复使用全部导出形式。重复同步订单、登录或重试不会额外发放或重新计时。\n- **免费预览**：可以继续编辑及预览；正式导出需要 Pro、Plus 已激活的赠送项目，或对应已购买的单次创作券。原有创作券继续有效。\n- **个人账户**：新增概览、个人资料、使用偏好、设备与记录。支持上传头像、选填城市、个人网站、偏爱胶片或器材、拍摄偏好，以及名片主题色与封面氛围；可导出个人资料。解除设备授权前增加确认。\n\n资料、自定义头像、权益、兑换和购买进度保存在 Cloudflare。上传头像仅保存裁切压缩后的图片；档案和原图继续留在本机。侧栏头像昵称保留 Liquid Glass，账号登录继续使用本地会话文件，不访问钥匙串。\n\n4.2.0 / Build 48，支持 macOS 14 及以上，Apple Silicon / Intel 通用版。可在软件内检查更新，也可下载 DMG。新光页规则由此版客户端执行；旧版本的本地导出逻辑不会被服务端改写。\n\n已执行原生、SQLite 后端与隔离线上账号验证；自动化不进行真实付款，不代表真实支付与最终收件已代为验收。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.2.0-build48-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/MuseFilm-Paid-4.2.0-build48-universal.dmg",
+          "size": 53404341,
+          "digest": "sha256:800d44b7d33f5d325477148e3455157e497f0b9301c88d7e51a5a2c84fcae9ac",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.2.0-build48-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/MuseFilm-Paid-4.2.0-build48-universal.zip",
+          "size": 50761478,
+          "digest": "sha256:d1d0d3be902e903039ca3b8b407ddd823185da5774b0f65b058eea8d4648ef70",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/SHA256SUMS.txt",
+          "size": 216,
+          "digest": "sha256:baa2d2beecbc9ef926f8c1a8b3ff8521eaf0f2030d36649b5470c0d500197ca5",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 421880042,
       "name": "MuseFilm 会员版 4.1.3 · 本地保存登录",
