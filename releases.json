@@ -1,212 +1,42 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T07:39:04.801Z",
+  "updatedAt": "2026-10-23T12:27:47.059Z",
   "releases": [
     {
-      "id": 419746991,
-      "name": "MuseFilm 4.0.1 for macOS · 侧栏滚动优化",
-      "tag_name": "MAC4.0.1",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC4.0.1",
-      "published_at": "2026-10-21T15:45:42Z",
-      "created_at": "2026-10-21T11:59:16Z",
+      "id": 421809564,
+      "name": "MuseFilm 会员版 4.1.1 for macOS · 登录与权益修复",
+      "tag_name": "PAID-MAC4.1.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.1",
+      "published_at": "2026-10-23T12:27:31Z",
+      "created_at": "2026-10-23T07:39:04Z",
       "prerelease": false,
       "draft": false,
-      "body": "# MuseFilm 4.0.1 for macOS · 侧栏滚动优化\n\n功能越来越多，导航也需要更从容。4.0.1 为左侧导航加入独立滚动，在较小窗口中也能访问「动态桌面」「搜索」与「设置」，继续沿用 MuseFilm 的玻璃面板、图标与选中样式。\n\n**[下载 macOS 通用版 DMG](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg)** · [保留 Finder 图标的 DMG 压缩包](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal-icon-preserved.zip) · [SHA-256 校验文件](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/SHA256SUMS-4.0.1.txt)\n\n## 本次更新\n\n- 左侧导航支持触控板与鼠标滚轮上下滚动，窗口较矮时底部功能不再被挤出。\n- 顶部 MuseFilm 标题固定，底部为赞赏按钮预留空间，避免遮挡最后一项。\n- 通过菜单栏或其他入口跳转时，自动滚动显示当前选中的导航项。\n- 保留 4.0 的光页画册、动态桌面与全部 16 种水印，包括完整四款徕卡水印。功能介绍见 [4.0 发布说明](https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC4.0)。\n\n![浅色外观：滚动后显示底部设置入口](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-light.png)\n\n![深色外观：保留现有玻璃面板与选中样式](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-dark.png)\n\n界面图由实际 SwiftUI 界面在 1100 × 720 点窗口内原生离屏渲染，使用隔离测试数据。\n\n## 安装\n\n**4.0.1 / Build 37**，支持 **macOS 14.0 及以上**，Apple Silicon 与 Intel Mac 通用版。\n\n退出 MuseFilm，打开 DMG，将 MuseFilm 拖入 Applications，已有旧版时选择替换。ZIP 包含同一个 DMG，并保留其 Finder 图标资源。\n\n此版本继续使用本地临时签名（ad-hoc），未经过 Apple 公证；macOS 的首次打开验证提示仍可能出现。可按 [Apple 官方说明](https://support.apple.com/102445) 在确认下载来源后处理首次打开。\n\n## 发布验证\n\n- 69 项自动化测试通过，含 500、720、1000 点高度下的侧栏滚动与选中项可见性，以及完整界面的浅深色布局检查。\n- 水印、光页画册、动态桌面、导入与档案现有测试通过。\n- 主程序与 Finder 快速导入扩展的版本、双架构、权限及签名完整性均已检查。\n- DMG 完整性、挂载后内容、Applications 安装链接，以及 ZIP 解压后的数据和图标元数据均已校验。\n\n反馈请前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues)，附上系统版本、复现步骤与截图。\n",
+      "body": "# MuseFilm 会员版 4.1.1 · 登录授权与权益修复\n\n启动时不再反复请求钥匙串密码；兑换会员后，订阅信息和额外试用会清楚区分，日期统一以中文显示。\n\n## 本次更新\n\n- 合并登录凭据至单个加密钥匙串项目，界面和定时任务读取内存缓存；启动及后台刷新不弹出密码授权。旧登录可在「个人信息」主动解锁，或改用邮箱验证码登录。\n- 兑换 Plus / Pro 后优先显示已开通的会员等级及其独立到期时间；仍可使用的额外 Pro 试用单独说明。试用结束不会覆盖尚未到期的订阅，重叠期间保留较高权益。\n- 会员、试用到期日期、兑换时间、设备最近使用时间采用中文年月日。\n- 免费版默认 8 款常用胶卷、4 件器材；会员与试用可使用完整内置目录。自定义额度与档案额度仍按套餐执行。已使用、编辑、装卷或记录库存的项目到期后保留，不删除原图及档案。\n- 保留软件内检查、下载、校验、安装及重启更新功能；当前版本为 4.1.1 / Build 45。\n\n## 验证\n\n原生 99 项用例（含参数化 101 次执行）与后端 77 项测试通过，覆盖登录凭据缓存与静默读写、会员与试用重叠、中文日期、默认目录及既有导入、画册、水印和桌面功能。通用安装包的主程序、扩展和 Sparkle 安装助手均已核对双架构及完整签名；线上临时账号的登录恢复、兑换与试用并存验证通过，验收数据已清理。未进行真实付费扣款或 Intel / 其他 macOS 版本的实机回归。\n\n## 安装与更新\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用版。已安装会员版 Build 44 可从软件菜单「检查更新…」安装此更新；首次使用者下载 DMG，将「MuseFilm 会员版」放入 Applications。\n\n会员版与旧版 MuseFilm 使用独立应用标识和本地数据库，可以并存，不会自动迁移旧版图库。账号、会员、兑换记录与通用设置保存在 Cloudflare；档案、原图与画册工程仍在本机。新用户可领取连续 72 小时 Pro 试用，不自动扣费；套餐与单次创作券以软件内说明及爱发电支付页面为准。\n\n当前使用临时签名（ad-hoc），尚未通过 Apple Developer ID 签名与公证。系统首次打开验证和用户主动解锁钥匙串时仍可能要求授权；本次优化不修改 macOS 安全策略。\n\n反馈请前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues)，附上系统版本、应用版本与复现步骤，请勿附上验证码或密钥。\n",
       "assets": [
         {
-          "name": "MuseFilm-4.0.1-build37-universal-icon-preserved.zip",
+          "name": "MuseFilm-Paid-4.1.1-build45-universal.dmg",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal-icon-preserved.zip",
-          "size": 42271774,
-          "digest": "sha256:4a228d107acfe565a264db8253679f98af9f2a53cf3a9138e2837ad71f6b0c8b",
-          "download_count": 1
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/MuseFilm-Paid-4.1.1-build45-universal.dmg",
+          "size": 53036606,
+          "digest": "sha256:20f275f3a94cb5a24267e3e98dccb033eb895e3dd42e07981859ae5dcc96c687",
+          "download_count": 0
         },
         {
-          "name": "MuseFilm-4.0.1-build37-universal.dmg",
+          "name": "MuseFilm-Paid-4.1.1-build45-universal.zip",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-build37-universal.dmg",
-          "size": 39970844,
-          "digest": "sha256:478cd46fb62386fdae65f6ba237bc8de9f8e48dea4c800b661aae4b912ea0312",
-          "download_count": 4
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/MuseFilm-Paid-4.1.1-build45-universal.zip",
+          "size": 50404515,
+          "digest": "sha256:9513eafa005f7c34d65e76cac50a1926d29d48e2d1e5c5a79a1df6ce39d74623",
+          "download_count": 0
         },
         {
-          "name": "MuseFilm-4.0.1-sidebar-dark.png",
+          "name": "SHA256SUMS.txt",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-dark.png",
-          "size": 922188,
-          "digest": "sha256:0c73b781cb352ac51055ab0e61e0ec66454ec8a7bf2bf86586995ce3443b9d36",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-4.0.1-sidebar-light.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/MuseFilm-4.0.1-sidebar-light.png",
-          "size": 880984,
-          "digest": "sha256:182dc4d2eeb667a00332fa4d4f0bc133a61d3b67a15913217e7e07897d32f94c",
-          "download_count": 2
-        },
-        {
-          "name": "SHA256SUMS-4.0.1.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0.1/SHA256SUMS-4.0.1.txt",
-          "size": 418,
-          "digest": "sha256:4b39ac1898a7e936ef10339a197abc2e8759f4493ddfdfc75566f0568b9c1340",
-          "download_count": 1
-        }
-      ]
-    },
-    {
-      "id": 419625241,
-      "name": "MuseFilm 4.0 for macOS · 光页画册与动态桌面",
-      "tag_name": "MAC4.0",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC4.0",
-      "published_at": "2026-10-21T13:58:54Z",
-      "created_at": "2026-10-21T11:59:16Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "# MuseFilm 4.0 for macOS · 从胶卷档案，到光页与动态桌面\n\nMuseFilm 4.0 将胶卷整理、画册制作、水印输出与动态桌面连在一起。把一卷照片编成画册，把翻页短片放上桌面，也可以让桌面随当前胶卷与圈选照片一起变化。\n\n**[下载 macOS 通用版 DMG](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal.dmg)** · [保留 Finder 图标的 DMG 压缩包](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal-icon-preserved.zip) · [SHA-256 校验文件](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/SHA256SUMS-4.0.txt)\n\n## 光页画册，融入胶片档案\n\n- 新增「光页画册」，支持从整卷、圈选照片、本地照片或文件夹开始制作，并沿用胶卷中的器材与拍摄记录。\n- 8 种封面、9 种双页构图，支持页面排序、裁切重心、留白、纸色、页码与摄影信息调整。\n- 支持自动草稿、恢复副本及 `.musebook.json` 画册文件，继续编辑时保留顺序与参数。\n- 输出整书图片、6 种出版尺寸 PDF、带配乐与可选旁白的摄影短片，以及翻页 Live Photo。\n- 画册直接调用同一个水印工坊；图片与打印输出保留像素尺寸及 DPI，导出前检查原图访问与覆盖风险。\n\n![光页画册浅色界面](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-photobook-light.png)\n\n## 动态桌面，让胶卷继续播放\n\n- 新增「动态桌面」，迁入摄影专辑、动态视频、音乐壁纸和原生壁纸库。\n- 可按整卷、多卷或仅圈选照片轮播，也可跟随当前浏览的胶卷；新增照片与圈选变化自动同步到播放列表。\n- 摄影轮播支持停留时间、顺序／随机、动态效果，支持 GIF；胶卷导入与 Finder 快速导入也支持 GIF。\n- 光页短片导出后自动加入「光页影像」，可预览或一键设为静音循环壁纸，也可选择导出成功后直接应用。原视频音轨保留。\n- 支持本地视频与系统航拍资源选择；音乐模式保留 Apple Music 歌曲信息、封面、时间轴歌词、6 种可视化样式、歌词灵动岛及系统音频频谱。\n- 加入菜单栏播放控制、按显示器记录与恢复原壁纸、睡眠暂停与唤醒继续，以及可选的下次启动继续播放。\n\n![动态桌面深色界面](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-wallpaper-dark.png)\n\n![音乐壁纸与播放设置](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-music-wallpaper.png)\n\n动态桌面需 MuseFilm 保持运行；锁屏可同步静态照片或视频首帧，macOS 安全登录界面不播放第三方视频。光页影像列表引用导出文件，移除条目不会删除原视频。\n\n## 徕卡四款完整保留，水印更清晰\n\n水印工坊共有 **16 种独立版式**。徕卡系列全部保留，并恢复各自独立的构图与预设标识：\n\n- **经典白框**：白底信息栏与中央红标。\n- **居中铭牌**：画面下方居中的器材信息，上方红标。\n- **画面分置**：相机信息与曝光信息左右分置。\n- **角落参数**：底部左右分列信息，默认右上红标。\n\n此前合并的「器材铭牌」也已恢复。其余模板保留用途和构图明确的样式，减少重复选项；六种艺术构图、个人签名、原始徕卡红标、器材手动补充、纸色与字体控制继续提供。徕卡模板读取和保存均不再合并为其他版式。\n\n![完整四款徕卡水印](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-leica-watermarks.png)\n\n![六种艺术水印构图](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-artist-watermarks.png)\n\n## 与 MuseFilm 一致的界面\n\n画册、动态桌面与水印工坊沿用 MuseFilm 的主题、浅深色外观和玻璃面板，保留档案、画册、成片和桌面之间的直接入口。设置的「开发者的其他作品」与赞赏页加入了 [屏幕夹子 · Clamp](https://clamp.musefilm.top)，把参考图、文件、文字与链接夹在屏幕边缘。\n\n![水印工坊浅色界面](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-watermark-studio-light.png)\n\n以上界面图由实际 SwiftUI 视图进行原生离屏渲染；水印对照图使用实际导出渲染器，器材信息为版式演示。\n\n## 安装与版本\n\n| 项目 | 信息 |\n| --- | --- |\n| 版本 | 4.0 / Build 36 |\n| 系统要求 | macOS 14.0 或更高版本 |\n| 芯片 | Apple Silicon 与 Intel Mac 通用版 |\n| 签名 | 本地临时签名（ad-hoc），未经过 Apple 公证 |\n\n退出 MuseFilm，打开 DMG，将 MuseFilm 拖入 Applications，已有旧版时选择替换。ZIP 中包含同一个 DMG，并保留下载文件的 Finder 图标资源。\n\n更新前可从设置导出 JSON 档案备份，并单独备份原始照片与画册／视频文件。档案备份和画册文件不包含原始照片；画册及桌面视频通过安全书签引用原文件。\n\nApple Music 自动化、系统音频和 Photos 添加权限只在使用对应功能时申请；普通照片与视频桌面无需音乐或系统音频权限。缺失封面／歌词的在线检索仅发送歌曲元数据。\n\n## 发布验证\n\n- **65 项自动化测试通过**，覆盖全部 16 种水印、四款徕卡红标与预设兼容、画册保存与图片／PDF／配乐视频／Live Photo 配对元数据，以及胶卷联动、GIF、静音视频和音乐布局。\n- 完成画册、动态桌面、水印工坊在 850 × 720 点下的浅深色原生离屏布局检查。\n- Release 主程序与 Finder 快速导入扩展均为 **4.0 / Build 36**，含 arm64、x86_64；盘内签名完整，权限与项目配置一致，原始徕卡红标资源已打包。\n- DMG 完整性、挂载后程序版本与架构、Applications 拖拽安装链接、ZIP 解压后的 DMG 数据与 Finder 图标元数据均校验通过。\n- 自动化使用隔离数据和注入的系统壁纸接口。真正的系统壁纸设置／恢复、多屏与 Spaces、睡眠唤醒、Apple Music 与系统音频授权、Photos 实际导入、远端资源服务，以及旧版 macOS／Intel 实机交互尚未完成完整手动回归。\n\n## 下载校验\n\n| 文件 | 字节数 | SHA-256 |\n| --- | ---: | --- |\n| `MuseFilm-4.0-build36-universal.dmg` | 39,957,253 | `02f918b6309b5ede965638966578552a3b70826d38382c88ef267a4e8327b1a5` |\n| `MuseFilm-4.0-build36-universal-icon-preserved.zip` | 42,266,215 | `f054d91f246f025681cdea98f54144f00c57cba70611ae8dcb991a320ad78106` |\n\n\n反馈请前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues)，附上系统版本、MuseFilm 版本与 Build、复现步骤及相关截图。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-4.0-artist-watermarks.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-artist-watermarks.png",
-          "size": 1727320,
-          "digest": "sha256:f78c59acc19af03c0502f5fef312d59b3b7f1b007babfcb405713643a2b2e934",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-4.0-build36-universal-icon-preserved.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal-icon-preserved.zip",
-          "size": 42266215,
-          "digest": "sha256:f054d91f246f025681cdea98f54144f00c57cba70611ae8dcb991a320ad78106",
-          "download_count": 1
-        },
-        {
-          "name": "MuseFilm-4.0-build36-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-build36-universal.dmg",
-          "size": 39957253,
-          "digest": "sha256:02f918b6309b5ede965638966578552a3b70826d38382c88ef267a4e8327b1a5",
-          "download_count": 3
-        },
-        {
-          "name": "MuseFilm-4.0-leica-watermarks.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-leica-watermarks.png",
-          "size": 1473579,
-          "digest": "sha256:c10fd8e12f9385073ab1857c3b440983999abf030267042ee854a2940ec4205a",
-          "download_count": 6
-        },
-        {
-          "name": "MuseFilm-4.0-music-wallpaper.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-music-wallpaper.png",
-          "size": 2088207,
-          "digest": "sha256:207006ee6e34e6536358b16e2f63cc2640df338544c5741a6f526c695bdf9a44",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-4.0-photobook-light.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-photobook-light.png",
-          "size": 2424992,
-          "digest": "sha256:4d628edb4c53478d4526b1159d6792b3dc0130a889cc45ed1e625d3089e1e492",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-4.0-wallpaper-dark.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-wallpaper-dark.png",
-          "size": 3539706,
-          "digest": "sha256:b5fa776bde1e435a4e5486a628863d6b7bf52d03b9fb9eb8bef57f4470ac3e33",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-4.0-watermark-studio-light.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/MuseFilm-4.0-watermark-studio-light.png",
-          "size": 2414930,
-          "digest": "sha256:5c71e2fb362d4cd2e5cc45d8957acd5459ac50d701c3e433c075e0fe51b0b6c6",
-          "download_count": 2
-        },
-        {
-          "name": "SHA256SUMS-4.0.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC4.0/SHA256SUMS-4.0.txt",
-          "size": 820,
-          "digest": "sha256:1ba8a3e0f5b58b453a3e9dd49dd287fdb07040441d9de68e94ecaa5fb9913b66",
-          "download_count": 1
-        }
-      ]
-    },
-    {
-      "id": 419320613,
-      "name": "MuseFilm 3.3 for macOS · 水印工坊与徕卡落款",
-      "tag_name": "MAC3.3",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/MAC3.3",
-      "published_at": "2026-10-21T08:32:17Z",
-      "created_at": "2026-10-21T06:06:10Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "# MuseFilm 3.3 for macOS · 让落款成为作品的一部分\n\nMuseFilm 3.3 新增水印工坊，将照片、胶片档案、艺术排版与徕卡落款连接起来。现在共有 **26 种水印版式**，可以为单张、整卷或圈选照片制作成片，同时保留原始照片。\n\n![MuseFilm 3.3 六种艺术水印构图](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-artist-watermarks.png)\n\n## 六种艺术构图\n\n本次新增六种独立的画面结构，让照片以不同的阅读方式呈现：\n\n- **页边札记**：完整照片搭配独立侧栏，用标题、署名和器材信息形成不对称阅读。\n- **瑞士海报**：大标题、主体影像与极轻的说明文字，适合系列作品和展览分享。\n- **电影片尾**：深色上下片边，分别安排片名、署名和摄影信息。\n- **漂浮诗行**：画面内的大衬线标题与轻落款，可选择白墨、黑墨或暖银。\n- **藏书扉页**：偏置照片、不等宽纸边与独立藏版区域，支持自定义版号。\n- **拍立得手记**：方形纸面保留完整照片，底部留给手写题注与旅行记忆。\n\n原有美术馆卡纸、展签、银盐黑边、负片边码、影像色谱等 16 种版式继续保留。纸色、字体、留白、字距、墨色浓度和题签高度均可调整；长文字自动适配，短中文标题会避免末行只剩单字。\n\n## 徕卡红标与四种专属版式\n\n直接适配 Leica 项目中的原始红标资源和器材字体解析，新增独立「徕卡」分类：\n\n- **经典白框**：白底信息栏、中央红标，以及分列的相机、镜头和曝光参数。\n- **居中铭牌**：画面下方居中的器材信息，红标放在文字上方。\n- **画面分置**：相机信息位于左侧，曝光信息和红标位于右侧。\n- **角落参数**：左下相机信息、右下参数，默认右上红标。\n\n红标可独立开关，并调整位置、大小和透明度。也可以加入透明 PNG 的亲笔签名、藏印或个人标志。字体仅调用本机已安装字体并提供回退，不附带专有字体文件。\n\n![MuseFilm 3.3 徕卡红标与四种版式](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-leica-watermarks.png)\n\n> 样张中的器材与曝光文字用于版式演示。\n\n## 与胶片档案连在一起\n\n- 从左侧「水印工坊」、档案工具栏或照片预览页进入；菜单快捷键为 **⌘⌥W**。\n- 归档照片使用卷宗记录的胶片、机身、镜头、ISO、拍摄日期与地点，避免把扫描仪 EXIF 当作拍摄信息。\n- 直接打开的照片可读取 EXIF；缺失的信息留空，也能手动补充相机、镜头、曝光参数和日期。\n- 提供实时预览、原图对比、个人预设，以及单张、整卷、仅圈选照片和多张外部照片的导出。\n- JPEG、PNG、TIFF 输出为 8 位 sRGB；可保留照片原始像素，或选择 4096／2048 像素长边。画框和题签会增加输出尺寸。\n- 输出不复制原图中的 EXIF／GPS；所选信息仅作为水印文字显示。地点／坐标默认关闭。\n- 后台处理、批量进度、取消及失败汇总；导出另存成片，并检查原图、符号链接和硬链接，避免覆盖来源文件。\n\n## 与 MuseFilm 一致的工坊界面\n\n工坊沿用 MuseFilm 的玻璃面板、主题色和浅深色外观。新增「精选新作」和「徕卡」入口，顶部保留固定导出按钮。\n\n以下为实际 SwiftUI 界面的**原生离屏渲染预览**：\n\n![MuseFilm 3.3 水印工坊深色界面预览](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-dark.png)\n\n![MuseFilm 3.3 水印工坊浅色界面预览](https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-light.png)\n\n## 版本与安装\n\n| 项目 | 信息 |\n| --- | --- |\n| 版本 | 3.3 |\n| Build | 35 |\n| 系统要求 | macOS 14.0 或更高版本 |\n| 芯片 | Apple Silicon 与 Intel Mac 通用版 |\n| 签名 | 本地临时签名（ad-hoc），未经过 Apple 公证 |\n\n1. 下载 `MuseFilm-3.3-build35-universal.dmg`。\n2. 退出 MuseFilm，打开安装盘，将 MuseFilm 拖入 Applications；已有旧版时选择替换。\n3. 如需保留下载文件的 Finder 安装图标，请下载 `MuseFilm-3.3-build35-universal-icon-preserved.zip`，解压后再打开 DMG。\n\n更新前可从设置导出 JSON 档案备份，并单独备份原始照片；JSON 备份不包含原始照片。\n\n## 发布验证\n\n- **34 项自动化测试通过**，覆盖全部 26 种版式的横竖图、中文长标题、红标位置、参数覆盖、预设兼容、EXIF 方向、输出格式与原图保护。\n- 完成浅深色工坊在 850 × 720 点下的原生离屏布局检查。\n- Release 构建成功；安装盘内主程序与快速导入扩展均验证为 3.3 / Build 35，包含 arm64 与 x86_64，签名完整且权限与项目配置一致。\n- DMG 完整性校验通过；ZIP 解压后的 DMG 数据、Finder 图标标记与图标资源叉均与原文件一致。\n- 尚未完成 macOS 14／15 和 Intel 实机交互回归，以及文件选择器、预设菜单和批量取消的完整手动点击回归。\n\n## 下载校验\n\n| 文件 | 字节数 | SHA-256 |\n| --- | ---: | --- |\n| `MuseFilm-3.3-build35-universal.dmg` | 36,140,726 | `174eef01fa9dcca251922ddb3adf5a2a5f1681feac40b10eb61c53678c8c6a78` |\n| `MuseFilm-3.3-build35-universal-icon-preserved.zip` | 38,480,139 | `5b6064b0b80885ab3657597863ab376ec1d1fa1f6f24f3ee914ac25006ae6358` |\n\n`SHA256SUMS-3.3.txt` 同时提供两个安装包和四张展示图的校验值。\n\n\n## 反馈\n\n请在 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues) 附上 macOS 版本、MuseFilm 版本与 Build、复现步骤，以及相关截图或崩溃报告。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-3.3-artist-watermarks.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-artist-watermarks.png",
-          "size": 1728952,
-          "digest": "sha256:663bc5e5b0ab8344083647c37a7621eaf618f988c19a835ae30f8dedd9526d68",
-          "download_count": 3
-        },
-        {
-          "name": "MuseFilm-3.3-build35-universal-icon-preserved.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-build35-universal-icon-preserved.zip",
-          "size": 38480139,
-          "digest": "sha256:5b6064b0b80885ab3657597863ab376ec1d1fa1f6f24f3ee914ac25006ae6358",
-          "download_count": 1
-        },
-        {
-          "name": "MuseFilm-3.3-build35-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-build35-universal.dmg",
-          "size": 36140726,
-          "digest": "sha256:174eef01fa9dcca251922ddb3adf5a2a5f1681feac40b10eb61c53678c8c6a78",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-3.3-leica-watermarks.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-leica-watermarks.png",
-          "size": 1475537,
-          "digest": "sha256:4c7986212661ba5b5e42b5c8dfe5304afdc01ea498f205ad48fbdfc976c04a7b",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-3.3-watermark-studio-dark.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-dark.png",
-          "size": 2591387,
-          "digest": "sha256:b21951e774a3d8550d8dec9e21b7a866ad9c28b26279136d0db69a453ef4a0e3",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-3.3-watermark-studio-light.png",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/MuseFilm-3.3-watermark-studio-light.png",
-          "size": 2664957,
-          "digest": "sha256:cf147c13c29b2ef3e06fe790d5c316aeb86fb027d8e93e02059ff76acb213bfe",
-          "download_count": 2
-        },
-        {
-          "name": "SHA256SUMS-3.3.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.3/SHA256SUMS-3.3.txt",
-          "size": 629,
-          "digest": "sha256:cea862e430d3f718f3ec9541fe237b4fe61266e7ec8b12e1dd7a8be7936014ff",
-          "download_count": 1
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/SHA256SUMS.txt",
+          "size": 216,
+          "digest": "sha256:7598a78b98c98633e9cdaff63ab323558234837b5df1694b8f4295d86cc8c348",
+          "download_count": 0
         }
       ]
     },
