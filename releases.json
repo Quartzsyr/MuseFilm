@@ -1,152 +1,41 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T14:54:04.587Z",
+  "updatedAt": "2026-10-23T17:15:02.184Z",
   "releases": [
     {
-      "id": 421966533,
-      "name": "MuseFilm 会员版 4.2.0 · 购买进度与个人账户",
-      "tag_name": "PAID-MAC4.2.0",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.2.0",
-      "published_at": "2026-10-23T14:53:44Z",
-      "created_at": "2026-10-23T13:35:02Z",
+      "id": 422009279,
+      "name": "MuseFilm 会员版 4.2.1 · 统一会员管理后台",
+      "tag_name": "PAID-MAC4.2.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.2.1",
+      "published_at": "2026-10-23T17:14:53Z",
+      "created_at": "2026-10-23T14:54:04Z",
       "prerelease": false,
       "draft": false,
-      "body": "# MuseFilm 会员版 4.2.0 · 购买进度与个人账户\n\n购买、兑换与光页权益现在围绕同一个账号联动，用户中心新增资料和外观自定义。\n\n- **购买进度**：显示前往付款、核验订单、权益到账。返回软件及等待期间自动检查；平台已核验订单但会员日期尚未同步时，明确显示等待权益同步。手动订单号核验保留。\n- **兑换前预览**：先显示领取账号、会员类型、当前同档到期日、兑换后的预计日期及叠加规则，确认后才领取。预览 5 分钟内有效，期间权益变化时需重新预览。相同档位从已核验的同档最晚到期日后顺延，不同档位分别计时，重复兑换不增加时长。\n- **Pro 光页不限次**：图片、PDF、摄影短片及 Live Photo 正式导出不限次数，不消耗券。有效 Pro 试用继续享有完整 Pro 权益。\n- **Plus 月度赠送**：每个 31 天权益周期赠送 1 个光页项目，周期末以会员到期日截断，未使用额度不结转；激活绑定当前项目，24 小时内可修改、重试和重复使用全部导出形式。重复同步订单、登录或重试不会额外发放或重新计时。\n- **免费预览**：可以继续编辑及预览；正式导出需要 Pro、Plus 已激活的赠送项目，或对应已购买的单次创作券。原有创作券继续有效。\n- **个人账户**：新增概览、个人资料、使用偏好、设备与记录。支持上传头像、选填城市、个人网站、偏爱胶片或器材、拍摄偏好，以及名片主题色与封面氛围；可导出个人资料。解除设备授权前增加确认。\n\n资料、自定义头像、权益、兑换和购买进度保存在 Cloudflare。上传头像仅保存裁切压缩后的图片；档案和原图继续留在本机。侧栏头像昵称保留 Liquid Glass，账号登录继续使用本地会话文件，不访问钥匙串。\n\n4.2.0 / Build 48，支持 macOS 14 及以上，Apple Silicon / Intel 通用版。可在软件内检查更新，也可下载 DMG。新光页规则由此版客户端执行；旧版本的本地导出逻辑不会被服务端改写。\n\n已执行原生、SQLite 后端与隔离线上账号验证；自动化不进行真实付款，不代表真实支付与最终收件已代为验收。\n",
+      "body": "MuseFilm 会员版 4.2.1（Build 49）\n\n- 会员服务增加最低客户端版本检查，请通过软件内“检查更新”升级后继续登录和同步权益。\n- 创作者网站后台统一管理充值订单、到账提醒、会员账号、兑换码及爱发电关联审核。\n- 新充值经爱发电服务端核验后发送站长通知，按订单去重；历史订单和零元兑换单独标注。\n- 旧版安装包已备份并停止公开分发，早期版本保持现有安排。\n\nmacOS 14 及以上，支持 Apple 芯片和 Intel。现有用户可在软件内直接检查更新。\n账号与会员保存在 Cloudflare；照片和档案仍在本机。登录信息使用本地会话文件。\n",
       "assets": [
         {
-          "name": "MuseFilm-Paid-4.2.0-build48-universal.dmg",
+          "name": "MuseFilm-Paid-4.2.1-build49-universal.dmg",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/MuseFilm-Paid-4.2.0-build48-universal.dmg",
-          "size": 53404341,
-          "digest": "sha256:800d44b7d33f5d325477148e3455157e497f0b9301c88d7e51a5a2c84fcae9ac",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.1/MuseFilm-Paid-4.2.1-build49-universal.dmg",
+          "size": 53405383,
+          "digest": "sha256:275bc3526fe992ce494ea9cfe9dd5b855a1add90bc94dd663513ffa9081860a1",
           "download_count": 0
         },
         {
-          "name": "MuseFilm-Paid-4.2.0-build48-universal.zip",
+          "name": "MuseFilm-Paid-4.2.1-build49-universal.zip",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/MuseFilm-Paid-4.2.0-build48-universal.zip",
-          "size": 50761478,
-          "digest": "sha256:d1d0d3be902e903039ca3b8b407ddd823185da5774b0f65b058eea8d4648ef70",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.1/MuseFilm-Paid-4.2.1-build49-universal.zip",
+          "size": 50762534,
+          "digest": "sha256:f132e5d18d2f0ae32ad1625c76a409ce792d3af318eae1516319907fff5f0585",
           "download_count": 0
         },
         {
           "name": "SHA256SUMS.txt",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.0/SHA256SUMS.txt",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.2.1/SHA256SUMS.txt",
           "size": 216,
-          "digest": "sha256:baa2d2beecbc9ef926f8c1a8b3ff8521eaf0f2030d36649b5470c0d500197ca5",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 421880042,
-      "name": "MuseFilm 会员版 4.1.3 · 本地保存登录",
-      "tag_name": "PAID-MAC4.1.3",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.3",
-      "published_at": "2026-10-23T13:34:33Z",
-      "created_at": "2026-10-23T13:32:42Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "# MuseFilm 会员版 4.1.3 · 本地保存登录\n\n账号登录不再读写 macOS 钥匙串。移除“解锁已保存的登录”入口，改为在应用沙盒中保存可撤销的登录会话。\n\n- 升级后用原邮箱验证码登录一次，以后重启或更新可自动恢复有效会话；会话过期或被撤销后需重新验证。\n- 会话文件及目录仅当前 macOS 用户可读写，采用原子替换并拒绝链接及异常文件。不保存邮箱密码或验证码。文件未加密，请勿复制或分享。\n- 退出后清除本机账号会话及资料缓存，无法联网时也可以退出本机；设备标识保留。\n- 会员、试用、兑换记录和通用设置继续与 Cloudflare 账号关联。会员缓存需通过服务端签名验证，本地编辑无法授予会员。\n- 保留中文日期、免费默认 8 款胶卷 / 4 件器材、Liquid Glass 头像昵称及软件内自动更新。\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用版。可在软件内“检查更新…”安装，或下载 DMG。\n\n请先完全退出仍运行的旧版，再安装新版本。此版不访问或删除旧钥匙串条目；升级后的首次登录使用原邮箱即可关联原有会员。\n\n验证包括完整原生测试、隔离的沙盒跨签名更新模拟、本地文件权限及损坏处理、退出后重启验证和安装包检查。账号登录代码没有钥匙串 API 依赖。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.1.3-build47-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/MuseFilm-Paid-4.1.3-build47-universal.dmg",
-          "size": 53049620,
-          "digest": "sha256:713cc9cc02811423ce5131b8c8a2d3e6dc75b7387b59200da754f5df24a4c27a",
-          "download_count": 0
-        },
-        {
-          "name": "MuseFilm-Paid-4.1.3-build47-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/MuseFilm-Paid-4.1.3-build47-universal.zip",
-          "size": 50397651,
-          "digest": "sha256:a2d53f75099a1d42090342aaba82a4ddd0f41006ddd78dea01ada3e5db28ecf6",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/SHA256SUMS.txt",
-          "size": 216,
-          "digest": "sha256:201f90ae4ef8652909ed62462887f4c6628d700a73a7a7171a6f2b459464eb94",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 421844738,
-      "name": "MuseFilm 会员版 4.1.2 for macOS · 首次启动授权修复",
-      "tag_name": "PAID-MAC4.1.2",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.2",
-      "published_at": "2026-10-23T13:01:09Z",
-      "created_at": "2026-10-23T12:28:03Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "# MuseFilm 会员版 4.1.2 · 首次启动钥匙串弹窗修复\n\n修复首次打开或安装新版后连续弹出多次会员钥匙串密码授权的问题。\n\n- 针对 macOS 传统文件钥匙串补充静默访问保护。启动、定时检查和后台保存遇到授权不足时直接返回，转由个人信息页提示。\n- 启动不再逐项读取旧版保存的会话、设备、许可、资料等机密值，只检查旧登录是否存在。\n- 「个人信息 → 解锁已保存的登录」只在主动点击时读取一个凭据，每次启动最多尝试一次。取消后可使用邮箱验证码登录。\n- 邮箱验证码登录后的保存同样使用静默方式；如果钥匙串暂时不可访问，本次登录仍可使用，下次可重新验证。\n- 会员、试用、兑换记录、中文日期、免费版默认 8 款胶卷 / 4 件器材和软件内更新继续保留。\n\n## 验证\n\n使用两个不同临时签名、相同应用标识及相同路径的沙盒测试应用模拟版本升级。对四个原测试签名保护的凭据连续读取 12 次，均无界面返回拒绝；启动只检查旧登录元数据，20 次后台循环不读取旧凭据；测试结束后由原签名清理测试项目。\n\n完整原生回归通过，安装包的主程序、扩展及更新助手均为 Apple Silicon / Intel 通用版，签名完整性和更新配置已核验。跨签名测试使用隔离项目，没有读取真实会员凭据。\n\n## 安装与更新\n\n版本 4.1.2 / Build 46，支持 macOS 14 及以上。会员版 Build 44 及以后可在软件内「检查更新…」安装；也可下载 DMG，将「MuseFilm 会员版」放入 Applications。\n\n如果旧版的系统授权窗口当前仍在等待，请先退出旧版，再安装此版。需要恢复原登录时，到个人信息页主动解锁；也可使用原邮箱验证码登录，云端会员和兑换记录会继续关联该账号。\n\n当前仍使用临时签名，尚未通过 Apple Developer ID 签名与公证。此修复处理会员钥匙串的自动访问；首次打开的系统来源验证、主动使用照片等功能时的系统权限请求依旧由 macOS 管理。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.1.2-build46-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.2/MuseFilm-Paid-4.1.2-build46-universal.dmg",
-          "size": 53072933,
-          "digest": "sha256:7e2f3fae824cd272efbbe769da3e41b26c4901a50eb7f286e2cddc4fcae2aa1c",
-          "download_count": 0
-        },
-        {
-          "name": "MuseFilm-Paid-4.1.2-build46-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.2/MuseFilm-Paid-4.1.2-build46-universal.zip",
-          "size": 50411532,
-          "digest": "sha256:3aea883dc89529e8c109e2c54e8388651a2365190475259c01ac313c7f085ec4",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.2/SHA256SUMS.txt",
-          "size": 216,
-          "digest": "sha256:cb0882e57ddc44e7e29a4fff3644a42cd826c8d666f270e8e043064f36a02a41",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 421809564,
-      "name": "MuseFilm 会员版 4.1.1 for macOS · 登录与权益修复",
-      "tag_name": "PAID-MAC4.1.1",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.1",
-      "published_at": "2026-10-23T12:27:31Z",
-      "created_at": "2026-10-23T07:39:04Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "> 此版本的首次启动钥匙串授权仍可能重复弹出，请使用 [4.1.2 修复版](https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.2)。\n\n# MuseFilm 会员版 4.1.1 · 登录授权与权益修复\n\n启动时不再反复请求钥匙串密码；兑换会员后，订阅信息和额外试用会清楚区分，日期统一以中文显示。\n\n## 本次更新\n\n- 合并登录凭据至单个加密钥匙串项目，界面和定时任务读取内存缓存；启动及后台刷新不弹出密码授权。旧登录可在「个人信息」主动解锁，或改用邮箱验证码登录。\n- 兑换 Plus / Pro 后优先显示已开通的会员等级及其独立到期时间；仍可使用的额外 Pro 试用单独说明。试用结束不会覆盖尚未到期的订阅，重叠期间保留较高权益。\n- 会员、试用到期日期、兑换时间、设备最近使用时间采用中文年月日。\n- 免费版默认 8 款常用胶卷、4 件器材；会员与试用可使用完整内置目录。自定义额度与档案额度仍按套餐执行。已使用、编辑、装卷或记录库存的项目到期后保留，不删除原图及档案。\n- 保留软件内检查、下载、校验、安装及重启更新功能；当前版本为 4.1.1 / Build 45。\n\n## 验证\n\n原生 99 项用例（含参数化 101 次执行）与后端 77 项测试通过，覆盖登录凭据缓存与静默读写、会员与试用重叠、中文日期、默认目录及既有导入、画册、水印和桌面功能。通用安装包的主程序、扩展和 Sparkle 安装助手均已核对双架构及完整签名；线上临时账号的登录恢复、兑换与试用并存验证通过，验收数据已清理。未进行真实付费扣款或 Intel / 其他 macOS 版本的实机回归。\n\n## 安装与更新\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用版。已安装会员版 Build 44 可从软件菜单「检查更新…」安装此更新；首次使用者下载 DMG，将「MuseFilm 会员版」放入 Applications。\n\n会员版与旧版 MuseFilm 使用独立应用标识和本地数据库，可以并存，不会自动迁移旧版图库。账号、会员、兑换记录与通用设置保存在 Cloudflare；档案、原图与画册工程仍在本机。新用户可领取连续 72 小时 Pro 试用，不自动扣费；套餐与单次创作券以软件内说明及爱发电支付页面为准。\n\n当前使用临时签名（ad-hoc），尚未通过 Apple Developer ID 签名与公证。系统首次打开验证和用户主动解锁钥匙串时仍可能要求授权；本次优化不修改 macOS 安全策略。\n\n反馈请前往 [GitHub Issues](https://github.com/Quartzsyr/MuseFilm/issues)，附上系统版本、应用版本与复现步骤，请勿附上验证码或密钥。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.1.1-build45-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/MuseFilm-Paid-4.1.1-build45-universal.dmg",
-          "size": 53036606,
-          "digest": "sha256:20f275f3a94cb5a24267e3e98dccb033eb895e3dd42e07981859ae5dcc96c687",
-          "download_count": 1
-        },
-        {
-          "name": "MuseFilm-Paid-4.1.1-build45-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/MuseFilm-Paid-4.1.1-build45-universal.zip",
-          "size": 50404515,
-          "digest": "sha256:9513eafa005f7c34d65e76cac50a1926d29d48e2d1e5c5a79a1df6ce39d74623",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.1/SHA256SUMS.txt",
-          "size": 216,
-          "digest": "sha256:7598a78b98c98633e9cdaff63ab323558234837b5df1694b8f4295d86cc8c348",
+          "digest": "sha256:867c2e8ba9f3dc5d2868476b962a63c74616376cf3d87c83489ed31e80569d5a",
           "download_count": 0
         }
       ]
