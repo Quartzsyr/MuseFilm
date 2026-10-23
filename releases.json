@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T17:22:01.843Z",
+  "updatedAt": "2026-10-23T17:27:50.497Z",
   "releases": [
     {
       "id": 422009279,
-      "name": "MuseFilm 会员版 4.2.1 · 统一会员管理后台",
+      "name": "MuseFilm 会员版 4.2.1 · 账号与会员体验优化",
       "tag_name": "PAID-MAC4.2.1",
       "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.2.1",
       "published_at": "2026-10-23T17:14:53Z",
       "created_at": "2026-10-23T14:54:04Z",
       "prerelease": false,
       "draft": false,
-      "body": "MuseFilm 会员版 4.2.1（Build 49）\n\n- 会员服务增加最低客户端版本检查，请通过软件内“检查更新”升级后继续登录和同步权益。\n- 创作者网站后台统一管理充值订单、到账提醒、会员账号、兑换码及爱发电关联审核。\n- 新充值经爱发电服务端核验后发送站长通知，按订单去重；历史订单和零元兑换单独标注。\n- 旧版安装包已备份并停止公开分发，早期版本保持现有安排。\n\nmacOS 14 及以上，支持 Apple 芯片和 Intel。现有用户可在软件内直接检查更新。\n账号与会员保存在 Cloudflare；照片和档案仍在本机。登录信息使用本地会话文件。\n",
+      "body": "MuseFilm 会员版 4.2.1\n\n优化账号与会员状态同步，让购买、兑换后的权益查看更清楚。\n购买时可查看付款、订单核验和权益到账进度，返回软件后继续确认结果。\n兑换前可预览领取账号、有效期和叠加方式，减少误操作。\n支持软件内直接检查并安装更新；个人资料与本机照片继续保留。\n\n适用于 macOS 14 及以上，支持 Apple 芯片和 Intel。已有用户可在软件菜单中点击“检查更新”直接升级。\n",
       "assets": [
         {
           "name": "MuseFilm-Paid-4.2.1-build49-universal.dmg",
