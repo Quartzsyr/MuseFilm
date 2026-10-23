@@ -36,7 +36,7 @@ jobs:
           node scripts/prepare-release-feed.mjs "$RUNNER_TEMP/releases.json" "$RUNNER_TEMP/release-feed.json"
       - name: Deliver authenticated release metadata to MuseFilm
         env:
-          RELEASE_ENDPOINT: https://musefilm-feedback-api.syrquartz.workers.dev/api/releases/check
+          RELEASE_ENDPOINT: https://api.musefilm.top/api/releases/check
         shell: bash
         run: |
           set -euo pipefail
