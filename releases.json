@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T17:43:46.016Z",
+  "updatedAt": "2026-10-23T18:13:20.291Z",
   "releases": [
     {
-      "id": 422134453,
-      "name": "MuseFilm 会员版 4.3.0 · 底片漂流",
-      "tag_name": "PAID-MAC4.3.0",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.3.0",
-      "published_at": "2026-10-23T17:43:21Z",
-      "created_at": "2026-10-23T17:38:43Z",
+      "id": 422161492,
+      "name": "MuseFilm 会员版 4.3.1 · 更新提示修复",
+      "tag_name": "PAID-MAC4.3.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.3.1",
+      "published_at": "2026-10-23T18:13:11Z",
+      "created_at": "2026-10-23T17:43:46Z",
       "prerelease": false,
       "draft": false,
-      "body": "## 把一帧日常，交给另一束光。\n\n新增“底片漂流”：选一张照片，与另一位光影旅人随机交换，免费用户和会员均可参与。\n寄出前可预览照片、写一句留言并确认分享；等待时可撤回，匹配后可拆开和保存收到的底片。\n每天可完成一次交换。原片留在本机，交换副本会压缩并去除拍摄位置等照片元数据。\n个人漂流记录随账号保存，收到不合适的照片可直接举报。\n继续优化购买进度、兑换预览和会员状态同步，支持在软件内直接更新。\n\n在左侧导航选择“底片漂流”即可开始。仅分享你有权分享的作品；匹配完成后，对方可保留已收到的副本。等待最长 7 天，匹配后的云端副本保留 30 天，可随时保存到本机收藏。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel。已有用户可通过软件内“检查更新”直接升级。\n",
+      "body": "## 更新准备好，就看得见。\n\n修复更新内容已下载，却没有显示安装提示的问题。\n更新准备完成后，返回软件会显示安装窗口；已下载的有效内容可继续使用，避免重复下载。\n自动检查进行中点击“检查更新”会保留这次请求，准备好后显示更新窗口。\n设置页根据当前状态显示“查看更新”或“安装更新”，关闭提示后不会在每次返回软件时反复打扰。\n保留底片漂流、账号、购买和兑换体验，照片与档案保持原样。\n\n已有用户可在软件菜单中选择“检查更新”。若当前旧版的更新窗口仍没有响应，可退出并重新打开软件后再检查，或使用本次 DMG 覆盖安装一次。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel。\n",
       "assets": [
         {
-          "name": "MuseFilm-Paid-4.3.0-build50-universal.dmg",
+          "name": "MuseFilm-Paid-4.3.1-build51-universal.dmg",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.0/MuseFilm-Paid-4.3.0-build50-universal.dmg",
-          "size": 53653686,
-          "digest": "sha256:f7b63807f4d102f6a723ba6f81a5ea4e6e32b3d9a92c9e2b4f148c835d38efb2",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.1/MuseFilm-Paid-4.3.1-build51-universal.dmg",
+          "size": 53670315,
+          "digest": "sha256:f043679ffe5ffc18279770a3d25a2f31e508826b421bf0fd3407677a493b0d95",
           "download_count": 0
         },
         {
-          "name": "MuseFilm-Paid-4.3.0-build50-universal.zip",
+          "name": "MuseFilm-Paid-4.3.1-build51-universal.zip",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.0/MuseFilm-Paid-4.3.0-build50-universal.zip",
-          "size": 51017867,
-          "digest": "sha256:c0eada924036e31801929d4ea3c6ed1683017c88c7c8fddd1491e3d1fc2c6d78",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.1/MuseFilm-Paid-4.3.1-build51-universal.zip",
+          "size": 51035742,
+          "digest": "sha256:a073b8d1f1961b224dbb521d35e7939451d89b1839a111834d82093b51366f3c",
           "download_count": 0
         },
         {
           "name": "SHA256SUMS.txt",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.0/SHA256SUMS.txt",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.3.1/SHA256SUMS.txt",
           "size": 216,
-          "digest": "sha256:36e658d7857c178c617f444f1e5f858665c8a9846d4387ff79d1e2ebad9bfff3",
+          "digest": "sha256:716900baa1160f15669f592e35c22d65738308fbeb0804f52ca7666ce89e55c4",
           "download_count": 0
         }
       ]
@@ -207,7 +207,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
           "size": 5532874,
           "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
-          "download_count": 64
+          "download_count": 65
         }
       ]
     },
