@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-23T13:32:42.188Z",
+  "updatedAt": "2026-10-23T13:34:45.325Z",
   "releases": [
+    {
+      "id": 421880042,
+      "name": "MuseFilm 会员版 4.1.3 · 本地保存登录",
+      "tag_name": "PAID-MAC4.1.3",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.1.3",
+      "published_at": "2026-10-23T13:34:33Z",
+      "created_at": "2026-10-23T13:32:42Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.1.3 · 本地保存登录\n\n账号登录不再读写 macOS 钥匙串。移除“解锁已保存的登录”入口，改为在应用沙盒中保存可撤销的登录会话。\n\n- 升级后用原邮箱验证码登录一次，以后重启或更新可自动恢复有效会话；会话过期或被撤销后需重新验证。\n- 会话文件及目录仅当前 macOS 用户可读写，采用原子替换并拒绝链接及异常文件。不保存邮箱密码或验证码。文件未加密，请勿复制或分享。\n- 退出后清除本机账号会话及资料缓存，无法联网时也可以退出本机；设备标识保留。\n- 会员、试用、兑换记录和通用设置继续与 Cloudflare 账号关联。会员缓存需通过服务端签名验证，本地编辑无法授予会员。\n- 保留中文日期、免费默认 8 款胶卷 / 4 件器材、Liquid Glass 头像昵称及软件内自动更新。\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用版。可在软件内“检查更新…”安装，或下载 DMG。\n\n请先完全退出仍运行的旧版，再安装新版本。此版不访问或删除旧钥匙串条目；升级后的首次登录使用原邮箱即可关联原有会员。\n\n验证包括完整原生测试、隔离的沙盒跨签名更新模拟、本地文件权限及损坏处理、退出后重启验证和安装包检查。账号登录代码没有钥匙串 API 依赖。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.1.3-build47-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/MuseFilm-Paid-4.1.3-build47-universal.dmg",
+          "size": 53049620,
+          "digest": "sha256:713cc9cc02811423ce5131b8c8a2d3e6dc75b7387b59200da754f5df24a4c27a",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.1.3-build47-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/MuseFilm-Paid-4.1.3-build47-universal.zip",
+          "size": 50397651,
+          "digest": "sha256:a2d53f75099a1d42090342aaba82a4ddd0f41006ddd78dea01ada3e5db28ecf6",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.1.3/SHA256SUMS.txt",
+          "size": 216,
+          "digest": "sha256:201f90ae4ef8652909ed62462887f4c6628d700a73a7a7171a6f2b459464eb94",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 421844738,
       "name": "MuseFilm 会员版 4.1.2 for macOS · 首次启动授权修复",
