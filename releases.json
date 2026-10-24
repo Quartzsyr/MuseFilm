@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-24T06:13:46.163Z",
+  "updatedAt": "2026-10-24T06:44:45.151Z",
   "releases": [
     {
-      "id": 422552526,
-      "name": "MuseFilm 会员版 4.5.1 · 图标随身份，底片有回响",
-      "tag_name": "PAID-MAC4.5.1",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.5.1",
-      "published_at": "2026-10-24T06:13:27Z",
-      "created_at": "2026-10-24T05:58:46Z",
+      "id": 422563352,
+      "name": "MuseFilm 会员版 4.5.2 · 玻璃个人中心，操作更协调",
+      "tag_name": "PAID-MAC4.5.2",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.5.2",
+      "published_at": "2026-10-24T06:44:33Z",
+      "created_at": "2026-10-24T06:13:46Z",
       "prerelease": false,
       "draft": false,
-      "body": "让会员身份出现在应用程序列表，让每次底片交换更有仪式感。\n\n- **按等级同步系统图标**：个人中心新增“会员系统图标”，首次选择当前应用授权后，应用程序 / Finder 图标与 Dock 按 Plus 香槟金、Pro 黑曜金同步切换，两款均保留完整外边框。到期或退出账号后恢复普通图标；软件关闭期间到期，会在下次启动核验后恢复。\n- **扁平会员标识**：会员页等级标识改为简约线性图标，去掉立体底座和阴影，信息更清爽。\n- **更有温度的底片漂流**：纸质信封、胶片齿孔与照片卡片，配合拆封展开、底片浮现和寄出确认动效；悬停时有轻柔反馈。\n- **状态清楚，操作安心**：寄出成功后才出现确认动效；失败保留照片和留言，可继续重试。开启“减少动态效果”时取消位移和旋转。\n\n**首次开启系统图标同步**：打开“个人主页 → 会员系统图标 → 开启同步”，选择正在运行的 MuseFilm 会员版.app。该授权仅用于这台 Mac 的图标同步，不会在每次启动时弹窗。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel，可在软件内选择“检查更新”直接升级。\n",
+      "body": "让个人主页与创作界面拥有一致的玻璃质感。\n\n- **全新玻璃个人中心**：柔和背景、通透身份卡、轻微镜框质感的头像，以及更协调的窗口标题栏和字体。\n- **更清楚的资料编辑**：头像、资料与名片外观分组呈现；输入框带轻微凹陷质感，保存和撤销集中在底部，切换页面继续保留尚未保存的修改。\n- **统一常用按钮**：个人页和登录、订阅与兑换确认、胶卷添加、冲扫记录、寄扫 PDF 预览／导出、水印导出与漂流登录采用一致的玻璃高光、圆角和按压反馈。\n- **兼顾清晰与操作习惯**：适配浅色、深色和较窄窗口；破坏性操作保留红色提示，禁用状态、快捷键及减少动态效果设置继续生效。\n- **延续会员视觉区分**：会员页保留简约扁平等级标识，Plus／Pro 系统图标继续按等级显示完整边框。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel。已有用户可在软件内选择“检查更新”直接升级。\n",
       "assets": [
         {
-          "name": "MuseFilm-Paid-4.5.1-build57-universal.dmg",
+          "name": "MuseFilm-Paid-4.5.2-build58-universal.dmg",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.1/MuseFilm-Paid-4.5.1-build57-universal.dmg",
-          "size": 59507928,
-          "digest": "sha256:bcbab8da4e0cc3a8b30e6f5cbef8fe1b04051d27c2f6e4a6bb84cc0d4ed5223d",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/MuseFilm-Paid-4.5.2-build58-universal.dmg",
+          "size": 59585364,
+          "digest": "sha256:86827ec8825d1e83e24026887f8825868bd714cd3050502ff6d877af17f2344d",
           "download_count": 0
         },
         {
-          "name": "MuseFilm-Paid-4.5.1-build57-universal.zip",
+          "name": "MuseFilm-Paid-4.5.2-build58-universal.zip",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.1/MuseFilm-Paid-4.5.1-build57-universal.zip",
-          "size": 56866932,
-          "digest": "sha256:ecfc69352f8d885d17cbaee06ce28248f21f1979f944ae61cbbbce94b429e14c",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/MuseFilm-Paid-4.5.2-build58-universal.zip",
+          "size": 56938754,
+          "digest": "sha256:db169e868844f438d4454dffa0e378007ab6808100026b6c782da8a378d33b60",
           "download_count": 0
         },
         {
           "name": "SHA256SUMS.txt",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.1/SHA256SUMS.txt",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/SHA256SUMS.txt",
           "size": 216,
-          "digest": "sha256:8bdccf2c8a65ad9ed4e6b75936c2212325efadc1d8d1a379da98acdaea0cee7b",
+          "digest": "sha256:ba2e030c2d2c14c568496c715131f40a264a7fc92fcfe006b77078a7eb7d3235",
           "download_count": 0
         }
       ]
