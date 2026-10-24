@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-24T00:46:38.070Z",
+  "updatedAt": "2026-10-24T04:22:14.967Z",
   "releases": [
+    {
+      "id": 422511666,
+      "name": "MuseFilm 会员版 4.4.2 · 完整会员外框与索引预览",
+      "tag_name": "PAID-MAC4.4.2",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.4.2",
+      "published_at": "2026-10-24T04:22:07Z",
+      "created_at": "2026-10-24T00:46:38Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "让会员图标保留完整外框，让索引图导出先看后存。\n\n- **索引图先预览再保存**：点击“导出索引”先打开预览浮窗，可缩放、滚动检查整卷排版，确认后保存 PNG；取消保存仍可返回预览。Plus / Pro 不限次导出，不消耗光页项目或创作券。\n- **完整金属外边框**：Plus 香槟金配玫瑰金外框，Pro 黑曜金配亮金外框，四周边框完整保留；适配不同 Dock 尺寸。\n- **身份自动切换**：运行中的 Dock 图标按有效付费会员切换；Pro 到期而 Plus 仍有效时显示 Plus，全部到期或退出账号后恢复普通图标。仅试用时继续使用普通图标。\n- **延续及时更新体验**：每次启动检查新版本，发现更新先弹窗说明，确认后下载并在软件内完成安装；也可手动检查更新。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel。已有用户可在软件内选择“检查更新”升级。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.4.2-build55-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.2/MuseFilm-Paid-4.4.2-build55-universal.dmg",
+          "size": 57874483,
+          "digest": "sha256:370345e3f7bfb90a9edefdf2922358a136ffc017b4521b98365da5a2d4067edc",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.4.2-build55-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.2/MuseFilm-Paid-4.4.2-build55-universal.zip",
+          "size": 55232475,
+          "digest": "sha256:dbd219dde538a307894cdcc8ca022d856f18c171cf3ff39f71ca674420c7daf7",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.2/SHA256SUMS.txt",
+          "size": 216,
+          "digest": "sha256:a2f0d54ee94cd08297cc17dc2bb7acee637ce29750c022172ddfcdf3ab5229d1",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 422228440,
       "name": "MuseFilm 会员版 4.4.1 · 专属图标与及时更新",
