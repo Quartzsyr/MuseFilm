@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-24T04:22:14.967Z",
+  "updatedAt": "2026-10-24T04:22:40.510Z",
   "releases": [
     {
       "id": 422511666,
@@ -36,43 +36,6 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.2/SHA256SUMS.txt",
           "size": 216,
           "digest": "sha256:a2f0d54ee94cd08297cc17dc2bb7acee637ce29750c022172ddfcdf3ab5229d1",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 422228440,
-      "name": "MuseFilm 会员版 4.4.1 · 专属图标与及时更新",
-      "tag_name": "PAID-MAC4.4.1",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.4.1",
-      "published_at": "2026-10-23T19:26:58Z",
-      "created_at": "2026-10-23T18:52:56Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "让会员身份更鲜明，让更新提醒更及时。\n\n- **专属会员图标**：沿用 MuseFilm 的档案盒与观片台造型。Plus 为香槟金配玫瑰金完整外框，Pro 为黑曜金配亮金完整外框。运行时 Dock 图标随有效付费会员切换；Pro 到期但 Plus 仍有效时回退 Plus，全部到期或退出账号后恢复普通图标。纯试用继续显示普通图标。\n- **启动即检查**：每次启动均检查新版本，不受上次检查时间影响；设置中的定时检查选项只控制运行期间的检查。\n- **发现更新先提醒**：先展示新版本和更新说明，确认后才下载、校验与安装，不再等待后台下载完才提示。没有新版本时安静完成。\n- **保留手动更新**：可随时手动检查；已经下载的有效更新仍可继续安装。\n\n支持 macOS 14 及以上，Apple 芯片与 Intel。可通过软件内“检查更新”升级，也可下载 DMG 安装。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.4.1-build53-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.1/MuseFilm-Paid-4.4.1-build53-universal.dmg",
-          "size": 57792631,
-          "digest": "sha256:a5bbfa96f1e117ff8d5cbc4404fcbc4d9cad46f14a740d0f4e0974aa4ed19a4f",
-          "download_count": 0
-        },
-        {
-          "name": "MuseFilm-Paid-4.4.1-build53-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.1/MuseFilm-Paid-4.4.1-build53-universal.zip",
-          "size": 55149703,
-          "digest": "sha256:2733406a5e784ec0b35f447c64f60e3d5d08402418a75540ada33caabb465be1",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.4.1/SHA256SUMS.txt",
-          "size": 216,
-          "digest": "sha256:9a25cc1dd83129a70d27e6c949a8fe9d76e1a20825ebe15118f2ec7a64dc3706",
           "download_count": 0
         }
       ]
