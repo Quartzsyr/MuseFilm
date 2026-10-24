@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-24T11:12:27.678Z",
+  "updatedAt": "2026-10-24T14:37:38.200Z",
   "releases": [
     {
       "id": 422563352,
@@ -86,7 +86,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal.dmg",
           "size": 35150283,
           "digest": "sha256:a3fd9e3c813a315eaa51a991c2b4abb5ba95c8d1839b78cd4a701dca68908b91",
-          "download_count": 13
+          "download_count": 14
         }
       ]
     },
