@@ -1,8 +1,53 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-25T16:42:06.274Z",
+  "updatedAt": "2026-10-25T17:42:49.482Z",
   "releases": [
+    {
+      "id": 423557342,
+      "name": "MuseFilm 会员版 4.7.2 · 贴合胶卷的中文取消贴纸",
+      "tag_name": "PAID-MAC4.7.2",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.2",
+      "published_at": "2026-10-25T17:42:41Z",
+      "created_at": "2026-10-25T16:42:08Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 4.7.2（67）\n\n拟物导入只保留一处贴合胶卷曲面的中文取消入口。\n\n• 将「取消」做成胶卷标签下方的曲面贴纸，纸面和文字使用与胶卷同心的弧形网格，随胶卷的透视、缩放和光照变化。\n• 移除右上角关闭入口、顶部悬浮取消提示及转轴上的隐藏取消操作，避免重复和误触。\n• 保留 Esc 退出与未归档内容确认，归档时禁用取消，原始照片不会改变。\n• 模型加载失败或长时间未就绪时显示备用取消入口；正常场景只显示曲面贴纸按钮。\n\n保留 4.7.1 的足迹地图布局与正常启动不再误弹导入的修复。\n支持 macOS 14 及以上、Apple 芯片与 Intel，可在软件内检查更新并升级。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.2-build67-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/MuseFilm-Paid-4.7.2-build67-universal.dmg",
+          "size": 58020864,
+          "digest": "sha256:f81ca2dd03a36b7a8a2d0169483a4c56d97167e563bb6ed590271713d13e141a",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.2-build67-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/MuseFilm-Paid-4.7.2-build67-universal.zip",
+          "size": 57855004,
+          "digest": "sha256:81636d3195aaa5d93d88597ef63267d1e0ba318be2b615fdac8a583b7f66ef61",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.2.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/release-4.7.2.json",
+          "size": 899,
+          "digest": "sha256:d9da4c6c31a037e75ef444950998f4d7e5207eb2db407f9ff4d5f23530c4a565",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.2.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/SHA256SUMS-4.7.2.txt",
+          "size": 216,
+          "digest": "sha256:787e9acbf83985cfec1c520c1e6cf4b3f38617f79e96f0bcbeb527209e0c9c54",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 423524963,
       "name": "MuseFilm 会员版 4.7.1 · 足迹布局与导入体验优化",
