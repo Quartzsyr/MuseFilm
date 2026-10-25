@@ -43,7 +43,7 @@ function resolveConfirm(answer){const resolve=state.confirmResolve;state.confirm
 $('#confirm-cancel').onclick=()=>resolveConfirm(false);$('#confirm-accept').onclick=()=>resolveConfirm(true);$('#confirm-dialog').addEventListener('cancel',event=>{event.preventDefault();resolveConfirm(false)});
 function updateSync(){const now=new Date();$('#last-sync').textContent='更新于 '+now.toLocaleTimeString('zh-CN',{hour12:false,hour:'2-digit',minute:'2-digit'})}
 async function navigate(view,{load=true}={}){
-  if(!names[view])view='overview';state.view=view;state.viewToken++;clearTimeout(progressTimer);$('#page-error').hidden=true;
+  if(!names[view])view='overview';if(state.view==='membership'&&view!=='membership')clearMemberData();state.view=view;state.viewToken++;clearTimeout(progressTimer);$('#page-error').hidden=true;
   $$('[data-panel]').forEach(panel=>panel.hidden=panel.dataset.panel!==view);$$('.nav [data-view]').forEach(button=>{if(button.dataset.view===view)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
   $('#breadcrumb').textContent=names[view];document.title=names[view]+' · MuseFilm 后台';history.replaceState(null,'','#'+view);
   if(load)await loadCurrent();

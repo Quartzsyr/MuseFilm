@@ -21,3 +21,16 @@ async function call(f,path='codes/list',{cookie=true,originHeader=origin,method=
 test('membership dashboard shares the existing HttpOnly website session and never exposes its service credential',async()=>{const f=fixture();assert.equal((await call(f,'codes/list',{cookie:false})).status,401);assert.equal(f.requests.length,0);const result=await call(f);assert.equal(result.status,200);assert.equal((await result.json()).ok,true);assert.equal(f.requests.length,1);assert.equal(f.requests[0].url,'https://membership.internal/v1/admin/codes/list');assert.equal(f.requests[0].headers.get('authorization'),'Bearer server-only-test-token');assert.equal(f.requests[0].headers.get('cookie'),null);const html=await (await worker.fetch(new Request(origin+'/admin'),f.env)).text();assert.match(html,/会员与充值/);assert.match(html,/id="member-create"/);assert.doesNotMatch(html,/server-only-test-token/);assert.equal(result.headers.get('cache-control'),'no-store')});
 test('membership proxy rejects CSRF, arbitrary paths and GET mutations before forwarding',async()=>{const f=fixture();for(const [path,options,status]of [['codes/create',{originHeader:'https://attacker.example'},403],['orders/revoke',{},404],['codes/create',{method:'GET'},404],['codes/create',{body:{text:'x'.repeat(9000)}},413]])assert.equal((await call(f,path,options)).status,status);assert.equal(f.requests.length,0)});
 test('membership connection failures remain private and preserve the website session',async()=>{const f=fixture();f.env.MEMBERSHIP={async fetch(){return Response.json({error:'internal-token-details'},{status:403})}};let result=await call(f);assert.equal(result.status,502);assert.doesNotMatch(await result.text(),/internal-token-details/);delete f.env.MEMBERSHIP_ADMIN_TOKEN;result=await call(f);assert.equal(result.status,503)});
+test('account management uses the website session, fixed proxy operations and unchanged request identity',async()=>{
+ const f=fixture(),body={accountId:'test-account',tier:'pro',permanent:true,expectedRevision:0,reason:'创作者赠送'};
+ for(const action of ['accounts/detail','accounts/grant','accounts/revoke','accounts/status']){
+  const before=f.requests.length;
+  assert.equal((await call(f,action,{cookie:false,body})).status,401);
+  assert.equal((await call(f,action,{originHeader:'https://attacker.example',body})).status,403);
+  assert.equal((await call(f,action,{method:'GET'})).status,404);assert.equal(f.requests.length,before);
+  const r=await call(f,action,{body});assert.equal(r.status,200);
+  assert.deepEqual(await f.requests.at(-1).json(),body);
+  assert.equal(f.requests.at(-1).url,'https://membership.internal/v1/admin/'+action);
+ }
+ assert.equal((await call(f,'accounts/delete',{body})).status,404);
+});

@@ -1,6 +1,6 @@
 // The website session authorizes this fixed service-binding proxy. The membership
 // administrator credential remains a Worker Secret and is never sent to a browser.
-const membershipOperations=new Set(['payments/overview','payments/settings','payments/retry','codes/create','codes/list','codes/export','codes/disable','accounts','gifts/list','gifts/review','exchange/reports','exchange/preview','exchange/review']);
+const membershipOperations=new Set(['payments/overview','payments/settings','payments/retry','codes/create','codes/list','codes/export','codes/disable','accounts','accounts/detail','accounts/grant','accounts/revoke','accounts/status','gifts/list','gifts/review','exchange/reports','exchange/preview','exchange/review']);
 export async function membershipAdmin(request,env){
   const prefix='/api/admin/membership/',path=new URL(request.url).pathname;
   if(!path.startsWith(prefix))return null;
