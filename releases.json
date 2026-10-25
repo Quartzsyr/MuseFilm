@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-25T13:34:05.328Z",
+  "updatedAt": "2026-10-25T16:31:17.328Z",
   "releases": [
     {
       "id": 423419128,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/MuseFilm-Paid-4.7.0-build64-universal.dmg",
           "size": 57815552,
           "digest": "sha256:0ecf8bd338d226fc66b1f96dd73e4a8252f29a36cc309c5c81e4f24524ad46ae",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.0-build64-universal.zip",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/MuseFilm-Paid-4.7.0-build64-universal.zip",
           "size": 57664869,
           "digest": "sha256:0b8814a501c5b2ddcd03e7031880446f40809651535947b08592ff1478a88a12",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "release-4.7.0.json",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/SHA256SUMS-4.7.0.txt",
           "size": 216,
           "digest": "sha256:5cf7a849be59616927d2f32c642a5c242a0f47ce575d636c369564bf09f319f5",
-          "download_count": 0
+          "download_count": 2
         }
       ]
     },
@@ -73,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/MuseFilm-Paid-4.5.2-build58-universal.zip",
           "size": 56938754,
           "digest": "sha256:db169e868844f438d4454dffa0e378007ab6808100026b6c782da8a378d33b60",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS.txt",
@@ -81,7 +81,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/SHA256SUMS.txt",
           "size": 216,
           "digest": "sha256:ba2e030c2d2c14c568496c715131f40a264a7fc92fcfe006b77078a7eb7d3235",
-          "download_count": 0
+          "download_count": 2
         }
       ]
     },
@@ -102,7 +102,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Windows/MuseFilmSetup_v0.6.2.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 10
+          "download_count": 13
         }
       ]
     },
@@ -123,7 +123,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal-icon-preserved.zip",
           "size": 37489020,
           "digest": "sha256:09baa530c2401abc1e4f914ee6ecbbc97a9669e2faac6e9ff142e4ec9a178e63",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-3.2.2-build34-universal.dmg",
@@ -173,7 +173,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2/MuseFilm-2.0-20260908-camera-crayon-universal.zip",
           "size": 14981522,
           "digest": "sha256:2ac2238f79321db53897f8a6a6dc7b5eab087fc0b924798ffc5fe2d92eff4e4d",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-3.2-build32-universal.dmg",
@@ -210,7 +210,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac_beta/3.0.1b.zip",
           "size": 8532364,
           "digest": "sha256:18a11ddeb38ced648507f6a8bc40a21b58b26024bb77a2cccf1d9dbe270fcd4e",
-          "download_count": 0
+          "download_count": 2
         }
       ]
     },
@@ -252,7 +252,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
           "size": 5532874,
           "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
-          "download_count": 69
+          "download_count": 70
         }
       ]
     },
