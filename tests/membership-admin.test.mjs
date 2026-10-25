@@ -23,7 +23,7 @@ test('membership proxy rejects CSRF, arbitrary paths and GET mutations before fo
 test('membership connection failures remain private and preserve the website session',async()=>{const f=fixture();f.env.MEMBERSHIP={async fetch(){return Response.json({error:'internal-token-details'},{status:403})}};let result=await call(f);assert.equal(result.status,502);assert.doesNotMatch(await result.text(),/internal-token-details/);delete f.env.MEMBERSHIP_ADMIN_TOKEN;result=await call(f);assert.equal(result.status,503)});
 test('account management uses the website session, fixed proxy operations and unchanged request identity',async()=>{
  const f=fixture(),body={accountId:'test-account',tier:'pro',permanent:true,expectedRevision:0,reason:'创作者赠送'};
- for(const action of ['accounts/detail','accounts/grant','accounts/revoke','accounts/status']){
+ for(const action of ['accounts/detail','accounts/grant','accounts/revoke','accounts/status','accounts/access','messages/list','messages/detail','messages/draft','messages/send','messages/revoke']){
   const before=f.requests.length;
   assert.equal((await call(f,action,{cookie:false,body})).status,401);
   assert.equal((await call(f,action,{originHeader:'https://attacker.example',body})).status,403);

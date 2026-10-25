@@ -1,6 +1,6 @@
-const memberTitles={plus:'Plus',pro:'Pro',bookDocument:'成册券',bookMotion:'影像券',legacy:'历史订单'};
+const memberTitles={plus:'Plus',pro:'Pro',bookDocument:'成册券',bookMotion:'影像券',legacy:'历史订单',trial:'Pro 试用',bookGift:'Plus 赠送项目'};
 const memberStates={pending:'待发送',sending:'发送中',sent:'已提交',failed:'发送失败',uncertain:'待核实',historical:'历史记录',gift:'零元兑换',paused:'已暂停',available:'可领取',claimed:'已兑换',disabled:'已作废',expired:'已过期',approved:'已关联',rejected:'已拒绝'};
-let memberAccount=null,memberAccountLoad=0;
+let memberAccount=null,memberAccountLoad=0,memberAccess=null,memberMessagePreview=null,memberMessageCreateId=null;
 let memberTab='orders',memberData=null,memberDelivery=null,memberCreateId=null,memberReview=null,memberLoad=0;
 const memberDate=n=>n?date(n*1000):'—';
 const memberApi=(path,body={})=>post('/api/admin/membership/'+path,body);
@@ -9,7 +9,8 @@ const memberBadge=s=>`<span class="badge ${memberTone(s)}">${esc(memberStates[s]
 function renderMemberOverview(data){memberData=data;$('#member-total').textContent=number(data.accounts);$('#member-active').textContent=number(data.activeMembers);$('#member-amount').textContent='¥'+(data.totals.amountFen/100).toLocaleString('zh-CN',{minimumFractionDigits:2});$('#member-attention').textContent=number(data.totals.attention);$('#member-mail-config').textContent=(data.settings.mailReady?'邮件服务已配置':'邮件服务尚未就绪')+' · '+(data.settings.ownerEmail||'未配置收件邮箱')+' · 自 '+memberDate(data.settings.enabledAt)+' 起';$('#member-notifications').disabled=false;$('#member-notifications').textContent=data.settings.enabled?'暂停到账提醒':'开启到账提醒';$('#member-orders').innerHTML=data.rows.map(r=>`<tr><td class="break"><strong>${esc(r.order_id)}</strong><small>${esc(r.email||'尚未关联账号')}</small></td><td>${esc(memberTitles[r.product]||r.product)}<small>${r.amount_fen===null?'金额未提供':'¥'+(r.amount_fen/100).toFixed(2)}</small></td><td>${esc(memberDate(r.first_seen_at))}</td><td>${r.revoked?'已撤销':r.checkout_state==='credited'?'已到账':r.checkout_state==='verified'?'已核验，待同步':r.email?'已关联，查看账号有效期':'待关联账号'}</td><td>${memberBadge(r.notification_status)}<small>${esc(r.error_code||'')}</small></td><td>${['failed','uncertain'].includes(r.notification_status)?`<button class="small" data-member-retry="${esc(r.order_id)}" data-uncertain="${r.notification_status==='uncertain'}">重试邮件</button>`:'—'}</td></tr>`).join('')||emptyRow(6,'尚无充值记录','真实订单核验后会自动显示。')}
 async function loadMembership(){const seq=++memberLoad,viewToken=state.viewToken;const data=await memberApi('payments/overview');if(seq!==memberLoad||viewToken!==state.viewToken||state.view!=='membership')return;renderMemberOverview(data);await loadMemberTab()}
 async function loadMemberTab(){const tab=memberTab,seq=++memberLoad,viewToken=state.viewToken;$$('[data-member-panel]').forEach(p=>p.hidden=p.dataset.memberPanel!==tab);$$('[data-member-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.memberTab===tab)));if(tab==='orders')return;
- const data=await memberApi(tab==='codes'?'codes/list':tab==='gifts'?'gifts/list':tab==='reports'?'exchange/reports':'accounts',tab==='accounts'?{query:$('#member-search').elements.query.value}:{});if(seq!==memberLoad||viewToken!==state.viewToken||state.view!=='membership')return;
+ const data=await memberApi(tab==='codes'?'codes/list':tab==='gifts'?'gifts/list':tab==='reports'?'exchange/reports':tab==='messages'?'messages/list':'accounts',tab==='accounts'?{query:$('#member-search').elements.query.value}:{});if(seq!==memberLoad||viewToken!==state.viewToken||state.view!=='membership')return;
+ if(tab==='messages')renderClientMessageList(data);
  if(tab==='reports')$('#member-reports').innerHTML=data.reports.map(r=>`<tr><td class="break">${esc(r.nickname)}<small>${esc(r.caption)}</small></td><td class="break">${esc(r.reason)}</td><td>${esc(memberDate(r.createdAt))}</td><td>${esc(({open:'待处理',dismiss:'已忽略',hide:'已移除',block:'已暂停漂流'})[r.status]||r.status)}</td><td><button class="small" data-member-preview="${esc(r.id)}">查看副本</button> ${r.status==='open'?`<button class="small" data-member-moderate="${esc(r.id)}" data-member-action="dismiss">忽略</button> <button class="small danger" data-member-moderate="${esc(r.id)}" data-member-action="hide">移除副本</button> <button class="small danger" data-member-moderate="${esc(r.id)}" data-member-action="block">暂停漂流</button>`:''}</td></tr>`).join('')||emptyRow(5,'暂无底片漂流举报');
  if(tab==='codes')$('#member-batches').innerHTML=data.batches.map(b=>`<tr><td>${esc(b.label||b.id.slice(0,8))}</td><td>${esc(memberTitles[b.product])} / ${number(b.durationDays)} 天</td><td>${number(b.count)} / ${number(b.claimed)} / ${number(b.disabled)}</td><td>${esc(memberDate(b.expiresAt))}</td><td><button class="small" data-member-export="${esc(b.id)}">查看 / 导出</button></td></tr>`).join('')||emptyRow(5,'暂无兑换码批次');
  if(tab==='accounts')$('#member-accounts').innerHTML=data.accounts.map(a=>`<tr><td>${esc(a.nickname||'光影旅人')}<small>${esc(a.email)}</small></td><td>${esc(memberDate(a.createdAt))}</td><td>${a.bannedAt!=null?'<span class="badge bad">已封禁</span>':esc(memberTitles[a.tier]||'基础版')}<small>${a.memberExpiresAt>=253402300799?'永久会员':esc(memberDate(a.memberExpiresAt))}${a.manualCount?' · 含手动授予':''}</small></td><td>${number(a.redemptions)}</td><td><button class="small" data-member-account="${esc(a.id)}">管理账号</button></td></tr>`).join('')||emptyRow(5,'没有匹配的账号');
@@ -34,7 +35,9 @@ $('#member-code-numbered').onchange=renderMemberCodeList;
 $('#member-copy').onclick=()=>buttonAction($('#member-copy'),async()=>{const codes=memberAvailableCodes();if(!codes.length)return;await navigator.clipboard.writeText(memberCodeList());toast('已复制 '+codes.length+' 个可用兑换码，每行一个。')});
 $('#member-txt').onclick=()=>{if(!memberAvailableCodes().length)return;const url=URL.createObjectURL(new Blob([memberCodeList()+'\n'],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='MuseFilm-'+memberDelivery.batch.id+'-codes.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 $('#member-csv').onclick=()=>{if(!memberDelivery)return;const safe=v=>'"'+String(v??'').replace(/^[=+\-@\t\r]/,"'$&").replaceAll('"','""')+'"';const rows=[['兑换码','产品','天数','领取截止','状态','领取链接'],...memberDelivery.codes.map(c=>[c.code,memberTitles[memberDelivery.batch.product],memberDelivery.batch.durationDays,memberDate(memberDelivery.batch.expiresAt),memberStates[c.status],c.redeemURL])];const url=URL.createObjectURL(new Blob(['\uFEFF'+rows.map(r=>r.map(safe).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='MuseFilm-'+memberDelivery.batch.id+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
-$('#view-membership').addEventListener('click',async event=>{const b=event.target.closest('[data-member-account],[data-member-export],[data-member-code],[data-member-link],[data-member-disable],[data-member-retry],[data-member-review],[data-member-reject],[data-member-preview],[data-member-moderate]');if(!b)return;return buttonAction(b,async()=>{
+$('#view-membership').addEventListener('click',async event=>{const b=event.target.closest('[data-member-message],[data-member-message-revoke],[data-member-account],[data-member-export],[data-member-code],[data-member-link],[data-member-disable],[data-member-retry],[data-member-review],[data-member-reject],[data-member-preview],[data-member-moderate]');if(!b)return;return buttonAction(b,async()=>{
+ if(b.dataset.memberMessage)await openClientMessage(b.dataset.memberMessage);
+ if(b.dataset.memberMessageRevoke&&await confirmAction('撤回这条客户端消息？','停止后续接收，已展示内容无法让用户忘记；在线客户端下次同步时隐藏横幅。','撤回消息')){await memberApi('messages/revoke',{messageId:b.dataset.memberMessageRevoke});await loadMemberTab();toast('客户端消息已撤回。')}
  if(b.dataset.memberAccount)await openMemberAccount(b.dataset.memberAccount);
  if(b.dataset.memberPreview){const data=await memberApi('exchange/preview',{reportId:b.dataset.memberPreview});$('#member-report-image').src=data.imageData;$('#member-report-preview').showModal()}
  if(b.dataset.memberModerate){const action=b.dataset.memberAction;if(!await confirmAction('处理这条底片举报？',action==='block'?'移除该副本并暂停分享者后续的底片漂流，账号和会员权益保持有效。':action==='hide'?'移除该副本，已保存到用户本机的文件无法撤回。':'将举报标记为已核查，不移除副本。','确认处理'))return;await memberApi('exchange/review',{reportId:b.dataset.memberModerate,action});await loadMemberTab();toast('举报处理已保存。')}
@@ -50,17 +53,17 @@ $('#member-review-cancel').onclick=()=>$('#member-review-dialog').close();
 $('#member-review-form').onsubmit=event=>{event.preventDefault();buttonAction(event.currentTarget.querySelector('button[type=submit]'),async()=>{await memberApi('gifts/review',{requestId:memberReview.id,action:'approve',bindingCode:$('#member-review-code').value.trim(),identityConfirmed:$('#member-review-confirm').checked});$('#member-review-dialog').close();await loadMemberTab();toast('账号关联与会员核验已完成。')})};
 window.addEventListener('pagehide',clearMemberData);
 
-function clearMemberData(){closeMemberAccount();memberLoad++;memberData=null;memberDelivery=null;memberReview=null;for(const id of ["member-codes","member-orders","member-batches","member-accounts","member-gifts","member-reports"])$("#"+id).replaceChildren();$('#member-code-list').value='';$('#member-code-count').textContent='';$('#member-copy').disabled=$('#member-txt').disabled=true;$("#member-delivery").hidden=true;}
+function clearMemberData(){closeClientMessage();$('#member-message-form').reset();updateClientMessageForm();memberMessageCreateId=null;$('#member-message-list').replaceChildren();closeMemberAccount();memberLoad++;memberData=null;memberDelivery=null;memberReview=null;for(const id of ["member-codes","member-orders","member-batches","member-accounts","member-gifts","member-reports"])$("#"+id).replaceChildren();$('#member-code-list').value='';$('#member-code-count').textContent='';$('#member-copy').disabled=$('#member-txt').disabled=true;$("#member-delivery").hidden=true;}
 
-const memberManagementTitles={admin_membership_granted:'授予会员',admin_membership_revoked:'取消手动授予',account_banned:'封禁账号',account_unbanned:'解除封禁'};
+const memberManagementTitles={admin_membership_granted:'授予会员',admin_membership_revoked:'取消手动授予',account_banned:'封禁账号',account_unbanned:'解除封禁',account_access_updated:'修改权益期限',account_access_cancelled:'取消权益',account_access_restored:'恢复原始权益'};
 function renderMemberAccount(data){
  memberAccount=data;const a=data.account,banned=a.bannedAt!=null;
  $('#member-account-title').textContent=(a.nickname||'光影旅人')+' · 账号管理';$('#member-account-email').textContent=a.email;
  $('#member-account-state').textContent=banned?'已封禁 · '+memberDate(a.bannedAt):'账号正常 · 当前权益：'+(memberTitles[a.tier]||'基础版');
  $('#member-account-ban-reason').textContent=banned?'封禁原因：'+a.banReason:'';
  $('#member-account-status').textContent=banned?'解除封禁':'封禁账号';$('#member-grant-submit').disabled=banned;
- $('#member-account-grants').innerHTML=data.grants.map(g=>`<tr><td>${esc(memberTitles[g.tier])}</td><td>${g.permanent?'永久会员':esc(memberDate(g.expiresAt))}</td><td>${esc(({manual:'手动授予',afdian:'爱发电',code:'兑换码'})[g.provider]||g.provider)}<small>${g.revoked?'已取消':g.active?'有效':'已过期'}</small></td><td>${g.provider==='manual'&&!g.revoked?`<button type="button" class="small danger" data-member-revoke="${esc(g.tier)}">取消手动授予</button>`:'—'}</td></tr>`).join('')||emptyRow(4,'暂无会员权益');
- $('#member-account-history').innerHTML=data.history.map(h=>`<p>${esc(memberDate(h.createdAt))} · ${esc(memberManagementTitles[h.kind]||h.kind)}${h.tier?' '+esc(memberTitles[h.tier]):''}${h.kind==='admin_membership_granted'?' · '+(h.permanent?'永久':esc(memberDate(h.expiresAt))):''}<br>${esc(h.reason||'')}</p>`).join('')||'暂无管理操作。';
+ $('#member-account-grants').innerHTML=[...data.grants,...(data.access||[])].map(g=>`<tr><td>${esc(memberTitles[g.tier]||g.tier)}${g.projectId?'<small>项目 '+esc(g.projectId)+'</small>':''}</td><td>${g.expiresAt>=253402300799?'永久有效':esc(memberDate(g.expiresAt))}${g.overriddenAt?'<small>人工调整中</small>':''}</td><td>${esc(({manual:'手动授予',afdian:'爱发电',code:'兑换码',trial:'试用',voucher:'创作券',bookGift:'Plus 赠送'})[g.provider]||g.provider)}<small>${g.revoked?'已取消':g.active?'有效':'已到期'}</small></td><td><div class="inline-actions"><button type="button" class="small" data-member-access="${esc(g.id)}" data-access-kind="${esc(g.kind)}">修改期限</button>${g.active?`<button type="button" class="small danger" data-member-access-cancel="${esc(g.id)}" data-access-kind="${esc(g.kind)}">取消权益</button>`:''}${g.overriddenAt?`<button type="button" class="small" data-member-access-restore="${esc(g.id)}" data-access-kind="membership">恢复原值</button>`:''}</div></td></tr>`).join('')||emptyRow(4,'暂无会员权益');
+ $('#member-account-history').innerHTML=data.history.map(h=>`<p>${esc(memberDate(h.createdAt))} · ${esc(memberManagementTitles[h.kind]||h.kind)}${h.tier?' '+esc(memberTitles[h.tier]):''}${['admin_membership_granted','account_access_updated'].includes(h.kind)?' · '+(h.permanent?'永久':esc(memberDate(h.expiresAt))):''}<br>${esc(h.reason||'')}</p>`).join('')||'暂无管理操作。';
 }
 async function openMemberAccount(accountId){
  const seq=++memberAccountLoad,viewToken=state.viewToken;
@@ -69,10 +72,10 @@ async function openMemberAccount(accountId){
  $('#member-account-form').reset();$('#member-grant-days').disabled=false;$('#member-grant-duration').hidden=false;
  renderMemberAccount(data);$('#member-account-dialog').showModal();
 }
-function closeMemberAccount(){memberAccountLoad++;memberAccount=null;if($('#member-account-dialog').open)$('#member-account-dialog').close();for(const id of ['member-account-title','member-account-email','member-account-state','member-account-ban-reason','member-account-grants','member-account-history'])$('#'+id).replaceChildren();$('#member-account-reason').value='';}
-function memberManagementBody(){
+function closeMemberAccount(){closeMemberAccess();memberAccountLoad++;memberAccount=null;if($('#member-account-dialog').open)$('#member-account-dialog').close();for(const id of ['member-account-title','member-account-email','member-account-state','member-account-ban-reason','member-account-grants','member-account-history'])$('#'+id).replaceChildren();$('#member-account-reason').value='';}
+function memberManagementBody(reasonValue=$('#member-account-reason').value){
  if(!memberAccount)throw new Error('请重新打开账号资料。');
- const reason=$('#member-account-reason').value.trim();if(!reason)throw new Error('请先填写操作原因。');
+ const reason=reasonValue.trim();if(!reason)throw new Error('请先填写操作原因。');
  return {accountId:memberAccount.account.id,expectedRevision:memberAccount.account.revision,reason};
 }
 async function saveMemberManagement(action,body){
@@ -99,5 +102,65 @@ $('#member-account-status').onclick=async()=>{await buttonAction($('#member-acco
  if(!await confirmAction(body.banned?'封禁此账号？':'解除账号封禁？',memberAccount.account.email+' · '+(body.banned?'立即注销服务端会话并阻止再次登录；离线缓存授权可能暂时保留。':'允许重新登录，原有未过期权益恢复可用。'),body.banned?'封禁账号':'解除封禁'))return;
  await saveMemberManagement('status',body);
 });if(memberAccount)renderMemberAccount(memberAccount)};
+
+function closeMemberAccess(){memberAccess=null;if($('#member-access-dialog').open)$('#member-access-dialog').close();$('#member-access-reason').value='';}
+$('#member-access-close').onclick=closeMemberAccess;
+$('#member-access-dialog').addEventListener('cancel',event=>{event.preventDefault();closeMemberAccess()});
+$('#member-access-permanent').onchange=()=>$('#member-access-expiry').disabled=$('#member-access-permanent').checked;
+$('#member-account-grants').addEventListener('click',event=>{
+ const b=event.target.closest('[data-member-access],[data-member-access-cancel],[data-member-access-restore]');if(!b||!memberAccount)return;
+ const sourceId=b.dataset.memberAccess||b.dataset.memberAccessCancel||b.dataset.memberAccessRestore;
+ const target=[...memberAccount.grants,...(memberAccount.access||[])].find(g=>g.kind===b.dataset.accessKind&&g.id===sourceId);if(!target)return;
+ if(b.dataset.memberAccess){
+  memberAccess=target;$('#member-access-title').textContent='修改 '+(memberTitles[target.tier]||target.tier)+' 期限';
+  $('#member-access-summary').textContent=memberAccount.account.email+' · 当前：'+(target.expiresAt>=253402300799?'永久有效':memberDate(target.expiresAt));
+  const time=target.expiresAt>=253402300799||target.expiresAt<Date.now()/1000?Date.now()+31*86400000:target.expiresAt*1000,d=new Date(time);
+  $('#member-access-expiry').value=new Date(time-d.getTimezoneOffset()*60000).toISOString().slice(0,16);
+  $('#member-access-permanent').checked=target.expiresAt>=253402300799;$('#member-access-expiry').disabled=$('#member-access-permanent').checked;
+  $('#member-access-reason').value=$('#member-account-reason').value;$('#member-access-dialog').showModal();return;
+ }
+ buttonAction(b,async()=>{
+  const action=b.dataset.memberAccessCancel?'cancel':'restore',body={...memberManagementBody(),kind:target.kind,sourceId:target.id,action};
+  if(!await confirmAction(action==='cancel'?'取消这条权益？':'恢复原始权益？',memberAccount.account.email+' · '+(memberTitles[target.tier]||target.tier)+'。'+(action==='cancel'?'此来源的授权会失效，其他权益独立保留。':'移除这条人工调整，恢复原始记录；平台来源后续按平台同步。'),action==='cancel'?'取消权益':'恢复原值'))return;
+  await saveMemberManagement('access',body);
+ });
+});
+$('#member-access-form').onsubmit=event=>{event.preventDefault();const target=memberAccess;if(!target)return;buttonAction(event.currentTarget.querySelector('button[type=submit]'),async()=>{
+ const body={...memberManagementBody($('#member-access-reason').value),kind:target.kind,sourceId:target.id,action:'update',permanent:$('#member-access-permanent').checked,expiresAt:Math.floor(new Date($('#member-access-expiry').value).getTime()/1000)};
+ if(!await confirmAction('保存新的权益期限？',memberAccount.account.email+' · '+(memberTitles[target.tier]||target.tier)+' → '+(body.permanent?'永久有效':memberDate(body.expiresAt))+'。人工修改会覆盖自动同步。','保存期限'))return;
+ await saveMemberManagement('access',body);closeMemberAccess();
+})};
+
+const clientAudienceTitles={single:'单个账号',all:'全部正常账号',plus:'Plus 账号',pro:'Pro 账号',free:'无有效订阅（含试用）'};
+const clientMessageStates={draft:'待确认',sent:'已发送',revoked:'已撤回'};
+function renderClientMessageList(data){$('#member-message-list').innerHTML=data.messages.map(m=>`<tr><td>${esc(m.title)}<small>${m.kind==='toast'?'Toast 轻量提示':'Alert 横幅'}</small></td><td>${esc(m.accountEmail||clientAudienceTitles[m.audience])}</td><td>${esc(clientMessageStates[m.status])}<small>${number(m.shown)} / ${number(m.recipients)} 个账号已展示</small></td><td>${esc(memberDate(m.expiresAt))}</td><td><div class="inline-actions"><button class="small" data-member-message="${esc(m.id)}">${m.status==='draft'?'预览 / 发送':'查看'}</button>${m.status!=='revoked'?`<button class="small danger" data-member-message-revoke="${esc(m.id)}">撤回</button>`:''}</div></td></tr>`).join('')||emptyRow(5,'暂无客户端消息');}
+function renderClientMessagePreview(data){
+ memberMessagePreview=data;const m=data.message;
+ $('#member-message-preview-title').textContent=m.kind==='toast'?'Toast 轻量提示预览':'Alert 顶部横幅预览';
+ $('#member-message-preview-heading').textContent=m.title;$('#member-message-preview-body').textContent=m.body;
+ $('#member-message-preview-meta').textContent=(m.accountEmail||clientAudienceTitles[m.audience])+' · '+data.eligibleCount+' 个账号 · 有效至 '+memberDate(m.expiresAt);
+ $('#member-message-preview-progress').textContent=m.status==='draft'?'未发送。确认后固定本次收件账号范围；需要新版客户端才能展示。':clientMessageStates[m.status]+' · '+data.progress.shown+' / '+data.progress.recipients+' 个账号已展示。';
+ $('#member-message-send').hidden=m.status!=='draft';$('#member-message-send').disabled=data.eligibleCount<1||m.expiresAt<=Date.now()/1000;
+ $('#member-message-send').textContent='确认发送给 '+data.eligibleCount+' 个账号';
+}
+async function openClientMessage(messageId){const token=state.viewToken,data=await memberApi('messages/detail',{messageId});if(token!==state.viewToken||state.view!=='membership')return;renderClientMessagePreview(data);$('#member-message-preview-dialog').showModal();}
+function closeClientMessage(){memberMessagePreview=null;if($('#member-message-preview-dialog').open)$('#member-message-preview-dialog').close();for(const id of ['member-message-preview-heading','member-message-preview-body','member-message-preview-meta','member-message-preview-progress'])$('#'+id).replaceChildren();}
+$('#member-message-preview-close').onclick=closeClientMessage;
+$('#member-message-preview-dialog').addEventListener('cancel',event=>{event.preventDefault();closeClientMessage()});
+function updateClientMessageForm(){const single=$('#member-message-audience').value==='single',toastStyle=$('#member-message-kind').value==='toast';$('#member-message-target-wrap').hidden=!single;$('#member-message-target').required=single;$('#member-message-body').maxLength=toastStyle?140:1000;$('#member-message-hint').textContent=toastStyle?'Toast 正文最多 140 字，约 6 秒后自动消失。':'Alert 正文最多 1000 字，作为顶部横幅保留，用户可关闭。';}
+$('#member-message-audience').onchange=updateClientMessageForm;$('#member-message-kind').onchange=updateClientMessageForm;
+$('#member-message-form').oninput=()=>memberMessageCreateId=null;
+$('#member-message-form').onsubmit=event=>{event.preventDefault();const token=state.viewToken;buttonAction(event.currentTarget.querySelector('button[type=submit]'),async()=>{
+ memberMessageCreateId=memberMessageCreateId||crypto.randomUUID();
+ const data=await memberApi('messages/draft',{requestId:memberMessageCreateId,kind:$('#member-message-kind').value,audience:$('#member-message-audience').value,target:$('#member-message-target').value,title:$('#member-message-title').value,body:$('#member-message-body').value,validDays:Number($('#member-message-valid').value)});
+ if(token!==state.viewToken||state.view!=='membership')return;renderClientMessagePreview(data);$('#member-message-preview-dialog').showModal();await loadMemberTab();
+})};
+$('#member-message-send').onclick=async()=>{await buttonAction($('#member-message-send'),async()=>{
+ const preview=memberMessagePreview;if(!preview||preview.message.status!=='draft')return;
+ if(!await confirmAction('发送这条客户端消息？',preview.message.title+' · '+preview.eligibleCount+' 个账号 · '+(preview.message.kind==='toast'?'Toast 轻量提示':'Alert 顶部横幅')+'。这会向真实客户端投递。','确认发送'))return;
+ try{const data=await memberApi('messages/send',{messageId:preview.message.id,confirmRecipientCount:preview.eligibleCount});if(memberMessagePreview?.message.id===preview.message.id)renderClientMessagePreview(data);await loadMemberTab();toast('客户端消息已发送，等待用户上线接收。')}
+ catch(error){if(error.status===409&&memberMessagePreview?.message.id===preview.message.id)renderClientMessagePreview(await memberApi('messages/detail',{messageId:preview.message.id}));throw error}
+});if(memberMessagePreview)renderClientMessagePreview(memberMessagePreview)};
+$('#member-account-message').onclick=()=>{if(!memberAccount)return;const email=memberAccount.account.email;closeMemberAccount();memberTab='messages';$('#member-message-audience').value='single';$('#member-message-target').value=email;memberMessageCreateId=null;updateClientMessageForm();loadMemberTab().catch(pageError)};
 
 $('#member-report-close').onclick=()=>{$('#member-report-preview').close();$('#member-report-image').removeAttribute('src')};

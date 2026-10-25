@@ -7,7 +7,7 @@ async function fixture() {
  const html=await (await worker.fetch(new Request('https://api.musefilm.top/admin'),{})).text();
  const source=html.match(/<script>([\s\S]*?)<\/script>/)[1];
  const client=source.slice(source.indexOf('const memberTitles='),source.indexOf("$('#member-report-close').onclick="));
- const nodes=new Map(),get=id=>{if(!nodes.has(id))nodes.set(id,{value:'',replaceChildren(){this.innerHTML=''},addEventListener(type,fn){this[type]=fn}});return nodes.get(id)};
+ const nodes=new Map(),get=id=>{if(!nodes.has(id))nodes.set(id,{value:'',reset(){},replaceChildren(){this.innerHTML=''},addEventListener(type,fn){this[type]=fn}});return nodes.get(id)};
  const clipboard=[],downloads=[],events={};
  const context=vm.createContext({$:get,window:{addEventListener(type,fn){events[type]=fn}},navigator:{clipboard:{async writeText(text){clipboard.push(text)}}},
   buttonAction:async(button,action)=>action(),toast(){},esc:String,number:String,date:String,Blob,
