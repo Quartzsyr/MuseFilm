@@ -75,6 +75,8 @@ Keep the existing daily cleanup cron `17 3 * * *`, and add `* * * * *`. The minu
 
 `.github/workflows/notify-release-subscribers.yml` triggers a release check immediately after release publication/edits and supports manual dispatch. It uses a short-lived GitHub OIDC token; no Cloudflare or SMTP secret is stored in GitHub. The Worker verifies GitHub's RS256 signature, issuer, audience, repository ID/name, workflow path, event and token lifetime, then independently fetches the release list. Replayed triggers cannot create a duplicate release campaign. The periodic scan covers delayed asset uploads and missed workflows. GitHub Actions scheduling, SMTP processing and queue size affect actual arrival time.
 
+Actions posts the signed release feed directly to `https://musefilm-feedback-api.syrquartz.workers.dev/api/releases/check`, while requesting the canonical OIDC audience `https://api.musefilm.top/api/releases/check`. This keeps machine requests independent of browser challenges on the public domain without changing website security rules or weakening token verification. Keep the Worker's `workers_dev` origin enabled. Anonymous requests to this endpoint must return JSON `401 invalid_release_identity`.
+
 Subscribers retain a set of downloaded platforms; users with both installers may receive both groups. Only `subscribed` and non-suppressed contacts are included. Manual mail requires a tested draft and confirmed recipient count. A scheduled send snapshots the audience when confirmed; it re-checks consent/suppression at actual dispatch. Times are stored in UTC and displayed in the administrator's local timezone. Cancel is available before dispatch starts. Closing the browser does not stop server processing.
 
 Temporary SMTP failures are attempted at most four times, with delays of 5 minutes, 30 minutes and 2 hours. Permanent authentication/content errors need administrator attention. Unknown-mailbox RCPT errors with an address-related enhanced status suppress that address. A connection lost after DATA, or an expired delivery lease, is `uncertain` and never automatically resent. The admin retry button only retries failures known safe to resend. `sent` means SMTP accepted the message, not proven inbox delivery.
@@ -117,6 +119,8 @@ Settings and preview/test/draft endpoints live under authenticated, origin-check
 ### 统一会员管理
 
 网站管理入口为 `https://api.musefilm.top/admin#membership`，使用原有的邮箱验证码登录。会员服务的旧管理入口跳转到此页面，用户兑换码领取链接保持可用。
+
+兑换码批次支持查看纯码列表、复制可用码列表和导出 TXT，均按批次原顺序一行一个兑换码，只包含可领取的码，不带编号、标题或领取链接。每行还可单独复制兑换码或领取链接；CSV 继续包含完整库存、状态与链接。退出或离开页面会清空明文列表。
 
 网站 Worker 通过 `MEMBERSHIP` Service Binding 调用独立会员服务。`MEMBERSHIP_ADMIN_TOKEN` 是网站 Worker Secret，取独立会员服务现有的 `ADMIN_TOKEN`；凭据仅存在服务端，不进入浏览器。所有代理操作继续校验 HttpOnly 站长会话和同源 Origin，且只允许预定的管理接口。
 

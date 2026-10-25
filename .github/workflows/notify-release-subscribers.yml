@@ -36,11 +36,14 @@ jobs:
           node scripts/prepare-release-feed.mjs "$RUNNER_TEMP/releases.json" "$RUNNER_TEMP/release-feed.json"
       - name: Deliver authenticated release metadata to MuseFilm
         env:
-          RELEASE_ENDPOINT: https://api.musefilm.top/api/releases/check
+          # Machine-to-machine traffic uses the Worker origin so browser
+          # challenges on the public website cannot block release delivery.
+          RELEASE_ENDPOINT: https://musefilm-feedback-api.syrquartz.workers.dev/api/releases/check
+          RELEASE_AUDIENCE: https://api.musefilm.top/api/releases/check
         shell: bash
         run: |
           set -euo pipefail
-          audience=$(printf '%s' "$RELEASE_ENDPOINT" | jq -sRr @uri)
+          audience=$(printf '%s' "$RELEASE_AUDIENCE" | jq -sRr @uri)
           token=$(curl --fail --silent --show-error \
             -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${audience}" | jq -er '.value')

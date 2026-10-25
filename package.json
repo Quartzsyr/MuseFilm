@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "npm run build && node --test tests/static-site.test.mjs tests/cloudflare-worker.test.mjs tests/download-counts.test.mjs tests/visit-download-notifications.test.mjs tests/community.test.mjs tests/download-dialog.test.mjs tests/mail-automation.test.mjs tests/dashboard.test.mjs"
+    "test": "npm run build && node --test tests/static-site.test.mjs tests/cloudflare-worker.test.mjs tests/download-counts.test.mjs tests/visit-download-notifications.test.mjs tests/community.test.mjs tests/download-dialog.test.mjs tests/mail-automation.test.mjs tests/dashboard.test.mjs tests/membership-admin.test.mjs tests/membership-delivery.test.mjs"
   },
   "devDependencies": {
     "vite": "8.0.13"

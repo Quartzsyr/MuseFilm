@@ -64,7 +64,8 @@ test('release trigger rejects anonymous requests and verifies GitHub signature, 
  context.mock.method(globalThis,'fetch',async()=>{throw new Error('Worker must not fetch the REST API for a signed payload')});
  const snapshot={schemaVersion:1,repository:'Quartzsyr/MuseFilm',updatedAt:now(),releases:[release(2,'windows'),release(1)]};
  const request=()=>new Request(origin+'/api/releases/check',{method:'POST',headers:{Authorization:'Bearer '+validToken,'Content-Type':'application/json'},body:JSON.stringify(snapshot)});
- const validToken=await sign(claims);let delivered=await worker.fetch(request(),f.env);assert.equal(delivered.status,200);assert.equal((await delivered.json()).source,'github_actions');
+ // The machine endpoint and canonical audience are deliberately independent.
+ const validToken=await sign({...claims,aud:'https://api.musefilm.top/api/releases/check'});let delivered=await worker.fetch(request(),f.env);assert.equal(delivered.status,200);assert.equal((await delivered.json()).source,'github_actions');
  delivered=await worker.fetch(request(),f.env);assert.equal((await delivered.json()).created,0);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,1);
  assert.equal((await worker.fetch(new Request(origin+'/api/releases/check',{method:'POST',body:JSON.stringify(snapshot)}),f.env)).status,401);
  snapshot.updatedAt='2020-01-01T00:00:00Z';assert.equal((await worker.fetch(request(),f.env)).status,503);assert.equal(f.DB.db.prepare('SELECT COUNT(*) n FROM campaigns').get().n,1);
