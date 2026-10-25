@@ -1,8 +1,53 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-25T16:31:17.328Z",
+  "updatedAt": "2026-10-25T16:41:29.597Z",
   "releases": [
+    {
+      "id": 423524963,
+      "name": "MuseFilm 会员版 4.7.1 · 足迹布局与导入体验优化",
+      "tag_name": "PAID-MAC4.7.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.1",
+      "published_at": "2026-10-25T16:41:22Z",
+      "created_at": "2026-10-25T16:31:17Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 4.7.1（66）\n\n重新设计胶片足迹，让地点、照片与拍摄时间更清晰地呈现在同一个工作区。\n\n• 宽窗口采用左侧大地图、右侧独立时间线，地点索引横向排列；小窗口自动切换为纵向布局。\n• 精简多层玻璃边框，统一圆角、留白与文字层级，适配浅色和深色外观。\n• 卷宗卡片重新组织照片、名称、胶卷、张数与日期，减少信息拥挤和截断。\n• 未记录地点、定位中和地点无法解析时提供清晰提示，可直接打开卷宗补充或编辑拍摄地点。\n• 点击地图标记同步筛选时间线；地点详情固定在地图角落，并提供显示全部入口。\n• 编辑地点或卷宗照片后，地图标记与数量及时刷新。\n\n• 修复正式会员版被误判为测试版、每次启动自动弹出拟物导入的问题；导入继续从原有入口手动打开。\n• 拟物导入增加始终可见的「关闭导入」按钮与 Esc 提示；关闭时显示反馈，有未归档内容时明确确认，原始照片不受影响。\n\n保留 4.7.0 的百度网盘返片（开发中）、账号会员与软件内更新功能。百度网盘能力仍受百度审核、账号权限及服务规则影响。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel，可在软件内检查更新并升级。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.1-build66-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/MuseFilm-Paid-4.7.1-build66-universal.dmg",
+          "size": 58001920,
+          "digest": "sha256:ba5058451a3615c7c4fecac8c922f48b529f3c992fb55359679c00bead884518",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.1-build66-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/MuseFilm-Paid-4.7.1-build66-universal.zip",
+          "size": 57834125,
+          "digest": "sha256:278e8ddf69a463052b26f1f4b06fcf35668222ab081188ec1d47048db836f464",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.1.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/release-4.7.1.json",
+          "size": 899,
+          "digest": "sha256:8f0c66ccc10423e649c171b5db7eb4df056d98b255d11dde466f40d6606a3d05",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.1.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/SHA256SUMS-4.7.1.txt",
+          "size": 216,
+          "digest": "sha256:bcfc952b9f60eea2a7e7c379190a94dad5c8a0936ed7f933536a9fbff14d25d0",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 423419128,
       "name": "MuseFilm 会员版 4.7.0 · 百度网盘返片（开发中）",
