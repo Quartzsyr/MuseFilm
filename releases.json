@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-25T06:13:57.338Z",
+  "updatedAt": "2026-10-25T11:42:02.542Z",
   "releases": [
     {
       "id": 422563352,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.5.2/MuseFilm-Paid-4.5.2-build58-universal.dmg",
           "size": 59585364,
           "digest": "sha256:86827ec8825d1e83e24026887f8825868bd714cd3050502ff6d877af17f2344d",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-Paid-4.5.2-build58-universal.zip",
@@ -207,7 +207,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
           "size": 5532874,
           "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
-          "download_count": 66
+          "download_count": 68
         }
       ]
     },
