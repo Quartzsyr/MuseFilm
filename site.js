@@ -7,9 +7,113 @@ let refreshScreenDeckLanguage = () => {};
 let refreshReleaseLanguage = () => {};
 let refreshGalleryLanguage = () => {};
 let refreshPlatformDownload = () => {};
+let refreshShowcaseLanguage = () => {};
 
 const TRANSLATIONS = {
   zh: {
+    "promo.expand": "展开功能详情",
+    "promo.collapse": "收起功能详情",
+    "promo.detailScope": "光页 · 水印 · 动态桌面 · 度盘 Beta",
+    "promo.openVideo": "打开宣传片",
+    "promo.caption": "MuseFilm · 功能宣传片",
+    "promo.betaNote": "macOS 功能展示 · 度盘导入仍处于 Beta 测试。",
+    "showcase.desktop.music": "音乐壁纸",
+    "showcase.desktop.film": "光页视频",
+    "showcase.desktop.photos": "照片轮换",
+    "showcase.desktop.pause": "暂停演示",
+    "showcase.desktop.play": "播放演示",
+    "showcase.desktop.access": "基础照片轮播可用；视频桌面与音乐功能按权益解锁。",
+    "showcase.desktop.body": "胶卷照片轮换、光页影像与音乐可视化，延伸到你的日常桌面。",
+    "showcase.desktop.title2": "成为桌面。",
+    "showcase.desktop.title1": "让作品，",
+    "showcase.desktop.tab": "动态桌面",
+    "showcase.overline": "MUSEFILM / 创作展映",
+    "showcase.scope": "macOS · 演示画面",
+    "showcase.book.tab": "光页画册",
+    "showcase.watermark.tab": "水印工坊",
+    "showcase.baidu.tab": "度盘导入",
+    "showcase.book.title1": "从画册，",
+    "showcase.book.title2": "到摄影短片。",
+    "showcase.book.body": "编排照片与跨页，导出图片、PDF、摄影短片或 Live Photo。",
+    "showcase.book.access": "可免费编辑与预览，正式导出按权益解锁。",
+    "showcase.book.action": "翻开下一页",
+    "showcase.book.caption": "排版 / 跨页 / 光页影像",
+    "showcase.watermark.title1": "把落款，",
+    "showcase.watermark.title2": "也做成作品。",
+    "showcase.watermark.body": "为照片选择合适的留白与落款，切换不同的版式语言。",
+    "showcase.watermark.access": "基础模板可用；完整模板与批量导出需对应权益。",
+    "showcase.watermark.caption": "六种版式 / 同一束光",
+    "showcase.baidu.beta": "BETA · 测试中",
+    "showcase.baidu.title1": "云端返片，",
+    "showcase.baidu.title2": "回到你的档案。",
+    "showcase.baidu.body": "先用缩略图轻量归档，再按需下载原图。",
+    "showcase.baidu.note": "目前仍处于 Beta 测试；连接、目录读取及原图下载受百度审核、账号权限与服务规则影响。",
+    "showcase.baidu.access": "macOS · Plus / Pro 及有效 Pro 试用",
+    "showcase.baidu.tray": "缩略图先归档，原图按需取回。",
+    "showcase.baidu.trayNote": "百度网盘返片 · Beta 界面演示",
+    "showcase.baidu.caption": "浏览缩略图 / 加入卷宗 / 按需下载原图",
+    "showcase.hint": "点击页签切换功能",
+    "pricing.summary": "会员与收费说明",
+    "pricing.expand": "按需展开",
+    "pricing.title": "先创作，再选择适合的权益。",
+    "pricing.intro": "以下为当前 macOS 会员版的应用内方案说明。Windows 尚未同步本页展示的新功能及权益。",
+    "pricing.free": "免费基础版",
+    "pricing.freePrice": "永久免费",
+    "pricing.freeBody": "10 卷胶卷档案、5 种自定义胶片与 5 件自定义器材。包含档案编辑与备份、基础水印、光页编辑预览，以及每日一次底片漂流。",
+    "pricing.month": " / 月",
+    "pricing.plusBody": "100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。",
+    "pricing.proBody": "包含 Plus 的功能，档案与自定义资源不限数量。会员有效期内光页图片、PDF、摄影短片与 Live Photo 不限次数导出，并支持音乐壁纸、歌词与可视化。",
+    "pricing.voucherTitle": "只为这一次创作，也可以不订阅。",
+    "pricing.voucherBody": "¥2.9 光页成册券：一个画册的图片与 PDF；¥4.9 光页影像券：一个画册的短片与 Live Photo。激活后 24 小时内可修改、重试和重复导出，未激活不计时。",
+    "pricing.terms": "具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后已有档案仍可浏览、编辑和备份，超出免费额度时暂停新增。",
+    "showcase.style.classic": "经典白框",
+    "showcase.style.center": "居中铭牌",
+    "showcase.style.split": "画面分置",
+    "showcase.style.corner": "角落参数",
+    "showcase.style.rail": "页边札记",
+    "showcase.style.swiss": "瑞士海报",
+    "updates.title.line1": "让胶片的故事，",
+    "updates.title.line2": "继续发生。",
+    "updates.import.title.line1": "像装入一卷胶片，",
+    "updates.import.title.line2": "开始归档。",
+    "updates.map.title.line1": "把走过的地方，",
+    "updates.map.title.line2": "连成一卷时光。",
+    "updates.exchange.title.line1": "一帧日常，",
+    "updates.exchange.title.line2": "换一束陌生的光。",
+    "nav.updates": "新功能",
+    "updates.overline": "MUSEFILM · macOS 近期更新",
+    "updates.title": "让胶片的故事，继续发生。",
+    "updates.intro": "让照片成为画册、短片与带有自己落款的作品。从整理到表达，在 MuseFilm 里继续创作。",
+    "updates.scope": "以下新功能目前仅在 macOS 版提供",
+    "updates.available": "macOS 已提供",
+    "updates.cancel": "取消",
+    "updates.illustration": "功能示意",
+    "updates.import.name": "拟物导入",
+    "updates.import.title": "像装入一卷胶片，开始归档。",
+    "updates.import.body": "像装入胶片一样选片归档，随时清楚地取消或退出。",
+    "updates.import.detail": "手动开启 / 曲面贴纸 / 清晰退出",
+    "updates.map.name": "胶片足迹",
+    "updates.map.title": "把走过的地方，连成一卷时光。",
+    "updates.map.body": "地图与时间线同屏，点击地点，回到对应的卷宗与照片。",
+    "updates.map.detail": "地图与时间线 / 地点筛选 / 卷宗联动",
+    "updates.exchange.name": "底片漂流",
+    "updates.exchange.title": "一帧日常，换一束陌生的光。",
+    "updates.exchange.body": "寄出一张作品，拆开另一位摄影者的来信，收藏或送上感谢。",
+    "updates.exchange.detail": "登录即可参与 / 每天最多一次 / 支持举报",
+    "updates.exchange.art": "一帧换一帧",
+    "updates.privacy": "底片漂流仅上传你主动确认的分享副本，本地原始图库不上传；保存期限以应用内规则为准。",
+    "updates.download": "查看 macOS 当前版本",
+    "platform.title": "关于 Windows，向你说明。",
+    "platform.status": "新功能尚未同步",
+    "platform.greeting": "亲爱的 Windows 用户：",
+    "platform.current": "本页展示的光页画册、水印工坊，以及拟物导入、胶片足迹和底片漂流等最新体验，以 macOS 版本为准。Windows 尚未同步到这些功能状态；度盘导入也仅在 macOS 端进行 Beta 测试。",
+    "platform.progress": "两个平台需要分别完成开发、适配和测试。目前还没有可确认的 Windows 上线日期，后续会单独说明实际进展。",
+    "platform.expectation": "你仍可下载现有的 Windows Beta 版本。请以当前安装包已提供的功能作为体验和购买依据，谢谢你的理解与支持。",
+    "platform.download": "查看 Windows 当前版本",
+    "platform.hero": "近期新功能仅限 macOS · Windows 版本说明 ↗",
+    "platform.winDownload": "当前提供 Windows Beta；上述 macOS 新功能尚未同步。",
+    "platform.readNote": "阅读 Windows 版本说明 ↗",
+    "platform.macDownload": "近期新功能适用 macOS 版，具体可用性以当前发布版本为准。",
     "skip": "跳到主要内容",
     "menu": "菜单",
     "nav.home": "首页",
@@ -102,8 +206,8 @@ const TRANSLATIONS = {
     "local.title": "照片始终属于你。",
     "local.titleLine1": "照片始终",
     "local.titleLine2": "属于你。",
-    "local.lead": "没有云端，没有重复图库，没有强制迁移。",
-    "local.body": "照片仍然保存在原来的硬盘位置。你可以自由备份、迁移，也可以在离开 MuseFilm 后继续拥有完整的照片库。",
+    "local.lead": "本地归档，不重复建库，不强制迁移。",
+    "local.body": "照片仍然保存在原来的硬盘位置。你可以自由备份、迁移，也可以在离开 MuseFilm 后继续拥有完整的照片库。底片漂流仅上传你主动确认的分享副本。",
     "gallery.overline": "为摄影而生",
     "gallery.title": "档案的终点，仍然是照片。",
     "gallery.body": "软件退到背后，让一卷胶片里的光、时间和记忆回到画面中心。",
@@ -229,6 +333,109 @@ const TRANSLATIONS = {
     "screen.preview": "预览",
   },
   en: {
+    "promo.expand": "Explore feature details",
+    "promo.collapse": "Collapse feature details",
+    "promo.detailScope": "Photo books · Watermarks · Desktop · Baidu Beta",
+    "promo.openVideo": "Open the film",
+    "promo.caption": "MuseFilm · Product film",
+    "promo.betaNote": "macOS features shown · Baidu import remains in Beta testing.",
+    "showcase.desktop.music": "Music wallpapers",
+    "showcase.desktop.film": "Photo book film",
+    "showcase.desktop.photos": "Photographs",
+    "showcase.desktop.pause": "Pause demo",
+    "showcase.desktop.play": "Play demo",
+    "showcase.desktop.access": "Basic photo rotation is included. Video and music features require the appropriate entitlement.",
+    "showcase.desktop.body": "Bring rotating roll photographs, photo book films and music visualizers to your everyday desktop.",
+    "showcase.desktop.title2": "become your desktop.",
+    "showcase.desktop.title1": "Let your work",
+    "showcase.desktop.tab": "Desktop",
+    "showcase.overline": "MUSEFILM / CREATIVE STUDIO",
+    "showcase.scope": "macOS · Demonstration",
+    "showcase.book.tab": "Photo books",
+    "showcase.watermark.tab": "Watermarks",
+    "showcase.baidu.tab": "Baidu import",
+    "showcase.book.title1": "From photo books,",
+    "showcase.book.title2": "to moving stories.",
+    "showcase.book.body": "Arrange photographs across pages. Export images, a PDF, a film or a Live Photo.",
+    "showcase.book.access": "Editing and previews are free. Final exports require the appropriate entitlement.",
+    "showcase.book.action": "Turn the page",
+    "showcase.book.caption": "LAYOUT / SPREADS / FILM",
+    "showcase.watermark.title1": "A signature,",
+    "showcase.watermark.title2": "worth framing.",
+    "showcase.watermark.body": "Choose the space, signature and layout that suit your photograph.",
+    "showcase.watermark.access": "Basic templates are included. Full templates and batch export require the corresponding entitlement.",
+    "showcase.watermark.caption": "SIX LAYOUTS / THE SAME LIGHT",
+    "showcase.baidu.beta": "BETA · IN TESTING",
+    "showcase.baidu.title1": "From the cloud,",
+    "showcase.baidu.title2": "to your archive.",
+    "showcase.baidu.body": "Archive lightweight thumbnails. Download originals when needed.",
+    "showcase.baidu.note": "Currently in Beta testing. Connections, folder access and original downloads depend on Baidu review, account permissions and service policies.",
+    "showcase.baidu.access": "macOS · Plus / Pro and active Pro trials",
+    "showcase.baidu.tray": "Archive thumbnails first. Retrieve originals when needed.",
+    "showcase.baidu.trayNote": "Baidu lab returns · Beta interface demonstration",
+    "showcase.baidu.caption": "BROWSE THUMBNAILS / ADD TO ROLLS / RETRIEVE ORIGINALS",
+    "showcase.hint": "Select a tab to explore",
+    "pricing.summary": "Membership and pricing",
+    "pricing.expand": "View details",
+    "pricing.title": "Create first. Choose the access you need.",
+    "pricing.intro": "These are the plans shown in the current macOS membership edition. Windows has not received the new features and entitlements presented here.",
+    "pricing.free": "Free basic edition",
+    "pricing.freePrice": "Free, permanently",
+    "pricing.freeBody": "10 archived rolls, 5 custom film stocks and 5 custom gear entries. Includes archive editing and backups, basic watermarks, photo book editing and previews, and one photo exchange per day.",
+    "pricing.month": " / month",
+    "pricing.plusBody": "100 archived rolls, 30 custom film stocks and 30 custom gear entries. Full watermark templates, batch export, contact sheet export, roll-linked and video desktops. One complete photo book project per paid month, with a 24-hour export window after activation.",
+    "pricing.proBody": "Includes Plus features with unlimited archive and custom resource counts. Unlimited photo book image, PDF, film and Live Photo exports during an active membership, plus music wallpapers, lyrics and visualizers.",
+    "pricing.voucherTitle": "For a single project, you can also skip the subscription.",
+    "pricing.voucherBody": "¥2.9 Book Export Pass: images and PDF for one photo book. ¥4.9 Motion Export Pass: film and Live Photo for one photo book. Edit, retry and re-export within 24 hours after activation. The clock does not start before activation.",
+    "pricing.terms": "Actual prices, periods and entitlements are defined in the app and on the Afdian checkout page. Baidu import remains in Beta for Plus, Pro and active Pro trials; availability depends on Baidu permissions. Existing archives remain browsable, editable and available for backup after membership expires. New entries pause when free limits are exceeded.",
+    "showcase.style.classic": "Classic border",
+    "showcase.style.center": "Centered signature",
+    "showcase.style.split": "Split composition",
+    "showcase.style.corner": "Corner details",
+    "showcase.style.rail": "Editorial rail",
+    "showcase.style.swiss": "Swiss poster",
+    "updates.title.line1": "Let your film’s story",
+    "updates.title.line2": "continue.",
+    "updates.import.title.line1": "A familiar roll.",
+    "updates.import.title.line2": "A new beginning.",
+    "updates.map.title.line1": "The places you went.",
+    "updates.map.title.line2": "The light you kept.",
+    "updates.exchange.title.line1": "An ordinary moment.",
+    "updates.exchange.title.line2": "An unexpected connection.",
+    "nav.updates": "What's new",
+    "updates.overline": "MUSEFILM · NEW ON macOS",
+    "updates.title": "Let the story of your film continue.",
+    "updates.intro": "Turn photographs into books, films and compositions with your own signature. Keep creating in MuseFilm, from organizing to expressing.",
+    "updates.scope": "These new features are currently available on macOS only",
+    "updates.available": "Available on macOS",
+    "updates.cancel": "Cancel",
+    "updates.illustration": "Feature illustration",
+    "updates.import.name": "Tactile importing",
+    "updates.import.title": "A familiar roll. A new beginning.",
+    "updates.import.body": "Select and archive photographs with the feel of loading film, with a clear way to exit.",
+    "updates.import.detail": "Open on demand / Curved cancel label / Clear exit",
+    "updates.map.name": "Film footprints",
+    "updates.map.title": "The places you went. The light you kept.",
+    "updates.map.body": "Explore a map and timeline together. Select a place to find its rolls and photographs.",
+    "updates.map.detail": "Map and timeline / Place filters / Linked roll archives",
+    "updates.exchange.name": "A frame for a frame",
+    "updates.exchange.title": "An ordinary moment. An unexpected connection.",
+    "updates.exchange.body": "Send a photograph. Open another photographer’s reply, save a favorite or send a thank-you.",
+    "updates.exchange.detail": "Sign in to join / Up to one exchange a day / Reporting available",
+    "updates.exchange.art": "A FRAME FOR A FRAME",
+    "updates.privacy": "Only a sharing copy you explicitly confirm is uploaded for the exchange. Your original local library stays local; see the in-app retention rules.",
+    "updates.download": "Explore the current macOS release",
+    "platform.title": "A note for our Windows users.",
+    "platform.status": "New features not yet available",
+    "platform.greeting": "Dear Windows users,",
+    "platform.current": "The latest photo book, watermark, tactile import, Film Footprints and exchange experiences shown here reflect the macOS edition. Windows has not reached this feature state. Baidu import is also being beta-tested on macOS only.",
+    "platform.progress": "Each platform needs separate development, adaptation and testing. There is no confirmed Windows release date for these features yet. Actual progress will be shared separately.",
+    "platform.expectation": "The existing Windows Beta remains available to download. Please base your evaluation and purchase decisions on the features in the current installer. Thank you for your understanding and support.",
+    "platform.download": "Explore the current Windows release",
+    "platform.hero": "New features are macOS only · Read the Windows note ↗",
+    "platform.winDownload": "Windows Beta is available. The macOS features above are not included yet.",
+    "platform.readNote": "Read the Windows version note ↗",
+    "platform.macDownload": "Recent new features apply to macOS. Availability depends on the current release.",
     "skip": "Skip to main content",
     "menu": "Menu",
     "nav.home": "Home",
@@ -321,8 +528,8 @@ const TRANSLATIONS = {
     "local.title": "Your photos stay yours.",
     "local.titleLine1": "Your photos.",
     "local.titleLine2": "Always yours.",
-    "local.lead": "No cloud. No duplicate library. No forced migration.",
-    "local.body": "Photographs remain in their original folders. Back up, move, or leave MuseFilm at any time while keeping the complete library.",
+    "local.lead": "Local archives. No duplicate library. No forced migration.",
+    "local.body": "Photographs remain in their original folders. Back up, move, or leave MuseFilm at any time while keeping the complete library. Photo exchange uploads only the sharing copy you explicitly confirm.",
     "gallery.overline": "Made for photography",
     "gallery.title": "The archive ends with the photograph.",
     "gallery.body": "The software steps back so light, time, and memory can return to the center of every roll.",
@@ -486,6 +693,7 @@ function applyLanguage(language) {
   refreshReleaseLanguage();
   refreshGalleryLanguage();
   refreshPlatformDownload();
+  refreshShowcaseLanguage();
 }
 
 const filmModel = document.querySelector("[data-film-model]");
@@ -579,20 +787,16 @@ if (cinematic) {
   let cinematicFrame = 0;
   let lastProgress = 0;
   let shotTransitionId = 0;
+  let manualShot = null;
+  let manualShotScrollY = 0;
 
   const platformShots = () => SCREENSHOTS.filter((shot) => shot.platform === activePlatform);
 
-  function sceneFromProgress(progress) {
-    if (progress < 0.16) return 0;
-    if (progress < 0.37) return 1;
-    if (progress < 0.58) return 2;
-    if (progress < 0.79) return 3;
-    return 4;
-  }
+  function sceneFromProgress(progress) { return progress < .2 ? 0 : 1; }
 
   function shotFromProgress(progress, length) {
-    const narrativeProgress = Math.min(1, Math.max(0, (progress - .13) / .87));
-    return Math.min(length - 1, Math.floor(narrativeProgress * length));
+    const stops=[0,Math.round((length-1)*.66),length-1];
+    return stops[progress<.5?0:progress<.8?1:2];
   }
 
   function updateProgressStrip(length) {
@@ -654,16 +858,16 @@ if (cinematic) {
           { opacity: 1, transform: "translate3d(0,0,0) scale(1.006)", filter: "brightness(1)" },
           { opacity: .58, transform: `translate3d(${direction * -.18}%,0,0) scale(1.012)`, filter: "brightness(.82)", offset: .58 },
           { opacity: 0, transform: `translate3d(${direction * -.36}%,0,0) scale(1.018)`, filter: "brightness(.68) blur(.08rem)" },
-        ], { duration: 980, easing: "cubic-bezier(.22,.72,.25,1)", fill: "forwards" })
+        ], { duration: 620, easing: "cubic-bezier(.22,.72,.25,1)", fill: "forwards" })
           .finished.catch(() => {}).finally(() => outgoingImage.remove());
         image.animate([
           { opacity: .16, transform: `translate3d(${direction * .38}%,0,0) scale(1.02)`, filter: "blur(.16rem) brightness(.72) saturate(.82)" },
           { opacity: .74, transform: `translate3d(${direction * .1}%,0,0) scale(1.006)`, filter: "blur(.025rem) brightness(.96) saturate(.96)", offset: .68 },
           { opacity: 1, transform: "translate3d(0,0,0) scale(1)", filter: "none" },
-        ], { duration: 980, easing: "cubic-bezier(.22,.72,.25,1)" });
+        ], { duration: 620, easing: "cubic-bezier(.22,.72,.25,1)" });
         window.setTimeout(() => {
           if (transitionId === shotTransitionId) cinematic.classList.remove("is-exposing", "is-detenting");
-        }, 1040);
+        }, 700);
       }
       const preload = shots[Math.min(shots.length - 1, nextIndex + 1)];
       if (preload && preload !== shot) {
@@ -737,7 +941,8 @@ if (cinematic) {
       filmModel.dispatchEvent(new CustomEvent("cinematic-progress", { detail: { progress, scene } }));
     }
     setCinematicScene(scene);
-    showNarrativeShot(shotFromProgress(progress, platformShots().length));
+    if(manualShot!==null&&Math.abs(window.scrollY-manualShotScrollY)>120)manualShot=null;
+    showNarrativeShot(manualShot??shotFromProgress(progress, platformShots().length));
   }
 
   function queueCinematicUpdate() {
@@ -745,12 +950,9 @@ if (cinematic) {
   }
 
   function scrollToShot(index, instant = false) {
-    const shots = platformShots();
-    const safeIndex = Math.min(shots.length - 1, Math.max(0, index));
-    const shotProgress = .13 + ((safeIndex + .5) / shots.length) * .87;
-    const sectionTop = window.scrollY + cinematic.getBoundingClientRect().top;
-    const travel = Math.max(1, cinematic.offsetHeight - window.innerHeight);
-    window.scrollTo({ top: sectionTop + travel * shotProgress, behavior: reducedMotion || instant ? "auto" : "smooth" });
+    manualShot=Math.min(platformShots().length-1,Math.max(0,index));
+    manualShotScrollY=window.scrollY;
+    showNarrativeShot(manualShot,!instant);
   }
 
   function shotAtPointer(event) {
@@ -766,6 +968,7 @@ if (cinematic) {
 
   function selectPlatform(platform) {
     activePlatform = platform === "windows" ? "windows" : "mac";
+    manualShot=null;
     cinematic.dataset.platform = activePlatform;
     activeShotIndex = -1;
     platformTabs.forEach((tab) => {
@@ -2163,4 +2366,10 @@ void recordAnonymousVisit().then(syncVisitorCount);
 if (new URLSearchParams(location.search).get("feedback") === "1") {
   feedbackDialog?.showModal?.();
   void prepareFeedbackVerification();
+}
+
+if(document.querySelector('[data-feature-presentation]')){
+ const presentationRoot=document.querySelector('[data-feature-presentation]');
+ const lazyPresentation=new IntersectionObserver(entries=>{if(!entries.some(e=>e.isIntersecting))return;lazyPresentation.disconnect();import('./feature-showcase.js?v=20261026-feature-film').then(({mountFeaturePresentation})=>{const presentation=mountFeaturePresentation({reducedMotion,translate});refreshShowcaseLanguage=()=>presentation.refresh()}).catch(()=>{document.querySelector('[data-feature-cinema]')?.removeAttribute('data-motion-ready')})},{rootMargin:'300px'});
+ lazyPresentation.observe(presentationRoot);
 }

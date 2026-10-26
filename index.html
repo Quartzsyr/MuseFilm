@@ -21,7 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
-    <link rel="stylesheet" href="./site.css?v=20261020-privacy-terms">
+    <link rel="stylesheet" href="./site.css?v=20261026-feature-film">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -45,6 +45,7 @@
       <nav id="nav" class="nav" aria-label="主导航" data-i18n-aria="aria.nav" data-menu>
         <a href="#product" data-i18n="nav.product">产品</a>
         <a href="#screens" data-i18n="nav.screens">界面</a>
+        <a href="#whats-new" data-i18n="nav.updates">新功能</a>
         <a href="#gallery" data-i18n="nav.gallery">影像</a>
         <a href="#download" data-i18n="nav.download">下载</a>
         <a href="https://github.com/Quartzsyr/MuseFilm" target="_blank" rel="noopener">GitHub ↗</a>
@@ -93,8 +94,9 @@
               <p class="hero-description" data-i18n="hero.description">MuseFilm 把胶卷、扫描与拍摄记忆安放在一处。像在观片台上展开底片，先看见一卷的呼吸，再靠近那张真正留下来的照片。</p>
               <div class="hero-actions">
                 <a class="primary-button download-trigger" data-magnetic data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
-                <a class="text-button" data-magnetic href="#screens"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
+                <a class="text-button" data-magnetic href="#whats-new"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
+              <a class="hero-platform-note" href="#platform-notes" data-i18n="platform.hero">近期新功能仅限 macOS · Windows 版本说明 ↗</a>
               <p class="verified" aria-live="polite"><i></i><strong data-total-downloads>260</strong> <span data-i18n="hero.verified">次 GitHub Releases 已验证下载</span></p>
             </article>
 
@@ -147,8 +149,98 @@
         <div class="local-copy" data-reveal>
           <p class="overline" data-i18n="local.overline">从设计开始，本地优先</p>
           <h2 data-i18n="local.title">照片始终属于你。</h2>
-          <p data-i18n="local.lead">没有云端，没有重复图库，没有强制迁移。</p>
-          <p class="local-cn" data-i18n="local.body">照片仍然保存在原来的硬盘位置。你可以自由备份、迁移，也可以在离开 MuseFilm 后继续拥有完整的照片库。</p>
+          <p data-i18n="local.lead">本地归档，不重复建库，不强制迁移。</p>
+          <p class="local-cn" data-i18n="local.body">照片仍然保存在原来的硬盘位置。你可以自由备份、迁移，也可以在离开 MuseFilm 后继续拥有完整的照片库。底片漂流仅上传你主动确认的分享副本。</p>
+        </div>
+      </section>
+
+      <section class="new-features section" id="whats-new" aria-labelledby="new-features-title">
+        <div class="new-features-inner">
+          <header class="new-features-heading" data-reveal>
+            <div><p class="overline" data-i18n="updates.overline">MUSEFILM · macOS 近期更新</p><h2 id="new-features-title"><span data-i18n="updates.title.line1">让胶片的故事，</span><span data-i18n="updates.title.line2">继续发生。</span></h2></div>
+            <div class="new-features-intro"><p data-i18n="updates.intro">让照片成为画册、短片与带有自己落款的作品。从整理到表达，在 MuseFilm 里继续创作。</p><a class="feature-platform-link" href="#platform-notes"><span data-i18n="updates.scope">以下新功能目前仅在 macOS 版提供</span><span aria-hidden="true">↘</span></a></div>
+          </header>
+          <div class="feature-presentation" id="feature-showcase" data-feature-presentation>
+            <details class="feature-details" id="feature-details">
+              <summary id="feature-details-summary"><span class="feature-details-open-label" data-i18n="promo.expand">展开功能详情</span><span class="feature-details-close-label" data-i18n="promo.collapse">收起功能详情</span><span class="feature-details-scope" data-i18n="promo.detailScope">光页 · 水印 · 动态桌面 · 度盘 Beta</span><i aria-hidden="true">＋</i></summary>
+              <div class="feature-details-content">
+          <section class="feature-cinema" id="feature-interactive" data-feature-cinema data-motion-ready="pending" aria-label="macOS 功能展映">
+            <noscript><style>#feature-interactive .feature-cinema-pin{height:auto!important;overflow:visible}#feature-interactive .showcase-panel{position:relative;opacity:1;visibility:visible;transform:none;pointer-events:auto;min-height:28rem}#feature-interactive .showcase-tabs,#feature-interactive .showcase-text-button,#feature-interactive .showcase-carousel-controls,#feature-interactive .desktop-modes{display:none}</style></noscript>
+            <div class="feature-cinema-pin">
+              <div class="showcase-top"><span class="overline" data-i18n="showcase.overline">MUSEFILM / 创作展映</span><span data-i18n="showcase.scope">macOS · 演示画面</span></div>
+              <div class="showcase-tabs" role="tablist" aria-label="选择功能演示">
+                <button id="showcase-book-tab" type="button" role="tab" aria-selected="true" aria-controls="showcase-book" data-showcase-tab="0"><span>01</span><span data-i18n="showcase.book.tab">光页画册</span><i></i></button>
+                <button id="showcase-watermark-tab" type="button" role="tab" aria-selected="false" aria-controls="showcase-watermark" data-showcase-tab="1" tabindex="-1"><span>02</span><span data-i18n="showcase.watermark.tab">水印工坊</span><i></i></button>
+                <button id="showcase-desktop-tab" type="button" role="tab" aria-selected="false" aria-controls="showcase-desktop" data-showcase-tab="2" tabindex="-1"><span>03</span><span data-i18n="showcase.desktop.tab">动态桌面</span><i></i></button>
+                <button id="showcase-baidu-tab" type="button" role="tab" aria-selected="false" aria-controls="showcase-baidu" data-showcase-tab="3" tabindex="-1"><span>04</span><span data-i18n="showcase.baidu.tab">度盘导入</span><em>BETA</em><i></i></button>
+              </div>
+              <div class="showcase-stage">
+                <article class="showcase-panel is-active" id="showcase-book" role="tabpanel" aria-labelledby="showcase-book-tab" data-showcase-panel="0">
+                  <div class="showcase-copy"><h3><span data-i18n="showcase.book.title1">从画册，</span><span data-i18n="showcase.book.title2">到摄影短片。</span></h3><p data-i18n="showcase.book.body">编排照片与跨页，导出图片、PDF、摄影短片或 Live Photo。</p><p class="showcase-entitlement" data-i18n="showcase.book.access">可免费编辑与预览，正式导出按权益解锁。</p><button class="showcase-text-button" type="button" data-book-turn><span data-i18n="showcase.book.action">翻开下一页</span><span aria-hidden="true">↗</span></button></div>
+                  <div class="showcase-visual book-visual"><div class="showcase-book-rig"><div class="showcase-book-spread"><img src="./images/showcase/spread-0.webp" width="1600" height="576" alt="光页画册的原生跨页成品" loading="lazy"><img class="showcase-book-second" data-showcase-src="./images/showcase/spread-1.webp" width="1600" height="576" alt="另一种光页跨页版式" loading="lazy"><i class="showcase-book-spine"></i></div></div><span class="showcase-art-caption" data-i18n="showcase.book.caption">排版 / 跨页 / 光页影像</span></div>
+                </article>
+                <article class="showcase-panel" id="showcase-watermark" role="tabpanel" aria-labelledby="showcase-watermark-tab" data-showcase-panel="1">
+                  <div class="showcase-copy"><h3><span data-i18n="showcase.watermark.title1">把落款，</span><span data-i18n="showcase.watermark.title2">也做成作品。</span></h3><p data-i18n="showcase.watermark.body">为照片选择合适的留白与落款，切换不同的版式语言。</p><p class="showcase-entitlement" data-i18n="showcase.watermark.access">基础模板可用；完整模板与批量导出需对应权益。</p><div class="showcase-carousel-controls"><button type="button" data-watermark-prev aria-label="上一种水印版式">←</button><span data-watermark-name aria-live="polite">经典白框</span><button type="button" data-watermark-next aria-label="下一种水印版式">→</button></div></div>
+                  <div class="showcase-visual watermark-visual"><div class="watermark-depth"><div class="watermark-orbit" data-watermark-orbit>
+                    <figure style="--wm-index:0"><img data-showcase-src="./images/showcase/wm-leicaClassic.webp" width="1600" height="1268" loading="lazy" alt="经典白框水印成品"></figure><figure style="--wm-index:1"><img data-showcase-src="./images/showcase/wm-leicaCenter.webp" width="1600" height="1268" loading="lazy" alt="居中铭牌水印成品"></figure><figure style="--wm-index:2"><img data-showcase-src="./images/showcase/wm-leicaSplit.webp" width="1600" height="1268" loading="lazy" alt="画面分置水印成品"></figure><figure style="--wm-index:3"><img data-showcase-src="./images/showcase/wm-leicaCorner.webp" width="1600" height="1268" loading="lazy" alt="角落参数水印成品"></figure><figure style="--wm-index:4"><img data-showcase-src="./images/showcase/wm-editorialRail.webp" width="1600" height="1268" loading="lazy" alt="页边札记水印成品"></figure><figure style="--wm-index:5"><img data-showcase-src="./images/showcase/wm-swissPoster.webp" width="1600" height="1268" loading="lazy" alt="瑞士海报水印成品"></figure>
+                  </div></div><span class="showcase-art-caption" data-i18n="showcase.watermark.caption">六种版式 / 同一束光</span></div>
+                </article>
+                                <article class="showcase-panel" id="showcase-desktop" role="tabpanel" aria-labelledby="showcase-desktop-tab" data-showcase-panel="2">
+                  <div class="showcase-copy"><h3><span data-i18n="showcase.desktop.title1">让作品，</span><span data-i18n="showcase.desktop.title2">成为桌面。</span></h3><p data-i18n="showcase.desktop.body">胶卷照片轮换、光页影像与音乐可视化，延伸到你的日常桌面。</p><p class="showcase-entitlement" data-i18n="showcase.desktop.access">基础照片轮播可用；视频桌面与音乐功能按权益解锁。</p><button class="showcase-text-button" type="button" data-desktop-play aria-pressed="false"><span data-desktop-play-label data-i18n="showcase.desktop.play">播放演示</span><span aria-hidden="true">↗</span></button></div>
+                  <div class="showcase-visual desktop-visual"><div class="desktop-screen"><video data-desktop-video data-showcase-video="./assets/showcase/desktop-demo.mp4" poster="./images/showcase/desktop-library.webp" muted playsinline loop preload="none" aria-label="动态桌面演示：照片轮换、光页视频与音乐壁纸"></video></div><div class="desktop-modes" aria-label="选择桌面演示"><button type="button" data-desktop-mode="0" aria-pressed="true" data-i18n="showcase.desktop.photos">照片轮换</button><button type="button" data-desktop-mode="1" aria-pressed="false" data-i18n="showcase.desktop.film">光页视频</button><button type="button" data-desktop-mode="2" aria-pressed="false" data-i18n="showcase.desktop.music">音乐壁纸</button></div></div>
+                </article>
+                <article class="showcase-panel" id="showcase-baidu" role="tabpanel" aria-labelledby="showcase-baidu-tab" data-showcase-panel="3">
+                  <div class="showcase-copy"><span class="showcase-beta" data-i18n="showcase.baidu.beta">BETA · 测试中</span><h3><span data-i18n="showcase.baidu.title1">云端返片，</span><span data-i18n="showcase.baidu.title2">回到你的档案。</span></h3><p data-i18n="showcase.baidu.body">先用缩略图轻量归档，再按需下载原图。</p><p class="showcase-beta-note" data-i18n="showcase.baidu.note">目前仍处于 Beta 测试；连接、目录读取及原图下载受百度审核、账号权限与服务规则影响。</p><p class="showcase-entitlement" data-i18n="showcase.baidu.access">macOS · Plus / Pro 及有效 Pro 试用</p></div>
+                  <div class="showcase-visual baidu-visual"><div class="baidu-native-window"><img data-showcase-src="./images/showcase/baidu-preview.webp" width="1400" height="898" alt="百度网盘缩略图已归档后的原生预览界面" loading="lazy"></div><span class="showcase-art-caption" data-i18n="showcase.baidu.caption">浏览缩略图 / 加入卷宗 / 按需下载原图</span></div>
+                </article>
+              </div>
+              <footer class="showcase-bottom"><span data-showcase-count>01 / 04</span><div class="showcase-track"><i data-showcase-progress></i></div><span data-i18n="showcase.hint">点击页签切换功能</span></footer>
+            </div>
+          </section>
+
+          <div class="new-feature-grid">
+            <article class="new-feature" data-reveal>
+              <div class="feature-annotation"><span>01 / IMPORT</span><span data-i18n="updates.available">macOS 已提供</span></div>
+              <div class="feature-art import-art" aria-hidden="true"><div class="promo-film"><i></i><span>MUSEFILM · 35 MM</span><i></i></div><div class="promo-canister"><div class="promo-label"><span>MUSEFILM</span><small>MEMORIES IN LIGHT</small><strong>35</strong><span class="promo-sticker" data-i18n="updates.cancel">取消</span></div></div><span class="feature-art-note" data-i18n="updates.illustration">功能示意</span></div>
+              <div class="new-feature-copy"><p class="overline" data-i18n="updates.import.name">拟物导入</p><h3><span data-i18n="updates.import.title.line1">像装入一卷胶片，</span><span data-i18n="updates.import.title.line2">开始归档。</span></h3><p data-i18n="updates.import.body">像装入胶片一样选片归档，随时清楚地取消或退出。</p><p class="new-feature-detail" data-i18n="updates.import.detail">手动开启 / 曲面贴纸 / 清晰退出</p></div>
+            </article>
+            <article class="new-feature" data-reveal>
+              <div class="feature-annotation"><span>02 / FOOTPRINTS</span><span data-i18n="updates.available">macOS 已提供</span></div>
+              <div class="feature-art map-art" aria-hidden="true"><svg viewBox="0 0 420 270" fill="none"><path class="promo-map-contour" d="M-30 90C50 180 120-20 220 70s130 70 230-30M-30 125C70 215 130 10 225 104s140 64 230-30M-30 160C65 250 140 48 232 140s140 62 230-30M-30 195C65 280 146 85 240 176s140 62 230-30M-30 230C65 310 150 125 250 210s140 62 230-30"/><path class="promo-map-route" d="M105 174C115 110 180 160 198 113S273 97 302 58"/><circle class="promo-map-halo" cx="105" cy="174" r="16"/><circle class="promo-map-halo" cx="198" cy="113" r="16"/><circle class="promo-map-halo" cx="302" cy="58" r="16"/><g class="promo-map-dot"><circle cx="105" cy="174" r="5"/><circle cx="198" cy="113" r="5"/><circle cx="302" cy="58" r="5"/></g></svg><span class="map-art-label">LIGHT · TIME · PLACE</span><div class="promo-timeline"><i></i><span>01</span><b></b><i></i><span>02</span><b></b><i></i><span>03</span></div><span class="feature-art-note" data-i18n="updates.illustration">功能示意</span></div>
+              <div class="new-feature-copy"><p class="overline" data-i18n="updates.map.name">胶片足迹</p><h3><span data-i18n="updates.map.title.line1">把走过的地方，</span><span data-i18n="updates.map.title.line2">连成一卷时光。</span></h3><p data-i18n="updates.map.body">地图与时间线同屏，点击地点，回到对应的卷宗与照片。</p><p class="new-feature-detail" data-i18n="updates.map.detail">地图与时间线 / 地点筛选 / 卷宗联动</p></div>
+            </article>
+            <article class="new-feature" data-reveal>
+              <div class="feature-annotation"><span>03 / EXCHANGE</span><span data-i18n="updates.available">macOS 已提供</span></div>
+              <div class="feature-art exchange-art" aria-hidden="true"><div class="promo-print"><img src="./images/light-table-kodak-5222-potala.jpg" width="150" height="110" loading="lazy" alt=""></div><div class="promo-envelope"><span class="promo-postmark">MUSEFILM<br>AIR MAIL</span><i class="promo-stamp">◉</i><span class="promo-envelope-rule"></span><span class="promo-exchange-caption" data-i18n="updates.exchange.art">一帧换一帧</span></div><span class="feature-art-note" data-i18n="updates.illustration">功能示意</span></div>
+              <div class="new-feature-copy"><p class="overline" data-i18n="updates.exchange.name">底片漂流</p><h3><span data-i18n="updates.exchange.title.line1">一帧日常，</span><span data-i18n="updates.exchange.title.line2">换一束陌生的光。</span></h3><p data-i18n="updates.exchange.body">寄出一张作品，拆开另一位摄影者的来信，收藏或送上感谢。</p><p class="new-feature-detail" data-i18n="updates.exchange.detail">登录即可参与 / 每天最多一次 / 支持举报</p></div>
+            </article>
+          </div>
+          <footer class="new-features-footer"><p data-i18n="updates.privacy">底片漂流仅上传你主动确认的分享副本，本地原始图库不上传；保存期限以应用内规则为准。</p><a href="#download-mac"><span data-i18n="updates.download">查看 macOS 当前版本</span><span aria-hidden="true">↗</span></a></footer>
+              </div>
+            </details>
+            <figure class="feature-promo" data-feature-promo>
+              <video id="product-promo-video" data-product-promo src="./assets/showcase/product-promo.mp4" poster="./images/showcase/product-promo-poster.webp" width="1280" height="720" controls playsinline preload="metadata" aria-label="MuseFilm 功能宣传片"><a href="./assets/showcase/product-promo.mp4" data-i18n="promo.openVideo">打开宣传片</a></video>
+              <figcaption><span data-i18n="promo.caption">MuseFilm · 功能宣传片</span><span>02:15</span></figcaption>
+              <p class="feature-promo-note" data-i18n="promo.betaNote">macOS 功能展示 · 度盘导入仍处于 Beta 测试。</p>
+            </figure>
+          </div>
+          <details class="membership-notes" id="membership-pricing">
+            <summary><span data-i18n="pricing.summary">会员与收费说明</span><span class="membership-summary-hint" data-i18n="pricing.expand">按需展开</span><i aria-hidden="true">＋</i></summary>
+            <div class="membership-notes-content">
+              <header><p class="overline">MUSEFILM / macOS</p><h3 data-i18n="pricing.title">先创作，再选择适合的权益。</h3><p data-i18n="pricing.intro">以下为当前 macOS 会员版的应用内方案说明。Windows 尚未同步本页展示的新功能及权益。</p></header>
+              <div class="membership-plan-grid">
+                <div><span data-i18n="pricing.free">免费基础版</span><strong data-i18n="pricing.freePrice">永久免费</strong><p data-i18n="pricing.freeBody">10 卷胶卷档案、5 种自定义胶片与 5 件自定义器材。包含档案编辑与备份、基础水印、光页编辑预览，以及每日一次底片漂流。</p></div>
+                <div><span>Plus</span><strong><span>¥9.9</span><small data-i18n="pricing.month"> / 月</small></strong><p data-i18n="pricing.plusBody">100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。</p></div>
+                <div><span>Pro</span><strong><span>¥19.9</span><small data-i18n="pricing.month"> / 月</small></strong><p data-i18n="pricing.proBody">包含 Plus 的功能，档案与自定义资源不限数量。会员有效期内光页图片、PDF、摄影短片与 Live Photo 不限次数导出，并支持音乐壁纸、歌词与可视化。</p></div>
+              </div>
+              <div class="membership-vouchers"><h4 data-i18n="pricing.voucherTitle">只为这一次创作，也可以不订阅。</h4><p data-i18n="pricing.voucherBody">¥2.9 光页成册券：一个画册的图片与 PDF；¥4.9 光页影像券：一个画册的短片与 Live Photo。激活后 24 小时内可修改、重试和重复导出，未激活不计时。</p></div>
+              <p class="membership-pricing-footnote" data-i18n="pricing.terms">具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后已有档案仍可浏览、编辑和备份，超出免费额度时暂停新增。</p>
+            </div>
+          </details>
+          <aside class="platform-notes" id="platform-notes" aria-labelledby="platform-notes-title" data-reveal>
+            <div class="platform-notes-heading"><p class="overline">A NOTE TO WINDOWS USERS</p><h2 id="platform-notes-title" data-i18n="platform.title">关于 Windows，向你说明。</h2><span class="platform-status" data-i18n="platform.status">新功能尚未同步</span></div>
+            <div class="platform-notes-copy"><p data-i18n="platform.greeting">亲爱的 Windows 用户：</p><p data-i18n="platform.current">本页展示的光页画册、水印工坊，以及拟物导入、胶片足迹和底片漂流等最新体验，以 macOS 版本为准。Windows 尚未同步到这些功能状态；度盘导入也仅在 macOS 端进行 Beta 测试。</p><p data-i18n="platform.progress">两个平台需要分别完成开发、适配和测试。目前还没有可确认的 Windows 上线日期，后续会单独说明实际进展。</p><p data-i18n="platform.expectation">你仍可下载现有的 Windows Beta 版本。请以当前安装包已提供的功能作为体验和购买依据，谢谢你的理解与支持。</p><a class="feature-platform-link" href="#download-windows"><span data-i18n="platform.download">查看 Windows 当前版本</span><span aria-hidden="true">↘</span></a></div>
+          </aside>
         </div>
       </section>
 
@@ -221,7 +313,7 @@
           <div class="total-count" aria-live="polite"><strong data-total-downloads>260</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
         <div class="download-grid" data-reveal>
-          <article data-release-card="windows">
+          <article id="download-windows" data-release-card="windows">
             <div class="platform"><span>Windows</span><small>01</small></div>
             <h3 data-release-name="windows">MuseFilm Beta</h3>
             <p data-release-details="windows" data-i18n="download.winReq">Windows 10 / 11 · 278 MB</p>
@@ -229,10 +321,12 @@
               <div><dt data-i18n="download.published">发布</dt><dd data-release-date="windows">—</dd></div>
               <div><dt data-i18n="download.checksum">SHA-256</dt><dd><code data-release-digest="windows">—</code><button type="button" data-copy-digest="windows" data-i18n="download.copy">复制</button></dd></div>
             </dl>
+            <p class="download-platform-note" data-i18n="platform.winDownload">当前提供 Windows Beta；上述 macOS 新功能尚未同步。</p>
+            <a class="download-platform-more" href="#platform-notes" data-i18n="platform.readNote">阅读 Windows 版本说明 ↗</a>
             <p class="platform-count"><strong data-download-count="windows">137</strong> <span data-i18n="download.count">次下载</span></p>
             <a class="download-link download-trigger" data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-i18n="download.windows">下载 Windows 版</span> <span>↓</span></a>
           </article>
-          <article data-release-card="mac">
+          <article id="download-mac" data-release-card="mac">
             <div class="platform"><span>macOS</span><small>02</small></div>
             <h3 data-release-name="mac">MuseFilm 2.0</h3>
             <p data-release-details="mac" data-i18n="download.macReq">原生 SwiftUI · build 2 · 5.3 MB</p>
@@ -240,6 +334,7 @@
               <div><dt data-i18n="download.published">发布</dt><dd data-release-date="mac">—</dd></div>
               <div><dt data-i18n="download.checksum">SHA-256</dt><dd><code data-release-digest="mac">—</code><button type="button" data-copy-digest="mac" data-i18n="download.copy">复制</button></dd></div>
             </dl>
+            <p class="download-platform-note" data-i18n="platform.macDownload">近期新功能适用 macOS 版，具体可用性以当前发布版本为准。</p>
             <p class="platform-count"><strong data-download-count="mac">123</strong> <span data-i18n="download.count">次下载</span></p>
             <a class="download-link download-trigger" data-platform="mac" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg" target="_blank" rel="noopener"><span data-i18n="download.mac">下载 macOS 版</span> <span>↓</span></a>
           </article>
@@ -375,6 +470,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261020-mobile-download-notifications"></script>
+    <script type="module" src="./site.js?v=20261026-feature-film"></script>
   </body>
 </html>
