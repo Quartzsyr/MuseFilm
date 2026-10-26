@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-26T06:22:00.329Z",
+  "updatedAt": "2026-10-26T13:19:29.187Z",
   "releases": [
     {
       "id": 423557342,
@@ -192,7 +192,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Windows/MuseFilmSetup_v0.6.2.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 20
+          "download_count": 24
         }
       ]
     },
