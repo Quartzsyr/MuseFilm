@@ -1,8 +1,53 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-26T13:19:29.187Z",
+  "updatedAt": "2026-10-26T16:32:41.439Z",
   "releases": [
+    {
+      "id": 424485402,
+      "name": "MuseFilm 会员版 4.7.3 · 连续导入与照片去重修复",
+      "tag_name": "PAID-MAC4.7.3",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.3",
+      "published_at": "2026-10-26T16:32:36Z",
+      "created_at": "2026-10-26T14:04:40Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 4.7.3（68）\n\n修复导入完成后立即再次导入时可能卡住的问题，并明确区分照片文件与整个文件夹。\n\n• 每次打开导入工作台都使用独立会话；关闭后取消扫描、动画及完成回调，避免旧会话干扰下一次导入。\n• 照片按实际文件路径去重。导入一张照片后，同一文件夹里的其他照片仍可继续导入。\n• 导入文件夹时自动跳过已归档照片，只导入新增照片；全部重复时给出明确说明。\n•「选择照片文件」只导入选中的照片；「导入文件夹」读取整个文件夹及子文件夹，选择窗口和结果提示均标明范围。\n• 原始照片保留原位，已有卷宗和会员权益保持不变。\n\n百度网盘返片仍为 Beta 测试中的会员功能，连接及下载受百度审核与账号权限影响。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.3-build68-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/MuseFilm-Paid-4.7.3-build68-universal.dmg",
+          "size": 58045952,
+          "digest": "sha256:aa5530d5ac23bffcb4f55a631b261bcf6beee0eac675344197bcf115496f2c58",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.3-build68-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/MuseFilm-Paid-4.7.3-build68-universal.zip",
+          "size": 57889228,
+          "digest": "sha256:a440afcf1ee637575a618c1e242df3c7d68aa4cb1f209ad31d6243b979607c44",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.3.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/release-4.7.3.json",
+          "size": 1016,
+          "digest": "sha256:7a070a17063c3aa693b7856000331398bde8e1ddc0395084c41f45d5234e900c",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.3.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/SHA256SUMS-4.7.3.txt",
+          "size": 216,
+          "digest": "sha256:323ce20612a059da661f213377a32699ce35a0398c2a427cdbc4bb999dcdac34",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 423557342,
       "name": "MuseFilm 会员版 4.7.2 · 贴合胶卷的中文取消贴纸",
@@ -20,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/MuseFilm-Paid-4.7.2-build67-universal.dmg",
           "size": 58020864,
           "digest": "sha256:f81ca2dd03a36b7a8a2d0169483a4c56d97167e563bb6ed590271713d13e141a",
-          "download_count": 1
+          "download_count": 4
         },
         {
           "name": "MuseFilm-Paid-4.7.2-build67-universal.zip",
@@ -192,7 +237,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Windows/MuseFilmSetup_v0.6.2.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 24
+          "download_count": 25
         }
       ]
     },
