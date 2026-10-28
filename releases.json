@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-28T06:59:11.197Z",
+  "updatedAt": "2026-10-28T07:01:09.661Z",
   "releases": [
     {
       "id": 426270752,
@@ -45,186 +45,6 @@
           "size": 216,
           "digest": "sha256:4d774b4266aa60c897855a9c455330372c67ed9c6ed6d7d8bf55077b6ebc3af0",
           "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 424485402,
-      "name": "MuseFilm 会员版 4.7.3 · 连续导入与照片去重修复",
-      "tag_name": "PAID-MAC4.7.3",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.3",
-      "published_at": "2026-10-26T16:32:36Z",
-      "created_at": "2026-10-26T14:04:40Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "MuseFilm 会员版 4.7.3（68）\n\n修复导入完成后立即再次导入时可能卡住的问题，并明确区分照片文件与整个文件夹。\n\n• 每次打开导入工作台都使用独立会话；关闭后取消扫描、动画及完成回调，避免旧会话干扰下一次导入。\n• 照片按实际文件路径去重。导入一张照片后，同一文件夹里的其他照片仍可继续导入。\n• 导入文件夹时自动跳过已归档照片，只导入新增照片；全部重复时给出明确说明。\n•「选择照片文件」只导入选中的照片；「导入文件夹」读取整个文件夹及子文件夹，选择窗口和结果提示均标明范围。\n• 原始照片保留原位，已有卷宗和会员权益保持不变。\n\n百度网盘返片仍为 Beta 测试中的会员功能，连接及下载受百度审核与账号权限影响。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.7.3-build68-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/MuseFilm-Paid-4.7.3-build68-universal.dmg",
-          "size": 58045952,
-          "digest": "sha256:aa5530d5ac23bffcb4f55a631b261bcf6beee0eac675344197bcf115496f2c58",
-          "download_count": 4
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.3-build68-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/MuseFilm-Paid-4.7.3-build68-universal.zip",
-          "size": 57889228,
-          "digest": "sha256:a440afcf1ee637575a618c1e242df3c7d68aa4cb1f209ad31d6243b979607c44",
-          "download_count": 2
-        },
-        {
-          "name": "release-4.7.3.json",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/release-4.7.3.json",
-          "size": 1016,
-          "digest": "sha256:7a070a17063c3aa693b7856000331398bde8e1ddc0395084c41f45d5234e900c",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS-4.7.3.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.3/SHA256SUMS-4.7.3.txt",
-          "size": 216,
-          "digest": "sha256:323ce20612a059da661f213377a32699ce35a0398c2a427cdbc4bb999dcdac34",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 423557342,
-      "name": "MuseFilm 会员版 4.7.2 · 贴合胶卷的中文取消贴纸",
-      "tag_name": "PAID-MAC4.7.2",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.2",
-      "published_at": "2026-10-25T17:42:41Z",
-      "created_at": "2026-10-25T16:42:08Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "MuseFilm 会员版 4.7.2（67）\n\n拟物导入只保留一处贴合胶卷曲面的中文取消入口。\n\n• 将「取消」做成胶卷标签下方的曲面贴纸，纸面和文字使用与胶卷同心的弧形网格，随胶卷的透视、缩放和光照变化。\n• 移除右上角关闭入口、顶部悬浮取消提示及转轴上的隐藏取消操作，避免重复和误触。\n• 保留 Esc 退出与未归档内容确认，归档时禁用取消，原始照片不会改变。\n• 模型加载失败或长时间未就绪时显示备用取消入口；正常场景只显示曲面贴纸按钮。\n\n保留 4.7.1 的足迹地图布局与正常启动不再误弹导入的修复。\n支持 macOS 14 及以上、Apple 芯片与 Intel，可在软件内检查更新并升级。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.7.2-build67-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/MuseFilm-Paid-4.7.2-build67-universal.dmg",
-          "size": 58020864,
-          "digest": "sha256:f81ca2dd03a36b7a8a2d0169483a4c56d97167e563bb6ed590271713d13e141a",
-          "download_count": 4
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.2-build67-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/MuseFilm-Paid-4.7.2-build67-universal.zip",
-          "size": 57855004,
-          "digest": "sha256:81636d3195aaa5d93d88597ef63267d1e0ba318be2b615fdac8a583b7f66ef61",
-          "download_count": 1
-        },
-        {
-          "name": "release-4.7.2.json",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/release-4.7.2.json",
-          "size": 899,
-          "digest": "sha256:d9da4c6c31a037e75ef444950998f4d7e5207eb2db407f9ff4d5f23530c4a565",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS-4.7.2.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.2/SHA256SUMS-4.7.2.txt",
-          "size": 216,
-          "digest": "sha256:787e9acbf83985cfec1c520c1e6cf4b3f38617f79e96f0bcbeb527209e0c9c54",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 423524963,
-      "name": "MuseFilm 会员版 4.7.1 · 足迹布局与导入体验优化",
-      "tag_name": "PAID-MAC4.7.1",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.1",
-      "published_at": "2026-10-25T16:41:22Z",
-      "created_at": "2026-10-25T16:31:17Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "MuseFilm 会员版 4.7.1（66）\n\n重新设计胶片足迹，让地点、照片与拍摄时间更清晰地呈现在同一个工作区。\n\n• 宽窗口采用左侧大地图、右侧独立时间线，地点索引横向排列；小窗口自动切换为纵向布局。\n• 精简多层玻璃边框，统一圆角、留白与文字层级，适配浅色和深色外观。\n• 卷宗卡片重新组织照片、名称、胶卷、张数与日期，减少信息拥挤和截断。\n• 未记录地点、定位中和地点无法解析时提供清晰提示，可直接打开卷宗补充或编辑拍摄地点。\n• 点击地图标记同步筛选时间线；地点详情固定在地图角落，并提供显示全部入口。\n• 编辑地点或卷宗照片后，地图标记与数量及时刷新。\n\n• 修复正式会员版被误判为测试版、每次启动自动弹出拟物导入的问题；导入继续从原有入口手动打开。\n• 拟物导入增加始终可见的「关闭导入」按钮与 Esc 提示；关闭时显示反馈，有未归档内容时明确确认，原始照片不受影响。\n\n保留 4.7.0 的百度网盘返片（开发中）、账号会员与软件内更新功能。百度网盘能力仍受百度审核、账号权限及服务规则影响。\n\n支持 macOS 14 及以上、Apple 芯片与 Intel，可在软件内检查更新并升级。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.7.1-build66-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/MuseFilm-Paid-4.7.1-build66-universal.dmg",
-          "size": 58001920,
-          "digest": "sha256:ba5058451a3615c7c4fecac8c922f48b529f3c992fb55359679c00bead884518",
-          "download_count": 0
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.1-build66-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/MuseFilm-Paid-4.7.1-build66-universal.zip",
-          "size": 57834125,
-          "digest": "sha256:278e8ddf69a463052b26f1f4b06fcf35668222ab081188ec1d47048db836f464",
-          "download_count": 0
-        },
-        {
-          "name": "release-4.7.1.json",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/release-4.7.1.json",
-          "size": 899,
-          "digest": "sha256:8f0c66ccc10423e649c171b5db7eb4df056d98b255d11dde466f40d6606a3d05",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS-4.7.1.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.1/SHA256SUMS-4.7.1.txt",
-          "size": 216,
-          "digest": "sha256:bcfc952b9f60eea2a7e7c379190a94dad5c8a0936ed7f933536a9fbff14d25d0",
-          "download_count": 0
-        }
-      ]
-    },
-    {
-      "id": 423419128,
-      "name": "MuseFilm 会员版 4.7.0 · 百度网盘返片（开发中）",
-      "tag_name": "PAID-MAC4.7.0",
-      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.0",
-      "published_at": "2026-10-25T13:32:58Z",
-      "created_at": "2026-10-25T13:31:16Z",
-      "prerelease": false,
-      "draft": false,
-      "body": "MuseFilm 会员版 4.7.0（64）\n\n新增百度网盘返片导入，并明确标注为「开发中」功能。Plus、Pro 及有效试用用户可用自己的 MuseFilm 账号连接百度网盘，在拟物导入工作台浏览目录、挑选返片并归档。\n\n• 默认仅保存缩略图与网盘来源记录，不自动下载原图。\n• 原图按需下载；默认保存在应用所在文件夹旁的「MuseFilm 原图」，首次使用需授权保存位置。\n• 不上传、删除、移动或改名网盘原件；支持断开当前设备的网盘连接。\n• 拟物返片面板与原生预览统一字体、玻璃材质和按钮风格。\n• 保留已安装到「应用程序」仍反复提示无法更新的修复，以及后台会员、兑换码、Toast／Alert 消息功能。\n\n百度网盘功能仍在开发中，连接、缩略图和下载能力受百度应用审核、账号权限、访问频率及服务规则影响，不保证所有账号均可用，也不承诺第三方接口永久免费。请保留原图备份。\n\n隐私政策：https://musefilm.top/app/privacy/\n服务条款：https://musefilm.top/app/terms/\n\n支持 macOS 14 及以上、Apple 芯片与 Intel。\n",
-      "assets": [
-        {
-          "name": "MuseFilm-Paid-4.7.0-build64-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/MuseFilm-Paid-4.7.0-build64-universal.dmg",
-          "size": 57815552,
-          "digest": "sha256:0ecf8bd338d226fc66b1f96dd73e4a8252f29a36cc309c5c81e4f24524ad46ae",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.0-build64-universal.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/MuseFilm-Paid-4.7.0-build64-universal.zip",
-          "size": 57664869,
-          "digest": "sha256:0b8814a501c5b2ddcd03e7031880446f40809651535947b08592ff1478a88a12",
-          "download_count": 2
-        },
-        {
-          "name": "release-4.7.0.json",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/release-4.7.0.json",
-          "size": 822,
-          "digest": "sha256:a538468d22bb34f8b6718d4388e9eadf102a50474034d4a56bda714b37277c4c",
-          "download_count": 0
-        },
-        {
-          "name": "SHA256SUMS-4.7.0.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.0/SHA256SUMS-4.7.0.txt",
-          "size": 216,
-          "digest": "sha256:5cf7a849be59616927d2f32c642a5c242a0f47ce575d636c369564bf09f319f5",
-          "download_count": 2
         }
       ]
     },
@@ -282,7 +102,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Windows/MuseFilmSetup_v0.6.2.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 31
+          "download_count": 32
         }
       ]
     },
