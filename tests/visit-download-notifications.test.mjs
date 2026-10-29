@@ -8,7 +8,7 @@ class Database {
     const db = this;
     return {
       bind(...values) { this.values = values; return this; }, values: [],
-      async first() { return /site_counters/.test(sql) ? { visitors: db.count } : { count: 0 }; },
+      async first() { if (/SELECT id FROM download_events/.test(sql)) return db.downloads.has(this.values[0]) ? {id:this.values[0]} : null; return /site_counters/.test(sql) ? { visitors: db.count } : { count: 0 }; },
       async run() {
         let changes = 1;
         if (/INSERT OR IGNORE INTO visit_events/.test(sql)) {

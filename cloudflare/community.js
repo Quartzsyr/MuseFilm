@@ -215,6 +215,7 @@ async function handleCommunity(request,env,ctx) {
   if (path === "/api/admin/login/request" && request.method === "POST") return requestAdminCode(request,env);
   if (path === "/api/admin/login" && request.method === "POST") return loginAdmin(request,env);
   if (!(await adminAuthorized(request,env))) return json({ok:false,error:"unauthorized"},401);
+  const securityResponse=await handleSecurityAdmin(request,env);if(securityResponse)return securityResponse;
   const membershipResponse=await membershipAdmin(request,env);if(membershipResponse)return membershipResponse;
   const dashboardResponse=await handleDashboardAdmin(request,env);if(dashboardResponse)return dashboardResponse;
   if (path === "/api/admin/session") return json({ok:true});

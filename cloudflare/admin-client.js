@@ -1,6 +1,6 @@
 'use strict';
 const $=selector=>document.querySelector(selector),$$=selector=>[...document.querySelectorAll(selector)];
-const names={overview:'概览',mail:'邮件',subscribers:'订阅者',activity:'活动记录',automation:'自动化',membership:'会员与充值'};
+const names={overview:'概览',mail:'邮件',subscribers:'订阅者',security:'下载与 IP 防护',activity:'活动记录',automation:'自动化',membership:'会员与充值'};
 const audiences={all:'全部有效订阅者',windows:'Windows 用户',mac:'macOS 用户'};
 const deliveryNames={draft:'草稿',scheduled:'预约中',queued:'排队中',pending:'待发送',sending:'发送中',retry_wait:'等待重试',sent:'已提交',failed:'失败',partial_failure:'需要处理',uncertain:'待核实',bounced:'已退信',skipped:'已跳过',cancelled:'已取消',suppressed:'已停止',not_configured:'未配置'};
 const subscriptionNames={subscribed:'已订阅',pending:'待确认',contact:'仅留邮箱',unsubscribed:'已退订'};
@@ -28,7 +28,7 @@ async function api(path,{method='GET',body,raw=false}={}){
     if(response.status===401 && !path.includes('/login')){showLogin('登录已过期，请重新登录。当前页面的邮件内容已保留。');throw Object.assign(new Error('请重新登录后继续。'),{status:401})}
     if(raw && response.ok)return response;
     let data;try{data=await response.json()}catch{throw new Error('服务器返回异常，请稍后重试。')}
-    if(!response.ok || !data.ok){const errors={internal_error:'服务暂时不可用，请稍后重试。',origin_not_allowed:'请求来源无效，请重新打开后台。',not_found:'该记录不存在，请刷新列表。'};throw Object.assign(new Error(errors[data.error] || data.error || '操作失败，请重试。'),{status:response.status})}
+    if(!response.ok || !data.ok){const errors={internal_error:'服务暂时不可用，请稍后重试。',origin_not_allowed:'请求来源无效，请重新打开后台。',not_found:'该记录不存在，请刷新列表。',invalid_limits:'下载次数或时间窗口无效，请检查上限。',invalid_ip_action:'请输入有效的 IPv4 或 IPv6 地址。',invalid_message:'请输入不超过 2000 字的提示。',invalid_duration:'请选择有效的持续时间。'};throw Object.assign(new Error(errors[data.error] || data.error || '操作失败，请重试。'),{status:response.status})}
     return data;
   }catch(error){if(error.name==='AbortError')throw new Error('请求超时，请刷新状态后重试。');if(error instanceof TypeError)throw new Error('网络连接失败，请检查网络后重试。');throw error}
   finally{clearTimeout(timeout);state.loaders--;$('#loading-line').hidden=state.loaders===0}
@@ -53,6 +53,7 @@ async function loadCurrent(){const token=state.viewToken;$('#page-error').hidden
   else if(state.view==='mail'){await loadCampaigns(token);if(!$('#mail-detail-view').hidden)await loadDelivery()}
   else if(state.view==='subscribers')await loadSubscribers(token);
   else if(state.view==='activity')await loadActivity(token);
+  else if(state.view==='security')await loadSecurity(token);
   else if(state.view==='membership')await loadMembership();
   else if(state.view==='automation')await loadAutomation(token);
   if(token===state.viewToken)updateSync();
@@ -83,7 +84,7 @@ async function loadSubscribers(token=state.viewToken){const query=subscriberQuer
 }
 async function loadActivity(token=state.viewToken){const mode=state.activity,data=await api('/api/admin/'+(mode==='feedback'?'feedback':'downloads'));if(token!==state.viewToken || mode!==state.activity || state.view!=='activity')return;if(mode==='feedback')state.feedback=data.feedback;else state.downloads=data.downloads;renderActivity()}
 function renderActivity(){const query=$('#activity-search').value.trim().toLowerCase();$('#downloads-panel').hidden=state.activity!=='downloads';$('#feedback-panel').hidden=state.activity!=='feedback';
-  if(state.activity==='downloads'){const rows=state.downloads.filter(row=>[row.asset_name,row.contact_email,row.ip_address,row.country,row.region,row.city,row.operating_system].join(' ').toLowerCase().includes(query));$('#download-rows').innerHTML=rows.length?rows.map(row=>`<tr><td>${esc(date(row.created_at))}</td><td class="subject-cell"><strong>${esc(row.asset_name)}</strong><small>${esc(row.contact_email || '未留下邮箱')}</small></td><td>${esc(row.operating_system || '—')}<small>${esc(row.browser || '')}</small></td><td>${esc(row.ip_address || '—')}<small>${esc([row.country,row.region,row.city].filter(Boolean).join(' / ') || '未知地区')}</small></td><td>${badge(row.email_status)}</td></tr>`).join(''):emptyRow(5,'没有符合条件的下载记录');return}
+  if(state.activity==='downloads'){const rows=state.downloads.filter(row=>[row.asset_name,row.contact_email,row.ip_address,row.country,row.region,row.city,row.operating_system].join(' ').toLowerCase().includes(query));$('#download-rows').innerHTML=rows.length?rows.map(row=>`<tr><td>${esc(date(row.created_at))}</td><td class="subject-cell"><strong>${esc(row.asset_name)}</strong><small>${esc(row.contact_email || '未留下邮箱')}</small></td><td>${esc(row.operating_system || '—')}<small>${esc(row.browser || '')}</small></td><td>${esc(row.ip_address || '—')}<small>${esc([row.country,row.region,row.city].filter(Boolean).join(' / ') || '未知地区')}</small></td><td>${badge(row.email_status)}</td><td><button class="small" data-manage-ip="${esc(row.ip_address)}">管理 IP</button></td></tr>`).join(''):emptyRow(6,'没有符合条件的下载记录');return}
   const rows=state.feedback.filter(row=>[row.message,row.contact_email,row.type].join(' ').toLowerCase().includes(query));$('#feedback-list').innerHTML=rows.length?rows.map(row=>`<article class="feedback-card"><div class="feedback-top"><div class="feedback-meta"><span class="badge">${esc({bug:'问题反馈',suggestion:'功能建议',other:'其他'}[row.type] || '反馈')}</span><span>${esc(date(row.created_at))}</span></div>${badge(row.status,'feedback')}</div><p class="feedback-body">${esc(row.message)}</p><div class="feedback-bottom"><span>${esc(row.contact_email || '未留下联系邮箱')} · ${esc(row.platform || '—')}</span><select aria-label="处理 ${esc(row.contact_email || '匿名用户')} 的反馈" data-feedback-status="${esc(row.id)}">${Object.entries(feedbackNames).map(([value,label])=>`<option value="${value}" ${value===row.status?'selected':''}>${label}</option>`).join('')}</select></div></article>`).join(''):'<div class="empty"><strong>还没有符合条件的反馈</strong>网站提交的建议和问题会显示在这里。</div>';
 }
 function settingsValues(){const form=$('#automation-form');return {enabled:form.elements.enabled.checked,includePrerelease:form.elements.includePrerelease.checked,imapEnabled:form.elements.imapEnabled.checked}}
@@ -214,3 +215,20 @@ $$('#workflow-form input,#workflow-form select,#save-workflows').forEach(c=>c.di
 state.editor.sig=editorSignature();$('#timezone-label').textContent='按本地时区 '+(Intl.DateTimeFormat().resolvedOptions().timeZone || '')+' 保存，关闭后台仍会到时发送。';
 // INLINE_MEMBERSHIP_CLIENT
 boot();
+
+async function loadSecurity(token=state.viewToken){
+  const [limits, data]=await Promise.all([api('/api/admin/download-security'),api('/api/admin/ip-controls')]);
+  if(token!==state.viewToken || state.view!=='security')return;
+  const form=$('#download-security-form');
+  if(!form.contains(document.activeElement))for(const [key,value] of Object.entries(limits.settings))form.elements[key].value=value;
+  const labels={ban:'封禁 IP',message:'发送锁屏消息',release:'解除限制',settings:'修改下载限制'};
+  $('#ip-control-rows').innerHTML=data.controls.length?data.controls.map(r=>`<tr><td>${esc(r.ip_address)}</td><td><strong>${r.blocked?'已封禁':'锁屏消息'}</strong><small style="white-space:pre-wrap;overflow-wrap:anywhere;max-width:480px">${esc(r.message)}</small></td><td>${r.expires_at?esc(date(r.expires_at)):'手动解除'}</td><td><button class="small" data-manage-ip="${esc(r.ip_address)}">修改</button> <button class="small" data-release-ip="${esc(r.ip_address)}">解除</button></td></tr>`).join(''):emptyRow(4,'暂无有效限制');
+  $('#ip-control-history').innerHTML=data.history.length?data.history.map(r=>`<tr><td>${esc(date(r.created_at))}</td><td>${esc(r.ip_address || '—')}</td><td>${esc(labels[r.action] || r.action)}</td><td style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.message)}</td></tr>`).join(''):emptyRow(4,'暂无管理记录');
+}
+$('#download-security-form').onsubmit=event=>{event.preventDefault();const f=event.currentTarget;if(!f.reportValidity())return;const body=Object.fromEntries(['windowMinutes','windowLimit','dailyLimit'].map(key=>[key,Number(f.elements[key].value)]));if(body.dailyLimit<body.windowLimit)return toast('24 小时上限应不少于窗口内上限。',true);return buttonAction(f.querySelector('button'),async()=>{await post('/api/admin/download-security',body);toast('下载限制已保存并生效。');await loadSecurity()})};
+$('#security-action').onchange=()=>{const release=$('#security-action').value==='release';$('#security-message').disabled=release;$('#security-duration').disabled=release;$('#security-message').required=$('#security-action').value==='message'};
+$('#ip-control-form').onsubmit=event=>{event.preventDefault();const f=event.currentTarget;if(!f.reportValidity())return;return buttonAction(f.querySelector('button'),async()=>{const body={ip:f.elements.ip.value.trim(),action:f.elements.action.value,message:f.elements.message.value.trim(),durationMinutes:Number(f.elements.durationMinutes.value)};await post('/api/admin/ip-controls',body);toast(body.action==='release'?'限制已解除；页面下次检查后恢复。':'已应用；该 IP 页面下次检查时显示提示。');await loadSecurity()})};
+document.addEventListener('click',async event=>{const b=event.target.closest('[data-manage-ip],[data-release-ip]');if(!b)return;const ip=b.dataset.manageIp || b.dataset.releaseIp;
+  if(b.dataset.releaseIp)return buttonAction(b,async()=>{await post('/api/admin/ip-controls',{ip,action:'release'});toast('限制已解除。');await loadSecurity()});
+  await navigate('security');$('#security-ip').value=ip;$('#security-action').value='ban';$('#security-action').onchange();$('#security-message').value='';$('#ip-control-form').scrollIntoView({behavior:'smooth',block:'center'});$('#security-message').focus();
+});

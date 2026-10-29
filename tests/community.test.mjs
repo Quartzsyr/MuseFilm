@@ -9,7 +9,7 @@ const schema=await readFile(new URL("../cloudflare/schema.sql",import.meta.url),
 const origin="https://musefilm-feedback-api.syrquartz.workers.dev";
 const downloadUrl="https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm.dmg";
 class D1 {
-  constructor(){this.sqlite=new DatabaseSync(":memory:");this.sqlite.exec(schema)}
+  constructor(){this.sqlite=new DatabaseSync(":memory:");this.sqlite.exec(schema);this.sqlite.exec("UPDATE download_security_settings SET window_limit=100,daily_limit=1000")}
   prepare(sql){const db=this.sqlite;return {values:[],bind(...values){this.values=values;return this},async first(){return db.prepare(sql).get(...this.values) || null},async all(){return {results:db.prepare(sql).all(...this.values)}},async run(){const result=db.prepare(sql).run(...this.values);return {meta:{changes:Number(result.changes)}}}}}
   async batch(statements){return Promise.all(statements.map(s=>s.all()))}
 }

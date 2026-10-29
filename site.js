@@ -1,3 +1,4 @@
+import { createSiteAccess } from './site-access.js?v=20261029-ip-security';
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-toggle]");
 const menu = document.querySelector("[data-menu]");
@@ -2087,6 +2088,8 @@ async function musefilmApi(path, options = {}) {
   if (!response.ok) {
     const error = new Error(payload.error || `Request failed (${response.status})`);
     error.status = response.status;
+    error.payload = payload;
+    if (payload.error === "ip_blocked") siteAccess.apply(payload);
     throw error;
   }
   return payload;
@@ -2228,6 +2231,8 @@ privacyDialog?.addEventListener("click", event => {
 if (location.hash === "#privacy") openPrivacy();
 window.addEventListener("hashchange", () => { if (location.hash === "#privacy") openPrivacy(); });
 
+const siteAccess = createSiteAccess({ request: musefilmApi });
+
 const downloadDialog = document.querySelector("[data-download-dialog]");
 const downloadForm = document.querySelector("[data-download-form]");
 const downloadEmailInput = document.querySelector("[data-download-email]");
@@ -2244,43 +2249,54 @@ function showDownloadToast(message) {
   downloadToastTimeout = window.setTimeout(() => { toast.hidden = true; }, 8000);
 }
 
-function completeDownload(email = "") {
-  const subscribe = Boolean(email);
-  if (!pendingDownload) return;
+let downloadBusy = false;
+async function completeDownload(email = "") {
+  if (!pendingDownload || downloadBusy || siteAccess.blocked) return;
+  downloadBusy = true;
   const downloadUrl = pendingDownload;
-  pendingDownload = null;
-  downloadDialog?.close();
-  // Initiate reporting before opening a tab can suspend the original page.
-  void musefilmApi("/api/download", {
-    method: "POST", keepalive: true,
-    // A CORS-simple request avoids a preflight while Safari opens the installer.
-    headers: { "Content-Type": "text/plain;charset=UTF-8" },
-    body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
-  }).then((result) => {
-    if (email && !result.thankYouQueued) showDownloadToast(translate("download.emailSaved"));
-  }).catch(() => {
-    if (email) showDownloadToast(translate("download.emailFailed"));
-  });
-  // Start the installer within the user's click, independently of email delivery.
-  const link = document.createElement("a");
-  link.href = downloadUrl;
-  link.target = "_blank";
-  link.rel = "noopener";
-  link.dataset.downloadBypass = "true";
-  document.body.append(link);
-  link.click();
-  link.remove();
-  downloadOpened = true;
-  renderCounts(lastCounts, lastCountsSynced);
-  showDownloadToast(translate(email ? "download.emailQueued" : "download.started"));
+  const controls = [...downloadForm.querySelectorAll('button,input'), document.querySelector('[data-download-skip]')].filter(Boolean);
+  controls.forEach(control => control.disabled = true);
+  downloadDialogStatus.textContent = currentLanguage === 'zh' ? '正在检查下载权限…' : 'Checking download access…';
+  try {
+    const subscribe = Boolean(email);
+    const result = await musefilmApi("/api/download", {
+      method: "POST", keepalive: true, signal: AbortSignal.timeout(20000),
+      headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
+    });
+    // Replayed event IDs never authorize an additional navigation.
+    if (!result.recorded) throw new Error('download_replayed');
+    if (siteAccess.blocked || pendingDownload !== downloadUrl || !downloadDialog.open) return;
+    pendingDownload = null;
+    downloadDialog.close();
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.rel = "noopener";
+    link.dataset.downloadBypass = "true";
+    document.body.append(link);
+    link.click();
+    link.remove();
+    downloadOpened = true;
+    renderCounts(lastCounts, lastCountsSynced);
+    showDownloadToast(translate(email ? "download.emailSaved" : "download.started"));
+  } catch (error) {
+    if (error.payload?.error === 'ip_blocked') siteAccess.apply(error.payload);
+    else if (error.status === 429) {
+      const minutes = Math.max(1, Math.ceil((error.payload?.retryAfter || 60) / 60));
+      downloadDialogStatus.textContent = currentLanguage === 'zh' ? `该 IP 下载过于频繁，请约 ${minutes} 分钟后重试。` : `Too many downloads from this IP. Try again in about ${minutes} minutes.`;
+    } else downloadDialogStatus.textContent = currentLanguage === 'zh' ? '下载权限检查失败，请稍后重试。' : 'Unable to verify download access. Please try again.';
+  } finally {
+    downloadBusy = false;
+    controls.forEach(control => control.disabled = false);
+  }
 }
 
 function recordDownloadClick(event) {
   if (!(event.target instanceof Element)) return;
   const link = event.target.closest("a[href]");
   if (!link || link.dataset.downloadBypass || !/^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(link.href)) return;
-  if (!downloadDialog?.showModal) return;
   event.preventDefault();
+  if (siteAccess.blocked || downloadBusy || !downloadDialog?.showModal) return;
   pendingDownload = link.href;
   downloadForm.reset();
   downloadDialogStatus.textContent = "";
@@ -2302,7 +2318,7 @@ downloadForm?.addEventListener("submit", (event) => {
     return;
   }
   if (!downloadForm.reportValidity()) return;
-  completeDownload(email);
+  return completeDownload(email);
 });
 
 async function recordAnonymousVisit() {

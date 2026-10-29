@@ -148,7 +148,7 @@ test("records page loads and durable feedback through D1", async () => {
   assert.deepEqual({ ...(await feedback.json()), id: "ignored" }, { ok: true, id: "ignored", stored: true, emailQueued: false });
   assert.ok(database.calls.some((call) => /INSERT OR IGNORE INTO visit_events/.test(call.sql)));
   assert.ok(database.calls.some((call) => /INSERT INTO feedback/.test(call.sql)));
-  assert.ok(database.calls.every((call) => !call.values.includes("203.0.113.9")));
+  assert.ok(database.calls.filter(call => call.method === "run").every((call) => !call.values.includes("203.0.113.9")));
 });
 
 test("queues a feedback notification through the restricted email binding", async () => {
