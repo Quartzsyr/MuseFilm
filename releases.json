@@ -1,8 +1,53 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-29T05:56:20.183Z",
+  "updatedAt": "2026-10-29T10:32:32.243Z",
   "releases": [
+    {
+      "id": 427719689,
+      "name": "MuseFilm 会员版 4.7.11 · Build 76",
+      "tag_name": "PAID-MAC4.7.11",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.11",
+      "published_at": "2026-10-29T10:32:22Z",
+      "created_at": "2026-10-29T09:13:30Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.11 · Build 76\n\n宝丽莱相纸档案与黑卡揭幕\n\n新增独立宝丽莱档案盒：按旅程、人物与年份收纳，支持封面、查找、移动、右键删除与撤销；悬停展开真实相纸。\n新增保护黑卡入场：先遮住相纸，再向上浮出。支持跳过、重播及按盒关闭自动揭卡。\n提供五款原创黑卡版式、短句编辑与实物扫描件导入，可设为盒子默认或单张相纸专用。\n新增黑卡揭幕 Live Photo；连同翻面、摇曳等共六种动效，支持悬停预览与完整播放；封面保留揭开后的照片。\n相纸支持倾斜实拍去白边和透视校正、手写笔迹与手机／iPad 接力速绘、八款内置手写字体，以及新旧、磨损、褶皱和瑕疵调整。\n编辑区整理为手记、相纸、黑卡与动效；照片原件保留，旧手记自动备份并归盒。\n保留当前会员服务与应用内签名更新，适用于 macOS 14 及以上的 Apple 芯片和 Intel Mac。\n\n入口：宝丽莱档案 → 打开相纸盒 → 编辑相纸 → 黑卡 / 动效。\n\nCloudflare 应用内更新源与 GitHub 使用相同的通用安装包。可在应用内“检查更新”，或下载 DMG 拖入应用程序安装。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.11-build76-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/MuseFilm-Paid-4.7.11-build76-universal.dmg",
+          "size": 102438225,
+          "digest": "sha256:6cd64412d5417f8b7246e9baf2366cd340f603ce7f54fe63f59545d16b23f822",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.11-build76-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/MuseFilm-Paid-4.7.11-build76-universal.zip",
+          "size": 99888777,
+          "digest": "sha256:48523d3fd93d0a3589cca8456e21aedfb6e93630380021d87b95504ded4b4dc6",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.11.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/release-4.7.11.json",
+          "size": 850,
+          "digest": "sha256:bec47963394796c950043ca9204bb68e10f5b9c8c7badee51eb3a4f70819bffb",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.11.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/SHA256SUMS-4.7.11.txt",
+          "size": 304,
+          "digest": "sha256:f221debabc1b676bdf1404185cbc4478f13368a0c03cf1beb9281d6758e9d698",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 426521630,
       "name": "MuseFilm 会员版 4.7.7 · Build 72",
@@ -20,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.dmg",
           "size": 58868224,
           "digest": "sha256:325f22cf3ea768ac4931b71af69a05fef9838deb98490d2224f0a2b39a7aa663",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.7-build72-universal.zip",
@@ -65,7 +110,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 2
+          "download_count": 8
         }
       ]
     },
