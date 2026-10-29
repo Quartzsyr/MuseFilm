@@ -62,11 +62,11 @@ const TRANSLATIONS = {
     "pricing.freePrice": "永久免费",
     "pricing.freeBody": "10 卷胶卷档案、5 种自定义胶片与 5 件自定义器材。包含档案编辑与备份、基础水印、光页编辑预览，以及每日一次底片漂流。",
     "pricing.month": " / 月",
-    "pricing.plusBody": "100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。",
+    "pricing.plusBody": "100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、宝丽莱相纸创作与导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。",
     "pricing.proBody": "包含 Plus 的功能，档案与自定义资源不限数量。会员有效期内光页图片、PDF、摄影短片与 Live Photo 不限次数导出，并支持音乐壁纸、歌词与可视化。",
     "pricing.voucherTitle": "只为这一次创作，也可以不订阅。",
     "pricing.voucherBody": "¥2.9 光页成册券：一个画册的图片与 PDF；¥4.9 光页影像券：一个画册的短片与 Live Photo。激活后 24 小时内可修改、重试和重复导出，未激活不计时。",
-    "pricing.terms": "具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后已有档案仍可浏览、编辑和备份，超出免费额度时暂停新增。",
+    "pricing.terms": "具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后胶卷档案仍可浏览、编辑和备份；宝丽莱保留只读查看，恢复会员后可继续创作。超出免费额度时暂停新增。",
     "showcase.style.classic": "经典白框",
     "showcase.style.center": "居中铭牌",
     "showcase.style.split": "画面分置",
@@ -112,9 +112,12 @@ const TRANSLATIONS = {
     "platform.expectation": "你仍可下载现有的 Windows Beta 版本。请以当前安装包已提供的功能作为体验和购买依据，谢谢你的理解与支持。",
     "platform.download": "查看 Windows 当前版本",
     "platform.hero": "近期新功能仅限 macOS · Windows 版本说明 ↗",
+    "platform.jumpMac": "macOS · 正式版与会员版",
+    "platform.jumpWindows": "Windows · Beta",
+    "platform.paidMac": "下载最新 macOS 会员版 DMG ↗",
     "platform.winDownload": "当前提供 Windows Beta；上述 macOS 新功能尚未同步。",
     "platform.readNote": "阅读 Windows 版本说明 ↗",
-    "platform.macDownload": "近期新功能适用 macOS 版，具体可用性以当前发布版本为准。",
+    "platform.macDownload": "macOS 会员版包含近期新功能，具体权益以应用内说明为准.",
     "skip": "跳到主要内容",
     "menu": "菜单",
     "nav.home": "首页",
@@ -384,11 +387,11 @@ const TRANSLATIONS = {
     "pricing.freePrice": "Free, permanently",
     "pricing.freeBody": "10 archived rolls, 5 custom film stocks and 5 custom gear entries. Includes archive editing and backups, basic watermarks, photo book editing and previews, and one photo exchange per day.",
     "pricing.month": " / month",
-    "pricing.plusBody": "100 archived rolls, 30 custom film stocks and 30 custom gear entries. Full watermark templates, batch export, contact sheet export, roll-linked and video desktops. One complete photo book project per paid month, with a 24-hour export window after activation.",
+    "pricing.plusBody": "100 archived rolls, 30 custom film stocks and 30 custom gear entries. Full watermark templates, batch export, contact sheet export, Polaroid creation and export, roll-linked and video desktops. One complete photo book project per paid month, with a 24-hour export window after activation.",
     "pricing.proBody": "Includes Plus features with unlimited archive and custom resource counts. Unlimited photo book image, PDF, film and Live Photo exports during an active membership, plus music wallpapers, lyrics and visualizers.",
     "pricing.voucherTitle": "For a single project, you can also skip the subscription.",
     "pricing.voucherBody": "¥2.9 Book Export Pass: images and PDF for one photo book. ¥4.9 Motion Export Pass: film and Live Photo for one photo book. Edit, retry and re-export within 24 hours after activation. The clock does not start before activation.",
-    "pricing.terms": "Actual prices, periods and entitlements are defined in the app and on the Afdian checkout page. Baidu import remains in Beta for Plus, Pro and active Pro trials; availability depends on Baidu permissions. Existing archives remain browsable, editable and available for backup after membership expires. New entries pause when free limits are exceeded.",
+    "pricing.terms": "Actual prices, periods and entitlements are defined in the app and on the Afdian checkout page. Baidu import remains in Beta for Plus, Pro and active Pro trials; availability depends on Baidu permissions. Film archives remain browsable, editable and available for backup after membership expires; Polaroid archives remain read-only until membership is restored. New entries pause when free limits are exceeded.",
     "showcase.style.classic": "Classic border",
     "showcase.style.center": "Centered signature",
     "showcase.style.split": "Split composition",
@@ -434,9 +437,12 @@ const TRANSLATIONS = {
     "platform.expectation": "The existing Windows Beta remains available to download. Please base your evaluation and purchase decisions on the features in the current installer. Thank you for your understanding and support.",
     "platform.download": "Explore the current Windows release",
     "platform.hero": "New features are macOS only · Read the Windows note ↗",
+    "platform.jumpMac": "macOS · Standard and membership",
+    "platform.jumpWindows": "Windows · Beta",
+    "platform.paidMac": "Download latest macOS membership DMG ↗",
     "platform.winDownload": "Windows Beta is available. The macOS features above are not included yet.",
     "platform.readNote": "Read the Windows version note ↗",
-    "platform.macDownload": "Recent new features apply to macOS. Availability depends on the current release.",
+    "platform.macDownload": "The macOS membership edition includes recent features; access depends on the entitlement shown in the app.",
     "skip": "Skip to main content",
     "menu": "Menu",
     "nav.home": "Home",
@@ -1726,9 +1732,10 @@ function releaseTagContainsMac(release) {
 
 function assetPlatform(asset, release) {
   const name = String(asset?.name || "").toLowerCase();
-  if (/\.(exe|msi|msix)(?:$|\?)/i.test(name) || /(?:windows|win64|win-x64)/i.test(name)) return "windows";
-  if (/\.(dmg|pkg)(?:$|\?)/i.test(name) || /(?:macos|darwin|osx)/i.test(name)) return "mac";
-  if (releaseTagContainsMac(release) && /\.zip(?:$|\?)/i.test(name)) return "mac";
+  // Only actual installers count; handoff and license ZIPs are not downloads.
+  if (/\.(exe|msi|msix)$/.test(name)) return "windows";
+  if (/\.(dmg|pkg)$/.test(name)) return "mac";
+  if (releaseTagContainsMac(release) && /^musefilm.*\.zip$/.test(name) && !/(windows|win64|win-x64)/.test(name)) return "mac";
   return null;
 }
 

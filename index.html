@@ -21,7 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
-    <link rel="stylesheet" href="./site.css?v=20261026-feature-film">
+    <link rel="stylesheet" href="./site.css?v=20261029-platforms">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -230,11 +230,11 @@
               <header><p class="overline">MUSEFILM / macOS</p><h3 data-i18n="pricing.title">先创作，再选择适合的权益。</h3><p data-i18n="pricing.intro">以下为当前 macOS 会员版的应用内方案说明。Windows 尚未同步本页展示的新功能及权益。</p></header>
               <div class="membership-plan-grid">
                 <div><span data-i18n="pricing.free">免费基础版</span><strong data-i18n="pricing.freePrice">永久免费</strong><p data-i18n="pricing.freeBody">10 卷胶卷档案、5 种自定义胶片与 5 件自定义器材。包含档案编辑与备份、基础水印、光页编辑预览，以及每日一次底片漂流。</p></div>
-                <div><span>Plus</span><strong><span>¥9.9</span><small data-i18n="pricing.month"> / 月</small></strong><p data-i18n="pricing.plusBody">100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。</p></div>
+                <div><span>Plus</span><strong><span>¥9.9</span><small data-i18n="pricing.month"> / 月</small></strong><p data-i18n="pricing.plusBody">100 卷档案、30 种自定义胶片与 30 件自定义器材。完整水印模板、批量导出、索引图导出、宝丽莱相纸创作与导出、胶卷联动与视频桌面；每个付费月赠送 1 个完整光页项目，激活后可在 24 小时内导出。</p></div>
                 <div><span>Pro</span><strong><span>¥19.9</span><small data-i18n="pricing.month"> / 月</small></strong><p data-i18n="pricing.proBody">包含 Plus 的功能，档案与自定义资源不限数量。会员有效期内光页图片、PDF、摄影短片与 Live Photo 不限次数导出，并支持音乐壁纸、歌词与可视化。</p></div>
               </div>
               <div class="membership-vouchers"><h4 data-i18n="pricing.voucherTitle">只为这一次创作，也可以不订阅。</h4><p data-i18n="pricing.voucherBody">¥2.9 光页成册券：一个画册的图片与 PDF；¥4.9 光页影像券：一个画册的短片与 Live Photo。激活后 24 小时内可修改、重试和重复导出，未激活不计时。</p></div>
-              <p class="membership-pricing-footnote" data-i18n="pricing.terms">具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后已有档案仍可浏览、编辑和备份，超出免费额度时暂停新增。</p>
+              <p class="membership-pricing-footnote" data-i18n="pricing.terms">具体价格、周期与权益以软件内说明和爱发电结算页为准。度盘导入仍在 Beta 测试，Plus、Pro 与有效 Pro 试用可体验，实际能力受百度权限影响。会员到期后胶卷档案仍可浏览、编辑和备份；宝丽莱保留只读查看，恢复会员后可继续创作。超出免费额度时暂停新增。</p>
             </div>
           </details>
           <aside class="platform-notes" id="platform-notes" aria-labelledby="platform-notes-title" data-reveal>
@@ -312,6 +312,10 @@
           </div>
           <div class="total-count" aria-live="polite"><strong data-total-downloads>295</strong><span data-i18n="download.total">已验证下载总数</span></div>
         </div>
+        <nav class="platform-download-nav" aria-label="按平台选择下载">
+          <a href="#download-mac" data-i18n="platform.jumpMac">macOS · 正式版与会员版</a>
+          <a href="#download-windows" data-i18n="platform.jumpWindows">Windows · Beta</a>
+        </nav>
         <div class="download-grid" data-reveal>
           <article id="download-windows" data-release-card="windows">
             <div class="platform"><span>Windows</span><small>01</small></div>
@@ -334,7 +338,8 @@
               <div><dt data-i18n="download.published">发布</dt><dd data-release-date="mac">—</dd></div>
               <div><dt data-i18n="download.checksum">SHA-256</dt><dd><code data-release-digest="mac">—</code><button type="button" data-copy-digest="mac" data-i18n="download.copy">复制</button></dd></div>
             </dl>
-            <p class="download-platform-note" data-i18n="platform.macDownload">近期新功能适用 macOS 版，具体可用性以当前发布版本为准。</p>
+            <p class="download-platform-note" data-i18n="platform.macDownload">macOS 会员版包含近期新功能，具体权益以应用内说明为准。</p>
+            <a class="download-platform-more" href="https://membership.musefilm.top/updates/macos/latest.dmg" data-i18n="platform.paidMac">下载最新 macOS 会员版 DMG ↗</a>
             <p class="platform-count"><strong data-download-count="mac">133</strong> <span data-i18n="download.count">次下载</span></p>
             <a class="download-link download-trigger" data-platform="mac" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg" target="_blank" rel="noopener"><span data-i18n="download.mac">下载 macOS 版</span> <span>↓</span></a>
           </article>
@@ -470,6 +475,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261029-ip-security"></script>
+    <script type="module" src="./site.js?v=20261029-platforms"></script>
   </body>
 </html>
