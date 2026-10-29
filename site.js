@@ -1647,7 +1647,7 @@ if (downloadSection) {
 
 const RELEASE_API = "https://api.github.com/repos/Quartzsyr/MuseFilm/releases?per_page=100";
 const RELEASES_URL = "https://github.com/Quartzsyr/MuseFilm/releases";
-const FALLBACK_COUNTS = { windows: 162, mac: 137 };
+const FALLBACK_COUNTS = { windows: 165, mac: 141 };
 let lastCounts = FALLBACK_COUNTS;
 let lastCountsSynced = false;
 let downloadOpened = false;

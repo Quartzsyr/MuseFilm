@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-29T15:25:41.959Z",
+  "updatedAt": "2026-10-29T18:58:55.072Z",
   "releases": [
     {
       "id": 428038546,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.dmg",
           "size": 104179046,
           "digest": "sha256:f70cfc5f74448d085ff910f71e130782b4e8d18f1110f42861ef592100472b9c",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.14-build79-universal.zip",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.zip",
           "size": 101645157,
           "digest": "sha256:3c4ed74bdf92bac62d36920260ebddcf363f9b6667a5a92fdb0dbcd7e393db39",
-          "download_count": 0
+          "download_count": 3
         },
         {
           "name": "release-4.7.14.json",
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/release-4.7.14.json",
           "size": 726,
           "digest": "sha256:3d9952d7972c6d99d7715e28b0dae502dfdd58f7ec94eec5a2f4ad1f00408997",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.14.txt",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/SHA256SUMS-4.7.14.txt",
           "size": 399,
           "digest": "sha256:bd5384eaaee7f9b82cce596f5d4e9e8ba2fb0dc1d0e4ce121dd9ed2bc9fc5b87",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 3110,
           "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
-          "download_count": 0
+          "download_count": 2
         }
       ]
     },
@@ -224,7 +224,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 9
+          "download_count": 10
         }
       ]
     },
