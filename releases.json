@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-29T10:32:32.243Z",
+  "updatedAt": "2026-10-29T13:13:56.990Z",
   "releases": [
     {
       "id": 427719689,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/MuseFilm-Paid-4.7.11-build76-universal.dmg",
           "size": 102438225,
           "digest": "sha256:6cd64412d5417f8b7246e9baf2366cd340f603ce7f54fe63f59545d16b23f822",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.11-build76-universal.zip",
@@ -65,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.dmg",
           "size": 58868224,
           "digest": "sha256:325f22cf3ea768ac4931b71af69a05fef9838deb98490d2224f0a2b39a7aa663",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-Paid-4.7.7-build72-universal.zip",
@@ -73,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.zip",
           "size": 58690523,
           "digest": "sha256:15d12d93aae53e5249987cb0a029db2b746f66c7b110330ac6244b7f66835429",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.7.json",
@@ -81,7 +81,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/release-4.7.7.json",
           "size": 1034,
           "digest": "sha256:c5056d72e523c402c5c0ae9c42bfac6b80d5dc02a74e4052c2c0ba0c916a1a1e",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.7.txt",
@@ -110,7 +110,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 8
+          "download_count": 9
         }
       ]
     },
@@ -152,7 +152,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal-icon-preserved.zip",
           "size": 37489020,
           "digest": "sha256:09baa530c2401abc1e4f914ee6ecbbc97a9669e2faac6e9ff142e4ec9a178e63",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-3.2.2-build34-universal.dmg",
@@ -160,7 +160,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.2/MuseFilm-3.2.2-build34-universal.dmg",
           "size": 35150283,
           "digest": "sha256:a3fd9e3c813a315eaa51a991c2b4abb5ba95c8d1839b78cd4a701dca68908b91",
-          "download_count": 14
+          "download_count": 15
         }
       ]
     },
@@ -181,7 +181,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2.1_Fixed/MuseFilm-3.2.1-build33-universal.dmg",
           "size": 35146556,
           "digest": "sha256:dba06e3256795723bc5935a37b49a14ff18dbf9345c6fee0a31f497337d60a2c",
-          "download_count": 6
+          "download_count": 7
         }
       ]
     },
@@ -202,7 +202,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2/MuseFilm-2.0-20260908-camera-crayon-universal.zip",
           "size": 14981522,
           "digest": "sha256:2ac2238f79321db53897f8a6a6dc7b5eab087fc0b924798ffc5fe2d92eff4e4d",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-3.2-build32-universal.dmg",
@@ -210,7 +210,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC3.2/MuseFilm-3.2-build32-universal.dmg",
           "size": 35101076,
           "digest": "sha256:67344b44cdc4c69f2ba47751efee2583b154576189d8ae2e76baa655c8d3665e",
-          "download_count": 6
+          "download_count": 7
         }
       ]
     },
@@ -239,7 +239,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac_beta/3.0.1b.zip",
           "size": 8532364,
           "digest": "sha256:18a11ddeb38ced648507f6a8bc40a21b58b26024bb77a2cccf1d9dbe270fcd4e",
-          "download_count": 2
+          "download_count": 3
         }
       ]
     },
@@ -260,7 +260,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/MAC2.0/musefilm-2.0-build2-2026-06-13-142933.dmg",
           "size": 5926476,
           "digest": "sha256:f22b9c8956efa6c00b8a1971a69808be4616eaba7b3b7c7a80cfd9464ba331c5",
-          "download_count": 7
+          "download_count": 8
         }
       ]
     },
@@ -281,7 +281,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
           "size": 5532874,
           "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
-          "download_count": 73
+          "download_count": 74
         }
       ]
     },
