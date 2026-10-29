@@ -1,8 +1,61 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-29T14:27:07.979Z",
+  "updatedAt": "2026-10-29T15:25:41.959Z",
   "releases": [
+    {
+      "id": 428038546,
+      "name": "MuseFilm 会员版 4.7.14 · 三维相纸盒与平台分类",
+      "tag_name": "PAID-MAC4.7.14",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.14",
+      "published_at": "2026-10-29T15:25:26Z",
+      "created_at": "2026-10-29T15:21:40Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.14 / Build 79\n\n- 宝丽莱档案盒更新为真正的三维纸盒，带独立盒盖、纸板纹理、柔和光影和悬浮展开。\n- 授权设备列表显示 macOS 或 Windows；历史设备在平台尚未确认时显示“平台未识别”。\n- Windows 接入使用独立平台与版本标识，已有账号服务可共享；各功能需要 Windows 客户端独立开发和测试。\n- 14 款字体的 OFL 许可及作者声明随包保留；Three.js 附带 MIT 许可。\n\nmacOS 14 及以上，Apple Silicon 与 Intel 通用。\n\n官网已分别标示 Windows Beta 与 macOS 会员版。Windows 接入约定及版本化能力清单见随附文档；各本地功能仍需 Windows 客户端独立适配。\n\n字体采用 SIL OFL 1.1，完整作者声明与许可随软件保留，允许商业使用及随付费软件分发。详见 https://openfontlicense.org/ofl-faq/ 。Three.js 使用 MIT 许可；本版本支持 macOS 14 及以上，Apple Silicon / Intel 双架构。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.14-build79-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.dmg",
+          "size": 104179046,
+          "digest": "sha256:f70cfc5f74448d085ff910f71e130782b4e8d18f1110f42861ef592100472b9c",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.14-build79-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.zip",
+          "size": 101645157,
+          "digest": "sha256:3c4ed74bdf92bac62d36920260ebddcf363f9b6667a5a92fdb0dbcd7e393db39",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.14.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/release-4.7.14.json",
+          "size": 726,
+          "digest": "sha256:3d9952d7972c6d99d7715e28b0dae502dfdd58f7ec94eec5a2f4ad1f00408997",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.14.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/SHA256SUMS-4.7.14.txt",
+          "size": 399,
+          "digest": "sha256:bd5384eaaee7f9b82cce596f5d4e9e8ba2fb0dc1d0e4ce121dd9ed2bc9fc5b87",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 427808207,
       "name": "MuseFilm 会员版 4.7.12 · 宝丽莱英文日期与会员权益",
@@ -20,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-LICENSES-4.7.12.zip",
           "size": 34278,
           "digest": "sha256:31a276d68492816cee5e9968988794373db3bcd86a6e05dcd4fa1c6edd985710",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "FONT-SOURCES-4.7.12.json",
@@ -28,7 +81,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-SOURCES-4.7.12.json",
           "size": 14976,
           "digest": "sha256:6a17adda0acfe18944d5952cbf9b6a91744bca22c14ba8ce986d665ced57dd69",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.12-build77-universal.dmg",
@@ -36,7 +89,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/MuseFilm-Paid-4.7.12-build77-universal.dmg",
           "size": 103080105,
           "digest": "sha256:dd26dce7b7b1827ef170a0cfd6b8afa2a73eefbeac5aa83a1c65f5cc32748159",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.12-build77-universal.zip",
@@ -44,7 +97,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/MuseFilm-Paid-4.7.12-build77-universal.zip",
           "size": 100542343,
           "digest": "sha256:44fdaeb4bdbfeb2b147d12741397f37e70a24680da51775f7836b111700017d7",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.12.json",
@@ -52,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/release-4.7.12.json",
           "size": 1389,
           "digest": "sha256:0ad974d21b7c1145f7ac7ec4ab7865d7dd39b34e9d0efc986a5ca0319cc8fccb",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.12.txt",
@@ -60,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/SHA256SUMS-4.7.12.txt",
           "size": 486,
           "digest": "sha256:f4a5405b49ffa1d05b1f55332f3fd6f3a7f9684fbdea537ea36a034e7d76c5d7",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
