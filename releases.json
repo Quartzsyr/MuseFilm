@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-30T11:26:33.201Z",
+  "updatedAt": "2026-10-30T14:40:24.937Z",
   "releases": [
+    {
+      "id": 429130889,
+      "name": "MuseFilm 会员版 4.7.18 · 真实胶片边框",
+      "tag_name": "PAID-MAC4.7.18",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.18",
+      "published_at": "2026-10-30T14:40:13Z",
+      "created_at": "2026-10-30T11:26:33Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.18 / Build 83\n\n让观片台与索引图保留胶片边缘的真实细节。\n\n• 统一观片台、放大镜、索引图、水印胶片模板、蜡笔圈选、胶卷样片与漂流展示的胶片边框，采用实物片基纹理、齿孔轮廓及 Ektar 原厂边字裁片。\n• 默认呈现去除色罩后的黑色扫描边框；“橙色负片 · 画面反相”同时将照片反相并叠加橙色色罩。切换仅作用于显示与导出副本，原图文件保持不变。\n• 135 按实际画幅及齿孔比例排布；120 的 6×6、6×7、6×9 使用对应比例且没有齿孔。竖片连同整圈边框旋转，预览、放大镜与导出共用一套几何布局。\n• 型号边字使用档案中的胶卷名称，帧号沿用卷宗顺序，索引图换行后继续编号。无型号时显示 MUSEFILM，不再统一套用富士字样。\n• “胶片边框”菜单可切换外观、查看纹理来源与许可；胶片边框导出副本嵌入素材署名。修正索引图预览的小数尺寸，使 PNG 像素尺寸一致。\n\n素材与字体：实物边框照片由 LoMit 拍摄，源文件 “Color print film strip 01 - negative.jpg”，采用 CC BY 4.0（允许商业使用及修改，须保留署名、来源、许可及修改说明）。MuseFilm 裁取无画面的边缘、提取透明蒙版并调整色调。仅 Ektar 标签采用该实物原厂边字，其他型号及动态帧号采用独立绘制的几何字形；120 使用同一纹理按其画幅合成，并非各品牌 120 的独立扫描。型号用于标识胶卷，不表示品牌授权或背书。\n\n未新增字体文件；既有十四款字体的 SIL OFL 1.1 许可、作者声明及 FONT-SOURCES.json 继续随包保留。\n\n来源：https://commons.wikimedia.org/wiki/File:Color_print_film_strip_01_-_negative.jpg\n许可：https://creativecommons.org/licenses/by/4.0/\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.18.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/MuseFilm-Film-Border-Materials-Licenses-4.7.18.zip",
+          "size": 76821,
+          "digest": "sha256:a5ad6a226bdd7a94cf225f91fe4990441a52554aa63fb9fbbf11e60470724312",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.18.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/MuseFilm-Font-Licenses-4.7.18.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.18-build83-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/MuseFilm-Paid-4.7.18-build83-universal.dmg",
+          "size": 111612928,
+          "digest": "sha256:d9bba611fe148219597a75a463a775fdc373b1a99a8625cf711d00ecf101ac63",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.18-build83-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/MuseFilm-Paid-4.7.18-build83-universal.zip",
+          "size": 111049213,
+          "digest": "sha256:468d36eb02c35d9031d82d09a3c4f80d6b46bc91e77fd7598fd889149cd69e9d",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.18.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/release-4.7.18.json",
+          "size": 5306,
+          "digest": "sha256:bfb9cf549a14448e44a7389ff5c624da3a8354ae8ce5d1ae8d2dd319e39caee3",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.18.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/SHA256SUMS-4.7.18.txt",
+          "size": 616,
+          "digest": "sha256:9bbe636927798d82685a4c07c3816478b01e9d4b98af0b391c3d94d5da62480a",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.18/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 428933245,
       "name": "MuseFilm 会员版 4.7.17 · 编号珍藏与光影入藏",
@@ -20,7 +89,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Font-Licenses-4.7.17.zip",
           "size": 32638,
           "digest": "sha256:c89991e94bd7eea24c1562e0fdbe7214ed3ae95738eff324caac28ad49025dd4",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.17-build82-universal.dmg",
@@ -28,7 +97,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Paid-4.7.17-build82-universal.dmg",
           "size": 111417856,
           "digest": "sha256:459cd6bc48540d393a1d6b38f39ddc38e54d1c4b2a0be9dad8ae62002216f7e0",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.17-build82-universal.zip",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Paid-4.7.17-build82-universal.zip",
           "size": 110846441,
           "digest": "sha256:5a8e5a5c5e680a67e7548b342673506c402bdc11a1c672e4fe3d165cd8a4dc37",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.17.json",
@@ -44,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/release-4.7.17.json",
           "size": 732,
           "digest": "sha256:6c7b313757f73d1e0de26d8308b094a6b97d9bb35e76a32f09f7718ed182edc6",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.7.17.txt",
@@ -52,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/SHA256SUMS-4.7.17.txt",
           "size": 218,
           "digest": "sha256:bd32d908d20414762332dd8253ca791f12a2ced2de6990cf68daac0a6c00c986",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -60,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 4302,
           "digest": "sha256:3fc1e258659b16089e6f2d46b1f5867144cd91b35b2e0af665c565e7bb969b98",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
@@ -81,7 +150,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Font-Licenses-4.7.16.zip",
           "size": 33328,
           "digest": "sha256:6c5a45010d94d0d8f406da407422afcc2fd17c61ead71fe39b7b6328627e6ab7",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.16-build81-universal.dmg",
@@ -89,7 +158,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Paid-4.7.16-build81-universal.dmg",
           "size": 110994944,
           "digest": "sha256:e934f9a6b48e0d1783015ee5f1f2bedb947e85c7aa4ac31921d149a0cfedfb75",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.16-build81-universal.zip",
@@ -97,7 +166,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Paid-4.7.16-build81-universal.zip",
           "size": 110443271,
           "digest": "sha256:fae13824ac5b04eaf9e128f4b399f5631fbd6fc66db8346127474b77f3ee916e",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.16.json",
@@ -105,7 +174,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/release-4.7.16.json",
           "size": 692,
           "digest": "sha256:b68ce8454886d7b8230f21c61a575f9e97a8c808a6af90644a0ad7f072eb14a9",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.16.txt",
@@ -113,7 +182,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/SHA256SUMS-4.7.16.txt",
           "size": 218,
           "digest": "sha256:46497a3a2f9ae7672ff820b69e9c6d78b0ce8b7625ed2887366d3b32078e0af6",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -346,7 +415,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 10
+          "download_count": 11
         }
       ]
     },
@@ -538,7 +607,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 118
+          "download_count": 119
         }
       ]
     }
