@@ -12,6 +12,8 @@ let refreshShowcaseLanguage = () => {};
 
 const TRANSLATIONS = {
   zh: {
+    "updates.checkCount": "次更新检查请求",
+    "updates.checkScope": "macOS · 含自动与手动检查，非用户数 · 统计自",
     "promo.expand": "展开功能详情",
     "promo.collapse": "收起功能详情",
     "promo.detailScope": "光页 · 水印 · 动态桌面 · 度盘 Beta",
@@ -337,6 +339,8 @@ const TRANSLATIONS = {
     "screen.preview": "预览",
   },
   en: {
+    "updates.checkCount": "update-check requests",
+    "updates.checkScope": "macOS · automatic and manual checks, not unique users · since",
     "promo.expand": "Explore feature details",
     "promo.collapse": "Collapse feature details",
     "promo.detailScope": "Photo books · Watermarks · Desktop · Baidu Beta",
@@ -2374,6 +2378,7 @@ document.querySelectorAll("[data-language-toggle]").forEach((button) => {
     applyLanguage(currentLanguage === "zh" ? "en" : "zh");
     renderCounts(lastCounts, lastCountsSynced);
     renderVisitorCount(lastVisitorCount);
+    renderUpdateChecks();
   });
 });
 
@@ -2396,3 +2401,26 @@ if(document.querySelector('[data-feature-presentation]')){
  const lazyPresentation=new IntersectionObserver(entries=>{if(!entries.some(e=>e.isIntersecting))return;lazyPresentation.disconnect();import('./feature-showcase.js?v=20261026-feature-film').then(({mountFeaturePresentation})=>{const presentation=mountFeaturePresentation({reducedMotion,translate});refreshShowcaseLanguage=()=>presentation.refresh()}).catch(()=>{document.querySelector('[data-feature-cinema]')?.removeAttribute('data-motion-ready')})},{rootMargin:'300px'});
  lazyPresentation.observe(presentationRoot);
 }
+
+
+// Aggregate successful feed requests, independent of installer download counts.
+let lastUpdateChecks = null;
+function renderUpdateChecks() {
+  document.querySelectorAll('[data-update-check-total]').forEach(node => {
+    node.textContent = lastUpdateChecks === null ? '—' : new Intl.NumberFormat(currentLanguage === 'en' ? 'en-US' : 'zh-CN').format(lastUpdateChecks.total);
+  });
+  document.querySelectorAll('[data-update-check-since]').forEach(node => {
+    node.textContent = lastUpdateChecks?.startedAt ? new Intl.DateTimeFormat(currentLanguage === 'en' ? 'en-US' : 'zh-CN', {year:'numeric',month:'short',day:'numeric',timeZone:'Asia/Shanghai'}).format(new Date(lastUpdateChecks.startedAt)) : '—';
+  });
+}
+async function syncUpdateChecks() {
+  try {
+    const response = await fetch('https://membership.musefilm.top/updates/statistics.json', {cache:'no-store',credentials:'omit'});
+    if (!response.ok) throw new Error('Statistics unavailable');
+    const data = await response.json();
+    if (data.metric !== 'successful_update_feed_gets' || !Number.isSafeInteger(data.total) || data.total < 0 || !data.startedAt || !Number.isFinite(Date.parse(data.startedAt))) throw new Error('Invalid statistics');
+    lastUpdateChecks = data;
+  } catch { /* Keep the unavailable marker instead of inventing a zero. */ }
+  renderUpdateChecks();
+}
+syncUpdateChecks();

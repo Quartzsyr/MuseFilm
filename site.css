@@ -3104,3 +3104,7 @@ html[lang="en"] .local-copy h2 { font-size: clamp(2.7rem, 5.4vw, 5.7rem); }
 .platform-download-nav { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.5rem 0; }
 .platform-download-nav a { border:1px solid var(--line); border-radius:999px; padding:.65rem 1rem; color:var(--text); font-size:.75rem; text-decoration:none; }
 .platform-download-nav a:hover, .platform-download-nav a:focus-visible { border-color:var(--text); }
+
+.update-check-counter { display:grid; gap:.4rem; margin-top:1rem; color:var(--text); font-size:.85rem; }
+.update-check-counter strong { font-variant-numeric:tabular-nums; font-size:1.5rem; font-weight:500; }
+.update-check-counter small { color:var(--muted); font-size:.65rem; line-height:1.7; }
