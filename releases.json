@@ -1,8 +1,69 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-30T10:10:31.956Z",
+  "updatedAt": "2026-10-30T10:18:04.910Z",
   "releases": [
+    {
+      "id": 428882294,
+      "name": "MuseFilm 会员版 4.7.16 · 光影徽章与三维陈列",
+      "tag_name": "PAID-MAC4.7.16",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.16",
+      "published_at": "2026-10-30T10:17:53Z",
+      "created_at": "2026-10-30T02:42:36Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.16 / Build 81\n\n光影陈列室与底片漂流\n\n• 接入提供的十五枚黑金珐琅徽章素材、专用灰度未获得态和摄影成就规则；保留原有获得记录及 Quartz 开发者唯一限定。\n• 徽章详情支持真正有厚度的三维展示、鼠标拖拽旋转、翻面和复位；背面显示铭文，纪念徽章显示编号。\n• 新增「初光同行者」前 30 位注册纪念：以会员服务保存的注册顺序确定资格并固定编号，已有账号补发，后续至 30 位止；普通同步和后台操作不能绕过名额。\n• 摄影成就从已成功保存的本机档案核验，支持历史补认和离线保留。格式、品牌、城市与完整归档可在编辑卷宗中补充；未保存草稿、空卷、重复照片和未确认完整的胶卷不会被当成完成成就。\n• 可选择同步本机摄影徽章到账号，或单独同步后佩戴；不上传照片、文件路径或拍摄地点。漂流徽章与限定资格由服务器确认。\n• 底片漂流可直接从胶片档案单张选片，支持卷宗/文件名搜索、仅圈选和缓存预览副本；仍需预览并确认寄出。\n• 漂流中展示佩戴徽章，可查看相遇对象的名片和主动公开的主页。主页默认不公开；邮箱、订单、设备和本机图库保持私密。\n• 网页后台支持填写原因后授予、收回徽章，包含版本冲突处理和审计；已收回徽章不会被普通同步自动补发。\n\n字体与素材：内置十四款字体继续采用 SIL Open Font License 1.1，随软件保留许可、作者声明与 FONT-SOURCES.json 来源清单；许可允许商业作品使用及随付费软件分发。字体不单独售卖，不以字体作者名义背书。Three.js 使用 MIT 许可。十五枚徽章使用用户提供的素材包，PNG 原样保留；新增三十位纪念素材使用 imagegen 生成，未新增字体文件。\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.16.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Font-Licenses-4.7.16.zip",
+          "size": 33328,
+          "digest": "sha256:6c5a45010d94d0d8f406da407422afcc2fd17c61ead71fe39b7b6328627e6ab7",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.16-build81-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Paid-4.7.16-build81-universal.dmg",
+          "size": 110994944,
+          "digest": "sha256:e934f9a6b48e0d1783015ee5f1f2bedb947e85c7aa4ac31921d149a0cfedfb75",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.16-build81-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Paid-4.7.16-build81-universal.zip",
+          "size": 110443271,
+          "digest": "sha256:fae13824ac5b04eaf9e128f4b399f5631fbd6fc66db8346127474b77f3ee916e",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.16.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/release-4.7.16.json",
+          "size": 692,
+          "digest": "sha256:b68ce8454886d7b8230f21c61a575f9e97a8c808a6af90644a0ad7f072eb14a9",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.16.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/SHA256SUMS-4.7.16.txt",
+          "size": 218,
+          "digest": "sha256:46497a3a2f9ae7672ff820b69e9c6d78b0ce8b7625ed2887366d3b32078e0af6",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 428038546,
       "name": "MuseFilm 会员版 4.7.14 · 三维相纸盒与平台分类",
@@ -15,6 +76,14 @@
       "body": "# MuseFilm 会员版 4.7.14 / Build 79\n\n- 宝丽莱档案盒更新为真正的三维纸盒，带独立盒盖、纸板纹理、柔和光影和悬浮展开。\n- 授权设备列表显示 macOS 或 Windows；历史设备在平台尚未确认时显示“平台未识别”。\n- Windows 接入使用独立平台与版本标识，已有账号服务可共享；各功能需要 Windows 客户端独立开发和测试。\n- 14 款字体的 OFL 许可及作者声明随包保留；Three.js 附带 MIT 许可。\n\nmacOS 14 及以上，Apple Silicon 与 Intel 通用。\n\n官网已分别标示 Windows Beta 与 macOS 会员版。Windows 接入约定及版本化能力清单见随附文档；各本地功能仍需 Windows 客户端独立适配。\n\n字体采用 SIL OFL 1.1，完整作者声明与许可随软件保留，允许商业使用及随付费软件分发。详见 https://openfontlicense.org/ofl-faq/ 。Three.js 使用 MIT 许可；本版本支持 macOS 14 及以上，Apple Silicon / Intel 双架构。\n",
       "assets": [
         {
+          "name": "MuseFilm-Paid-4.7.14-build79-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.dmg",
+          "size": 104179046,
+          "digest": "sha256:f70cfc5f74448d085ff910f71e130782b4e8d18f1110f42861ef592100472b9c",
+          "download_count": 1
+        },
+        {
           "name": "MuseFilm-Paid-4.7.14-build79-universal.zip",
           "state": "uploaded",
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.zip",
@@ -23,19 +92,11 @@
           "download_count": 3
         },
         {
-          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "name": "release-4.7.14.json",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/WINDOWS-PLATFORM-CONTRACT.md",
-          "size": 3110,
-          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
-          "download_count": 2
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.14-build79-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/MuseFilm-Paid-4.7.14-build79-universal.dmg",
-          "size": 104179046,
-          "digest": "sha256:f70cfc5f74448d085ff910f71e130782b4e8d18f1110f42861ef592100472b9c",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/release-4.7.14.json",
+          "size": 726,
+          "digest": "sha256:3d9952d7972c6d99d7715e28b0dae502dfdd58f7ec94eec5a2f4ad1f00408997",
           "download_count": 1
         },
         {
@@ -47,12 +108,12 @@
           "download_count": 1
         },
         {
-          "name": "release-4.7.14.json",
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/release-4.7.14.json",
-          "size": 726,
-          "digest": "sha256:3d9952d7972c6d99d7715e28b0dae502dfdd58f7ec94eec5a2f4ad1f00408997",
-          "download_count": 1
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 2
         }
       ]
     },
@@ -67,6 +128,22 @@
       "draft": false,
       "body": "# MuseFilm 会员版 4.7.12 / Build 77\n\n宝丽莱新增英文手写日期，并统一接入会员权益。\n\n- 宝丽莱相纸编辑、跨设备手写、PNG / Live Photo 导出包含在 Plus / Pro 及有效 Pro 试用中，不消耗光页赠送项目或创作券。到期后已有相纸仍可只读查看。\n- 九种英文日期格式、八款英文手写日期字体，字号、位置、对齐和倾斜独立调整。\n- “仅日期”落款使用整块底部白边，不为正文留空；正文与地点仍保留，切换模式即可恢复。\n\n## 字体来源与商用授权\n\n全部十四款内置字体均采用 **SIL Open Font License 1.1**，与官方原始字体及授权文件逐字节核对，未修改字形或字体名称。该许可允许商业作品制作、闭源软件使用，以及随付费软件打包分发；参见 [OFL 官方 FAQ 1.1、1.3、1.4](https://openfontlicense.org/ofl-faq/)。\n\n- [辰宇落雁](https://github.com/Chenyu-otf/chenyuluoyan_thin)、[霞鹜文楷轻便版](https://github.com/lxgw/LxgwWenKai-Lite)、[小赖](https://github.com/lxgw/kose-font/releases/tag/v3.126)。\n- [Google Fonts 官方仓库](https://github.com/google/fonts)收录：龙藏、马善政、智莽行、Caveat、Patrick Hand、Kalam、Handlee、La Belle Aurore、Sacramento、Nothing You Could Do、Reenie Beanie。\n\n完整 OFL 原文、作者版权声明和固定来源/版本/校验值清单 `FONT-SOURCES.json` 均随应用打包，本页另附可下载的许可归档和来源清单。字体本身继续遵循 OFL，不单独售卖，不以字体作者名义为 MuseFilm 背书；使用字体生成的照片和视频不因此改用 OFL 授权。系统字体仅调用 macOS 已有字体，不抽取或随包分发。\n\n授权结论以官方原文及本次核验为依据，不作第三方权利争议的绝对零风险承诺。\n\n## 安装与验证\n\nmacOS 14 及以上，Apple Silicon / Intel 双架构。下载 DMG 安装，软件内也可检查更新。47 项原生测试与 82 项功能检查通过；原版项目与已安装应用未覆盖。\n",
       "assets": [
+        {
+          "name": "FONT-LICENSES-4.7.12.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-LICENSES-4.7.12.zip",
+          "size": 34278,
+          "digest": "sha256:31a276d68492816cee5e9968988794373db3bcd86a6e05dcd4fa1c6edd985710",
+          "download_count": 2
+        },
+        {
+          "name": "FONT-SOURCES-4.7.12.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-SOURCES-4.7.12.json",
+          "size": 14976,
+          "digest": "sha256:6a17adda0acfe18944d5952cbf9b6a91744bca22c14ba8ce986d665ced57dd69",
+          "download_count": 1
+        },
         {
           "name": "MuseFilm-Paid-4.7.12-build77-universal.dmg",
           "state": "uploaded",
@@ -84,14 +161,6 @@
           "download_count": 1
         },
         {
-          "name": "SHA256SUMS-4.7.12.txt",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/SHA256SUMS-4.7.12.txt",
-          "size": 486,
-          "digest": "sha256:f4a5405b49ffa1d05b1f55332f3fd6f3a7f9684fbdea537ea36a034e7d76c5d7",
-          "download_count": 1
-        },
-        {
           "name": "release-4.7.12.json",
           "state": "uploaded",
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/release-4.7.12.json",
@@ -100,20 +169,12 @@
           "download_count": 1
         },
         {
-          "name": "FONT-SOURCES-4.7.12.json",
+          "name": "SHA256SUMS-4.7.12.txt",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-SOURCES-4.7.12.json",
-          "size": 14976,
-          "digest": "sha256:6a17adda0acfe18944d5952cbf9b6a91744bca22c14ba8ce986d665ced57dd69",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/SHA256SUMS-4.7.12.txt",
+          "size": 486,
+          "digest": "sha256:f4a5405b49ffa1d05b1f55332f3fd6f3a7f9684fbdea537ea36a034e7d76c5d7",
           "download_count": 1
-        },
-        {
-          "name": "FONT-LICENSES-4.7.12.zip",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.12/FONT-LICENSES-4.7.12.zip",
-          "size": 34278,
-          "digest": "sha256:31a276d68492816cee5e9968988794373db3bcd86a6e05dcd4fa1c6edd985710",
-          "download_count": 2
         }
       ]
     },
@@ -129,12 +190,12 @@
       "body": "# MuseFilm 会员版 4.7.11 · Build 76\n\n宝丽莱相纸档案与黑卡揭幕\n\n新增独立宝丽莱档案盒：按旅程、人物与年份收纳，支持封面、查找、移动、右键删除与撤销；悬停展开真实相纸。\n新增保护黑卡入场：先遮住相纸，再向上浮出。支持跳过、重播及按盒关闭自动揭卡。\n提供五款原创黑卡版式、短句编辑与实物扫描件导入，可设为盒子默认或单张相纸专用。\n新增黑卡揭幕 Live Photo；连同翻面、摇曳等共六种动效，支持悬停预览与完整播放；封面保留揭开后的照片。\n相纸支持倾斜实拍去白边和透视校正、手写笔迹与手机／iPad 接力速绘、八款内置手写字体，以及新旧、磨损、褶皱和瑕疵调整。\n编辑区整理为手记、相纸、黑卡与动效；照片原件保留，旧手记自动备份并归盒。\n保留当前会员服务与应用内签名更新，适用于 macOS 14 及以上的 Apple 芯片和 Intel Mac。\n\n入口：宝丽莱档案 → 打开相纸盒 → 编辑相纸 → 黑卡 / 动效。\n\nCloudflare 应用内更新源与 GitHub 使用相同的通用安装包。可在应用内“检查更新”，或下载 DMG 拖入应用程序安装。\n",
       "assets": [
         {
-          "name": "release-4.7.11.json",
+          "name": "MuseFilm-Paid-4.7.11-build76-universal.dmg",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/release-4.7.11.json",
-          "size": 850,
-          "digest": "sha256:bec47963394796c950043ca9204bb68e10f5b9c8c7badee51eb3a4f70819bffb",
-          "download_count": 1
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/MuseFilm-Paid-4.7.11-build76-universal.dmg",
+          "size": 102438225,
+          "digest": "sha256:6cd64412d5417f8b7246e9baf2366cd340f603ce7f54fe63f59545d16b23f822",
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.11-build76-universal.zip",
@@ -145,12 +206,12 @@
           "download_count": 1
         },
         {
-          "name": "MuseFilm-Paid-4.7.11-build76-universal.dmg",
+          "name": "release-4.7.11.json",
           "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/MuseFilm-Paid-4.7.11-build76-universal.dmg",
-          "size": 102438225,
-          "digest": "sha256:6cd64412d5417f8b7246e9baf2366cd340f603ce7f54fe63f59545d16b23f822",
-          "download_count": 2
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.11/release-4.7.11.json",
+          "size": 850,
+          "digest": "sha256:bec47963394796c950043ca9204bb68e10f5b9c8c7badee51eb3a4f70819bffb",
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.11.txt",
@@ -174,6 +235,14 @@
       "body": "# MuseFilm 会员版 4.7.7 · Build 72\n\n底片漂流升级为双照片交换：同时查看我寄出与对方寄来的底片、昵称和故事，支持独立放大及保存。\n新增真实照片双向交错换位动效，可重播，并适配系统减少动态效果设置。\n新增相遇卡片导出：暖纸留白与暗房黑两种风格，2000 × 2360 高清 PNG，记录双方照片、留言、昵称及交换时间。\n完善等待回信、未读状态、独立重试、账号切换、举报隐藏及副本到期处理。\n保留普通版完整迁移、自动恢复原图目录及 Cloudflare 应用内检查更新。\n\n入口：底片漂流 → 查看双方底片 → 导出相遇卡片。\n\n适用于 macOS 14 及以上，支持 Apple 芯片与 Intel Mac。\n\nCloudflare 正式更新源与 GitHub 使用相同的通用安装包。可通过应用内“检查更新”升级，也可下载 DMG 拖动安装。`SHA256SUMS-4.7.7.txt` 提供安装包校验值。\n",
       "assets": [
         {
+          "name": "MuseFilm-Paid-4.7.7-build72-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.dmg",
+          "size": 58868224,
+          "digest": "sha256:325f22cf3ea768ac4931b71af69a05fef9838deb98490d2224f0a2b39a7aa663",
+          "download_count": 3
+        },
+        {
           "name": "MuseFilm-Paid-4.7.7-build72-universal.zip",
           "state": "uploaded",
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.zip",
@@ -196,14 +265,6 @@
           "size": 216,
           "digest": "sha256:634c666ffbeb0d484bca3746cb1a616846922c98f3bc0198ba50ff88e23aa3e8",
           "download_count": 1
-        },
-        {
-          "name": "MuseFilm-Paid-4.7.7-build72-universal.dmg",
-          "state": "uploaded",
-          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.7/MuseFilm-Paid-4.7.7-build72-universal.dmg",
-          "size": 58868224,
-          "digest": "sha256:325f22cf3ea768ac4931b71af69a05fef9838deb98490d2224f0a2b39a7aa663",
-          "download_count": 3
         }
       ]
     },
