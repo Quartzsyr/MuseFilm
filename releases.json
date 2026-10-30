@@ -1,8 +1,69 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-30T10:18:04.910Z",
+  "updatedAt": "2026-10-30T11:26:33.201Z",
   "releases": [
+    {
+      "id": 428933245,
+      "name": "MuseFilm 会员版 4.7.17 · 编号珍藏与光影入藏",
+      "tag_name": "PAID-MAC4.7.17",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.17",
+      "published_at": "2026-10-30T11:26:23Z",
+      "created_at": "2026-10-30T10:18:05Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.17 / Build 82\n\n每一枚徽章，都有属于你的编号与经历。\n\n• 所有账号徽章都有独立编号：普通成就显示 No.128，前 30 位注册纪念显示 No.1/30，Quartz 唯一限定显示 No.1/1。编号永久保留，收回或恢复不重排、不回收；旧有纪念编号保持不变。\n• 三维徽章背面新增编号与获得日期铭文；详情展示系列、获得经历与限量信息。离线成就先入藏，可主动同步领取编号。\n• 收藏室按系列陈列，显示普通成就的实际完成进度，并推荐下一枚接近获得的徽章。隐藏款解锁前继续保密。\n• 支持在个人主页置顶三枚收藏，继续单枚佩戴。主动公开主页后，漂流相遇者可点击徽章旋转欣赏、查看编号及履历；主页默认关闭。\n• 首次获得徽章使用 macOS 系统通知。同批成就合并为一条；支持点击通知打开收藏室，遵循应用通知总开关及系统权限。历史补认合并展示，重启或重复同步不再次提醒；回看动画不发送通知。\n• 新增可跳过、可回看的入藏动画，并适配减少动态效果。未同步的本机成就保留在本机；账号首次领取在服务端去重。\n• 窄窗口下调整收藏室布局，管理后台同步展示徽章编号；保留旧客户端兼容及 Windows 协议接口。\n\n字体与素材：未新增字体。既有十四款字体的 SIL OFL 1.1 许可、作者声明和 FONT-SOURCES.json 来源清单继续随安装包保留，允许商业使用及随付费软件分发；不单独售卖字体或以字体作者名义背书。十五枚徽章继续使用提供的原始 PNG，纪念徽章沿用 imagegen 素材，Three.js 许可为 MIT。\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用。系统通知在应用运行并核验到成就时发送；应用退出期间的服务器授予会在下次同步后提醒。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.17.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Font-Licenses-4.7.17.zip",
+          "size": 32638,
+          "digest": "sha256:c89991e94bd7eea24c1562e0fdbe7214ed3ae95738eff324caac28ad49025dd4",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.17-build82-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Paid-4.7.17-build82-universal.dmg",
+          "size": 111417856,
+          "digest": "sha256:459cd6bc48540d393a1d6b38f39ddc38e54d1c4b2a0be9dad8ae62002216f7e0",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.17-build82-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/MuseFilm-Paid-4.7.17-build82-universal.zip",
+          "size": 110846441,
+          "digest": "sha256:5a8e5a5c5e680a67e7548b342673506c402bdc11a1c672e4fe3d165cd8a4dc37",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.17.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/release-4.7.17.json",
+          "size": 732,
+          "digest": "sha256:6c7b313757f73d1e0de26d8308b094a6b97d9bb35e76a32f09f7718ed182edc6",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.17.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/SHA256SUMS-4.7.17.txt",
+          "size": 218,
+          "digest": "sha256:bd32d908d20414762332dd8253ca791f12a2ced2de6990cf68daac0a6c00c986",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.17/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 4302,
+          "digest": "sha256:3fc1e258659b16089e6f2d46b1f5867144cd91b35b2e0af665c565e7bb969b98",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 428882294,
       "name": "MuseFilm 会员版 4.7.16 · 光影徽章与三维陈列",
@@ -28,7 +89,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.16/MuseFilm-Paid-4.7.16-build81-universal.dmg",
           "size": 110994944,
           "digest": "sha256:e934f9a6b48e0d1783015ee5f1f2bedb947e85c7aa4ac31921d149a0cfedfb75",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.16-build81-universal.zip",
