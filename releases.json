@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-30T16:43:12.662Z",
+  "updatedAt": "2026-10-30T16:46:20.337Z",
   "releases": [
+    {
+      "id": 429262045,
+      "name": "MuseFilm 会员版 4.7.19 · 沉浸观片与胶卷水印",
+      "tag_name": "PAID-MAC4.7.19",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.19",
+      "published_at": "2026-10-30T16:46:11Z",
+      "created_at": "2026-10-30T14:40:25Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.19 / Build 85\n\n为观片留出空间，让胶卷边框回归胶卷本身。\n\n• 观片台改为单行工具栏，画幅、片基、背光与观片镜设置集中到浮层。底部默认只显示缩略图带，支持收起与拖动调高；档案盒通过“切换卷宗”展开。\n• 底片默认按窗口自适应大小，保留灯台周围的留白。工具栏可手动调节比例、加减、恢复 100% 或切回自适应；双指缩放、旋转及拖动后保留手动设置。单张浏览沿用当前摆片位置，拖入或右键可叠放多张。\n• 新增全屏沉浸式观片，隐藏主侧栏；顶部工具与底部选片按鼠标位置浮现，停止操作后隐去，打开设置或菜单时保持显示。按 Esc 返回工作区。全屏与普通窗口共用摆片状态。\n• 观片镜默认收起，启用后定位到选中底片，并限制在可见区域内。减轻选中描边、灯板光晕与外围留白。\n• 支持仅截取当前观片区域的 PNG 实时截屏，以及 HDR HEIC 和浮点 TIFF。HDR 读取独立保留原图高光，不经过普通 JPEG 缩略图缓存；HEIC 使用明确的 10 位 PQ 编码。macOS 26 及以上按当前摆片、画布尺寸、背光和观片镜实时生成 HDR 快照，保留原图高光，避免继承普通显示状态对系统截图的压缩。普通 PNG 仍提供系统实时截屏。原始照片保持不变。\n• 水印工坊新增独立“胶卷”分类。纯胶卷边框不再附加下方题签或白边；默认 PNG 保留透明齿孔。支持画幅、片基、边框宽度、齿孔、型号、帧号偏移、画幅标记、边字大小与浓度、墨色和片基磨损调节，并提供彩负、黑白、120、橙色负片快捷设置。\n• 胶卷细节随预设保存，修复旧版画幅和片基偏好未进入预设编码的问题；既有预设继续兼容。JPEG 使用深黑孔底，PNG / TIFF 可保留透明齿孔。\n\nHDR 实时截屏需要 Apple Silicon Mac 和 macOS 15 及以上。呈现的高光取决于原照片及显示条件，普通照片不会凭空增加 HDR 细节。HDR 快照的动态范围保留及色彩编码已用超出普通白色的数值样本验证；原生窗口全屏进退及系统 HDR 截取另行实测。\n\n字体与素材：未新增字体或外部图像素材。原有十四款字体的 SIL OFL 1.1 许可及来源声明继续保留。胶片边缘纹理沿用 LoMit / CC BY 4.0，署名、来源、修改说明及许可随安装包保留，带边框的导出文件继续嵌入署名信息。胶卷名称用于标识型号，不表示品牌授权或背书。\n\n纹理来源：https://commons.wikimedia.org/wiki/File:Color_print_film_strip_01_-_negative.jpg\n许可：https://creativecommons.org/licenses/by/4.0/\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用；HDR 系统截取的条件见上。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.19.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/MuseFilm-Film-Border-Materials-Licenses-4.7.19.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.19.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/MuseFilm-Font-Licenses-4.7.19.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.19-build85-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/MuseFilm-Paid-4.7.19-build85-universal.dmg",
+          "size": 112004608,
+          "digest": "sha256:27bb2597b724624204e636f3a5e7925508aeaca7627a808986ee652d08afe795",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.19-build85-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/MuseFilm-Paid-4.7.19-build85-universal.zip",
+          "size": 111442029,
+          "digest": "sha256:440b18aaa455ca5cf9b5a593cca27c1951ddf2ea8c013181e2368622eb7bbf31",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.19.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/release-4.7.19.json",
+          "size": 6210,
+          "digest": "sha256:51a047b1f7ee748813316dcb9121720390ff1e2688872d65b8c9b5e04e9025a0",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.19.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/SHA256SUMS-4.7.19.txt",
+          "size": 616,
+          "digest": "sha256:57310660b2bd4fea1dd2f3da9195e1979e12cbf5cb70c033d5e75dd1674eae7f",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.19/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 429130889,
       "name": "MuseFilm 会员版 4.7.18 · 真实胶片边框",
