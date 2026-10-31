@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-31T10:25:40.224Z",
+  "updatedAt": "2026-10-31T12:41:03.354Z",
   "releases": [
+    {
+      "id": 429927736,
+      "name": "MuseFilm 会员版 4.7.25 · 盒子显示与九宫格导出修复",
+      "tag_name": "PAID-MAC4.7.25",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.25",
+      "published_at": "2026-10-31T12:40:52Z",
+      "created_at": "2026-10-31T10:25:40Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.25 · Build 91\n\n正式发布至 macOS 更新服务器与 GitHub，提供 Apple Silicon / Intel 通用安装包。\n\n移除宝丽莱盒子加载时的平面纸盒回退和旧图片资源，改用同一 Three.js 模型、相机角度与材质生成的透明 3D 快照。快照与 WebKit 放在同一原生容器内，首帧就绪后原子切换；移除对 WebKit 整体施加的 SwiftUI 3D 旋转及透明度切换。悬停光效由 Three.js 自身处理，加载、刷新或渲染失败均保留立体盒子，不闪回旧平面卡片。\n\n九宫格不再要求满八张相纸。0–8 张均可导出 PNG、九张独立分图及 Live Photo；中央固定为本盒独立黑卡，照片按原顺序排布，缺位留白，不生成“待加入相纸”的假照片或修改档案。原有八张容量上限与会员权益保持。\n\n顶部新增明确的“导入照片…”按钮。点击后先看到带配图的相纸、相机与边框选择，再打开系统文件选择器；拖入照片仍会先显示设置面板再确认导入。新建空白相纸也经过同一设置面板。编辑页顶部“相机 / 相纸”可直接修改当前相纸，不必寻找侧栏；盒子页“导入设置”可保存本盒后续导入及空白相纸的默认选择。默认设置可撤销、重开后保留，不改写盒内已有相纸或其他盒子。\n\n新增原生按钮点击验证：导入先显示设置，确认后才显示文件选择器；取消不写入；空白相纸创建后保存指定的 I-2 / SX-70 信息。七张照片的九宫格 Live Photo 已经 Apple 系统识别。\n\n没有新增外部字体、制造商包装照片或商标素材。既有十四款字体的 SIL OFL 1.1 许可与来源、Three.js MIT 许可均保留。支持 macOS 14 及以上，Apple Silicon / Intel 通用；沿用现有本地签名，未经过 Apple 公证。\n\n\n字体授权：十四款既有字体均附 SIL OFL 1.1 许可与来源，允许商用；本次没有新增外部字体或官网商品照片。胶片纹理继续署名 LoMit / CC BY 4.0，独立附件保留来源和修改说明。\n\n下载请选择 macOS 通用 DMG。Windows 接口约定为开发预留附件，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.25.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Film-Border-Materials-Licenses-4.7.25.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.25.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Font-Licenses-4.7.25.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.25-build91-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Paid-4.7.25-build91-universal.dmg",
+          "size": 112686592,
+          "digest": "sha256:ff8fdf81e599c048f0e63cbf8dfa1c918d34e346a569784ec7708b72c09cfb4c",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.25-build91-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Paid-4.7.25-build91-universal.zip",
+          "size": 112116374,
+          "digest": "sha256:2e84ef150f15662e3b7d5130bc14e4ac94cccfe03654cbe10dae79feb7cc4b2a",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.25.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/release-4.7.25.json",
+          "size": 7244,
+          "digest": "sha256:953ebda3419dbf3976521222a247d868eb271b0d8b64a61ab9624e3c1d96c33e",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.25.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/SHA256SUMS-4.7.25.txt",
+          "size": 616,
+          "digest": "sha256:091652f1d9d65c08294c9ac94b3febe8960cd023aafdc838cc5e4a6a3aea2283",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 429861173,
       "name": "MuseFilm 会员版 4.7.24 · 相纸边框与拍摄档案",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/MuseFilm-Paid-4.7.24-build90-universal.dmg",
           "size": 112653824,
           "digest": "sha256:51991dc171523c48faa5e9fa7a29b801d64b26633a81fa951140d2bcc5fd931f",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.24-build90-universal.zip",
