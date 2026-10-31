@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-31T01:38:18.261Z",
+  "updatedAt": "2026-10-31T05:17:27.442Z",
   "releases": [
+    {
+      "id": 429737813,
+      "name": "MuseFilm 会员版 4.7.20 · 原图观片与 HDR 开关",
+      "tag_name": "PAID-MAC4.7.20",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.20",
+      "published_at": "2026-10-31T05:17:13Z",
+      "created_at": "2026-10-31T01:38:18Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.20 / Build 86\n\n改善观片清晰度、相对缩放与 HDR 兼容，并修复胶卷齿孔颜色。\n\n• 底片以适合当前窗口的大小作为相对 100%，支持 25%–400% 手动缩放及恢复自适应。\n• 当前底片和观片镜下的照片直接读取原图像素；先按目标尺寸渲染再合成，避免放大小尺寸缓存造成模糊。超过原始分辨率时呈现原始像素，不生成虚构细节。\n• 新增 HDR 显示开关并记住选择；关闭后观片台和观片镜同步使用标准动态范围，HDR 快照入口同步停用。\n• 胶卷水印的 JPG、PNG、TIFF 统一采用白色齿孔，预览与导出一致。保留真实齿孔轮廓与轻微软边，不再使用透明孔底或深黑孔底。\n• 胶卷样片、漂流胶片、相遇卡片与蜡笔选片中的独立胶片展示同步采用白色孔底；索引图齿孔也统一为白色。\n• 观片台继续让真实孔洞透出背光板，保留亮度调节与 HDR 观片效果。120 仍不绘制齿孔。\n• 继续使用纯胶卷边框，不增加下方白边或题签；画幅、边字、帧号、磨损和预设功能保持可用。\n\n未新增字体或外部素材。十四款字体的 SIL OFL 1.1 授权及来源声明继续随包保留；真实胶片纹理沿用 LoMit / CC BY 4.0，保留署名、来源、许可及修改说明。\n\n支持 macOS 14 及以上，Apple Silicon / Intel 通用。HDR 高光保留快照使用 macOS 26 及以上；此前的全屏、适度自适应和手动缩放继续保留。\n\n\n字体授权：随包及独立附件保留十四款字体的 SIL OFL 1.1 许可及来源清单，允许商用；本版未新增字体。胶片纹理署名 LoMit / CC BY 4.0，许可、来源与修改说明随包保留。胶卷型号用于标识，不表示品牌授权或背书。\n\n下载请选择 macOS 的 DMG；Windows 接口约定作为单独附件，非 Windows 安装包。本版沿用本地签名，尚未进行 Apple 公证。",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.20.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/MuseFilm-Film-Border-Materials-Licenses-4.7.20.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.20.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/MuseFilm-Font-Licenses-4.7.20.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.20-build86-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/MuseFilm-Paid-4.7.20-build86-universal.dmg",
+          "size": 112079360,
+          "digest": "sha256:5af205b0bd3a25f1ddf7df405be464a839c28f57939f17e1f6fc3487fedfc7ce",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.20-build86-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/MuseFilm-Paid-4.7.20-build86-universal.zip",
+          "size": 111513517,
+          "digest": "sha256:b1629cb6a0ab72e9a7754caa2e1ee3caa630727377e7777ad4d2585afdf042ad",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.20.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/release-4.7.20.json",
+          "size": 5171,
+          "digest": "sha256:b39eaa1baf09af274e7d819fde64fa90a43e25da0bb8e6a83e04aeb2df029a90",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.20.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/SHA256SUMS-4.7.20.txt",
+          "size": 616,
+          "digest": "sha256:bbf7d3a399dac2abd0241b36c5b91b4445ab26c785ecbbb90c23efd4dabc2e49",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.20/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 3110,
+          "digest": "sha256:29fa5e46d647aae1175fffc4949c20a50ce27de98f1dc30ab4337d0a5a3460b4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 429262045,
       "name": "MuseFilm 会员版 4.7.19 · 沉浸观片与胶卷水印",
