@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-10-31T12:41:03.354Z",
+  "updatedAt": "2026-10-31T15:23:25.522Z",
   "releases": [
     {
       "id": 429927736,
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Paid-4.7.25-build91-universal.dmg",
           "size": 112686592,
           "digest": "sha256:ff8fdf81e599c048f0e63cbf8dfa1c918d34e346a569784ec7708b72c09cfb4c",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.25-build91-universal.zip",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/MuseFilm-Paid-4.7.25-build91-universal.zip",
           "size": 112116374,
           "digest": "sha256:2e84ef150f15662e3b7d5130bc14e4ac94cccfe03654cbe10dae79feb7cc4b2a",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.25.json",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/release-4.7.25.json",
           "size": 7244,
           "digest": "sha256:953ebda3419dbf3976521222a247d868eb271b0d8b64a61ab9624e3c1d96c33e",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.25.txt",
@@ -60,7 +60,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/SHA256SUMS-4.7.25.txt",
           "size": 616,
           "digest": "sha256:091652f1d9d65c08294c9ac94b3febe8960cd023aafdc838cc5e4a6a3aea2283",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -68,7 +68,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 7235,
           "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
@@ -105,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/MuseFilm-Paid-4.7.24-build90-universal.dmg",
           "size": 112653824,
           "digest": "sha256:51991dc171523c48faa5e9fa7a29b801d64b26633a81fa951140d2bcc5fd931f",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.24-build90-universal.zip",
@@ -113,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/MuseFilm-Paid-4.7.24-build90-universal.zip",
           "size": 112091106,
           "digest": "sha256:add0bbdaf31aded6f686e4698d9e15b509e2ec0a870cead1d5aaf13f7a35cb70",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.24.json",
@@ -121,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/release-4.7.24.json",
           "size": 6818,
           "digest": "sha256:0c261f5c5ea732682726f5655feb67ed1035008d15f9ed45a3a3b9085754df1a",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.24.txt",
@@ -129,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/SHA256SUMS-4.7.24.txt",
           "size": 616,
           "digest": "sha256:cfbac704b58588773e7b6c4a4b51c24341de09d0a9db8de85c68cd1aece641c9",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -137,7 +137,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.24/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 6659,
           "digest": "sha256:6992eeb840b553cdb56b5d9da6a1d219a4a02d20c8dc154fb75d3da8136f6f7f",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
