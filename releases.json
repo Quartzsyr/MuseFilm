@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-02T11:22:28.983Z",
+  "updatedAt": "2026-11-02T13:16:22.789Z",
   "releases": [
+    {
+      "id": 431472960,
+      "name": "MuseFilm 会员版 4.7.26 · 光页整书编排与图文布局",
+      "tag_name": "PAID-MAC4.7.26",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.26",
+      "published_at": "2026-11-02T13:16:02Z",
+      "created_at": "2026-11-02T11:22:29Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.26 · Build 92\n\n光页摄影集新增整书编排：导入照片或文件夹后，直接生成配套封面与有疏密变化的连续内页。提供编辑叙事、静谧独幅、双图诗序、纪实随笔、宽幅影像、档案图录、瑞士理性、日式手记、实验图谱九种方案，累计二十二种内页模板与十三种封面。\n\n支持横版、竖版、方形开本。A4、艺术册、Zine、US Letter 均可选择横竖方向，封面与内页同步，PDF 保持实际物理尺寸。整书预览可比较封面与连续跨页，再应用所选方案。\n\n自动生成章节标题、引言、对页旁白、图注、边栏札记、双语短文等文字预留位置。可在“调整 → 页面 → 文字与预留区”填写并随画册保存。未填写的提示框仅出现在预览，正式输出保留留白；填写后进入图片、PDF 与影像输出。文字超出预留区或未分配位置时会提示调整，避免输出中静默丢失。\n\n整书重新编排前保存恢复副本，保留照片顺序、档案元数据、封面文字与会员项目身份。已经填写的图文页保留其内容与序列位置，适配新开本；追加页面不重复复制上一页短文。自动布局完整展示内页照片，手动跨页叙事仍可调整裁切重心。\n\n新增角落微图、错位对页、双图书衣、静默字封等设计；修正部分封面标题压到照片、缩略图页码过大和正式导出的空位框。旧画册继续兼容。\n\n本次未新增云端 AI 调用，不上传照片进行分析，也未新增外部字体。既有字体、Three.js 与胶片纹理的许可和署名保持。\n\n摄影集相关 25 项回归通过。支持 macOS 14 及以上，Apple Silicon / Intel 通用；沿用现有本地签名，未经过 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.26.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Film-Border-Materials-Licenses-4.7.26.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.26.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Font-Licenses-4.7.26.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.26-build92-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Paid-4.7.26-build92-universal.dmg",
+          "size": 113007616,
+          "digest": "sha256:0e20640e8827dd101405fb90515314cc09e7b6dfa66920ac28c259de59e132d0",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.26-build92-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Paid-4.7.26-build92-universal.zip",
+          "size": 112425621,
+          "digest": "sha256:9b15b9ee26d01e0a6cda7791243f088fcd29c76b1f9818b34a2ce32e9537c17f",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.26.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/release-4.7.26.json",
+          "size": 5444,
+          "digest": "sha256:b42f850c75fbd28dd25785547f1f9fb45b6a0eaef73e549e85d4314e22c2d08e",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.26.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/SHA256SUMS-4.7.26.txt",
+          "size": 616,
+          "digest": "sha256:db30d384296411be9b9bd13c9e4fb7305b9749b438eb10bbad6cd0d918d32f12",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 429927736,
       "name": "MuseFilm 会员版 4.7.25 · 盒子显示与九宫格导出修复",
@@ -829,7 +898,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 19
+          "download_count": 21
         }
       ]
     },
