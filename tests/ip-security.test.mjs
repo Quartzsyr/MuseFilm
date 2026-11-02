@@ -6,7 +6,7 @@ import worker from '../cloudflare/worker.js';
 import { normalizeIp } from '../cloudflare/ip-security.js';
 const schema=await readFile(new URL('../cloudflare/schema.sql',import.meta.url),'utf8');
 const migration=await readFile(new URL('../cloudflare/migrations/20261029-ip-security.sql',import.meta.url),'utf8');
-const origin='https://api.musefilm.top',site='https://musefilm.top',ip='202.101.113.147';
+const origin='https://api.musefilm.top',site='https://musefilm.top',ip='203.0.113.147';
 class D1 {
  constructor(){this.db=new DatabaseSync(':memory:');this.db.exec(schema)}
  prepare(sql){const db=this.db;return {values:[],bind(...v){this.values=v;return this},async first(){return db.prepare(sql).get(...this.values)||null},async all(){return {results:db.prepare(sql).all(...this.values)}},async run(){return {meta:{changes:Number(db.prepare(sql).run(...this.values).changes)}}}}}
@@ -95,8 +95,8 @@ test('retries cannot authorize a different installer or an expired action, and b
  await control(f);assert.equal((await download(f,{},body)).status,403);assert.equal(count(f),1);
 });
 test('three exact IPv6 downloads fill the allowance; the fourth is rejected and a different address is counted separately',async()=>{
- const f=fixture(),address='240e:b66:9f5:5300:251e:f6ee:4142:47a1';for(let i=0;i<3;i++)assert.equal((await download(f,{address})).status,202);
- assert.equal((await download(f,{address})).status,429);assert.equal((await download(f,{address:'240e:b66:9f5:5300:532:7875:d69b:60df'})).status,202);
+ const f=fixture(),address='2001:db8:1234:5300:251e:f6ee:4142:47a1';for(let i=0;i<3;i++)assert.equal((await download(f,{address})).status,202);
+ assert.equal((await download(f,{address})).status,429);assert.equal((await download(f,{address:'2001:db8:1234:5300:532:7875:d69b:60df'})).status,202);
  const data=await (await admin(f,'downloads')).json();const a=data.downloads.find(d=>d.ip_address===address);assert.equal(a.window_downloads,3);assert.equal(a.daily_downloads,3);assert.equal(a.download_limited,true);assert.equal(data.downloads.find(d=>d.ip_address!==address).download_limited,false);
 });
 
