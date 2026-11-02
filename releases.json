@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-02T13:16:22.789Z",
+  "updatedAt": "2026-11-02T20:50:10.023Z",
   "releases": [
     {
       "id": 431472960,
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Paid-4.7.26-build92-universal.dmg",
           "size": 113007616,
           "digest": "sha256:0e20640e8827dd101405fb90515314cc09e7b6dfa66920ac28c259de59e132d0",
-          "download_count": 0
+          "download_count": 3
         },
         {
           "name": "MuseFilm-Paid-4.7.26-build92-universal.zip",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/MuseFilm-Paid-4.7.26-build92-universal.zip",
           "size": 112425621,
           "digest": "sha256:9b15b9ee26d01e0a6cda7791243f088fcd29c76b1f9818b34a2ce32e9537c17f",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.26.json",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/release-4.7.26.json",
           "size": 5444,
           "digest": "sha256:b42f850c75fbd28dd25785547f1f9fb45b6a0eaef73e549e85d4314e22c2d08e",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.26.txt",
@@ -60,7 +60,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.26/SHA256SUMS-4.7.26.txt",
           "size": 616,
           "digest": "sha256:db30d384296411be9b9bd13c9e4fb7305b9749b438eb10bbad6cd0d918d32f12",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -898,7 +898,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/windows0.8.0/MuseFilmSetup.exe",
           "size": 128027411,
           "digest": "sha256:933370a5e7f1c5b10f3e02f514e8b631e23629002d632329ed60a1d8d25dc4b4",
-          "download_count": 21
+          "download_count": 22
         }
       ]
     },
