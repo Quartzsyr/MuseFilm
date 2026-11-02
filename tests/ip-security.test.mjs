@@ -73,3 +73,35 @@ test('IPv6 canonicalization shares quota and ban; missing trusted connection fai
 test('migration is repeatable and preserves existing download history',async()=>{
  const f=fixture();await download(f);f.DB.db.exec(migration);f.DB.db.exec(migration);assert.equal(count(f),1);
 });
+
+test('failed optional contact storage does not revoke an authorized download or add quota on retry',async()=>{
+ const f=fixture(),prepare=f.DB.prepare.bind(f.DB),sent=[],pending=[];f.env.EMAIL={async send(mail){sent.push(mail)}};f.env.FEEDBACK_TO_EMAIL='owner@example.test';f.env.FEEDBACK_FROM_EMAIL='feedback@musefilm.top';
+ f.DB.prepare=sql=>{if(/INSERT INTO subscribers/.test(sql))throw new Error('simulated contact table failure');return prepare(sql)};
+ const body={eventId:'lost-response-with-contact',email:'reader@example.test',subscribe:true,consentVersion:'2026-10-20-email-subscription-v2'};
+ let r=await worker.fetch(req('/api/download',{...body,downloadUrl:'https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe',noticeVersion:'2026-10-19'}),f.env,{waitUntil(p){pending.push(p)}});
+ assert.equal(r.status,202);let d=await r.json();assert.equal(d.authorized,true);assert.equal(d.contactStatus,'failed');await Promise.all(pending);assert.equal(sent.length,1);assert.equal(count(f),1);
+ r=await download(f,{},body);d=await r.json();assert.equal(r.status,202);assert.equal(d.authorized,true);assert.equal(d.recorded,false);assert.equal(count(f),1);assert.equal(sent.length,1);
+});
+test('slow subscription storage is bounded and attached to the request lifetime',async()=>{
+ const f=fixture(),prepare=f.DB.prepare.bind(f.DB),pending=[];let release;const pause=new Promise(r=>release=r);
+ f.DB.prepare=sql=>{const stmt=prepare(sql);if(/INSERT INTO subscribers/.test(sql)){const run=stmt.run;stmt.run=async function(){await pause;return run.call(this)}}return stmt};
+ const start=Date.now();const r=await worker.fetch(req('/api/download',{eventId:'slow-contact',downloadUrl:'https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe',noticeVersion:'2026-10-19',email:'reader@example.test'}),f.env,{waitUntil(p){pending.push(p)}});
+ assert.equal(r.status,202);assert.equal((await r.json()).contactStatus,'pending');assert.ok(Date.now()-start<4000);assert.equal(pending.length,1);release();await Promise.all(pending);assert.equal(f.DB.db.prepare('SELECT count(*) n FROM subscribers').get().n,1);
+});
+test('retries cannot authorize a different installer or an expired action, and bans still take precedence',async()=>{
+ const f=fixture(),body={eventId:'specific-action'};await download(f,{},body);
+ assert.equal((await download(f,{}, {...body,downloadUrl:'https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/MuseFilm.dmg'})).status,409);
+ f.DB.db.prepare('UPDATE download_events SET created_at=?').run(new Date(Date.now()-11*60000).toISOString());let r=await download(f,{},body);assert.equal(r.status,409);assert.equal((await r.json()).error,'download_request_expired');
+ await control(f);assert.equal((await download(f,{},body)).status,403);assert.equal(count(f),1);
+});
+test('three exact IPv6 downloads fill the allowance; the fourth is rejected and a different address is counted separately',async()=>{
+ const f=fixture(),address='240e:b66:9f5:5300:251e:f6ee:4142:47a1';for(let i=0;i<3;i++)assert.equal((await download(f,{address})).status,202);
+ assert.equal((await download(f,{address})).status,429);assert.equal((await download(f,{address:'240e:b66:9f5:5300:532:7875:d69b:60df'})).status,202);
+ const data=await (await admin(f,'downloads')).json();const a=data.downloads.find(d=>d.ip_address===address);assert.equal(a.window_downloads,3);assert.equal(a.daily_downloads,3);assert.equal(a.download_limited,true);assert.equal(data.downloads.find(d=>d.ip_address!==address).download_limited,false);
+});
+
+test('first-party latest DMG shares the same IP quota and accepts no arbitrary proxy URLs',async()=>{
+ const f=fixture();for(let i=0;i<3;i++)assert.equal((await download(f,{}, {downloadUrl:'https://membership.musefilm.top/updates/macos/latest.dmg'})).status,202);
+ assert.equal((await download(f)).status,429);assert.equal(f.DB.db.prepare('SELECT asset_name FROM download_events LIMIT 1').get().asset_name,'MuseFilm-Paid-latest-macOS.dmg');
+ for(const url of ['https://membership.musefilm.top.evil.test/updates/macos/latest.dmg','https://membership.musefilm.top/other.dmg','https://membership.musefilm.top/updates/macos/latest.dmg?url=https://evil.test','https://user@membership.musefilm.top/updates/macos/latest.dmg'])assert.equal((await download(f,{}, {downloadUrl:url})).status,400);
+});

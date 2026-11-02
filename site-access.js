@@ -32,10 +32,18 @@ export function createSiteAccess({ request, document = globalThis.document, wind
   async function check() {
     if (polling) return;
     polling = true;
-    try { apply(await request('/api/access', { method: 'GET', headers: {}, cache: 'no-store', signal: AbortSignal.timeout(12000) })); }
-    catch { /* A failed poll must never remove a known ban. */ }
-    finally { polling = false; }
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    let timeoutId;
+    try {
+      const access = await Promise.race([
+        request('/api/access', { method: 'GET', headers: {}, cache: 'no-store', ...(controller ? { signal: controller.signal } : {}) }),
+        new Promise((resolve, reject) => { timeoutId = window.setTimeout(() => { reject(new Error('access_timeout')); controller?.abort(); }, 12000); }),
+      ]);
+      apply(access);
+    } catch { /* A failed poll must never remove a known ban. */ }
+    finally { window.clearTimeout(timeoutId); polling = false; }
   }
+
   // Capture handlers prevent page controls and new dialogs from opening while locked.
   for (const name of ['click', 'auxclick', 'submit', 'keydown']) document.addEventListener(name, event => {
     if (blocked && (event.key === 'Escape' || !dialog?.contains(event.target))) { event.preventDefault(); event.stopImmediatePropagation(); }

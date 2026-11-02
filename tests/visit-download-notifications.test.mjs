@@ -8,7 +8,7 @@ class Database {
     const db = this;
     return {
       bind(...values) { this.values = values; return this; }, values: [],
-      async first() { if (/SELECT id FROM download_events/.test(sql)) return db.downloads.has(this.values[0]) ? {id:this.values[0]} : null; return /site_counters/.test(sql) ? { visitors: db.count } : { count: 0 }; },
+      async first() { if (/SELECT id,download_url,created_at FROM download_events/.test(sql)) return db.downloads.has(this.values[0]) ? {id:this.values[0]} : null; return /site_counters/.test(sql) ? { visitors: db.count } : { count: 0 }; },
       async run() {
         let changes = 1;
         if (/INSERT OR IGNORE INTO visit_events/.test(sql)) {
@@ -50,7 +50,7 @@ test("download click emails trusted connection data to the existing owner once",
   Object.defineProperty(req, "cf", { value: { country: "CN", region: "Shanghai", city: "Shanghai", timezone: "Asia/Shanghai", asOrganization: "Test network" } });
   const response = await worker.fetch(req, config, { waitUntil(promise) { pending.push(promise); } });
   assert.equal(response.status, 202);
-  assert.deepEqual(await response.json(), { ok: true, recorded: true, emailQueued: true });
+  assert.deepEqual(await response.json(), { ok: true, authorized: true, recorded: true, emailQueued: true });
   await Promise.all(pending);
   assert.equal(sent.length, 1);
   assert.equal(sent[0].to, "owner@example.com");

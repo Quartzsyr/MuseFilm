@@ -1,4 +1,4 @@
-import { createSiteAccess } from './site-access.js?v=20261029-ip-security';
+import { createSiteAccess } from './site-access.js?v=20261102-download-repair';
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-toggle]");
 const menu = document.querySelector("[data-menu]");
@@ -2249,6 +2249,7 @@ const downloadForm = document.querySelector("[data-download-form]");
 const downloadEmailInput = document.querySelector("[data-download-email]");
 const downloadDialogStatus = document.querySelector("[data-download-dialog-status]");
 let pendingDownload = null;
+let pendingDownloadEventId = null;
 let downloadToastTimeout;
 
 function showDownloadToast(message) {
@@ -2260,23 +2261,39 @@ function showDownloadToast(message) {
   downloadToastTimeout = window.setTimeout(() => { toast.hidden = true; }, 8000);
 }
 
+function isWebsiteInstallerUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.username || url.password || url.search || url.hash) return false;
+    if (url.origin === 'https://membership.musefilm.top' && url.pathname === '/updates/macos/latest.dmg') return true;
+    return /^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(url.href);
+  } catch { return false; }
+}
+
 let downloadBusy = false;
 async function completeDownload(email = "") {
   if (!pendingDownload || downloadBusy || siteAccess.blocked) return;
   downloadBusy = true;
   const downloadUrl = pendingDownload;
+  const eventId = pendingDownloadEventId || (pendingDownloadEventId = anonymousEventId());
   const controls = [...downloadForm.querySelectorAll('button,input'), document.querySelector('[data-download-skip]')].filter(Boolean);
   controls.forEach(control => control.disabled = true);
   downloadDialogStatus.textContent = currentLanguage === 'zh' ? '正在检查下载权限…' : 'Checking download access…';
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  let timeoutId;
   try {
     const subscribe = Boolean(email);
-    const result = await musefilmApi("/api/download", {
-      method: "POST", keepalive: true, signal: AbortSignal.timeout(20000),
-      headers: { "Content-Type": "text/plain;charset=UTF-8" },
-      body: JSON.stringify({ eventId: anonymousEventId(), downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
-    });
-    // Replayed event IDs never authorize an additional navigation.
-    if (!result.recorded) throw new Error('download_replayed');
+    // This request completes before navigating. It does not need keepalive or
+    // AbortSignal.timeout, which some embedded and older browsers do not support.
+    const result = await Promise.race([
+      musefilmApi("/api/download", {
+        method: "POST", cache: "no-store", ...(controller ? { signal: controller.signal } : {}),
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
+        body: JSON.stringify({ eventId, downloadUrl, noticeVersion: "2026-10-19", locale: currentLanguage, referrerHost: referrerHost(), email, subscribe, consentVersion: subscribe ? "2026-10-20-email-subscription-v2" : "" }),
+      }),
+      new Promise((resolve, reject) => { timeoutId = window.setTimeout(() => { reject(Object.assign(new Error('download_timeout'), { name: 'TimeoutError' })); controller?.abort(); }, 20000); }),
+    ]);
+    if (!result.authorized && !result.recorded) throw new Error('download_response_invalid');
     if (siteAccess.blocked || pendingDownload !== downloadUrl || !downloadDialog.open) return;
     pendingDownload = null;
     downloadDialog.close();
@@ -2289,14 +2306,27 @@ async function completeDownload(email = "") {
     link.remove();
     downloadOpened = true;
     renderCounts(lastCounts, lastCountsSynced);
-    showDownloadToast(translate(email ? "download.emailSaved" : "download.started"));
+    const emailMessage = result.contactStatus === 'failed' ? 'download.emailFailed' : ['pending','unchanged'].includes(result.contactStatus) ? 'download.emailQueued' : 'download.emailSaved';
+    showDownloadToast(translate(email ? emailMessage : "download.started"));
   } catch (error) {
     if (error.payload?.error === 'ip_blocked') siteAccess.apply(error.payload);
     else if (error.status === 429) {
       const minutes = Math.max(1, Math.ceil((error.payload?.retryAfter || 60) / 60));
-      downloadDialogStatus.textContent = currentLanguage === 'zh' ? `该 IP 下载过于频繁，请约 ${minutes} 分钟后重试。` : `Too many downloads from this IP. Try again in about ${minutes} minutes.`;
-    } else downloadDialogStatus.textContent = currentLanguage === 'zh' ? '下载权限检查失败，请稍后重试。' : 'Unable to verify download access. Please try again.';
+      downloadDialogStatus.textContent = currentLanguage === 'zh' ? `该 IP 已达到下载上限，请约 ${minutes} 分钟后重试。` : `This IP has reached its download limit. Try again in about ${minutes} minutes.`;
+    } else {
+      const code = error.payload?.error || error.message;
+      let zh, en;
+      if (code === 'invalid_email') { zh = '邮箱格式不正确，或超过 160 个字符。请修改邮箱，或选择“跳过，直接下载”。'; en = 'Check your email address (maximum 160 characters), or choose Skip and download.'; }
+      else if (code === 'invalid_download') { zh = '当前安装包链接无法验证，请刷新页面后重新选择版本。'; en = 'This installer link could not be verified. Refresh the page and choose a release again.'; }
+      else if (code === 'download_request_expired' || code === 'download_event_conflict') { pendingDownloadEventId = null; zh = '本次下载请求已失效，请再次点击下载。'; en = 'This download request has expired. Please try downloading again.'; }
+      else if (error.name === 'TimeoutError' || error.name === 'AbortError') { zh = '下载服务响应超时，请重试。本次请求重试不会重复占用次数。'; en = 'The download service timed out. Retry this request without using another download allowance.'; }
+      else if (error instanceof TypeError) { zh = '无法连接下载服务，请检查网络后重试；这不表示 IP 被封禁。'; en = 'Unable to reach the download service. Check your connection and retry; this does not mean your IP is blocked.'; }
+      else if (code === 'origin_not_allowed') { zh = '无法验证页面来源，请从 musefilm.top 重新打开官网下载。'; en = 'Unable to verify the page origin. Open musefilm.top to download.'; }
+      else { zh = '下载服务暂时异常，请稍后重试；这不表示 IP 被封禁。'; en = 'The download service is temporarily unavailable. Retry later; this does not mean your IP is blocked.'; }
+      downloadDialogStatus.textContent = currentLanguage === 'zh' ? zh : en;
+    }
   } finally {
+    window.clearTimeout(timeoutId);
     downloadBusy = false;
     controls.forEach(control => control.disabled = false);
   }
@@ -2305,10 +2335,11 @@ async function completeDownload(email = "") {
 function recordDownloadClick(event) {
   if (!(event.target instanceof Element)) return;
   const link = event.target.closest("a[href]");
-  if (!link || link.dataset.downloadBypass || !/^https:\/\/github\.com\/Quartzsyr\/MuseFilm\/releases\/download\/[^/]+\/[^/?#]+\.(?:exe|msi|msix|dmg|pkg|zip)$/i.test(link.href)) return;
+  if (!link || link.dataset.downloadBypass || !isWebsiteInstallerUrl(link.href)) return;
   event.preventDefault();
   if (siteAccess.blocked || downloadBusy || !downloadDialog?.showModal) return;
   pendingDownload = link.href;
+  pendingDownloadEventId = anonymousEventId();
   downloadForm.reset();
   downloadDialogStatus.textContent = "";
   document.querySelector("[data-download-installer]").textContent = decodeURIComponent(new URL(link.href).pathname.split("/").pop());
@@ -2318,7 +2349,7 @@ function recordDownloadClick(event) {
 document.addEventListener("click", recordDownloadClick);
 document.addEventListener("auxclick", (event) => { if (event.button === 1) recordDownloadClick(event); });
 document.querySelector("[data-download-close]")?.addEventListener("click", () => downloadDialog.close());
-downloadDialog?.addEventListener("close", () => { pendingDownload = null; });
+downloadDialog?.addEventListener("close", () => { pendingDownload = null; pendingDownloadEventId = null; });
 document.querySelector("[data-download-skip]")?.addEventListener("click", () => completeDownload());
 downloadForm?.addEventListener("submit", (event) => {
   event.preventDefault();
