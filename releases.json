@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T02:57:24.687Z",
+  "updatedAt": "2026-11-03T04:17:29.573Z",
   "releases": [
+    {
+      "id": 432270321,
+      "name": "MuseFilm 会员版 4.7.28 · AI 设计与整卷铺开",
+      "tag_name": "PAID-MAC4.7.28",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.28",
+      "published_at": "2026-11-03T04:17:12Z",
+      "created_at": "2026-11-03T02:57:24Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.28 · Build 94\n\n- 设置新增 AI 服务配置（测试中），支持 DeepSeek、阿里云百炼、Kimi 与自定义兼容地址。配置仅保存在本机，保存与格式检查不联网，不参与账号同步或画册导出。\n- 光页新增 AI 设计摄影集（测试中）：主动点击后从 Mac 直接连接所选服务商，不经过光页服务器；发送主题、画幅比例与本机识别摘要，不发送照片文件、文件路径或 GPS。返回三套封面与排版节奏，可大图预览后应用，保留原顺序、手写正文及恢复副本。提供完全离线的本地视觉分析模式。\n- 观片台新增“整卷铺开”，一次加入当前卷宗全部照片并按帧号排布。重复操作不会重复加片，可中途停止，保留其他卷宗已经摆放的照片。\n- 光页内页扩展到 31 种，新增扉页、序言、版权鸣谢、封底和多种组照设计，支持横竖开本与文字预留。\n- 新增版式大图比较、阅读预览、整书总览和输出前检查；换版时多余照片顺延，保留正文。\n\nAPI 服务可用性取决于自己的密钥、地区地址、模型权限及余额。请以服务商控制台为准。AI 设计仍标注测试中；应用前可比较并调整。\n\nmacOS 通用安装包：Apple Silicon / Intel，macOS 14+。沿用现有分发与自动更新方式，未进行 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.28.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/MuseFilm-Film-Border-Materials-Licenses-4.7.28.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.28.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/MuseFilm-Font-Licenses-4.7.28.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.28-build94-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/MuseFilm-Paid-4.7.28-build94-universal.dmg",
+          "size": 116277179,
+          "digest": "sha256:374a9954741d3e835cb8c8f879eb9de102e63933585a9170e21a61aa43fc4cb0",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.28-build94-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/MuseFilm-Paid-4.7.28-build94-universal.zip",
+          "size": 113691564,
+          "digest": "sha256:e184e88f3abf4cfa9df2c3d73994e4211fb3ff059272a1577ed19ae11fbe5fd9",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.28.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/release-4.7.28.json",
+          "size": 4304,
+          "digest": "sha256:a639c273c45ad3669da1b9cc51fa896b7bd481a1739c94b5776f3072e5e737fc",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.28.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/SHA256SUMS-4.7.28.txt",
+          "size": 616,
+          "digest": "sha256:f3cb1760e8c43769205922c29458e3ee178accfbb44318b0a09e4c3eb15f5395",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 432198405,
       "name": "MuseFilm 会员版 4.7.27 · 光页编辑升级与黑白边字修复",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Paid-4.7.27-build93-universal.dmg",
           "size": 115398760,
           "digest": "sha256:ac920a2f0e77cfc0a87850db27f46a6444da6ece3e8728f47c4eb69034ffc1d3",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-Paid-4.7.27-build93-universal.zip",
