@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T02:14:06.997Z",
+  "updatedAt": "2026-11-03T02:57:24.687Z",
   "releases": [
     {
       "id": 432198405,
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Paid-4.7.27-build93-universal.dmg",
           "size": 115398760,
           "digest": "sha256:ac920a2f0e77cfc0a87850db27f46a6444da6ece3e8728f47c4eb69034ffc1d3",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.27-build93-universal.zip",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Paid-4.7.27-build93-universal.zip",
           "size": 112816393,
           "digest": "sha256:f929db42c3a48f59650048234bc9236bb044edb50adf957ee4fd09aec3b7839f",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.27.json",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/release-4.7.27.json",
           "size": 5262,
           "digest": "sha256:f6e640378d311c67e89340d37aa2823702f397ab27c7d763b3f3b36db1b8d7fc",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.27.txt",
@@ -60,7 +60,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/SHA256SUMS-4.7.27.txt",
           "size": 616,
           "digest": "sha256:4e4f8635444b8d0a11507e70b7d21e5db0dead5ec9d7ebb9ef7591e86dd21597",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
