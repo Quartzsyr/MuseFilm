@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T10:32:43.920Z",
+  "updatedAt": "2026-11-03T10:56:15.998Z",
   "releases": [
+    {
+      "id": 432573540,
+      "name": "MuseFilm 会员版 4.7.31 · Kimi 当前模型适配",
+      "tag_name": "PAID-MAC4.7.31",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.31",
+      "published_at": "2026-11-03T10:56:05Z",
+      "created_at": "2026-11-03T10:32:44Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.31 · Build 97\n\n- 修复 Kimi 默认模型过期：文字与图片理解默认改为 `kimi-k3.1-pro`。Kimi 官方已将 `kimi-k2.5` 下线；旧配置提供明确提示与“替换已下线模型”按钮，替换仅修改已下线模型字段，保存后生效，地址与密钥保持不变。其他服务或自定义代理不自动迁移。\n- 适配 Kimi 中国站和国际站的 K3 请求：使用 `reasoning_effort: low` 与 `max_completion_tokens`，为推理和最终 JSON 留出 16384 tokens 上限；不发送 K2 的 thinking 参数或不兼容采样参数。K2.6 使用非思考配置，K2.7 保留其默认行为。\n- API 设置增加“获取可用模型（联网）”，主动点击才直接 GET 所选服务商的模型列表，可分别选择文字和图片理解模型。查询不发送照片、不生成文字；打开、填写和保存仍不自动联网。模型可见性不代表图片能力或生成权限保证。\n- 已知下线模型在读取或发送分析照片前被拦截；404 提示明确指向模型、账号权限或接口路径检查。规范根地址、尾斜杠与完整 chat/completions 地址，避免重复路径；Kimi 根地址可正确补齐 v1。\n\n29 项相关测试与原生窗口验收通过：涵盖两地区参数、下线模型迁移、地址规范、模型列表解析、设置被动操作不联网、完整成册、失败恢复与预览应用。服务商响应采用模拟验证，本次未用个人密钥进行真实生成，也未产生真实生成计费。\n\nKimi 官方资料：[当前与下线模型](https://platform.kimi.com/docs/models)、[模型参数](https://platform.kimi.com/docs/api/models-overview)、[模型列表接口](https://platform.kimi.com/docs/api/list-models)。\n\n已有用户更新后，请进入 API 设置，将已下线模型替换并保存，或主动获取账号可用模型后选择；新模型调用费用按服务商标准结算。功能仍标注“测试中”。\n\nmacOS 通用安装包：Apple Silicon / Intel，macOS 14+。沿用既有签名与自动更新方式，未进行 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.31.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Film-Border-Materials-Licenses-4.7.31.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.31.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Font-Licenses-4.7.31.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.31-build97-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Paid-4.7.31-build97-universal.dmg",
+          "size": 116839056,
+          "digest": "sha256:fd1187f629cfe59f577d3d67d9ebd9b3738ef7b928947c0eef55f268bb0939f5",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.31-build97-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Paid-4.7.31-build97-universal.zip",
+          "size": 114253226,
+          "digest": "sha256:77e026cd63ad9398b1829175d43e7de7fafafbcd40d517e33ef16c03ec8ecf22",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.31.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/release-4.7.31.json",
+          "size": 5065,
+          "digest": "sha256:e60cf232a1578c68b3d22fe33aae1c4e410541c30272255edda92b531f284ac1",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.31.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/SHA256SUMS-4.7.31.txt",
+          "size": 616,
+          "digest": "sha256:7b919ef211ff8a5ee6ae0a8a0c0ee7cb1e6f6cb2bcf564bd731421784005428c",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 432550763,
       "name": "MuseFilm 会员版 4.7.30 · AI 服务繁忙恢复",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Paid-4.7.30-build96-universal.dmg",
           "size": 116619054,
           "digest": "sha256:21232239327c0d451277f7b1fdd665cdb5e117d7e071d9d7731c0b080bc0cf1c",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.30-build96-universal.zip",
