@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T11:00:12.406Z",
+  "updatedAt": "2026-11-03T14:34:49.604Z",
   "releases": [
+    {
+      "id": 432802867,
+      "name": "MuseFilm 会员版 4.7.32 · AI 整书工作流与水印导出修复",
+      "tag_name": "PAID-MAC4.7.32",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.32",
+      "published_at": "2026-11-03T14:34:37Z",
+      "created_at": "2026-11-03T11:00:12Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.32 · Build 98\n\n- 修复图片位置继承导致的跨页重叠。所有内页与九种开本共用图片冲突检查，跨页照片独占双页；冲突手动位置回到安全版式，新 AI 编排重新分配位置。预览、图片、PDF、短片和 Live Photo 使用相同图片区域。\n- AI 支持针对具体照片的逐组双页计划，并校验照片范围、顺序、容量与章节边界。为横向影像安排独占跨页，保留原照片顺序；超过 120 张时使用章节与节奏计划。兼容未返回逐页计划的模型响应。\n- 创作信息分为项目与叙事、风格与读者、作者署名与版权、创作要求四组，支持拍摄对象、地点时间、背景、用途、读者、文字气质、作者介绍、编辑及其他署名、版权和致谢等。用户提供的署名和版权信息进入成品，不编造作者身份；允许独占跨页与完整显示照片可选择。\n- 完整图文成册点击生成后回到光页主界面，展示真实分析进度，再逐组呈现封面、内页和封底。支持暂停、立即完成与减少动效；展示的是已经生成和校验的页面，不模拟模型正在输出的文字。\n- AI 生成开始、完成批次和整书结果写入本机历史。整书在动效开始前持久保存，误触退出后可通过工具栏时钟入口预览、恢复或明确同意后继续失败任务。密钥不写入历史，服务商只在主动生成或继续时请求；仅版式及本地设计的完成方案也保存。原图移动后可重新授权。\n- “整书”和“操作偏好”加入旧版等大双页模式及当前画册恢复按钮。照片每组双页两张等大放置，已有文字另存为文字页；切换前保存恢复副本，支持撤销，后续导入可默认使用旧版排版。\n- 修复水印单张导出授权：保存对话框只授权所选文件，旧代码尝试创建未授权的同目录临时文件，会使三种格式均失败。改用系统临时替换目录与协调写入，保持目标授权，兼容新建和覆盖。隔离签名应用已复现旧方式被拒绝（513）、新方式成功。\n- 胶卷边框直接绘制到成品画布，去除额外的原尺寸边框位图及整幅文字透明层，降低内存峰值；不自动降低分辨率。导出按 JPG、PNG、TIFF 写入对应署名元数据，并区分渲染、目标创建和编码失败提示。\n\n124 项相关测试通过，0 项失败，2 项与系统截图/全屏环境相关的旧测试跳过；重复运行不重复计数。实际核验原尺寸 6000×4000 横竖照片、三种水印格式、覆盖写入、邻近文件和原图保护，以及图片、PDF 与 4K 摄影集输出。AI 服务响应采用模拟验证，未产生真实 API 生成计费。\n\n水印保存路径依据 [Apple 保存对话框](https://developer.apple.com/documentation/appkit/nssavepanel) 与 [系统临时替换目录](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)) 的文件访问规则实现。\n\nmacOS 通用安装包：Apple Silicon / Intel，macOS 14+。沿用既有签名与自动更新方式，未进行 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.32.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Film-Border-Materials-Licenses-4.7.32.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.32.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Font-Licenses-4.7.32.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.32-build98-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Paid-4.7.32-build98-universal.dmg",
+          "size": 117263792,
+          "digest": "sha256:3684318058ad76c853e9e76e9d3b6a4415c4e0522f891a1cbf9a6296f1876b32",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.32-build98-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Paid-4.7.32-build98-universal.zip",
+          "size": 114682388,
+          "digest": "sha256:30b806c9d23c41350b84f1eb782010cdaa144f717681b70f339ffdc2f165a0b9",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.32.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/release-4.7.32.json",
+          "size": 5485,
+          "digest": "sha256:07c666b049f969d748736ca64ce42dc4c1d5a218cd09f221a3fc9c7fc99ffda4",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.32.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/SHA256SUMS-4.7.32.txt",
+          "size": 616,
+          "digest": "sha256:cd8909c687169603cdff04e8d5511ee4f2bd5d3d1321dd26e71faf8102501f70",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 432573540,
       "name": "MuseFilm 会员版 4.7.31 · Kimi 当前模型适配",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Paid-4.7.31-build97-universal.dmg",
           "size": 116839056,
           "digest": "sha256:fd1187f629cfe59f577d3d67d9ebd9b3738ef7b928947c0eef55f268bb0939f5",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.31-build97-universal.zip",
@@ -44,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/MuseFilm-Paid-4.7.31-build97-universal.zip",
           "size": 114253226,
           "digest": "sha256:77e026cd63ad9398b1829175d43e7de7fafafbcd40d517e33ef16c03ec8ecf22",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.31.json",
@@ -52,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/release-4.7.31.json",
           "size": 5065,
           "digest": "sha256:e60cf232a1578c68b3d22fe33aae1c4e410541c30272255edda92b531f284ac1",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.31.txt",
@@ -60,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.31/SHA256SUMS-4.7.31.txt",
           "size": 616,
           "digest": "sha256:7b919ef211ff8a5ee6ae0a8a0c0ee7cb1e6f6cb2bcf564bd731421784005428c",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -105,7 +174,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Paid-4.7.30-build96-universal.dmg",
           "size": 116619054,
           "digest": "sha256:21232239327c0d451277f7b1fdd665cdb5e117d7e071d9d7731c0b080bc0cf1c",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.30-build96-universal.zip",
@@ -113,7 +182,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Paid-4.7.30-build96-universal.zip",
           "size": 114035717,
           "digest": "sha256:5b75ef435d94aba86090e12a5634033a1bf5f1062b1c27478b59e92cccef1e20",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.30.json",
@@ -121,7 +190,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/release-4.7.30.json",
           "size": 4850,
           "digest": "sha256:bca41d4f3332848784daa468a4e81d492c803ec49f016260d6a21de06b6eed86",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.30.txt",
@@ -129,7 +198,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/SHA256SUMS-4.7.30.txt",
           "size": 616,
           "digest": "sha256:3801006fa90187f4af3dbd69111fce51b85392892ffb519e3bf6500814ca0cbc",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
