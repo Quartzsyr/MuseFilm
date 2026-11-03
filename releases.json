@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T09:55:35.495Z",
+  "updatedAt": "2026-11-03T10:32:43.920Z",
   "releases": [
+    {
+      "id": 432550763,
+      "name": "MuseFilm 会员版 4.7.30 · AI 服务繁忙恢复",
+      "tag_name": "PAID-MAC4.7.30",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.30",
+      "published_at": "2026-11-03T10:32:34Z",
+      "created_at": "2026-11-03T09:55:35Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.30 · Build 96\n\n- 修复 AI 暂时不可用时立即中断的问题：502、503、504 最多等待后重试两次，遵守短暂的 Retry-After 提示；停止操作会取消等待和后续请求。密钥、权限、限流、余额或返回格式错误不自动重试。\n- 完整成册在当前设计窗口的内存中保留已校验的图片分析。失败后点击“继续生成完整摄影集”，复用已完成批次，只请求剩余图片或全书撰写；关闭窗口、修改参数或重新生成新方案时清除暂存。\n- 失败提示说明具体照片范围或全书撰写阶段，并在窗口主区域显示；移除重复的“原画册未改动”提示。完整成册不再显示旧的本地视觉分类进度。\n- 请求与内容指纹绑定，图片、主题、服务地址、模型或密钥改变后不复用不匹配的回复；暂存只包含文本回复，不保存新的图片或密钥副本到磁盘。请求超时调整为 180 秒，完整资源接收上限 240 秒。\n\n23 项相关回归和原生窗口验收通过，包含连续 503、恢复成功、取消等待、错误不重试、照片批次复用、主题改变与生成预览应用。本次使用模拟服务商响应，不读取个人 API 密钥、不产生实际服务商计费；不能保证服务商繁忙时立即恢复。\n\nDeepSeek 官方将 503 解释为服务器负载过高，见 [错误码说明](https://api-docs.deepseek.com/zh-cn/quick_start/error_codes/)。原摄影集在生成失败时保持不变。\n\nmacOS 通用安装包：Apple Silicon / Intel，macOS 14+。沿用既有签名与自动更新方式，未进行 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.30.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Film-Border-Materials-Licenses-4.7.30.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.30.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Font-Licenses-4.7.30.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.30-build96-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Paid-4.7.30-build96-universal.dmg",
+          "size": 116619054,
+          "digest": "sha256:21232239327c0d451277f7b1fdd665cdb5e117d7e071d9d7731c0b080bc0cf1c",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.30-build96-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/MuseFilm-Paid-4.7.30-build96-universal.zip",
+          "size": 114035717,
+          "digest": "sha256:5b75ef435d94aba86090e12a5634033a1bf5f1062b1c27478b59e92cccef1e20",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.30.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/release-4.7.30.json",
+          "size": 4850,
+          "digest": "sha256:bca41d4f3332848784daa468a4e81d492c803ec49f016260d6a21de06b6eed86",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.30.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/SHA256SUMS-4.7.30.txt",
+          "size": 616,
+          "digest": "sha256:3801006fa90187f4af3dbd69111fce51b85392892ffb519e3bf6500814ca0cbc",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.30/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 432511031,
       "name": "MuseFilm 会员版 4.7.29 · 完整 AI 成册与高清输出",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.29/MuseFilm-Paid-4.7.29-build95-universal.dmg",
           "size": 116558260,
           "digest": "sha256:dbb9b8a3f04335339045cd44f5b3ce693c6a6c494d17ee23815050cb17af51d4",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.29-build95-universal.zip",
@@ -44,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.29/MuseFilm-Paid-4.7.29-build95-universal.zip",
           "size": 113974124,
           "digest": "sha256:dc4ac872088c7ae0d3698bcc624e4a7ac8b23c14abeb7847de9095cc670d32a6",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.29.json",
@@ -52,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.29/release-4.7.29.json",
           "size": 4789,
           "digest": "sha256:a1c24b8e2e88351d4d01977bbc44165d97a795d05a77a2504bdea35b0d133d91",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.29.txt",
@@ -60,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.29/SHA256SUMS-4.7.29.txt",
           "size": 616,
           "digest": "sha256:5a62ecd335574915fba063255fc875af0c06be3bdc4534f4b6a1fc3474079d46",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -121,7 +190,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.28/release-4.7.28.json",
           "size": 4304,
           "digest": "sha256:a639c273c45ad3669da1b9cc51fa896b7bd481a1739c94b5776f3072e5e737fc",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.7.28.txt",
