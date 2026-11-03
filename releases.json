@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-02T20:50:10.023Z",
+  "updatedAt": "2026-11-03T02:13:53.667Z",
   "releases": [
+    {
+      "id": 432198405,
+      "name": "MuseFilm 会员版 4.7.27 · 光页编辑升级与黑白边字修复",
+      "tag_name": "PAID-MAC4.7.27",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.27",
+      "published_at": "2026-11-03T02:13:45Z",
+      "created_at": "2026-11-02T20:50:10Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.27 · Build 93\n\n光页画册升级为固定编辑工作区：中间画布，右侧“版式／照片／文字／整书”编辑栏，底部统一管理页面。设置不再覆盖画布；横版、竖版、小窗口及浅深色外观保持可用。\n\n内页照片与文字支持直接点选、拖动位置、拖动右下角调整尺寸，也可以精确填写 X、Y、宽、高。照片可单独替换、完整显示或填满裁切、缩放、调整上下左右重心、排序和移动到其他双页。\n\n文字可以独立添加标题、短文和图注，调整字体、实际印刷字号、对齐和行距。点选文字即可进入对应编辑区域，使用 macOS 原生文字控件。版式按留白、叙事、跨页和图文分类，整书设置与当前页编辑分开。\n\n加入整书撤销／重做。新增双页插在当前页后，并清空上一页正文；手动选择版式后再导入照片会保留当前设计。照片位置、裁切和文字样式随画册保存恢复，旧画册文件继续兼容。预览与导出共用布局，保持文字溢出检查及跨页满版出血。\n\n修复新增黑白胶卷在观片台被误识别为彩色、边字只能呈现橙色的问题。自动外观读取胶卷分类，并补上 KODAK 5222 的黑白识别。观片设置直接提供独立“片基外观”和“边字墨色”，支持随片基、琥珀、米黄、银白和暗红，切换即时生效并记住选择。观片台、观片镜、静态导出和索引图使用相同墨色。\n\n本次光页与胶片边框相关 48 项检查通过。支持 macOS 14 及以上，Apple Silicon／Intel 通用；沿用现有本地签名，未经过 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.27.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Film-Border-Materials-Licenses-4.7.27.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.27.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Font-Licenses-4.7.27.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.27-build93-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Paid-4.7.27-build93-universal.dmg",
+          "size": 115398760,
+          "digest": "sha256:ac920a2f0e77cfc0a87850db27f46a6444da6ece3e8728f47c4eb69034ffc1d3",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.27-build93-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/MuseFilm-Paid-4.7.27-build93-universal.zip",
+          "size": 112816393,
+          "digest": "sha256:f929db42c3a48f59650048234bc9236bb044edb50adf957ee4fd09aec3b7839f",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.27.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/release-4.7.27.json",
+          "size": 5262,
+          "digest": "sha256:f6e640378d311c67e89340d37aa2823702f397ab27c7d763b3f3b36db1b8d7fc",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.27.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/SHA256SUMS-4.7.27.txt",
+          "size": 616,
+          "digest": "sha256:4e4f8635444b8d0a11507e70b7d21e5db0dead5ec9d7ebb9ef7591e86dd21597",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.27/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 431472960,
       "name": "MuseFilm 会员版 4.7.26 · 光页整书编排与图文布局",
