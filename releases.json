@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-03T14:34:49.604Z",
+  "updatedAt": "2026-11-03T17:52:20.704Z",
   "releases": [
+    {
+      "id": 433031103,
+      "name": "MuseFilm 会员版 4.7.33 · 艺术封面与多主题摄影合集",
+      "tag_name": "PAID-MAC4.7.33",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.33",
+      "published_at": "2026-11-03T17:52:00Z",
+      "created_at": "2026-11-03T14:34:49Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.33 · Build 99\n\n光页新增六种艺术封面和三种图文内页，支持可选的多主题 AI 摄影合集。\n\n- 参考 MACK、Loose Joints、Aperture 的 24 本摄影集、72 张公开封面及内页样张，重新组织文字层级、图版尺度、留白与阅读节奏。实现原创排版，不包含出版社照片、插画或商标。\n- 新增文学小像、构成字封、地平线、色域书衣、偏置图版、双像对话；封面共 19 种。横版、竖版和方形均可用，新设计优先显示在比较库中。\n- 艺术封面可调整配色、标题字形与尺度；偏置封面的中文题名支持竖排。可将配色与字形延续到内页，长标题按实际尺寸测量缩排。\n- 新增浮岛独幅、斜线对话、观察档案，内页共 34 种。默认整书方案采用新封面，独幅、双图与图文页形成相关的节奏；旧模板与旧版等大双页仍可选。\n- AI 完整成册新增“多主题 · 自动分类成合集”。主动勾选后，AI 通览全部照片的观察结果，按内容归组，生成合集书名、序言、目录、章节、题注和完整末尾文字；主题内保留照片相对顺序。未勾选仍保持原照片顺序。\n- 分类必须完整覆盖全部照片，每张照片恰好一次；拒绝遗漏、重复、越界和跨主题的双页分配。题注继续绑定原照片，保留的原作页面文字可收录附录。无效结果不会改动当前画册。\n- AI 可选择代表性照片、封面方案、配色和字形，并延续至内页标题和封底；优先使用少量相关版式形成统一设计。\n- 主题选项、源书、分析进度与生成结果继续保存在本机 AI 历史。密钥仅存本机，主动生成才直连所选服务商；分析副本最长边 768 像素，不发送原图、路径或 GPS。AI 仍标注“测试中”。\n- 保留原图驱动的高清预览、图片与 PDF 输出、默认 4K 动态输出；索引封面的详细预览补齐到全部 24 张原图。\n\n验证涵盖新旧布局、九种开本、长标题、图像互斥、照片与题注完整性、旧文档及历史兼容、原图输出和原生窗口交互。AI 使用模拟响应验证流程，未调用真实付费模型；最终内容与设计仍可继续编辑。\n\nmacOS 通用版本，支持 Apple Silicon 与 Intel。沿用现有安装及自动更新机制。本包未经过 Apple 公证。\n\n\n下载请选择 macOS 通用 DMG。字体授权及胶片纹理来源见独立附件。Windows 接口约定为开发参考，非新的 Windows 安装包。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.33.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/MuseFilm-Film-Border-Materials-Licenses-4.7.33.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.33.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/MuseFilm-Font-Licenses-4.7.33.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.33-build99-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/MuseFilm-Paid-4.7.33-build99-universal.dmg",
+          "size": 117422925,
+          "digest": "sha256:c79ae011727874f42fb15760a7070db997d84eef31058bf63a169176dfc37b5f",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.33-build99-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/MuseFilm-Paid-4.7.33-build99-universal.zip",
+          "size": 114817628,
+          "digest": "sha256:1cfa65a1979cc3550e1a5a4b8bc81c7884bf871f86cb6acd4c8f4257f3bd341d",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.33.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/release-4.7.33.json",
+          "size": 6409,
+          "digest": "sha256:f126aecaf00fc346a63ff9200d9f586566f11b1a9552e786116254cd2d6fd075",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.33.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/SHA256SUMS-4.7.33.txt",
+          "size": 616,
+          "digest": "sha256:73f8a46c3bd0ad6e408d90515a98dafbaa4016c0de42f53ed86b778a7a71c3c9",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 432802867,
       "name": "MuseFilm 会员版 4.7.32 · AI 整书工作流与水印导出修复",
@@ -36,7 +105,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Paid-4.7.32-build98-universal.dmg",
           "size": 117263792,
           "digest": "sha256:3684318058ad76c853e9e76e9d3b6a4415c4e0522f891a1cbf9a6296f1876b32",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.32-build98-universal.zip",
@@ -44,7 +113,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/MuseFilm-Paid-4.7.32-build98-universal.zip",
           "size": 114682388,
           "digest": "sha256:30b806c9d23c41350b84f1eb782010cdaa144f717681b70f339ffdc2f165a0b9",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "release-4.7.32.json",
@@ -52,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/release-4.7.32.json",
           "size": 5485,
           "digest": "sha256:07c666b049f969d748736ca64ce42dc4c1d5a218cd09f221a3fc9c7fc99ffda4",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-4.7.32.txt",
@@ -60,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/SHA256SUMS-4.7.32.txt",
           "size": 616,
           "digest": "sha256:cd8909c687169603cdff04e8d5511ee4f2bd5d3d1321dd26e71faf8102501f70",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
