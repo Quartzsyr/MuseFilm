@@ -1,8 +1,77 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-04T00:00:15.590Z",
+  "updatedAt": "2026-11-04T04:38:05.102Z",
   "releases": [
+    {
+      "id": 433514245,
+      "name": "MuseFilm 会员版 4.7.34 · 网盘沉浸式返片",
+      "tag_name": "PAID-MAC4.7.34",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.34",
+      "published_at": "2026-11-04T04:37:56Z",
+      "created_at": "2026-11-04T00:00:15Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.34 · 网盘返片与沉浸式预览\n\n- 网盘导入界面精简为路径工具、图片网格和底部操作；按钮采用原生 Liquid Glass，兼容较早版本 macOS 的原生材质。\n- 去除照片卡片边框和常驻文件名。悬停或键盘聚焦时显示玻璃文件名，加入轻微悬浮、反光、按压及缩略图淡入反馈，并遵循减少动态效果设置。\n- 新增“只看返片”，隐藏其他文件及已确认无照片的文件夹；继续识别多层目录和后续分页中的照片，未检查完整的目录会保留提示。\n- 返回上一级时恢复已读取列表、选择和原滚动位置，无需反复向下翻找。\n- 自动读取后续分页，修复只读取前 100 项造成的照片数量不准与漏图；增加去重、中断续读、异常项提示和有限重试。\n- 增加 HEIF、BMP、JPE、JFIF、JP2 的一致识别；没有缩略图的照片仍会列出。RAW 等尚不支持导入的图像格式会明确显示。\n- 缩略图采用有界并发、后台解码和内存缓存。归档前明确确认是否后台下载原图，并保留用户的选择；支持独立原图下载与本地查看。\n\n百度网盘功能仍处于开发中，实际可用目录、预览与下载能力取决于百度授权、平台审核及网络情况。不会上传、删除或移动网盘文件。图片数量以当前目录已完整读取的可用照片为准，未读取完或存在异常时会明确提示。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Film-Border-Materials-Licenses-4.7.34.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Film-Border-Materials-Licenses-4.7.34.zip",
+          "size": 79001,
+          "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Font-Licenses-4.7.34.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Font-Licenses-4.7.34.zip",
+          "size": 33268,
+          "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.34-build100-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Paid-4.7.34-build100-universal.dmg",
+          "size": 115604480,
+          "digest": "sha256:5760ccbf3928a97793ad2ab56c49f067d983d0f0cf8642bb1f28efd29b7e2519",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.34-build100-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Paid-4.7.34-build100-universal.zip",
+          "size": 114975806,
+          "digest": "sha256:aafd3d2593b1eb3e3f7ab6c46a2b268840fa7a8e181df7298b6c1f6854b81551",
+          "download_count": 0
+        },
+        {
+          "name": "release-4.7.34.json",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/release-4.7.34.json",
+          "size": 4842,
+          "digest": "sha256:f4b7abe10f0b74a965cd43cf94f9402dc3d1f3da219aef00aeea2b7dffd8ef1e",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.34.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/SHA256SUMS-4.7.34.txt",
+          "size": 618,
+          "digest": "sha256:c9f69d7a0aae144cfb699ededc68ba2af51fbaa67be39bcaa047e9d7f58f144a",
+          "download_count": 0
+        },
+        {
+          "name": "WINDOWS-PLATFORM-CONTRACT.md",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/WINDOWS-PLATFORM-CONTRACT.md",
+          "size": 7235,
+          "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 433031103,
       "name": "MuseFilm 会员版 4.7.33 · 艺术封面与多主题摄影合集",
