@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-04T04:39:31.242Z",
+  "updatedAt": "2026-11-04T06:37:43.044Z",
   "releases": [
     {
       "id": 433514245,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Film-Border-Materials-Licenses-4.7.34.zip",
           "size": 79001,
           "digest": "sha256:7244d8d16d14b9290b7663ea4b189cc95d7648156ce948d7b42374749585bf40",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Font-Licenses-4.7.34.zip",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Font-Licenses-4.7.34.zip",
           "size": 33268,
           "digest": "sha256:a91613e8428e26035691acfef4b50624f433c2d2bafa967bdbec4c3f3d2d0993",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-4.7.34-build100-universal.dmg",
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Paid-4.7.34-build100-universal.dmg",
           "size": 115604480,
           "digest": "sha256:5760ccbf3928a97793ad2ab56c49f067d983d0f0cf8642bb1f28efd29b7e2519",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "MuseFilm-Paid-4.7.34-build100-universal.zip",
@@ -44,7 +44,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/MuseFilm-Paid-4.7.34-build100-universal.zip",
           "size": 114975806,
           "digest": "sha256:aafd3d2593b1eb3e3f7ab6c46a2b268840fa7a8e181df7298b6c1f6854b81551",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "release-4.7.34.json",
@@ -52,7 +52,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/release-4.7.34.json",
           "size": 4842,
           "digest": "sha256:f4b7abe10f0b74a965cd43cf94f9402dc3d1f3da219aef00aeea2b7dffd8ef1e",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.7.34.txt",
@@ -60,7 +60,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/SHA256SUMS-4.7.34.txt",
           "size": 618,
           "digest": "sha256:c9f69d7a0aae144cfb699ededc68ba2af51fbaa67be39bcaa047e9d7f58f144a",
-          "download_count": 0
+          "download_count": 2
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
@@ -68,7 +68,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.34/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 7235,
           "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
