@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-06T00:22:53.236Z",
+  "updatedAt": "2026-11-06T07:02:05.002Z",
   "releases": [
     {
       "id": 433514245,
@@ -1621,7 +1621,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Mac/musefilm-2.0-build2-2026-06-06-154741.dmg",
           "size": 5532874,
           "digest": "sha256:745652645468c492ef5f8955b613a0a1cb5912a7beb302a63ec68cf78f13503c",
-          "download_count": 78
+          "download_count": 79
         }
       ]
     },
@@ -1642,7 +1642,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe",
           "size": 291551390,
           "digest": "sha256:e09a8e1e657b474f69d57b69d02e55c7da4b6807fa37b4a4c3a91d8bc8976a50",
-          "download_count": 123
+          "download_count": 124
         }
       ]
     }
