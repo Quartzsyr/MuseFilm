@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-09T08:04:14.945Z",
+  "updatedAt": "2026-11-09T18:53:14.776Z",
   "releases": [
     {
       "id": 433514245,
@@ -121,7 +121,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/release-4.7.33.json",
           "size": 6409,
           "digest": "sha256:f126aecaf00fc346a63ff9200d9f586566f11b1a9552e786116254cd2d6fd075",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.7.33.txt",
@@ -129,7 +129,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.33/SHA256SUMS-4.7.33.txt",
           "size": 616,
           "digest": "sha256:73f8a46c3bd0ad6e408d90515a98dafbaa4016c0de42f53ed86b778a7a71c3c9",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
