@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-10T02:13:48.933Z",
+  "updatedAt": "2026-11-10T09:41:32.362Z",
   "releases": [
+    {
+      "id": 440169367,
+      "name": "MuseFilm 会员版 4.7.36 · 光页 AI 与 iPhone 锁屏",
+      "tag_name": "PAID-MAC4.7.36",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC4.7.36",
+      "published_at": "2026-11-10T09:41:23Z",
+      "created_at": "2026-11-10T02:13:49Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 4.7.36（Build 102）\n\n## 光页 AI 成册\n\n- 生成中和历史记录都可以复制创作信息，换服务商或模型续作。新任务保留来源，原记录可恢复。有效的照片分析继续复用，长篇写作按本次选择的模型与服务连接执行。\n- 换模型续作会带上已有全书文字供参考，暂停后继续同一任务也会保留这份参考稿。\n- 连续宽图之间安排常规版式。跨页照独占双页，窄图或紧邻另一张跨页的照片改用单图留白版式，保留照片顺序与题注。\n\n## Live Photo 锁屏导出\n\n- 光页翻页、宝丽来单张与九宫格统一采用约 2 秒、60 帧／秒的 HEVC 影片，搭配从同一关键帧生成的 HEIC 静帧和锁屏运动元数据。\n- 在 Mac 导出时选择“存入照片图库”。同步到 iPhone 后，从“设置 → 墙纸 → 添加新墙纸 → 实况照片”选择，并开启播放图标。光页用于锁屏时建议选择竖屏。\n- Mac 端可验证 Live Photo 识别、关键帧和配对信息。锁屏动态是否可用由 iPhone 判定，真机播放仍待实测。\n\n支持 macOS 14 及以上，Apple Silicon／Intel 通用。沿用会员版的现有签名与更新机制。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-4.7.36-build102-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.36/MuseFilm-Paid-4.7.36-build102-universal.dmg",
+          "size": 117825130,
+          "digest": "sha256:590ff7eb0d949cba4748c156719ecad4e6ff8cfb7e4718175e851a1e66e8e467",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-4.7.36-build102-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.36/MuseFilm-Paid-4.7.36-build102-universal.zip",
+          "size": 115244180,
+          "digest": "sha256:4a3c3cbd30622308c8b0dafafb5833ce117b88814590319567680d4a03bd55e6",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-4.7.36.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.36/SHA256SUMS-4.7.36.txt",
+          "size": 220,
+          "digest": "sha256:d29db80ef4779fffe7a467fdfbe6d947f3e5c2a38220325685276e70f5dbc317",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 433514245,
       "name": "MuseFilm 会员版 4.7.34 · 网盘沉浸式返片",
