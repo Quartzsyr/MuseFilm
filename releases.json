@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-11T06:38:51.775Z",
+  "updatedAt": "2026-11-11T10:38:34.326Z",
   "releases": [
+    {
+      "id": 441544530,
+      "name": "MuseFilm 会员版 5.0.0 · AI 强化大版本",
+      "tag_name": "PAID-MAC5.0.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.0.0",
+      "published_at": "2026-11-11T10:38:28Z",
+      "created_at": "2026-11-11T06:38:51Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 5.0.0 · AI 强化大版本（Build 104）\n\n• AI 贯穿首页、胶卷库、器材库、档案与照片预览：生成欢迎语、胶卷介绍、器材笔记、卷名/摘要/标签、照片题注与构图建议；光页 AI 成册继续使用统一配置。\n• 生成后先预览编辑，再选择写入；默认附加笔记，卷名需单独勾选。生成期间资料被修改时阻止覆盖，写入不提交其他未完成的编辑。\n• AI 原始结果、编辑结果与应用记录保存在本机，可恢复、复制、删除并切换模型重新生成。\n• 每日自动欢迎语默认关闭；主动开启后每天最多自动请求一次，仅发送日期与三项数量统计。照片解读与可选档案样本使用移除 EXIF/GPS 的 768 像素分析副本，按界面确认范围直接请求服务商，密钥仅保存在本机。AI 功能仍为测试中，费用由所选服务商结算。\n• 胶卷库采用 Three.js 呈现 135、120/220、110、APS、页片与即影即有包装；器材库提供双反、可换后背、单反、旁轴、一次性等 12 类相机及镜头形状，可手动设置外形与画幅。\n• 统一 Liquid Glass 藏品卡片与操作；修复器材图片溢出，胶卷和器材可在导入时直接新建并选用；足迹采用沉浸地图与可收起时间线。\n\nApple Silicon / Intel 通用；macOS 14 及以上。AI 已用模拟服务验证；具体模型与额度以服务商账号为准。",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.0.0-build104-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.0.0/MuseFilm-Paid-5.0.0-build104-universal.dmg",
+          "size": 116715520,
+          "digest": "sha256:ed88cb59fb7f67e643368b16a6cf5f8547c339b25e020d345a39206dd6491b70",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.0.0-build104-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.0.0/MuseFilm-Paid-5.0.0-build104-universal.zip",
+          "size": 116086122,
+          "digest": "sha256:5af81b66ae1664914ad66835cae5c1748032bbaa064edbbe675c7a522bee81f0",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.0.0.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.0.0/SHA256SUMS-5.0.0.txt",
+          "size": 218,
+          "digest": "sha256:b36394d83caaed15d86e12800ca639aa4f984ddbf0d6de447d6e9cbb47d04741",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 440169367,
       "name": "MuseFilm 会员版 4.7.36 · 光页 AI 与 iPhone 锁屏",
