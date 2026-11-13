@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-12T20:02:25.362Z",
+  "updatedAt": "2026-11-13T01:10:20.317Z",
   "releases": [
     {
       "id": 441544530,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.0.0/MuseFilm-Paid-5.0.0-build104-universal.dmg",
           "size": 116715520,
           "digest": "sha256:ed88cb59fb7f67e643368b16a6cf5f8547c339b25e020d345a39206dd6491b70",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "MuseFilm-Paid-5.0.0-build104-universal.zip",
