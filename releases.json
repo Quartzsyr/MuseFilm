@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-14T03:22:13.113Z",
+  "updatedAt": "2026-11-14T09:34:12.402Z",
   "releases": [
+    {
+      "id": 445177224,
+      "name": "MuseFilm 会员版 5.1.0 · 沉浸导航与 AI 拍摄准备",
+      "tag_name": "PAID-MAC5.1.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.1.0",
+      "published_at": "2026-11-14T09:33:59Z",
+      "created_at": "2026-11-14T09:29:55Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 5.1.0（Build 106）· 正式发布\n\nAI 拍摄准备台结合真实库存、到期日、拍摄题材和天气生成用卷、携带与现场拍摄建议。方案自动保存在本机历史，可编辑、复制、换模型重新生成；AI 不会自动扣减库存。\n\n天气使用 MET Norway 开放数据，无需 API 密钥。首次阅读并接受接口条款，开启自动天气并授权系统定位后，首页和准备台自动查询大致位置的预报；拒绝授权时可手动选择城市或天气。显示数据来源、预报与更新时间；过期预报不用于 AI。只查询约公里级坐标，不读取照片 GPS。\n\n胶卷库卡片直接调整库存和到期日期；数量与年/月/日支持滚轮、触控板、方向键。保存只提交本条库存与日期。\n\n预览页新增整卷底片瀑布流：保持原始画幅，支持档案切换、圈选和评分筛选、文件名与笔记搜索。每张底片可直接选择“预览”或“观片台”，原单张预览保留，查看后可返回整卷。\n\n默认改用底部悬浮玻璃导航坞，清透折射、高光随指针轻移、轻微悬停/按压反馈与选中滑动；⌘K 搜索所有功能。设置 → 导航与工作区可切换经典布局，恢复原左侧栏。\n\n首页采用更简约的影像排版，直接展示主要数据、玻璃胶卷暗盒库存构成和近六个月归档底片条，再进入拍摄准备与最近影像。图形只使用真实统计；统一各工作区玻璃材质和主题背景，支持沉浸浏览与减少动效选项。保留约 50MB、Apache 2.0 的 Depth Anything V2 Small FP16 本机轻量深度方案，不新增其他模型权重。\n\nAI 和天气使用模拟响应验证；没有使用用户付费密钥，也未自动操作系统定位授权。Apple Silicon / Intel 通用，macOS 14 及以上。本次包含新的首页、沉浸导航与经典布局切换。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.1.0-build106-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.1.0/MuseFilm-Paid-5.1.0-build106-universal.dmg",
+          "size": 164390912,
+          "digest": "sha256:7d1eca6488bd279b384c37d7db21e5e61273955a3391d60bab920d76a9a40f57",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.1.0-build106-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.1.0/MuseFilm-Paid-5.1.0-build106-universal.zip",
+          "size": 163709589,
+          "digest": "sha256:8046f8e274e99ade9c204c2d116fd9d7825366f0f182c4f6b76124388f6f682c",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.1.0.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.1.0/SHA256SUMS-5.1.0.txt",
+          "size": 218,
+          "digest": "sha256:1e2d7749207da05d7e11b3461997079c69c393b08658e5682e9f233968868471",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 441544530,
       "name": "MuseFilm 会员版 5.0.0 · AI 强化大版本",
@@ -28,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.0.0/MuseFilm-Paid-5.0.0-build104-universal.zip",
           "size": 116086122,
           "digest": "sha256:5af81b66ae1664914ad66835cae5c1748032bbaa064edbbe675c7a522bee81f0",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "SHA256SUMS-5.0.0.txt",
