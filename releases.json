@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-14T14:05:39.186Z",
+  "updatedAt": "2026-11-14T17:11:30.389Z",
   "releases": [
     {
       "id": 445336227,
@@ -20,7 +20,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.0/MuseFilm-Paid-5.2.0-build108-universal.dmg",
           "size": 164621312,
           "digest": "sha256:85af93f974b8e3bdd9fb37ff7d087e9b8083c586bb248c57d26b4116f8757e99",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-5.2.0-build108-universal.zip",
@@ -28,7 +28,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.0/MuseFilm-Paid-5.2.0-build108-universal.zip",
           "size": 163952738,
           "digest": "sha256:d7ddc0dcca8a89e15863def7a18d06e3174dc15a0be4dae7298a41ea63a7dc80",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-5.2.0.txt",
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.0/SHA256SUMS-5.2.0.txt",
           "size": 218,
           "digest": "sha256:8408414007b72e462df0eaf8ba07e4cf21c482d5c1a36d5a129a41d1c8c3d530",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
