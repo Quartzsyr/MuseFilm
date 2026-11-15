@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-15T03:12:20.384Z",
+  "updatedAt": "2026-11-15T04:59:36.811Z",
   "releases": [
+    {
+      "id": 445821061,
+      "name": "MuseFilm 会员版 5.3.1 · 光影手记",
+      "tag_name": "PAID-MAC5.3.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.3.1",
+      "published_at": "2026-11-15T04:59:29Z",
+      "created_at": "2026-11-15T04:56:09Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 5.3.1 · 光影手记\n\n这次更新重新整理首页、影像分析、冲扫计时和新手引导，让照片与摄影记录成为视觉中心。\n\n- 首页采用可拖动的散放底片布局，统一放大预览，当前档案置于最上层；保留照片原始比例，支持轻微切换动效。依据档案、胶卷或关联器材的明确规格使用 120 / 135 边框，缺失规格时默认 135，可补充资料。\n- 放大 AI 影像分析的文字区域，采用已随应用授权分发的霞鹜文楷，重排标题、段落与全文阅读。详细分析结合实际库存、到期信息、档案与拍摄资料，以及已授权天气；每日自动分析默认关闭并需单独开启。\n- 重做冲扫界面：大尺寸剩余时间表盘、阶段进度、总计时与玻璃胶囊操作。保留原有配方、温度补偿、阶段切换、提醒与记录逻辑。\n- 更新八步新手引导，增加玻璃层次与轻微动效，适配底部导航；可从设置重新回顾。\n- 设置按类别重新组织，统一 Liquid Glass 卡片与胶囊操作；保留“我的”个人主页入口和随机单图档案展示。\n- 安装盘沿用此前的摄影背景、卷标与应用图标，提供 Applications 拖拽安装入口。\n\n兼容 Apple Silicon 与 Intel Mac。已完成通用版 Release 编译、相关回归测试、浅深色布局渲染及安装包签名与完整性核验。系统原生屏幕捕捉受环境限制，尚未完成真实鼠标拖动、窗口恢复及原生玻璃动效的端到端实测。\n\n安装包采用 ad-hoc 签名，未经过 Apple 公证。更新渠道附带独立 Sparkle 签名校验。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.3.1-build113-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.3.1/MuseFilm-Paid-5.3.1-build113-universal.dmg",
+          "size": 170846972,
+          "digest": "sha256:6f363a6f01a5feb276ad362bcea4b2b4fce0f0541d3bd2a9274bbe35b1246421",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.3.1-build113-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.3.1/MuseFilm-Paid-5.3.1-build113-universal.zip",
+          "size": 168250677,
+          "digest": "sha256:abab81e6da039aa2b30e89a3bc72d3f95ec6a8405d9438f0a409bc4cff0e08ac",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.3.1.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.3.1/SHA256SUMS-5.3.1.txt",
+          "size": 218,
+          "digest": "sha256:071170c8c15cf3c738e261f7f598b8eb0e0e3969b600eae3bf8404191cae8d10",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 445775846,
       "name": "MuseFilm 会员版 5.2.3 · 单张影像首页",
@@ -20,7 +57,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/MuseFilm-Paid-5.2.3-build111-universal.dmg",
           "size": 164621312,
           "digest": "sha256:62b163c3092f787a2c368fe5e28289af9cd07ddc73bf340b549d46539382032c",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-5.2.3-build111-universal.zip",
@@ -28,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/MuseFilm-Paid-5.2.3-build111-universal.zip",
           "size": 163926460,
           "digest": "sha256:4ca71c9a4afef6f88b4426d1f84ebbcf2dced01bd7b9cb85bdb0ba9825fd42ce",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-5.2.3.txt",
@@ -36,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/SHA256SUMS-5.2.3.txt",
           "size": 218,
           "digest": "sha256:3a7bb7fc08a7a15bd769bb72b08e43bddd6535d455173fc229010226715df2e6",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
