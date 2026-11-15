@@ -1,0 +1,67 @@
+name: Verify paid release downloads
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'JSON with build, version, feedSHA256 and signed zip/dmg names, bytes and SHA256'
+        required: true
+        type: string
+permissions: {}
+concurrency:
+  group: paid-download-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Verify full downloads and byte ranges without credentials
+        env:
+          RELEASE_JSON: ${{ inputs.release }}
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures, hashlib, json, os, re, time, urllib.request, urllib.error
+          release = json.loads(os.environ['RELEASE_JSON'])
+          assert re.fullmatch(r'\d+\.\d+\.\d+', release['version'])
+          assert re.fullmatch(r'\d{1,8}', release['build'])
+          base = 'https://membership.musefilm.top'
+          def open_url(path, headers=None):
+              request = urllib.request.Request(base + path, headers=headers or {})
+              response = urllib.request.urlopen(request, timeout=120)
+              assert response.url == base + path, 'Unexpected redirect'
+              return response
+          def verify(entry):
+              assert re.fullmatch(r'[a-f0-9]{64}', entry['sha256'])
+              assert entry['name'] in ['MuseFilm-Paid-' + release['version'] + '-build' + release['build'] + '-universal.' + ext for ext in ['zip', 'dmg']]
+              assert 0 < entry['length'] < 2_000_000_000
+              path = '/updates/macos/' + entry['name']
+              start, size, digest, crossing, tail, began = 20*1024*1024-8, 0, hashlib.sha256(), b'', b'', time.monotonic()
+              with open_url(path) as response:
+                  assert response.status == 200 and int(response.headers['Content-Length']) == entry['length']
+                  while block := response.read(1024*1024):
+                      digest.update(block)
+                      a, b = max(0, start-size), min(len(block), start+32-size)
+                      if b > a: crossing += block[a:b]
+                      tail = (tail + block)[-128:]
+                      size += len(block)
+              assert size == entry['length'] and digest.hexdigest() == entry['sha256'], 'Full GET checksum mismatch'
+              for value, expected, begin, end in [(f'bytes={start}-{start+31}', crossing, start, start+31), ('bytes=-128', tail, size-128, size-1)]:
+                  with open_url(path, {'Range': value}) as response:
+                      assert response.status == 206 and response.headers['Content-Range'] == f'bytes {begin}-{end}/{size}'
+                      assert response.read(1024) == expected
+              try:
+                  open_url(path, {'Range': f'bytes={size}-'})
+                  raise AssertionError('Out of bounds range accepted')
+              except urllib.error.HTTPError as error: assert error.code == 416
+              return {'name': entry['name'], 'bytes': size, 'sha256': digest.hexdigest(), 'seconds': round(time.monotonic()-began, 2), 'fullSingleGETVerified': True, 'crossChunkAndSuffixRangesVerified': True}
+          assert re.fullmatch(r'[a-f0-9]{64}', release['feedSHA256'])
+          with open_url('/updates/macos/appcast.xml') as response:
+              assert hashlib.sha256(response.read(1024*1024)).hexdigest() == release['feedSHA256']
+          assert len(release['files']) == 2 and {e['name'].rsplit('.',1)[1] for e in release['files']} == {'zip', 'dmg'}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+              results = list(executor.map(verify, release['files']))
+          report = {'passed': True, 'build': release['build'], 'version': release['version'], 'signedFeedBytesMatchLocal': True, 'files': results}
+          print('VERIFIED_RELEASE_JSON=' + json.dumps(report, sort_keys=True))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'w') as out:
+              out.write('```json\n' + json.dumps(report, indent=2) + '\n```\n')
+          PY
