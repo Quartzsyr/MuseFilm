@@ -26,7 +26,7 @@ jobs:
           assert re.fullmatch(r'\d{1,8}', release['build'])
           base = 'https://membership.musefilm.top'
           def open_url(path, headers=None):
-              request = urllib.request.Request(base + path, headers=headers or {})
+              request = urllib.request.Request(base + path, headers={'User-Agent': 'MuseFilm-Release-Verification/1.0 (+https://musefilm.top/)', **(headers or {})})
               response = urllib.request.urlopen(request, timeout=120)
               assert response.url == base + path, 'Unexpected redirect'
               return response
@@ -55,12 +55,21 @@ jobs:
               except urllib.error.HTTPError as error: assert error.code == 416
               return {'name': entry['name'], 'bytes': size, 'sha256': digest.hexdigest(), 'seconds': round(time.monotonic()-began, 2), 'fullSingleGETVerified': True, 'crossChunkAndSuffixRangesVerified': True}
           assert re.fullmatch(r'[a-f0-9]{64}', release['feedSHA256'])
-          with open_url('/updates/macos/appcast.xml') as response:
-              assert hashlib.sha256(response.read(1024*1024)).hexdigest() == release['feedSHA256']
+          canonical_blocked = False
+          for origin in ['https://membership.musefilm.top', 'https://musefilm-paid-membership.syrquartz.workers.dev']:
+              base = origin
+              try:
+                  with open_url('/updates/macos/appcast.xml') as response:
+                      assert hashlib.sha256(response.read(1024*1024)).hexdigest() == release['feedSHA256']
+                  break
+              except urllib.error.HTTPError as error:
+                  if origin.endswith('musefilm.top') and error.code == 403:
+                      canonical_blocked = True
+                  else: raise
           assert len(release['files']) == 2 and {e['name'].rsplit('.',1)[1] for e in release['files']} == {'zip', 'dmg'}
           with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
               results = list(executor.map(verify, release['files']))
-          report = {'passed': True, 'build': release['build'], 'version': release['version'], 'signedFeedBytesMatchLocal': True, 'files': results}
+          report = {'passed': True, 'build': release['build'], 'version': release['version'], 'signedFeedBytesMatchLocal': True, 'baseURL': base, 'canonicalOriginBlockedFromRunner': canonical_blocked, 'files': results}
           print('VERIFIED_RELEASE_JSON=' + json.dumps(report, sort_keys=True))
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'w') as out:
               out.write('```json\n' + json.dumps(report, indent=2) + '\n```\n')
