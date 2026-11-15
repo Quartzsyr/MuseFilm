@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-15T10:00:39.547Z",
+  "updatedAt": "2026-11-15T10:39:42.407Z",
   "releases": [
+    {
+      "id": 445979524,
+      "name": "MuseFilm 会员版 5.4.1 · 定时分析与引导修复",
+      "tag_name": "PAID-MAC5.4.1",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.4.1",
+      "published_at": "2026-11-15T10:39:33Z",
+      "created_at": "2026-11-15T10:34:40Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 5.4.1 · 定时分析与引导修复\n\n- 首页影像分析支持定时自动更新，可在「设置 → AI 与拍摄」开启，间隔可选30分钟、1小时、3小时、6小时、12小时或24小时。默认关闭，既有自动分析用户保留开关与24小时间隔。\n- 调度覆盖整个工作区，切换页面仍可继续；应用在后台、休眠和新手引导期间暂停。保留上次请求及完成时间，重启不重复调用，错过周期只生成一份当前报告，失败等待下一周期；手动应用分析会推迟下一次自动请求。每次自动分析直接调用当前服务商，可能产生API费用。\n- 修复新手引导离开拟物导入后工作台残留在其他页面上方：切换步骤、跳转进度、结束引导或离开页面时清理导入层，快速重开时旧回调不能关闭新窗口。拟物导入区域也接入全局聚光定位。\n- 保留授权天气、地区取景候选、库存及到期信息参与分析，以及摘要、完整报告和本机历史。\n\n支持 Apple Silicon 与 Intel Mac。DMG 保留摄影背景、卷标、应用图标与 Applications 拖拽入口。\n\n安装包采用 ad-hoc 签名，未经过 Apple 公证；应用内更新源与下载文件另附 Sparkle 签名校验。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.4.1-build117-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/MuseFilm-Paid-5.4.1-build117-universal.dmg",
+          "size": 173105403,
+          "digest": "sha256:8d891d4650ac487a9ffbbe1697828588f26f0595f6b9b49a13cb605df1157683",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.4.1-build117-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/MuseFilm-Paid-5.4.1-build117-universal.zip",
+          "size": 170507723,
+          "digest": "sha256:65d1eb739892731db3df159b3f36f3da129d8c6421e27f203fb89376d06e85a5",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.4.1.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/SHA256SUMS-5.4.1.txt",
+          "size": 218,
+          "digest": "sha256:fd060619a99fc9ca2c373d027ca58c9fe84abac1ee641ea5aef98b998fa1bef4",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 445956725,
       "name": "MuseFilm 会员版 5.4.0 · 工作区导览与摄影助手",
@@ -20,7 +57,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/MuseFilm-Paid-5.4.0-build116-universal.dmg",
           "size": 173046547,
           "digest": "sha256:678b3224006e1f49dd365d2a437f887e245e2630e8206c3ca79e5321032403b2",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-5.4.0-build116-universal.zip",
@@ -28,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/MuseFilm-Paid-5.4.0-build116-universal.zip",
           "size": 170458857,
           "digest": "sha256:50cac58af20fd4441c06a9cefe29d9841d4220eb2e7fcbfb10b4f55b722635d6",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-5.4.0.txt",
@@ -36,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/SHA256SUMS-5.4.0.txt",
           "size": 218,
           "digest": "sha256:0131c4a77b1e3dfa220c338134e44d8119904a2f570cf6d343c0b31aaae99e80",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
