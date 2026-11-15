@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-15T10:40:11.377Z",
+  "updatedAt": "2026-11-15T15:08:57.046Z",
   "releases": [
+    {
+      "id": 446130951,
+      "name": "MuseFilm 会员版 5.5.0 · 内嵌 AI 与天气地区联动",
+      "tag_name": "PAID-MAC5.5.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.5.0",
+      "published_at": "2026-11-15T15:08:53Z",
+      "created_at": "2026-11-15T15:05:57Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 5.5.0 · 内嵌 AI 与天气地区联动\n\n新增随安装包内置的 Qwen3-0.6B 基础文字模型，默认在这台 Mac 运行，无需另装服务或配置密钥。用于整理档案、胶卷数量与到期信息、已授权的天气和地区资料；统计与已确认事实由应用核对，小模型改写基础拍摄提醒。模型约397MB，包含 Apache-2.0 与 llama.cpp MIT 许可。照片理解和复杂光页成册请在设置中选择自接 API。\n\n内嵌分析为会员功能：Plus 每账号每天10次成功分析，按北京时间零点重置、跨设备共享；Pro 不限次。Plus 联网核验额度，不上传分析内容；失败或取消释放占用。Pro 凭有效本机权益可离线分析。自接 API 不受会员等级及内嵌额度限制，服务商费用按其规则收取；模型切换和 API 配置统一放入设置，不会自动回退为付费 API。\n\n修复自动分析先于定位与天气完成的问题：先等待已授权定位，再读取天气与地区取景候选，最后生成分析。定位不可用时可使用已确认城市，未取得天气时显示原因并保留地区信息；预报过期时不作实时晴雨判断。首页摘要同时保留实际地区、天气及库存判断。已开启自动分析的旧版用户，在首次取得有效天气后修复一次旧缓存，随后按原间隔更新。\n\n保留工作区定时分析、全局新手引导和拟物导入关闭修复。支持 Apple Silicon 与 Intel Mac；DMG 保留摄影背景、卷标、图标及 Applications 拖拽安装入口。\n\n安装包采用 ad-hoc 签名，未经过 Apple 公证；应用内更新源和下载文件另附 Sparkle 签名校验。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.5.0-build118-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.5.0/MuseFilm-Paid-5.5.0-build118-universal.dmg",
+          "size": 572146939,
+          "digest": "sha256:fa4522fb910e4863f22b3ccd7e570e0971f04217d380f74c5a1901a274a564b3",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.5.0-build118-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.5.0/MuseFilm-Paid-5.5.0-build118-universal.zip",
+          "size": 564567009,
+          "digest": "sha256:93c1b750a2f4a5f5f342d305bb0c7b27c461f4534f34a7021eb4411ecd07bb6b",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.5.0.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.5.0/SHA256SUMS-5.5.0.txt",
+          "size": 218,
+          "digest": "sha256:85bedf3040acfa8a04392f17c3e9f53a1ae3cfe3ac69d1aa257ce11460f3bb2d",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 445979524,
       "name": "MuseFilm 会员版 5.4.1 · 定时分析与引导修复",
@@ -20,7 +57,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/MuseFilm-Paid-5.4.1-build117-universal.dmg",
           "size": 173105403,
           "digest": "sha256:8d891d4650ac487a9ffbbe1697828588f26f0595f6b9b49a13cb605df1157683",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "MuseFilm-Paid-5.4.1-build117-universal.zip",
@@ -28,7 +65,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/MuseFilm-Paid-5.4.1-build117-universal.zip",
           "size": 170507723,
           "digest": "sha256:65d1eb739892731db3df159b3f36f3da129d8c6421e27f203fb89376d06e85a5",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS-5.4.1.txt",
@@ -36,7 +73,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.1/SHA256SUMS-5.4.1.txt",
           "size": 218,
           "digest": "sha256:fd060619a99fc9ca2c373d027ca58c9fe84abac1ee641ea5aef98b998fa1bef4",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
