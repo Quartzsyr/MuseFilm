@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-15T01:58:16.762Z",
+  "updatedAt": "2026-11-15T03:12:13.417Z",
   "releases": [
+    {
+      "id": 445775846,
+      "name": "MuseFilm 会员版 5.2.3 · 单张影像首页",
+      "tag_name": "PAID-MAC5.2.3",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.2.3",
+      "published_at": "2026-11-15T03:12:11Z",
+      "created_at": "2026-11-15T01:58:16Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "MuseFilm 会员版 5.2.3 · 单张影像首页\n\n- 首页主图与最近档案改为单张照片展示，每 8 秒从档案内随机轮换，一轮内不重复。\n- 鼠标停留时暂停，应用进入后台或离开首页时停止轮换；点击打开正在展示的照片。\n- 首页采用开放式摄影目录布局，胶卷库存使用本机生成的 Three.js 暗盒缩略图，拍摄准备与导入集中在玻璃工具栏。\n- “我的”直接进入个人摄影主页；身份、作品、资料、偏好和设备记录清晰分区，会员订阅保留独立入口。\n\n支持 macOS 14 及以上，同时包含 Apple Silicon 与 Intel 架构。下载 DMG 后将应用拖入 Applications；ZIP 用于手动解压和自动更新。SHA256SUMS 文件可核对下载完整性。安装包已签名，未经 Apple 公证。\n\n保留现有照片、档案、用户 API 配置、摄影集 AI、HDR 观片与照片导出功能。首页展示只读取照片，不修改原始文件。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.2.3-build111-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/MuseFilm-Paid-5.2.3-build111-universal.dmg",
+          "size": 164621312,
+          "digest": "sha256:62b163c3092f787a2c368fe5e28289af9cd07ddc73bf340b549d46539382032c",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.2.3-build111-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/MuseFilm-Paid-5.2.3-build111-universal.zip",
+          "size": 163926460,
+          "digest": "sha256:4ca71c9a4afef6f88b4426d1f84ebbcf2dced01bd7b9cb85bdb0ba9825fd42ce",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.2.3.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.2.3/SHA256SUMS-5.2.3.txt",
+          "size": 218,
+          "digest": "sha256:3a7bb7fc08a7a15bd769bb72b08e43bddd6535d455173fc229010226715df2e6",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 445336227,
       "name": "MuseFilm 会员版 5.2.0 · 影像私人馆",
