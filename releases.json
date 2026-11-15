@@ -1,8 +1,45 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-15T09:33:50.688Z",
+  "updatedAt": "2026-11-15T10:00:19.997Z",
   "releases": [
+    {
+      "id": 445956725,
+      "name": "MuseFilm 会员版 5.4.0 · 工作区导览与摄影助手",
+      "tag_name": "PAID-MAC5.4.0",
+      "html_url": "https://github.com/Quartzsyr/MuseFilm/releases/tag/PAID-MAC5.4.0",
+      "published_at": "2026-11-15T10:00:10Z",
+      "created_at": "2026-11-15T09:54:21Z",
+      "prerelease": false,
+      "draft": false,
+      "body": "# MuseFilm 会员版 5.4.0 · 工作区导览与摄影助手\n\n新手引导扩展为全局工作区导览，首页、天气、冲洗动效与可调节偏好同步更新。\n\n- 全局聚光导览随页面定位实际区域，说明卡避让焦点；支持收起后试用本页、返回继续、步骤跳转和键盘导航。保留八种演示。自动展示一次，固定标记不会随后续版本重置，设置可随时回顾。\n- 新增十三项设置：照片轮换与间隔、摘要或全文、底片拖动、库存与拍摄准备面板、插画动画与帧率、冲洗场景、导览演示与说明卡位置及遮罩深度、地区景点查询。维持六类分组与跨分类搜索。\n- 首页展示精简 AI 要点，完整报告保留阅读、编辑与历史。确认城市的天气同步用于首页；定位等待、失败、过期预报和城市切换分别处理。\n- 天气与 Apple 地图景点候选可结合库存、到期及器材生成取景建议。关闭景点查询后不发起新的地图请求；开放、门票与通行情况须出发前确认。天气、地图及 AI 遵循各自授权，导览期间暂停首页自动天气与 AI 任务。\n- 冲洗计时加入 ImageGen 透明罐体与量杯，以及预热、显影、水洗、稳定与晾片等阶段动效。暂停、后台与减少效果时停止装饰动画；原有配方、温度补偿、计时与记录逻辑保留。\n\n支持 Apple Silicon 与 Intel Mac。安装盘保留摄影背景、卷标与应用图标和 Applications 拖拽入口。已验证通用 Release、相关回归、隔离布局渲染、动效逐帧暂停及包完整性；尚未完成真实鼠标操作与系统原生玻璃光学的端到端验收。\n\n安装包采用 ad-hoc 签名，未经过 Apple 公证。正式更新源与下载包另附 Sparkle 签名校验。\n",
+      "assets": [
+        {
+          "name": "MuseFilm-Paid-5.4.0-build116-universal.dmg",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/MuseFilm-Paid-5.4.0-build116-universal.dmg",
+          "size": 173046547,
+          "digest": "sha256:678b3224006e1f49dd365d2a437f887e245e2630e8206c3ca79e5321032403b2",
+          "download_count": 0
+        },
+        {
+          "name": "MuseFilm-Paid-5.4.0-build116-universal.zip",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/MuseFilm-Paid-5.4.0-build116-universal.zip",
+          "size": 170458857,
+          "digest": "sha256:50cac58af20fd4441c06a9cefe29d9841d4220eb2e7fcbfb10b4f55b722635d6",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS-5.4.0.txt",
+          "state": "uploaded",
+          "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.4.0/SHA256SUMS-5.4.0.txt",
+          "size": 218,
+          "digest": "sha256:0131c4a77b1e3dfa220c338134e44d8119904a2f570cf6d343c0b31aaae99e80",
+          "download_count": 0
+        }
+      ]
+    },
     {
       "id": 445821061,
       "name": "MuseFilm 会员版 5.3.1 · 光影手记",
