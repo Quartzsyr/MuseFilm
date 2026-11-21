@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MuseFilm 网页工作区。在浏览器里归档胶卷、观片和制作影像。">
+  <title>MuseFilm 网页工作区</title>
+  <link rel="icon" href="../images/app-icon.png">
+  <link rel="stylesheet" href="./workspace.css?v=1">
+  <script type="module" src="./workspace.js?v=1"></script>
+</head>
+<body>
+  <header class="titlebar">
+    <a href="../"><img src="../images/app-icon.png" width="26" height="26" alt="">MuseFilm</a>
+    <span id="route-title">首页</span>
+    <button id="quick-add" type="button">导入卷宗</button>
+  </header>
+  <main id="workspace" tabindex="-1"><p>正在打开本机图库…</p></main>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
+  <footer class="dock-wrap">
+    <button class="orb" id="assistant-open" type="button" aria-label="打开工作区助手" aria-expanded="false" aria-controls="assistant"></button>
+    <nav class="dock" id="dock" aria-label="工作区导航"></nav>
+    <button id="all-tools" type="button">功能总览</button>
+  </footer>
+  <dialog id="palette" aria-labelledby="palette-title">
+    <form method="dialog"><h2 id="palette-title">功能总览</h2><button type="submit" aria-label="关闭">×</button></form>
+    <input id="palette-search" placeholder="查找功能" aria-label="查找功能">
+    <div id="palette-list"></div>
+  </dialog>
+  <aside id="assistant" class="assistant" aria-labelledby="assistant-title" hidden>
+    <header><h2 id="assistant-title">工作区助手</h2><button id="assistant-close" type="button" aria-label="关闭助手">×</button></header>
+    <div id="assistant-result" role="status">可以查本机档案、汇总图库和检查所选照片的清晰度与曝光。</div>
+    <div class="assistant-chips"><button type="button" data-prompt="总结图库">总结图库</button><button type="button" data-prompt="检查当前卷">检查当前卷</button><button type="button" data-prompt="哪张最清晰">哪张最清晰</button></div>
+    <form id="assistant-form"><input name="prompt" required aria-label="助手指令" placeholder="例如：查找 苏州"><button type="submit">发送</button></form>
+  </aside>
+</body>
+</html>
