@@ -21,7 +21,7 @@
     <link rel="manifest" href="./site.webmanifest">
     <link rel="preload" as="image" href="./images/hero-film-roll.avif" type="image/avif">
     <link rel="preload" as="fetch" href="./models/film-roll.glb" type="model/gltf-binary" crossorigin>
-    <link rel="stylesheet" href="./site.css?v=20261030-update-statistics">
+    <link rel="stylesheet" href="./site.css?v=20261121-web-workspace">
     <title>MuseFilm｜Windows 与 macOS 胶片摄影档案工具</title>
     <script type="application/ld+json">
       {
@@ -76,7 +76,7 @@
                 <button type="button" role="tab" aria-selected="false" data-narrative-platform="windows">Windows <small>13</small></button>
               </div>
               <figure class="cinematic-frame is-active" data-narrative-frame>
-                <img src="./images/app-details/01-home.avif" width="1046" height="768" alt="MuseFilm Mac 首页与最近导入" fetchpriority="high" data-narrative-image>
+                <img src="./images/workbench-5611/home.webp" width="1600" height="941" alt="MuseFilm Mac 新版工作区首页和胶卷档案" fetchpriority="high" data-narrative-image>
                 <figcaption>
                   <div><span data-narrative-meta>MAC / 01 / 08</span><strong data-narrative-label>首页概览</strong></div>
                 </figcaption>
@@ -93,6 +93,7 @@
               <p class="hero-cn"><span data-i18n="hero.line1">让一整卷光，</span><br><span data-i18n="hero.line2">重新回到眼前。</span></p>
               <p class="hero-description" data-i18n="hero.description">MuseFilm 把胶卷、扫描与拍摄记忆安放在一处。像在观片台上展开底片，先看见一卷的呼吸，再靠近那张真正留下来的照片。</p>
               <div class="hero-actions">
+                <a class="text-button" href="./workspace/" data-i18n="workspace.open">进入网页工作区</a>
                 <a class="primary-button download-trigger" data-magnetic data-platform-download data-platform="windows" href="https://github.com/Quartzsyr/MuseFilm/releases/download/Beta/MuseFilmSetup.exe" target="_blank" rel="noopener"><span data-platform-download-label>下载 Windows 版</span> <span data-platform-download-icon>↓</span></a>
                 <a class="text-button" data-magnetic href="#whats-new"><span data-i18n="hero.explore">探索 MuseFilm</span> <span>↘</span></a>
               </div>
@@ -160,6 +161,24 @@
             <div><p class="overline" data-i18n="updates.overline">MUSEFILM · macOS 近期更新</p><h2 id="new-features-title"><span data-i18n="updates.title.line1">让胶片的故事，</span><span data-i18n="updates.title.line2">继续发生。</span></h2></div>
             <div class="new-features-intro"><p data-i18n="updates.intro">让照片成为画册、短片与带有自己落款的作品。从整理到表达，在 MuseFilm 里继续创作。</p><a class="feature-platform-link" href="#platform-notes"><span data-i18n="updates.scope">以下新功能目前仅在 macOS 版提供</span><span aria-hidden="true">↘</span></a></div>
           </header>
+          <section class="workspace-callout" id="workbench-tour" aria-labelledby="workspace-launch-title">
+            <div class="workspace-launch">
+              <div>
+                <h3 id="workspace-launch-title" data-i18n="workspace.title">打开 MuseFilm 网页工作区</h3>
+                <p data-i18n="workspace.description">在浏览器里建立卷宗、回看底片、编排画册与导出作品。图库保存在当前浏览器。</p>
+              </div>
+              <a class="text-button" href="./workspace/" data-i18n="workspace.open">进入网页工作区</a>
+            </div>
+            <details>
+              <summary data-i18n="workspace.captures">查看新版 macOS 界面</summary>
+              <div class="workspace-captures" aria-label="MuseFilm macOS 5.6.11">
+                <a href="./images/workbench-5611/assistant.webp"><img src="./images/workbench-5611/assistant.webp" width="1600" height="1193" loading="lazy" alt="工作区助手 / Workspace assistant"></a>
+                <a href="./images/workbench-5611/book.webp"><img src="./images/workbench-5611/book.webp" width="1600" height="1184" loading="lazy" alt="画册概览 / Photo book overview"></a>
+                <a href="./images/workbench-5611/book-preview.webp"><img src="./images/workbench-5611/book-preview.webp" width="1600" height="1184" loading="lazy" alt="光页跨页 / Book spread"></a>
+                <a href="./images/workbench-5611/watermark.webp"><img src="./images/workbench-5611/watermark.webp" width="1417" height="1200" loading="lazy" alt="水印工坊 / Watermark Studio"></a>
+              </div>
+            </details>
+          </section>
           <div class="feature-presentation" id="feature-showcase" data-feature-presentation>
             <details class="feature-details" id="feature-details">
               <summary id="feature-details-summary"><span class="feature-details-open-label" data-i18n="promo.expand">展开功能详情</span><span class="feature-details-close-label" data-i18n="promo.collapse">收起功能详情</span><span class="feature-details-scope" data-i18n="promo.detailScope">光页 · 水印 · 动态桌面 · 度盘 Beta</span><i aria-hidden="true">＋</i></summary>
@@ -478,6 +497,6 @@
     </dialog>
 
     <noscript><div class="noscript">下载链接可直接使用；启用 JavaScript 可显示 GitHub 的最新下载记录。</div></noscript>
-    <script type="module" src="./site.js?v=20261102-download-repair"></script>
+    <script type="module" src="./site.js?v=20261121-web-workspace"></script>
   </body>
 </html>
