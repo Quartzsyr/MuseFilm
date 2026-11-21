@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-21T18:02:02.138Z",
+  "updatedAt": "2026-11-21T23:26:11.029Z",
   "releases": [
     {
       "id": 446718070,
@@ -1051,7 +1051,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.25/release-4.7.25.json",
           "size": 7244,
           "digest": "sha256:953ebda3419dbf3976521222a247d868eb271b0d8b64a61ab9624e3c1d96c33e",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS-4.7.25.txt",
