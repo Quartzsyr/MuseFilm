@@ -12,6 +12,10 @@ let refreshShowcaseLanguage = () => {};
 
 const TRANSLATIONS = {
   zh: {
+    "workspace.title": "打开 MuseFilm 网页工作区",
+    "workspace.description": "在浏览器里建立卷宗、回看底片、编排画册与导出作品。图库保存在当前浏览器。",
+    "workspace.open": "进入网页工作区",
+    "workspace.captures": "查看新版 macOS 界面",
     "updates.checkCount": "次更新检查请求",
     "updates.checkScope": "macOS · 含自动与手动检查，非用户数 · 统计自",
     "promo.expand": "展开功能详情",
@@ -339,6 +343,10 @@ const TRANSLATIONS = {
     "screen.preview": "预览",
   },
   en: {
+    "workspace.title": "Open the MuseFilm workspace",
+    "workspace.description": "Archive film rolls, review frames, design books, and export your work. The library is saved in this browser.",
+    "workspace.open": "Open web workspace",
+    "workspace.captures": "See the redesigned macOS interface",
     "updates.checkCount": "update-check requests",
     "updates.checkScope": "macOS · automatic and manual checks, not unique users · since",
     "promo.expand": "Explore feature details",
@@ -729,12 +737,12 @@ if (filmModel || filmFinale) {
 }
 
 const SCREENSHOTS = [
-  { platform: "mac", src: "./images/app-details/01-home.avif", width: 1046, height: 768, kickerZh: "所有故事，从全局开始", kickerEn: "Every story begins with the whole", zh: "从这一刻，看见整个档案。", en: "See the whole archive at once.", descZh: "最近导入的照片、仍在生长的胶卷，以及被时间慢慢填满的收藏，都在这里安静相遇。无需翻找文件夹，目光落下的地方，就是你下一次整理的起点。", descEn: "Recent imports, growing rolls, and a collection slowly shaped by time meet in one quiet view. No folders to hunt through—the place your eye lands is where the next chapter begins.", altZh: "MuseFilm Mac 首页与最近导入", altEn: "MuseFilm Mac home and recent imports" },
+  { platform: "mac", src: "./images/workbench-5611/home.webp", width: 1600, height: 941, kickerZh: "所有故事，从全局开始", kickerEn: "Every story begins with the whole", zh: "从这一刻，看见整个档案。", en: "See the whole archive at once.", descZh: "最近导入的照片、仍在生长的胶卷，以及被时间慢慢填满的收藏，都在这里安静相遇。无需翻找文件夹，目光落下的地方，就是你下一次整理的起点。", descEn: "Recent imports, growing rolls, and a collection slowly shaped by time meet in one quiet view. No folders to hunt through—the place your eye lands is where the next chapter begins.", altZh: "MuseFilm Mac 首页与最近导入", altEn: "MuseFilm Mac home and recent imports" },
   { platform: "mac", src: "./images/app-details/02-archive.avif", width: 1046, height: 768, kickerZh: "不只归档，更保存上下文", kickerEn: "More than files. The context around them", zh: "一卷胶片，就是一段完整的时间。", en: "A roll is a complete passage of time.", descZh: "日期、相机、地点、标签与扫描影像围绕同一卷自然归位。MuseFilm 保存的不只是文件，而是按下快门前后的空气，让多年后的回看依然有迹可循。", descEn: "Dates, cameras, places, tags, and scans settle naturally around a single roll. MuseFilm keeps more than files—it preserves the atmosphere around each shutter press, ready to be found years later.", altZh: "MuseFilm Mac 档案页面", altEn: "MuseFilm Mac archive" },
   { platform: "mac", src: "./images/app-details/03-film-library.avif", width: 1046, height: 768, kickerZh: "每一种乳剂，都有自己的性格", kickerEn: "Every emulsion has a character", zh: "记住色彩，也记住选择。", en: "Remember the color. And the choice.", descZh: "品牌、型号、感光度与使用历史，被整理成一座属于你的胶片谱系。下一次装卷之前，那些熟悉的颗粒、反差与色温，已经替你唤醒过往的经验。", descEn: "Brands, stocks, speeds, and shooting history become a film vocabulary that is entirely yours. Before the next roll is loaded, familiar grain, contrast, and color have already brought experience back to mind.", altZh: "MuseFilm Mac 胶卷库", altEn: "MuseFilm Mac film library" },
   { platform: "mac", src: "./images/app-details/04-equipment.avif", width: 1046, height: 768, kickerZh: "工具有名字，作品有来处", kickerEn: "Every tool has a name. Every image, an origin", zh: "器材退到身后，作品留在眼前。", en: "Let the tools recede. Let the work remain.", descZh: "相机与镜头被妥善记录，却不打断观看本身。需要时，每一张照片都能回到真实的机身、焦段与组合；不需要时，界面只留下影像应有的安静。", descEn: "Cameras and lenses are carefully recorded without interrupting the act of looking. When needed, every frame returns to its body, focal length, and pairing; otherwise, only the image remains.", altZh: "MuseFilm Mac 器材库", altEn: "MuseFilm Mac equipment library" },
   { platform: "mac", src: "./images/app-details/05-developing.avif", width: 1046, height: 768, kickerZh: "暗房里，时间也是一种材料", kickerEn: "In the darkroom, time is a material", zh: "每一秒，都值得被记住。", en: "Every second deserves to be remembered.", descZh: "显影液、温度、步骤和倒计时在同一条节奏中展开，让双手专注于胶片，而不是反复确认数字。完成之后，配方与经验被留下，下一次可以从更从容的地方开始。", descEn: "Chemistry, temperature, steps, and time unfold in one measured rhythm, leaving your hands free to attend to the film. When the process ends, its recipe and experience remain for a calmer next session.", altZh: "MuseFilm Mac 冲扫计时器", altEn: "MuseFilm Mac developing timer" },
-  { platform: "mac", src: "./images/app-details/06-light-table.avif", width: 1046, height: 768, kickerZh: "让底片，重新回到光下", kickerEn: "Bring the negatives back into the light", zh: "把一整卷光，铺在眼前。", en: "Lay an entire roll of light before you.", descZh: "整卷影像像真正的底片一样依次展开，相邻画面之间的停顿、重复与变化重新变得清晰。你可以先感受一卷的呼吸，再靠近那张真正留下来的照片。", descEn: "An entire roll unfolds like negatives on a real light table, revealing the pauses, repetitions, and changes between frames. Read the rhythm first, then move closer to the image that stays with you.", altZh: "MuseFilm Mac 观片台", altEn: "MuseFilm Mac light table" },
+  { platform: "mac", src: "./images/workbench-5611/light-table.webp", width: 1200, height: 720, kickerZh: "让底片，重新回到光下", kickerEn: "Bring the negatives back into the light", zh: "把一整卷光，铺在眼前。", en: "Lay an entire roll of light before you.", descZh: "整卷影像像真正的底片一样依次展开，相邻画面之间的停顿、重复与变化重新变得清晰。你可以先感受一卷的呼吸，再靠近那张真正留下来的照片。", descEn: "An entire roll unfolds like negatives on a real light table, revealing the pauses, repetitions, and changes between frames. Read the rhythm first, then move closer to the image that stays with you.", altZh: "MuseFilm Mac 观片台", altEn: "MuseFilm Mac light table" },
   { platform: "mac", src: "./images/app-details/07-preview.avif", width: 1046, height: 768, kickerZh: "一张照片，也有完整的来路", kickerEn: "Every photograph carries where it came from", zh: "靠近画面，也靠近当时。", en: "Move closer to the frame—and the moment.", descZh: "放大一张照片时，胶卷、器材、地点和标签仍在触手可及之处。细节没有吞没故事，信息也没有遮住影像；它们只在需要时出现，帮助记忆重新获得轮廓。", descEn: "As a photograph expands, its roll, equipment, place, and tags remain close at hand. Detail never overwhelms the story, and information never covers the image—it appears only when memory needs an outline.", altZh: "MuseFilm Mac 照片预览与元数据", altEn: "MuseFilm Mac photo preview and metadata" },
   { platform: "mac", src: "./images/app-details/08-search.avif", width: 1046, height: 768, kickerZh: "你记得光，MuseFilm 记得它在哪里", kickerEn: "You remember the light. MuseFilm remembers where", zh: "不必记住文件名，只需记得当时。", en: "Forget the filename. Remember the moment.", descZh: "也许你只记得那天下过雨，使用了一卷黑白胶片，或带着某一支镜头。时间、器材、地点与标签交织成线索，把埋在硬盘深处的那束光重新带回眼前。", descEn: "Perhaps you remember only the rain, a black-and-white roll, or the lens you carried. Dates, equipment, places, and tags become clues that bring a long-buried piece of light back into view.", altZh: "MuseFilm Mac 搜索页面", altEn: "MuseFilm Mac search" },
   { platform: "windows", src: "./images/mac/01-dashboard-home.avif", width: 1440, height: 960, kickerZh: "一眼看见，档案正在如何生长", kickerEn: "See how an archive grows", zh: "所有线索，在此汇成一卷。", en: "Every thread gathers into one view.", descZh: "胶卷、照片、胶片类型与最近记录在开阔的首页相遇，复杂的收藏因此拥有清晰的轮廓。每一次打开 MuseFilm，都能迅速回到尚未完成的那段影像叙事。", descEn: "Rolls, photographs, film stocks, and recent activity meet across one spacious dashboard, giving a complex collection a clear shape. Each return takes you straight back to the story still in progress.", altZh: "MuseFilm Windows 仪表盘", altEn: "MuseFilm Windows dashboard" },
@@ -753,12 +761,12 @@ const SCREENSHOTS = [
 ];
 
 const SCREEN_INTERFACE_LABELS = {
-  "./images/app-details/01-home.avif": { zh: "首页概览", en: "Home overview" },
+  "./images/workbench-5611/home.webp": { zh: "首页概览", en: "Home overview" },
   "./images/app-details/02-archive.avif": { zh: "胶卷档案", en: "Roll archive" },
   "./images/app-details/03-film-library.avif": { zh: "胶片资料库", en: "Film library" },
   "./images/app-details/04-equipment.avif": { zh: "器材资料库", en: "Equipment library" },
   "./images/app-details/05-developing.avif": { zh: "冲扫计时器", en: "Developing timer" },
-  "./images/app-details/06-light-table.avif": { zh: "数字观片台", en: "Light table" },
+  "./images/workbench-5611/light-table.webp": { zh: "数字观片台", en: "Light table" },
   "./images/app-details/07-preview.avif": { zh: "照片详情", en: "Photo details" },
   "./images/app-details/08-search.avif": { zh: "搜索界面", en: "Search" },
   "./images/mac/01-dashboard-home.avif": { zh: "Windows 仪表盘", en: "Windows dashboard" },

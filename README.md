@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Vite serves a single `index.html` product page for Windows and macOS. All links and assets use relative paths so the same build works on the custom domain and on a GitHub Pages repository URL.
+Vite serves the `index.html` product page and the browser application at `/workspace/`. The workspace stores rolls, images and projects locally in IndexedDB. It can import its own JSON backups and generate its exports on the device. All links and assets use relative paths so the same build works on the custom domain and on a GitHub Pages repository URL.
 
 ## Build
 
