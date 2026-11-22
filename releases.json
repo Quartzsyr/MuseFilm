@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-22T15:26:24.993Z",
+  "updatedAt": "2026-11-22T21:53:15.242Z",
   "releases": [
     {
       "id": 446718070,
@@ -1648,7 +1648,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.14/SHA256SUMS-4.7.14.txt",
           "size": 399,
           "digest": "sha256:bd5384eaaee7f9b82cce596f5d4e9e8ba2fb0dc1d0e4ce121dd9ed2bc9fc5b87",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "WINDOWS-PLATFORM-CONTRACT.md",
