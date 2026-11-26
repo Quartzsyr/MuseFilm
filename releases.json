@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-25T23:40:16.669Z",
+  "updatedAt": "2026-11-26T08:32:22.110Z",
   "releases": [
     {
       "id": 446718070,
@@ -584,7 +584,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC4.7.32/WINDOWS-PLATFORM-CONTRACT.md",
           "size": 7235,
           "digest": "sha256:eb1a4e0a9b5bd4c5de13336a028d072dbebecbfc228a8be578dfc74ecf4f10e3",
-          "download_count": 0
+          "download_count": 1
         }
       ]
     },
