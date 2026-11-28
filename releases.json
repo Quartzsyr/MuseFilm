@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "Quartzsyr/MuseFilm",
-  "updatedAt": "2026-11-28T02:45:12.929Z",
+  "updatedAt": "2026-11-28T11:56:37.479Z",
   "releases": [
     {
       "id": 446718070,
@@ -36,7 +36,7 @@
           "browser_download_url": "https://github.com/Quartzsyr/MuseFilm/releases/download/PAID-MAC5.6.1/MuseFilm-Paid-5.6.1-build121-universal.zip",
           "size": 565681234,
           "digest": "sha256:26cc15149e269a4f9647b9714d372e2fe2c2fdb32cbba69e45ad9f67a0c630ff",
-          "download_count": 1
+          "download_count": 5
         },
         {
           "name": "SHA256SUMS-5.6.1-build121.txt",
